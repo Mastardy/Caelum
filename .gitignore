@@ -28,6 +28,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Jetbrains cache directory
+.idea/
+
 # Gradle cache directory
 .gradle/
 
@@ -37,6 +40,8 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.sln.DotSettings
+*.sln.DotSettings.user
 *.suo
 *.tmp
 *.user
@@ -63,4 +68,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
