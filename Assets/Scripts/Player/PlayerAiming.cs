@@ -13,7 +13,7 @@ public class PlayerAiming : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             playerCamera = GetComponentInChildren<Camera>().gameObject.transform;
         }
         else Destroy(this);
