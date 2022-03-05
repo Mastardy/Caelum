@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 908937297872379515}
   - component: {fileID: 908937297872379514}
   - component: {fileID: 908937297872379493}
+  - component: {fileID: -2037114422934638527}
   - component: {fileID: 908937297872379492}
   - component: {fileID: -6174222330736865363}
-  - component: {fileID: -5276603236272451502}
+  - component: {fileID: 7400396821221085243}
+  - component: {fileID: -5981138711254851129}
+  - component: {fileID: -6965658678446351625}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,6 +105,24 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &-2037114422934638527
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908937297872379495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &908937297872379492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +166,7 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   CanCommitToTransform: 0
---- !u!114 &-5276603236272451502
+--- !u!114 &7400396821221085243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,11 +175,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 908937297872379495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be7b6fa1abfd5a049861ef27423b4d20, type: 3}
+  m_Script: {fileID: 11500000, guid: e90bc2ab6595a9b48b51bc777dff1d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 2571308925617809700}
-  sensitivity: 0.3
+--- !u!114 &-5981138711254851129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908937297872379495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a335111d7a359bd4098324f4fd5d94ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 30
+--- !u!114 &-6965658678446351625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908937297872379495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91a5d2441314b824abfb41aa1d736fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   speed: 3
 --- !u!1 &4098553398536373413
 GameObject:
