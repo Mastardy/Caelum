@@ -8,27 +8,24 @@ public class Resource : NetworkBehaviour
     public NetworkVariable<int> curHealth = new();
     public NetworkVariable<int> curResources = new();
 
+    private int resourcesGathered;
+    
     public int HitResource(int damage)
     {
-        HitResourceServerRpc(this, damage, out int resourceGathered);
+        HitResourceServerRpc(damage);
 
-        return resourceGathered;
+        return resourcesGathered;
     }
 
     [ServerRpc]
-    public void HitResourceServerRpc(NetworkBehaviourReference resource, int damage, out int resourceGathered)
+    public void HitResourceServerRpc(int damage)
     {
-        resourceGathered = 0;
-        
-        if (resource.TryGet(out Resource resourceComponent))
-        {
-            resourceComponent.curHealth.Value -= damage;
+        curHealth.Value -= damage;
 
-            if (curHealth.Value <= 0) DestroyResource();
+        if (curHealth.Value <= 0) DestroyResource();
             
-            resourceGathered = (int)(maxResources * (damage / (float)maxHealth));
-            curResources.Value -= resourceGathered;
-        }
+        resourcesGathered = (int)(maxResources * (damage / (float)maxHealth));
+        curResources.Value -= resourcesGathered;
     }
     
     public void DestroyResource()
