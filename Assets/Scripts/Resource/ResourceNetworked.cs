@@ -3,18 +3,26 @@ using Unity.Netcode;
 public class ResourceNetworked : NetworkBehaviour
 {
     public string resourceName;
-    public DynamicValueNetworked<int> Health;
-    public DynamicValueNetworked<int> ResourceAmount;
+    public NetworkVariable<DynamicValueNetworked<int>> Health;
+    public NetworkVariable<DynamicValueNetworked<int>> ResourceAmount;
 
     public int HitResource(int damage)
     {
-        Health.current -= damage;
-
-        if(Health.current <= 0) DestroyResource();
+        var health = Health.Value;
+        var resourceAmount = ResourceAmount.Value;
         
-        int resourceGathered = (int)(ResourceAmount.max * (damage / (float)Health.max));
-        ResourceAmount.current -= resourceGathered;
+        health.current -= damage;
 
+        health.current -= damage;
+        
+        if(health.current <= 0) DestroyResource();
+        
+        int resourceGathered = (int)(resourceAmount.max * (damage / (float)health.max));
+        resourceAmount.current -= resourceGathered;
+
+        Health.Value = health;
+        ResourceAmount.Value = resourceAmount;
+        
         return resourceGathered;
     }
 
