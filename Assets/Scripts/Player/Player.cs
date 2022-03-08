@@ -61,8 +61,8 @@ public class Player : NetworkBehaviour
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
             {
-                if (resource.resourceName == "Tree") Wood += resource.HitResource(2);
-                if (resource.resourceName == "Stone") Stone += resource.HitResource(2);
+                if (resource.resourceName == "TreeNetworked") Wood += resource.HitResource(2);
+                if (resource.resourceName == "StoneNetworked") Stone += resource.HitResource(2);
             }
         }
     }
