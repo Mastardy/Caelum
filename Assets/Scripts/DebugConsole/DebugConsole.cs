@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
+using UnityEditor;
 
 public class DebugConsole : MonoBehaviour
 {
@@ -24,13 +25,26 @@ public class DebugConsole : MonoBehaviour
     {
         commandList = new List<DebugCommandBase>
         {
+            // Disconnect Command - Disconnects Client from the Server
             new DebugCommand("Disconnect", "Disconnects from the lobby", "disconnect", () => 
                 NetworkManager.Singleton.GetComponent<FacepunchTransport>().DisconnectLocalClient()),
-            new DebugCommand<string[]>("Foda-se", "Foda-se, Caralho", "fodase", (args) =>
+            
+            // Say Command - Useful Debug command to log stuff in Unity Console
+            new DebugCommand<string[]>("Say", "Escreve na consola alguma coisa", "say", (args) =>
             {
-                Debug.Log(args[1..]);
+                if (args.Length <= 1) return;
+
+                string message = args[1];
+                
+                for (int i = 2; i < args.Length; i++)
+                {
+                    message += " " + args[i];
+                }
+                
+                Debug.Log(message);
             }),
             
+            // Quit Command - Closes the client's game
             new DebugCommand("Quit", "Quits from the game", "quit", () =>
             {
             #if UNITY_EDITOR
@@ -40,6 +54,7 @@ public class DebugConsole : MonoBehaviour
             #endif
             }),
             
+            // Help Command - Shows all the commands and it's description
             new DebugCommand("Help", "Shows all the commands", "help", () => 
                 showHelp = true)
         };
