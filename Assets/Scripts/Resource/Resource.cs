@@ -17,7 +17,7 @@ public class Resource : NetworkBehaviour
         return resourcesGathered;
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(int damage)
     {
         curHealth.Value -= damage;
