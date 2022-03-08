@@ -1,8 +1,7 @@
 using System;
-using UnityEngine;
 
 [Serializable]
-public class DynamicValue<T>
+public class DynamicValue<T> where T : unmanaged
 {
     public T max;
     public T current;
