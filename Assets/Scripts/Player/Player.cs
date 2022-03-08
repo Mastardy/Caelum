@@ -102,6 +102,7 @@ public class Player : NetworkBehaviour
         if (!IsLocalPlayer)
         {
             cameraTransform.gameObject.SetActive(false);
+            GetComponentInChildren<Canvas>().gameObject.SetActive(false);
             Destroy(this);
         }
         else
