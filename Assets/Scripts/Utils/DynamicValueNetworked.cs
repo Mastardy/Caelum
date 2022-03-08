@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using Unity.Netcode;
-using UnityEngine;using UnityEngine.PlayerLoop;
 
+[Serializable]
 public class DynamicValueNetworked<T> : DynamicValue<T>, INetworkSerializable where T : unmanaged
 {
     public void NetworkSerialize<TR>(BufferSerializer<TR> serializer) where TR : IReaderWriter

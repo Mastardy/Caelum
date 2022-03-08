@@ -3,6 +3,7 @@ using Unity.Netcode;
 using TMPro;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using UnityEngine.Windows.WebCam;
 
 public class Player : NetworkBehaviour
 {
@@ -16,7 +17,7 @@ public class Player : NetworkBehaviour
     private int wood;
     public int Wood
     {
-        get { return wood; }
+        get => wood;
         set
         {
             woodText.SetText(value.ToString());
@@ -28,10 +29,7 @@ public class Player : NetworkBehaviour
     private int stone;
     private int Stone
     {
-        get
-        {
-            return stone;
-        }
+        get => stone;
         set
         {
             stoneText.SetText(value.ToString());
@@ -46,8 +44,19 @@ public class Player : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer) return;
+        
         if (lookingAt == null) return;
 
+        if (lookingAt.TryGetComponent(out ResourceNetworked resourceNetworked))
+        {
+            if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+            {
+                if (resourceNetworked.resourceName == "Tree") Wood += resourceNetworked.HitResource(2);
+                if (resourceNetworked.resourceName == "Stone") Stone += resourceNetworked.HitResource(2);
+            }
+        }
+        
         if (lookingAt.TryGetComponent(out Resource resource))
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
@@ -60,9 +69,17 @@ public class Player : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        if (!IsLocalPlayer) return;
+        
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, resourceMask))
         {
             if (hitInfo.transform.TryGetComponent(out Resource resource))
+            {
+                aimText.SetText(resource.resourceName);
+                lookingAt = resource.gameObject;
+                return;
+            }
+            if (hitInfo.transform.TryGetComponent(out ResourceNetworked resourceNetworked))
             {
                 aimText.SetText(resource.resourceName);
                 lookingAt = resource.gameObject;
