@@ -1,21 +1,27 @@
-using UnityEngine;
+using Unity.Netcode;
 
-public class Resource : MonoBehaviour
+public class Resource : NetworkBehaviour
 {
     public string resourceName;
-    public DynamicValue<int> Health;
-    public DynamicValue<int> ResourceAmount;
+    public int maxHealth;
+    public int maxResources;
+    public NetworkVariable<int> curHealth = new();
+    public NetworkVariable<int> curResources = new();
 
-    public int HitResource(int damage)
+    [ServerRpc(RequireOwnership = false)]
+    public void HitResourceServerRpc(NetworkBehaviourReference player, string rscName, int damage)
     {
-        Health.current -= damage;
+        curHealth.Value -= damage;
 
-        if(Health.current <= 0) DestroyResource();
+        if (curHealth.Value <= 0) DestroyResource();
+            
+        int resourcesGathered = (int)(maxResources * (damage / (float)maxHealth));
+        curResources.Value -= resourcesGathered;
         
-        int resourceGathered = (int)(ResourceAmount.max * (damage / (float)Health.max));
-        ResourceAmount.current -= resourceGathered;
-
-        return resourceGathered;
+        if(player.TryGet(out Player ply))
+        {
+            ply.GatherResourcesClientRpc(rscName, resourcesGathered);
+        }
     }
 
     public void DestroyResource()

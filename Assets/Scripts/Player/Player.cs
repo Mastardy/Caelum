@@ -1,7 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
-using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class Player : NetworkBehaviour
@@ -16,7 +15,7 @@ public class Player : NetworkBehaviour
     private int wood;
     public int Wood
     {
-        get { return wood; }
+        get => wood;
         set
         {
             woodText.SetText(value.ToString());
@@ -28,10 +27,7 @@ public class Player : NetworkBehaviour
     private int stone;
     private int Stone
     {
-        get
-        {
-            return stone;
-        }
+        get => stone;
         set
         {
             stoneText.SetText(value.ToString());
@@ -46,20 +42,37 @@ public class Player : NetworkBehaviour
 
     private void Update()
     {
+        if (!IsLocalPlayer) return;
+        
         if (lookingAt == null) return;
-
+        
         if (lookingAt.TryGetComponent(out Resource resource))
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
             {
-                if (resource.resourceName == "Tree") Wood += resource.HitResource(2);
-                if (resource.resourceName == "Stone") Stone += resource.HitResource(2);
+                resource.HitResourceServerRpc(this, resource.resourceName, 2);
             }
+        }
+    }
+
+    [ClientRpc]
+    public void GatherResourcesClientRpc(string resourceType, int resourceGathered)
+    {
+        switch (resourceType)
+        {
+            case "Tree":
+                Wood += resourceGathered;
+                break;
+            case "Stone":
+                Stone += resourceGathered;
+                break;
         }
     }
 
     private void FixedUpdate()
     {
+        if (!IsLocalPlayer) return;
+        
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, resourceMask))
         {
             if (hitInfo.transform.TryGetComponent(out Resource resource))
@@ -85,7 +98,7 @@ public class Player : NetworkBehaviour
         if (!IsLocalPlayer)
         {
             cameraTransform.gameObject.SetActive(false);
-            Destroy(this);
+            GetComponentInChildren<Canvas>().gameObject.SetActive(false);
         }
         else
         {
