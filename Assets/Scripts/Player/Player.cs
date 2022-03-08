@@ -52,8 +52,8 @@ public class Player : NetworkBehaviour
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
             {
-                if (resourceNetworked.resourceName == "Tree") Wood += resourceNetworked.HitResource(2);
-                if (resourceNetworked.resourceName == "Stone") Stone += resourceNetworked.HitResource(2);
+                if (resourceNetworked.resourceName == "TreeNetworked") Wood += resourceNetworked.HitResource(2);
+                if (resourceNetworked.resourceName == "StoneNetworked") Stone += resourceNetworked.HitResource(2);
             }
         }
         
@@ -61,8 +61,8 @@ public class Player : NetworkBehaviour
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
             {
-                if (resource.resourceName == "TreeNetworked") Wood += resource.HitResource(2);
-                if (resource.resourceName == "StoneNetworked") Stone += resource.HitResource(2);
+                if (resource.resourceName == "Tree") Wood += resource.HitResource(2);
+                if (resource.resourceName == "Stone") Stone += resource.HitResource(2);
             }
         }
     }
@@ -73,13 +73,13 @@ public class Player : NetworkBehaviour
         
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, resourceMask))
         {
-            if (hitInfo.transform.TryGetComponent(out Resource resource))
+            if (hitInfo.transform.TryGetComponent(out ResourceNetworked resourceNetworked))
             {
-                aimText.SetText(resource.resourceName);
-                lookingAt = resource.gameObject;
+                aimText.SetText(resourceNetworked.resourceName);
+                lookingAt = resourceNetworked.gameObject;
                 return;
             }
-            if (hitInfo.transform.TryGetComponent(out ResourceNetworked resourceNetworked))
+            if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
                 aimText.SetText(resource.resourceName);
                 lookingAt = resource.gameObject;
