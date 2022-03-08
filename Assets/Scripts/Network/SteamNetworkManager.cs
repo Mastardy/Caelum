@@ -1,16 +1,13 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Netcode.Transports.Facepunch;
 using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameNetworkManager : MonoBehaviour
+public class SteamNetworkManager : MonoBehaviour
 {
-    public static GameNetworkManager Singleton { get; private set; }
+    public static SteamNetworkManager Singleton { get; private set; }
     public Lobby? CurrentLobby { get; set; }
-    public List<Lobby> Lobbies { get; private set; } = new(capacity: 100);
     
     private FacepunchTransport transport;
 
@@ -27,7 +24,7 @@ public class GameNetworkManager : MonoBehaviour
 
     private static void StartButtons()
     {
-        if (GUILayout.Button("Host")) GameNetworkManager.Singleton.StartHost();
+        if (GUILayout.Button("Host")) Singleton.StartHost();
     }
     
     private void Awake()
@@ -87,39 +84,6 @@ public class GameNetworkManager : MonoBehaviour
         NetworkManager.Singleton.Shutdown();
     }
 
-    public async Task<bool> RefreshLobbies(int maxResults = 20)
-    {
-        try
-        {
-            Lobbies.Clear();
-
-            var lobbies = await SteamMatchmaking.LobbyList
-                .FilterDistanceClose()
-                .WithMaxResults(maxResults)
-                .RequestAsync();
-
-            if (lobbies != null)
-            {
-                for (int i = 0; i < lobbies.Length; i++) Lobbies.Add(lobbies[i]);
-            }
-
-            return true;
-        }
-        catch (System.Exception ex)
-        {
-            Debug.Log("Error fetching lobbies", this);
-            Debug.LogException(ex, this);
-            return false;
-        }
-    }
-
-    private Steamworks.ServerList.Internet GetInternetRequest()
-    {
-        var request = new Steamworks.ServerList.Internet();
-
-        return request;
-    }
-    
     #region NetworkCallbacks
 
     private void OnServerStarted() => Debug.Log("Server has started!");
