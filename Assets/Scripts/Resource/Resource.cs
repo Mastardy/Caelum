@@ -8,26 +8,22 @@ public class Resource : NetworkBehaviour
     public NetworkVariable<int> curHealth = new();
     public NetworkVariable<int> curResources = new();
 
-    private int resourcesGathered;
-    
-    public int HitResource(int damage)
-    {
-        HitResourceServerRpc(damage);
-
-        return resourcesGathered;
-    }
-
     [ServerRpc(RequireOwnership = false)]
-    public void HitResourceServerRpc(int damage)
+    public void HitResourceServerRpc(NetworkBehaviourReference player, string rscName, int damage)
     {
         curHealth.Value -= damage;
 
         if (curHealth.Value <= 0) DestroyResource();
             
-        resourcesGathered = (int)(maxResources * (damage / (float)maxHealth));
+        int resourcesGathered = (int)(maxResources * (damage / (float)maxHealth));
         curResources.Value -= resourcesGathered;
+        
+        if(player.TryGet(out Player ply))
+        {
+            ply.GatherResourcesClientRpc(rscName, resourcesGathered);
+        }
     }
-    
+
     public void DestroyResource()
     {
         // Tocar Animação

@@ -52,9 +52,22 @@ public class Player : NetworkBehaviour
         {
             if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
             {
-                if (resource.resourceName == "Tree") Wood += resource.HitResource(2);
-                if (resource.resourceName == "Stone") Stone += resource.HitResource(2);
+                resource.HitResourceServerRpc(this, resource.resourceName, 2);
             }
+        }
+    }
+
+    [ClientRpc]
+    public void GatherResourcesClientRpc(string resourceType, int resourceGathered)
+    {
+        switch (resourceType)
+        {
+            case "Tree":
+                Wood += resourceGathered;
+                break;
+            case "Stone":
+                Stone += resourceGathered;
+                break;
         }
     }
 
