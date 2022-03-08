@@ -47,15 +47,6 @@ public class Player : NetworkBehaviour
         if (!IsLocalPlayer) return;
         
         if (lookingAt == null) return;
-
-        if (lookingAt.TryGetComponent(out ResourceNetworked resourceNetworked))
-        {
-            if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
-            {
-                if (resourceNetworked.resourceName == "TreeNetworked") Wood += resourceNetworked.HitResource(2);
-                if (resourceNetworked.resourceName == "StoneNetworked") Stone += resourceNetworked.HitResource(2);
-            }
-        }
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
@@ -73,12 +64,6 @@ public class Player : NetworkBehaviour
         
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, resourceMask))
         {
-            if (hitInfo.transform.TryGetComponent(out ResourceNetworked resourceNetworked))
-            {
-                aimText.SetText(resourceNetworked.resourceName);
-                lookingAt = resourceNetworked.gameObject;
-                return;
-            }
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
                 aimText.SetText(resource.resourceName);

@@ -1,23 +1,36 @@
-using UnityEngine;
+using Unity.Netcode;
 
-public class Resource : MonoBehaviour
+public class Resource : NetworkBehaviour
 {
     public string resourceName;
-    public DynamicValue<int> Health;
-    public DynamicValue<int> ResourceAmount;
+    public int maxHealth;
+    public int maxResources;
+    public NetworkVariable<int> curHealth = new();
+    public NetworkVariable<int> curResources = new();
 
     public int HitResource(int damage)
     {
-        Health.current -= damage;
-
-        if(Health.current <= 0) DestroyResource();
-        
-        int resourceGathered = (int)(ResourceAmount.max * (damage / (float)Health.max));
-        ResourceAmount.current -= resourceGathered;
+        HitResourceServerRpc(this, damage, out int resourceGathered);
 
         return resourceGathered;
     }
 
+    [ServerRpc]
+    public void HitResourceServerRpc(NetworkBehaviourReference resource, int damage, out int resourceGathered)
+    {
+        resourceGathered = 0;
+        
+        if (resource.TryGet(out Resource resourceComponent))
+        {
+            resourceComponent.curHealth.Value -= damage;
+
+            if (curHealth.Value <= 0) DestroyResource();
+            
+            resourceGathered = (int)(maxResources * (damage / (float)maxHealth));
+            curResources.Value -= resourceGathered;
+        }
+    }
+    
     public void DestroyResource()
     {
         // Tocar Animação
