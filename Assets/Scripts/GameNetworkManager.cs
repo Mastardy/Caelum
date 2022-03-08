@@ -16,7 +16,7 @@ public class GameNetworkManager : MonoBehaviour
 
     private void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 300, 300));
+        GUILayout.BeginArea(new Rect(10, 100, 300, 300));
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
             StartButtons();
