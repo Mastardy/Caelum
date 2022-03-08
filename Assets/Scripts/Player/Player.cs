@@ -1,9 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
-using UnityEngine.Rendering;
 using UnityEngine.UIElements;
-using UnityEngine.Windows.WebCam;
 
 public class Player : NetworkBehaviour
 {
@@ -101,7 +99,6 @@ public class Player : NetworkBehaviour
         {
             cameraTransform.gameObject.SetActive(false);
             GetComponentInChildren<Canvas>().gameObject.SetActive(false);
-            Destroy(this);
         }
         else
         {
