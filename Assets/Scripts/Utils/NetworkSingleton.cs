@@ -13,6 +13,10 @@ public class NetworkSingleton<T> : NetworkBehaviour where T : NetworkSingleton<T
             if (Instance != null) Debug.LogError("[Singleton] Possible duplicate of a singleton: " + typeof(T));
             else Instance = (T)this;
         }
+        else
+        {
+            enabled = false;
+        }
     }
 
     public override void OnDestroy()
