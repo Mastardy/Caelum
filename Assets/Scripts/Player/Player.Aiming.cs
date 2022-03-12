@@ -1,26 +1,14 @@
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerAiming : NetworkBehaviour
+public partial class Player
 {
+    [Header("Aiming")]
     [SerializeField] private float mouseSensitivity = 30f;
     [SerializeField] private Transform headTransform;
 
-    private Transform playerCamera;
-
     private float xRotation;
 
-    private void Start()
-    {
-        if (IsLocalPlayer)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            playerCamera = GetComponentInChildren<Camera>().gameObject.transform;
-        }
-        else Destroy(this);
-    }
-
-    private void Update()
+    private void AimUpdate()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;

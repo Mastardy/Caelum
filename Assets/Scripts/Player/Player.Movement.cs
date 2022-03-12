@@ -1,8 +1,8 @@
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerMovement : NetworkBehaviour
+public partial class Player
 {
+    [Header("Movement")]
     [SerializeField] private CharacterController characterController;
 
     [SerializeField] private float speed = 3f;
@@ -22,10 +22,8 @@ public class PlayerMovement : NetworkBehaviour
         else Destroy(this);
     }
 
-    private void Update()
+    private void MovementUpdate()
     {
-        if (!IsLocalPlayer) return;
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -36,7 +34,8 @@ public class PlayerMovement : NetworkBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        var playerTransform = transform;
+        Vector3 move = playerTransform.right * x + playerTransform.forward * z;
 
         characterController.Move(move * (speed * Time.deltaTime));
 
