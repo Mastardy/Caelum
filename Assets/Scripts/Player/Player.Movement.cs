@@ -3,7 +3,7 @@ using UnityEngine;
 public partial class Player
 {
     [Header("Movement")]
-    [SerializeField] private CharacterController characterController;
+    private CharacterController characterController;
 
     [SerializeField] private float speed = 3f;
     [SerializeField] private float gravity = -20f;
@@ -15,12 +15,6 @@ public partial class Player
     
     private Vector3 velocity;
     private bool isGrounded;
-
-    private void Start()
-    {
-        if (IsLocalPlayer) characterController = GetComponent<CharacterController>();
-        else Destroy(this);
-    }
 
     private void MovementUpdate()
     {
