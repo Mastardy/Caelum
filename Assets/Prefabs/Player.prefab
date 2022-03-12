@@ -151,9 +151,6 @@ GameObject:
   - component: {fileID: 908937297872379492}
   - component: {fileID: 8453621135448345901}
   - component: {fileID: 7400396821221085243}
-  - component: {fileID: -5981138711254851129}
-  - component: {fileID: -6965658678446351625}
-  - component: {fileID: 2939161740157919430}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -324,53 +321,16 @@ MonoBehaviour:
   lookingAt: {fileID: 0}
   woodText: {fileID: 7651856485394807345}
   stoneText: {fileID: 1317458236062169409}
---- !u!114 &-5981138711254851129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908937297872379495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a335111d7a359bd4098324f4fd5d94ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 0.5
-  headTransform: {fileID: 2340561660795739100}
---- !u!114 &-6965658678446351625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908937297872379495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a5d2441314b824abfb41aa1d736fdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   characterController: {fileID: 0}
   speed: 3
   gravity: -20
-  jumpHeight: 3
-  groundCheck: {fileID: 8772669607038965389}
-  groundDistance: 0.2
+  jumpHeight: 5
+  groundCheck: {fileID: 0}
+  groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 8
---- !u!114 &2939161740157919430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908937297872379495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 409758890f7d56647aedca5207f65876, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    m_Bits: 0
+  playerCanvas: {fileID: 0}
 --- !u!1 &2077368752235203862
 GameObject:
   m_ObjectHideFlags: 0
