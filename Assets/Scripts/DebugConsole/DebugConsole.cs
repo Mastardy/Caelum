@@ -1,8 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 using Unity.Netcode;
 using Netcode.Transports.Facepunch;
-using UnityEditor;
 
 public class DebugConsole : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class DebugConsole : MonoBehaviour
 
     private float lastKey;
 
-    private List<DebugCommandBase> commandList;
+    private List<DebugCommandBase> commandList = new();
 
     private void Update()
     {
@@ -23,17 +22,14 @@ public class DebugConsole : MonoBehaviour
 
     private void Awake()
     {
-        commandList = new List<DebugCommandBase>
-        {
-            // Disconnect Command - Disconnects Client from the Server
-            new DebugCommand("Disconnect", "Disconnects from the lobby", "disconnect", () => 
-                NetworkManager.Singleton.GetComponent<FacepunchTransport>().DisconnectLocalClient()),
-            
-            // Say Command - Useful Debug command to log stuff in Unity Console
-            new DebugCommand<string[]>("Say", "Escreve na consola alguma coisa", "say", (args) =>
+        commandList.Add(new DebugCommand("Disconnect", "Disconnects from the lobby", "disconnect",
+            () => NetworkManager.Singleton.GetComponent<FacepunchTransport>().DisconnectLocalClient()));
+        
+        commandList.Add(new DebugCommand<string[]>("Say", "Escreve na consola alguma coisa", "say",
+            (args) => 
             {
                 if (args.Length <= 1) return;
-
+    
                 string message = args[1];
                 
                 for (int i = 2; i < args.Length; i++)
@@ -42,24 +38,20 @@ public class DebugConsole : MonoBehaviour
                 }
                 
                 Debug.Log(message);
-            }),
-            
-            // Quit Command - Closes the client's game
-            new DebugCommand("Quit", "Quits from the game", "quit", () =>
-            {
+            }));
+        
+        commandList.Add(new DebugCommand("Quit", "Quits from the game", "quit", () =>
+        {
             #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
             #else
             Application.Quit();
             #endif
-            }),
-            
-            // Help Command - Shows all the commands and it's description
-            new DebugCommand("Help", "Shows all the commands", "help", () => 
-                showHelp = true)
-        };
-    }
+        }));
 
+        commandList.Add(new DebugCommand("Help", "Shows all the commands", "help", () => showHelp = true));
+    }
+    
     private Vector2 scroll;
     
     private void OnGUI()
@@ -149,7 +141,7 @@ public class DebugConsole : MonoBehaviour
             }
         }
     }
-    
+
     private void ToggleConsole()
     {
         showConsole = !showConsole;
