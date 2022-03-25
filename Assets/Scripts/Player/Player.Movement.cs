@@ -1,9 +1,9 @@
 using UnityEngine;
-using Unity.Netcode;
 
-public class PlayerMovement : NetworkBehaviour
+public partial class Player
 {
-    [SerializeField] private CharacterController characterController;
+    [Header("Movement")]
+    private CharacterController characterController;
 
     [SerializeField] private float speed = 3f;
     [SerializeField] private float gravity = -20f;
@@ -16,16 +16,8 @@ public class PlayerMovement : NetworkBehaviour
     private Vector3 velocity;
     private bool isGrounded;
 
-    private void Start()
+    private void MovementUpdate()
     {
-        if (IsLocalPlayer) characterController = GetComponent<CharacterController>();
-        else Destroy(this);
-    }
-
-    private void Update()
-    {
-        if (!IsLocalPlayer) return;
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -36,7 +28,8 @@ public class PlayerMovement : NetworkBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        var playerTransform = transform;
+        Vector3 move = playerTransform.right * x + playerTransform.forward * z;
 
         characterController.Move(move * (speed * Time.deltaTime));
 
