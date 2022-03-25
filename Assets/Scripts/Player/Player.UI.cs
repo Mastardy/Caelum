@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class Player
 {
@@ -8,6 +9,8 @@ public partial class Player
     
     [SerializeField] private TextMeshProUGUI aimText;
     [SerializeField] private LayerMask resourceMask;
+
+    [SerializeField] private GameObject chatBox;
     
     [HideInInspector] public GameObject lookingAt;
     

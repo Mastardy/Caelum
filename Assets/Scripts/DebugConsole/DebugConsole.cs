@@ -17,7 +17,7 @@ public class DebugConsole : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backslash)) ToggleConsole();
+        //if (Input.GetKeyDown(KeyCode.Backslash)) ToggleConsole();
     }
 
     private void Awake()
