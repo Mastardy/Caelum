@@ -13,12 +13,13 @@ public partial class Player : NetworkBehaviour
     
         if (!IsLocalPlayer)
         {
-            playerCanvas.gameObject.SetActive(false);
-            playerCamera.gameObject.SetActive(false);
             enabled = false;
         }
         else
         {
+            playerCanvas.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(true);
+            
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
             var cameraMain = Camera.main;

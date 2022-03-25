@@ -1,16 +1,9 @@
-using System;
 using Steamworks;
-using Steamworks.Data;
-using System.Threading.Tasks;
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
 public class ChatManager : Singleton<ChatManager>
 {
-    [SerializeField] private Transform chatPanel;
-    [SerializeField] private GameObject chatEntryPrefab;
-    
     public void Say(string message)
     {
         // Verificar se a função foi chamada pela tecla Enter
@@ -29,53 +22,9 @@ public class ChatManager : Singleton<ChatManager>
     public void SayServerRpc(string message, string clientName, SteamId client)
     {
         // Ordenar aos clients que criem um Chat Entry
-        CreateChatEntryClientRpc(message, clientName, client);
-    }
-
-    [ClientRpc]
-    public void CreateChatEntryClientRpc(string message, string clientName, SteamId client)
-    {
-        var chatEntry = Instantiate(chatEntryPrefab, chatPanel);
-
-        chatEntry.GetComponentInChildren<TextMeshProUGUI>().text = $"<color=#55FF55>{clientName}:</color> {message}";
-
-        var avatar = GetAvatar(client).Result;
-
-        if (avatar == null) return;
-        
-        chatEntry.GetComponentInChildren<UnityEngine.UI.Image>().sprite = Sprite.Create(Covert(avatar.Value), new Rect(0.0f, 0.0f, avatar.Value.Width, avatar.Value.Height), new Vector2(0.5f, 0.5f), 100);
-    }
-
-    private static async Task<Image?> GetAvatar(SteamId steamId)
-    {
-        try
+        foreach (var clit in NetworkManager.Singleton.ConnectedClientsList)
         {
-            return await SteamFriends.GetMediumAvatarAsync(steamId);
+            clit.PlayerObject.GetComponent<Player>().CreateChatEntryClientRpc(message, clientName, client);
         }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-            return null;
-        }
-    }
-
-    public static Texture2D Covert(Image image)
-    {
-        var avatar = new Texture2D((int)image.Width, (int)image.Height, TextureFormat.ARGB32, false);
-
-        avatar.filterMode = FilterMode.Trilinear;
-
-        for (int x = 0; x < image.Width; x++)
-        {
-            for (int y = 0; y < image.Height; y++)
-            {
-                var p = image.GetPixel(x, y);
-                avatar.SetPixel(x, (int)image.Height - y, new UnityEngine.Color(p.r / 255.0f, p.g / 255.0f, p.b / 255.0f, p.a / 255.0f));
-            }
-        }
-
-        avatar.Apply();
-
-        return avatar;
     }
 }
