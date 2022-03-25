@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public partial class Player : NetworkBehaviour
 {
     [Header("Player")]
-    private Transform playerCamera;
+    [SerializeField] private Transform playerCamera;
     
     private void Start()
     {
@@ -17,8 +17,6 @@ public partial class Player : NetworkBehaviour
         {
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
-
-            playerCamera = GetComponentInChildren<Camera>().transform;
             
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
