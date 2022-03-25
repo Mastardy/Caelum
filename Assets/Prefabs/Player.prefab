@@ -325,6 +325,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   playerCanvas: {fileID: 3401783270178744134}
+  chatPanel: {fileID: 8228714960640116940}
+  chatEntryPrefab: {fileID: 4918834542349983602, guid: 288c5480488421945b9f8af7984d63d9,
+    type: 3}
   aimText: {fileID: 8659347784123554621}
   resourceMask:
     serializedVersion: 2
@@ -1199,9 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8643b5531907994193cdf959c402458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatPanel: {fileID: 8228714960640116940}
-  chatEntryPrefab: {fileID: 4918834542349983602, guid: 288c5480488421945b9f8af7984d63d9,
-    type: 3}
 --- !u!1 &4098553398536373413
 GameObject:
   m_ObjectHideFlags: 0
