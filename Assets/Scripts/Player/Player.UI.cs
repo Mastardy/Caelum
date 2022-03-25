@@ -45,6 +45,20 @@ public partial class Player
         }
     }
     
+    public void Say(string message)
+    {
+        // Verificar se a função foi chamada pela tecla Enter
+        if (!Input.GetKeyDown(KeyCode.KeypadEnter) && !Input.GetKeyDown(KeyCode.Return)) return;
+
+        // Verificar se a mensagem não está vazia
+        if (message.Length < 1) return;
+        
+        // TODO: Regular texto
+        
+        // Enviar mensagem para o servidor
+        ChatManager.Instance.SayServerRpc(message, SteamClient.Name, SteamClient.SteamId);
+    }
+    
     [ClientRpc]
     public void CreateChatEntryClientRpc(string message, string clientName, SteamId client)
     {
