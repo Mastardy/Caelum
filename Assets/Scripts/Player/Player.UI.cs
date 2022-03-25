@@ -4,6 +4,7 @@ using Steamworks;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public partial class Player
@@ -20,6 +21,8 @@ public partial class Player
     [SerializeField] private GameObject chatBox;
     
     [HideInInspector] public GameObject lookingAt;
+
+    private bool takeInput = true;
     
     [SerializeField] private TextMeshProUGUI woodText;
     private int wood;
@@ -44,12 +47,24 @@ public partial class Player
             stone = value;
         }
     }
+
+    public void HideChat()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        Cursor.lockState = CursorLockMode.Locked;
+        takeInput = true;
+        chatBox.SetActive(false);
+    }
     
     public void Say(string message)
     {
+        HideChat();
+        
         // Verificar se a função foi chamada pela tecla Enter
         if (!Input.GetKeyDown(KeyCode.KeypadEnter) && !Input.GetKeyDown(KeyCode.Return)) return;
 
+        chatBox.GetComponent<TMP_InputField>().text = string.Empty;
+        
         // Verificar se a mensagem não está vazia
         if (message.Length < 1) return;
         

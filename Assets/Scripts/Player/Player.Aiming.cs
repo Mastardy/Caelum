@@ -11,8 +11,14 @@ public partial class Player
 
     private void AimUpdate()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        float mouseX = 0;
+        float mouseY = 0;
+
+        if (takeInput)
+        {
+            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        }
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -85f, 85f);

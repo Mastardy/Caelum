@@ -34,24 +34,16 @@ public partial class Player : NetworkBehaviour
         EyeTrace();
     }
 
-    private bool onChat = false;
-    
     private void Update()
     {
         if (!IsLocalPlayer) return;
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            onChat = !onChat;
-
-            if (onChat)
-            {
-                EventSystem.current.SetSelectedGameObject(chatBox);
-            }
-            else
-            {
-                EventSystem.current.SetSelectedGameObject(null);
-            }
+            chatBox.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            takeInput = false;
+            EventSystem.current.SetSelectedGameObject(chatBox);
         }
         
         MovementUpdate();
