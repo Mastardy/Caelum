@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChatManager : Singleton<ChatManager>
 {
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void SayServerRpc(string message, string clientName, SteamId client)
     {
         Debug.Log("Say command");
