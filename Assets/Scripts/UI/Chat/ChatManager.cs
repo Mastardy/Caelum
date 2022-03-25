@@ -50,7 +50,7 @@ public class ChatManager : Singleton<ChatManager>
     {
         try
         {
-            return await SteamFriends.GetLargeAvatarAsync(steamId);
+            return await SteamFriends.GetMediumAvatarAsync(steamId);
         }
         catch (Exception e)
         {
