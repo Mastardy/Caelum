@@ -81,8 +81,6 @@ public partial class Player
         
         foreach (var clit in NetworkManager.Singleton.ConnectedClientsList)
         {
-            Debug.Log("player detected");
-            Debug.Log(clit.PlayerObject.GetComponent<Player>().name);
             clit.PlayerObject.GetComponent<Player>().CreateChatEntryClientRpc(message, clientName, client);
         }
     }
@@ -90,8 +88,6 @@ public partial class Player
     [ClientRpc]
     public void CreateChatEntryClientRpc(string message, string clientName, SteamId client)
     {
-        Debug.Log("Teste");
-        
         var chatEntry = Instantiate(chatEntryPrefab, chatPanel);
 
         chatEntry.GetComponentInChildren<TextMeshProUGUI>().text = $"<color=#55FF55>{clientName}:</color> {message}";
