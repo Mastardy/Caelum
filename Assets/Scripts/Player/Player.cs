@@ -9,8 +9,6 @@ public partial class Player : NetworkBehaviour
     
     private void Start()
     {
-        playerCamera = GetComponentInChildren<Camera>().transform;
-    
         if (!IsLocalPlayer)
         {
             enabled = false;
@@ -19,6 +17,8 @@ public partial class Player : NetworkBehaviour
         {
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
+
+            playerCamera = GetComponentInChildren<Camera>().transform;
             
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
