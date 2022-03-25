@@ -56,7 +56,20 @@ public partial class Player
         // TODO: Regular texto
         
         // Enviar mensagem para o servidor
-        ChatManager.Instance.SayServerRpc(message, SteamClient.Name, SteamClient.SteamId);
+        SayServerRpc(message, SteamClient.Name, SteamClient.SteamId);
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void SayServerRpc(string message, string clientName, SteamId client)
+    {
+        if (!IsServer) return;
+        
+        foreach (var clit in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            Debug.Log("player detected");
+            Debug.Log(clit.PlayerObject.GetComponent<Player>().name);
+            clit.PlayerObject.GetComponent<Player>().CreateChatEntryClientRpc(message, clientName, client);
+        }
     }
     
     [ClientRpc]
