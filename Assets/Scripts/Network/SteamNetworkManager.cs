@@ -9,7 +9,7 @@ public class SteamNetworkManager : MonoBehaviour
     public static SteamNetworkManager Singleton { get; private set; }
     public Lobby? CurrentLobby { get; set; }
     
-    private FacepunchTransport transport;
+    public FacepunchTransport transport;
 
     private void OnGUI()
     {

@@ -1,23 +1,23 @@
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.EventSystems;
 
 public partial class Player : NetworkBehaviour
 {
     [Header("Player")]
-    private Transform playerCamera;
+    [SerializeField] private Transform playerCamera;
     
     private void Start()
     {
-        playerCamera = GetComponentInChildren<Camera>().transform;
-    
         if (!IsLocalPlayer)
         {
-            playerCanvas.gameObject.SetActive(false);
-            playerCamera.gameObject.SetActive(false);
             enabled = false;
         }
         else
         {
+            playerCanvas.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(true);
+            
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
             var cameraMain = Camera.main;
@@ -33,11 +33,19 @@ public partial class Player : NetworkBehaviour
 
         EyeTrace();
     }
-    
+
     private void Update()
     {
         if (!IsLocalPlayer) return;
 
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            chatBox.SetActive(true);
+            Cursor.lockState = CursorLockMode.Confined;
+            takeInput = false;
+            EventSystem.current.SetSelectedGameObject(chatBox);
+        }
+        
         MovementUpdate();
 
         AimUpdate();

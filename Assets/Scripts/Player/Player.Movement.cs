@@ -16,8 +16,26 @@ public partial class Player
     private Vector3 velocity;
     private bool isGrounded;
 
+    private float inputX, inputZ;
+
+    private void MovementInput()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        
+        inputX = Input.GetAxis("Horizontal");
+        inputZ = Input.GetAxis("Vertical");
+    }
+
     private void MovementUpdate()
     {
+        inputX = 0.0f;
+        inputZ = 0.0f;
+        
+        if(takeInput) MovementInput();
+        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -25,18 +43,10 @@ public partial class Player
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
         var playerTransform = transform;
-        Vector3 move = playerTransform.right * x + playerTransform.forward * z;
+        Vector3 move = playerTransform.right * inputX + playerTransform.forward * inputZ;
 
         characterController.Move(move * (speed * Time.deltaTime));
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
         
         velocity.y += gravity * Time.deltaTime;
 

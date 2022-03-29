@@ -5,11 +5,18 @@ public partial class Player
 {
     [Header("UI")]
     [SerializeField] private Canvas playerCanvas;
+
+    [SerializeField] private Transform chatPanel;
+    [SerializeField] private GameObject chatEntryPrefab;
     
     [SerializeField] private TextMeshProUGUI aimText;
     [SerializeField] private LayerMask resourceMask;
+
+    [SerializeField] private GameObject chatBox;
     
     [HideInInspector] public GameObject lookingAt;
+
+    private bool takeInput = true;
     
     [SerializeField] private TextMeshProUGUI woodText;
     private int wood;
