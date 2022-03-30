@@ -9,9 +9,6 @@ public partial class MainUI
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject graphicsPanel;
 
-    [Header("Options")] 
-    [SerializeField] private TextMeshProUGUI fieldOfViewLabel;
-    
     private GameObject currentPanel;
     
     public void ChangePanel(GameObject panel)

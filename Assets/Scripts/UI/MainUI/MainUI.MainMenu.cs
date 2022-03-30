@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public partial class MainUI
 {
     private bool isOptionsMenu;
@@ -14,5 +16,14 @@ public partial class MainUI
         {
             optionsMenu.SetActive(false);
         }
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        Debug.Log("Quit");
+#else
+        Application.Quit();
+#endif
     }
 }

@@ -1,5 +1,11 @@
+using TMPro;
+using UnityEngine;
+
 public partial class MainUI
 {
+    [Header("Options")] 
+    [SerializeField] private TextMeshProUGUI fieldOfViewLabel;
+    
     public void FieldOfView(float newValue)
     {
         fieldOfViewLabel.text = newValue.ToString("F1").Replace(",", ".");
