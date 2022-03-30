@@ -38,13 +38,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            chatBox.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
-            takeInput = false;
-            EventSystem.current.SetSelectedGameObject(chatBox);
-        }
+        if (Input.GetKeyDown(KeyCode.Y)) OpenChat();
         
         MovementUpdate();
 
