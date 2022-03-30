@@ -5,7 +5,9 @@ public partial class Player
     [Header("Movement")]
     private CharacterController characterController;
 
+    [SerializeField] private float crouchSpeed = 1.5f;
     [SerializeField] private float speed = 3f;
+    [SerializeField] private float sprintSpeed = 5f;
     [SerializeField] private float gravity = -20f;
     [SerializeField] private float jumpHeight = 5f;
 
@@ -17,6 +19,9 @@ public partial class Player
     
     private Vector3 velocity;
     private bool isGrounded;
+    
+    private bool isCrouched;
+    private bool isSprinting;
 
     private Vector2 input, lastInput;
     private float startInputXTimer, endInputXTimer, startInputYTimer, endInputYTimer;
@@ -26,6 +31,8 @@ public partial class Player
         if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            isCrouched = false;
+            isSprinting = false;
         }
 
         input.x = Input.GetKey(gameOptions.leftKey) ? -1 : Input.GetKey(gameOptions.rightKey) ? 1 : 0;
@@ -54,6 +61,32 @@ public partial class Player
 
         if (isGrounded && velocity.y < 0)
         {
+            if (gameOptions.toggleSprint)
+            {
+                if (Input.GetKeyDown(gameOptions.sprintKey))
+                {
+                    isSprinting = !isSprinting;
+                }
+            }
+            else
+            {
+                isSprinting = Input.GetKey(gameOptions.sprintKey);
+            }
+
+            if (gameOptions.toggleDuck)
+            {
+                if (Input.GetKeyDown(gameOptions.duckKey))
+                {
+                    isCrouched = !isCrouched;
+                }
+            }
+            else
+            {
+                isCrouched = Input.GetKey(gameOptions.duckKey);
+            }
+
+            playerCamera.localPosition = new Vector3(0, isCrouched ? 0 : 0.5f, 0);
+            
             velocity.y = -2f;
             
             input.x = input.x == 0
@@ -80,8 +113,10 @@ public partial class Player
         Vector3 move = playerTransform.right * input.x + playerTransform.forward * input.y;
 
         if(move.magnitude > 1) move.Normalize();
-        
-        characterController.Move(move * (speed * Time.deltaTime));
+
+        characterController.Move(move * (isCrouched ? crouchSpeed 
+                                     : isSprinting ? sprintSpeed 
+                                     : speed) * Time.deltaTime);
         
         velocity.y += gravity * Time.deltaTime;
 

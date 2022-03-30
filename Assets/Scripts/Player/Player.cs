@@ -1,6 +1,5 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.EventSystems;
 
 public partial class Player : NetworkBehaviour
 {
@@ -42,7 +41,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        if (Input.GetKeyDown(KeyCode.Y)) OpenChat();
+        if (Input.GetKeyDown(gameOptions.chatKey)) OpenChat();
         
         MovementUpdate();
 
