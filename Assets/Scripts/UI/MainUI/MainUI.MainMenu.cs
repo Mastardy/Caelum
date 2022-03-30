@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public partial class MainUI
 {
@@ -18,6 +19,11 @@ public partial class MainUI
         }
     }
 
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    
     public void QuitGame()
     {
 #if UNITY_EDITOR
