@@ -9,14 +9,32 @@ using UnityEngine.UI;
 
 public partial class Player
 {
+    /// <summary>
+    /// Hides the Chat
+    /// </summary>
     public void HideChat()
     {
-        EventSystem.current.SetSelectedGameObject(null);
         Cursor.lockState = CursorLockMode.Locked;
         takeInput = true;
+        EventSystem.current.SetSelectedGameObject(null);
         chatBox.SetActive(false);
     }
+
+    /// <summary>
+    /// Opens the Chat
+    /// </summary>
+    public void OpenChat()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        takeInput = false;
+        chatBox.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(chatBox);
+    }
     
+    /// <summary>
+    /// Filters the text from the 
+    /// </summary>
+    /// <param name="message"></param>
     public void Say(string message)
     {
         // Depois de Descelecionar/Enviar, não queremos que o chat fique à mostra
@@ -37,6 +55,12 @@ public partial class Player
         SayServerRpc(message, SteamClient.Name, SteamClient.SteamId);
     }
     
+    /// <summary>
+    /// Sends the ChatEntry to all the connected clients.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="clientName"></param>
+    /// <param name="client"></param>
     [ServerRpc(RequireOwnership = false)]
     public void SayServerRpc(string message, string clientName, SteamId client)
     {
@@ -48,6 +72,12 @@ public partial class Player
         }
     }
     
+    /// <summary>
+    /// Creates a Chat Entry for the given player
+    /// </summary>
+    /// <param name="message">Player message</param>
+    /// <param name="clientName">Player name</param>
+    /// <param name="client">Player SteamID</param>
     [ClientRpc]
     public void CreateChatEntryClientRpc(string message, string clientName, SteamId client)
     {
@@ -62,6 +92,11 @@ public partial class Player
         chatEntry.GetComponentInChildren<Image>().sprite = Sprite.Create(Convert(avatar.Value), new Rect(0.0f, 0.0f, avatar.Value.Width, avatar.Value.Height), new Vector2(0.5f, 0.5f), 100);
     }
 
+    /// <summary>
+    /// Get the Avatar given the SteamID
+    /// </summary>
+    /// <param name="steamId">SteamID of the Client</param>
+    /// <returns></returns>
     private static async Task<Steamworks.Data.Image?> GetAvatar(SteamId steamId)
     {
         try
@@ -75,14 +110,20 @@ public partial class Player
         }
     }
 
-    
+    /// <summary>
+    /// Convert the Steam Image to Texture2D
+    /// </summary>
+    /// <param name="image">Steam given Image</param>
+    /// <returns></returns>
     public static Texture2D Convert(Steamworks.Data.Image image)
     {
+        // Create the Texture2D
         var avatar = new Texture2D((int)image.Width, (int)image.Height, TextureFormat.ARGB32, false)
         {
             filterMode = FilterMode.Trilinear
         };
 
+        // Flip the image
         for (int x = 0; x < image.Width; x++)
         {
             for (int y = 0; y < image.Height; y++)

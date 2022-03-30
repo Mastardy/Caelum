@@ -1,9 +1,10 @@
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.EventSystems;
 
 public partial class Player : NetworkBehaviour
 {
+    private GameOptionsScriptableObjects gameOptions;
+    
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
     
@@ -15,6 +16,8 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
+            gameOptions = GameManager.Instance.gameOptions;
+            
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
             
@@ -38,13 +41,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            chatBox.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
-            takeInput = false;
-            EventSystem.current.SetSelectedGameObject(chatBox);
-        }
+        if (Input.GetKeyDown(gameOptions.chatKey)) OpenChat();
         
         MovementUpdate();
 

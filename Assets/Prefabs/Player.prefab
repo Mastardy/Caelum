@@ -314,10 +314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90bc2ab6595a9b48b51bc777dff1d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 1
   headTransform: {fileID: 3176719483760028903}
   playerCamera: {fileID: 3176719483760028903}
+  crouchSpeed: 1
   speed: 3
+  sprintSpeed: 5
   gravity: -30
   jumpHeight: 1.75
   groundCheck: {fileID: 8772669607038965389}
@@ -325,6 +326,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  movementEasing: 0.5
   playerCanvas: {fileID: 3401783270178744134}
   chatPanel: {fileID: 8228714960640116940}
   chatEntryPrefab: {fileID: 4918834542349983602, guid: 288c5480488421945b9f8af7984d63d9,

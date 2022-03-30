@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public partial class Player
 {
     [Header("Aiming")]
-    [SerializeField] private float mouseSensitivity = 30f;
     [SerializeField] private Transform headTransform;
 
     private float xRotation;
@@ -16,8 +14,8 @@ public partial class Player
 
         if (takeInput)
         {
-            mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            mouseX = Input.GetAxis("Mouse X") * gameOptions.mouseSensitivity;
+            mouseY = Input.GetAxis("Mouse Y") * gameOptions.mouseSensitivity;
         }
 
         xRotation -= mouseY;
@@ -53,7 +51,7 @@ public partial class Player
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
+            if (Input.GetKeyDown(gameOptions.primaryAttackKey))
             {
                 resource.HitResourceServerRpc(this, resource.resourceName, 2);
             }
