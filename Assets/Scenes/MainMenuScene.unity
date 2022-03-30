@@ -5341,7 +5341,7 @@ RectTransform:
   - {fileID: 1197109391}
   - {fileID: 876963619}
   m_Father: {fileID: 1961399238}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -7012,7 +7012,7 @@ RectTransform:
   - {fileID: 639644371}
   - {fileID: 1222033166}
   m_Father: {fileID: 1961399238}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -7031,7 +7031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   image: {fileID: 1222033168}
   label: {fileID: 1887272359}
 --- !u!1 &563171093
@@ -9473,7 +9472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   image: {fileID: 394497416}
   label: {fileID: 1651021079}
 --- !u!1 &826152349
@@ -11980,7 +11978,7 @@ RectTransform:
   - {fileID: 1907116928}
   - {fileID: 700834993}
   m_Father: {fileID: 1353519240}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -11999,7 +11997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 0
   image: {fileID: 700834995}
   label: {fileID: 1930671436}
 --- !u!1 &1089000494
@@ -15088,8 +15085,8 @@ RectTransform:
   m_Children:
   - {fileID: 1530432592}
   - {fileID: 1908317034}
-  - {fileID: 1083947110}
   - {fileID: 1406946117}
+  - {fileID: 1083947110}
   - {fileID: 1102528427}
   - {fileID: 275986867}
   - {fileID: 567381707}
@@ -16031,7 +16028,7 @@ RectTransform:
   - {fileID: 728660973}
   - {fileID: 1322425308}
   m_Father: {fileID: 1353519240}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -16050,7 +16047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 0
   image: {fileID: 1322425310}
   label: {fileID: 657517552}
 --- !u!1 &1412412316
@@ -17025,7 +17021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   image: {fileID: 1112434123}
   label: {fileID: 1174732276}
 --- !u!1 &1505050814
@@ -18717,7 +18712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   image: {fileID: 277652042}
   label: {fileID: 701859402}
 --- !u!1 &1772468574
@@ -20406,6 +20400,8 @@ MonoBehaviour:
   graphicsPanel: {fileID: 1961399237}
   framesPerSecondLimit: {fileID: 876963620}
   fieldOfViewLabel: {fileID: 967639908}
+  gameOptionsScriptableObject: {fileID: 11400000, guid: 9c8aa858f7a0f3748a60b904235a0075,
+    type: 2}
   fieldOfViewSlider: {fileID: 1989309782}
   compassVisibilityToggleButton: {fileID: 1488405966}
   showChatToggleButton: {fileID: 1990505386}
@@ -20415,6 +20411,9 @@ MonoBehaviour:
   musicVolumeSlider: {fileID: 183545425}
   voiceVolumeSlider: {fileID: 1351971347}
   gameSoundsVolumeSlider: {fileID: 512312872}
+  sensitivitySlider: {fileID: 1313309282}
+  sprintToggleButton: {fileID: 1406946118}
+  duckToggleButton: {fileID: 1083947111}
   verticalSyncToggleButton: {fileID: 542353764}
   fpsLimitSlider: {fileID: 1197109392}
 --- !u!1 &1961399237
@@ -20446,8 +20445,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 943005997}
-  - {fileID: 379034416}
   - {fileID: 542353763}
+  - {fileID: 379034416}
   - {fileID: 1727223684}
   - {fileID: 650509404}
   - {fileID: 1396148685}
@@ -21143,7 +21142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c6e5a0a993bde4f8f8e562b1cdddc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 1
   image: {fileID: 490382577}
   label: {fileID: 375319559}
 --- !u!1 &2019163406

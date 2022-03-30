@@ -10,6 +10,7 @@ public partial class MainUI
     {
         mouseSensitivity.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.mouseSensitivity = newValue;
+        gameOptionsScriptableObject.mouseSensitivity = newValue;
         SaveOptions();
     }
     
@@ -17,6 +18,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.toggleDuck = toggleButton.Value;
+        gameOptionsScriptableObject.toggleDuck = toggleButton.Value;
         SaveOptions();
     }
     
@@ -24,6 +26,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.toggleSprint = toggleButton.Value;
+        gameOptionsScriptableObject.toggleSprint = toggleButton.Value;
         SaveOptions();
     }
 }

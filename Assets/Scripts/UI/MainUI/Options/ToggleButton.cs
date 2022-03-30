@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class ToggleButton : MonoBehaviour
 {
-    [SerializeField] private bool startValue;
-    
-    private void Awake()
-    {
-        Value = startValue;
-    }
-
     private bool flag;
     public bool Value
     {

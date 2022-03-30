@@ -10,6 +10,7 @@ public partial class MainUI
     {
         fieldOfViewLabel.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.fieldOfView = newValue;
+        gameOptionsScriptableObject.fieldOfView = newValue;
         SaveOptions();
     }
 
@@ -17,6 +18,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.compassVisibility = toggleButton.Value;
+        gameOptionsScriptableObject.compassVisibility = toggleButton.Value;
         SaveOptions();
     }
 
@@ -24,6 +26,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.showChat = toggleButton.Value;
+        gameOptionsScriptableObject.showChat = toggleButton.Value;
         SaveOptions();
     }
 
@@ -31,6 +34,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.showNameTags = toggleButton.Value;
+        gameOptionsScriptableObject.showNameTags = toggleButton.Value;
         SaveOptions();
     }
     
@@ -38,6 +42,7 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.showGameTips = toggleButton.Value;
+        gameOptionsScriptableObject.showGameTips = toggleButton.Value;
         SaveOptions();
     }
 }

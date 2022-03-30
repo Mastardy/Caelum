@@ -13,6 +13,7 @@ public partial class MainUI
     {
         masterVolume.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.masterVolume = newValue;
+        gameOptionsScriptableObject.masterVolume = newValue;
         SaveOptions();
     }
     
@@ -20,6 +21,7 @@ public partial class MainUI
     {
         musicVolume.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.musicVolume = newValue;
+        gameOptionsScriptableObject.musicVolume = newValue;
         SaveOptions();
     }
     
@@ -27,6 +29,7 @@ public partial class MainUI
     {
         gameSoundsVolume.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.gameSoundsVolume = newValue;
+        gameOptionsScriptableObject.gameSoundsVolume = newValue;
         SaveOptions();
     }
     
@@ -34,6 +37,7 @@ public partial class MainUI
     {
         voiceVolume.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.voiceVolume = newValue;
+        gameOptionsScriptableObject.voiceVolume = newValue;
         SaveOptions();
     }
 }

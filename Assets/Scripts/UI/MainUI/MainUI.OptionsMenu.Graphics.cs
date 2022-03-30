@@ -10,15 +10,16 @@ public partial class MainUI
     {
         ToggleButton(toggleButton);
         gameOptions.verticalSync = toggleButton.Value;
+        gameOptionsScriptableObject.verticalSync = toggleButton.Value;
         SaveOptions();
     }
     
     public void FramesPerSecondLimit(float newValue)
     {
-        if (newValue == 0) framesPerSecondLimit.text = "INF";
-        else framesPerSecondLimit.text = newValue.ToString("N0");
+        framesPerSecondLimit.text = newValue == 0 ? "INF" : newValue.ToString("N0");
 
-        gameOptions.fpsLimit = (int)newValue;
+        gameOptions.fpsLimit = (int) newValue;
+        gameOptionsScriptableObject.fpsLimit = (int) newValue;
         SaveOptions();
     }
 }
