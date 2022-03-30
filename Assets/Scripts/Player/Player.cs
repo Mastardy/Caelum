@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public partial class Player : NetworkBehaviour
 {
+    private GameOptionsScriptableObjects gameOptions;
+    
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
     
@@ -15,6 +17,8 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
+            gameOptions = GameManager.Instance.gameOptions;
+            
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
             
