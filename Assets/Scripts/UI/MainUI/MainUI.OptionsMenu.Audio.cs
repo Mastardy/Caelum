@@ -12,20 +12,28 @@ public partial class MainUI
     public void MasterVolume(float newValue)
     {
         masterVolume.text = newValue.ToString("F1").Replace(",", ".");
+        gameOptions.masterVolume = newValue;
+        SaveOptions();
     }
     
     public void MusicVolume(float newValue)
     {
         musicVolume.text = newValue.ToString("F1").Replace(",", ".");
+        gameOptions.musicVolume = newValue;
+        SaveOptions();
     }
     
     public void GameSoundsVolume(float newValue)
     {
         gameSoundsVolume.text = newValue.ToString("F1").Replace(",", ".");
+        gameOptions.gameSoundsVolume = newValue;
+        SaveOptions();
     }
     
     public void VoiceVolume(float newValue)
     {
         voiceVolume.text = newValue.ToString("F1").Replace(",", ".");
+        gameOptions.voiceVolume = newValue;
+        SaveOptions();
     }
 }

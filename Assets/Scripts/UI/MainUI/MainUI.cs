@@ -13,5 +13,7 @@ public partial class MainUI : MonoBehaviour
         graphicsPanel.SetActive(false);
         
         optionsMenu.SetActive(false);
+        
+        LoadOptions();
     }
 }

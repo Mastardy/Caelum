@@ -11,6 +11,7 @@ public partial class MainUI
 
         if (isOptionsMenu)
         {
+            LoadOptions();
             optionsMenu.SetActive(true);
         }
         else
@@ -21,6 +22,7 @@ public partial class MainUI
 
     public void PlayGame()
     {
+        LoadOptions();
         SceneManager.LoadScene(1);
     }
     

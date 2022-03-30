@@ -9,15 +9,21 @@ public partial class MainUI
     public void MouseSensitivity(float newValue)
     {
         mouseSensitivity.text = newValue.ToString("F1").Replace(",", ".");
+        gameOptions.mouseSensitivity = newValue;
+        SaveOptions();
     }
     
     public void ToggleDuck(ToggleButton toggleButton)
     {
         ToggleButton(toggleButton);
+        gameOptions.toggleDuck = toggleButton.Value;
+        SaveOptions();
     }
     
     public void ToggleSprint(ToggleButton toggleButton)
     {
         ToggleButton(toggleButton);
+        gameOptions.toggleSprint = toggleButton.Value;
+        SaveOptions();
     }
 }
