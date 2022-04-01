@@ -11,6 +11,10 @@ public partial class MainUI
 
     private GameObject currentPanel;
     
+    /// <summary>
+    /// Change the current Panel
+    /// </summary>
+    /// <param name="panel"></param>
     public void ChangePanel(GameObject panel)
     {
         if (currentPanel == null)
@@ -32,5 +36,9 @@ public partial class MainUI
         currentPanel.SetActive(true);
     }
     
+    /// <summary>
+    /// Utility responsible to toggle the ToggleButton value
+    /// </summary>
+    /// <param name="toggleButton"></param>
     private void ToggleButton(ToggleButton toggleButton) => toggleButton.Value = !toggleButton.Value;
 }

@@ -29,6 +29,9 @@ public partial class MainUI
     [SerializeField] private ToggleButton verticalSyncToggleButton;
     [SerializeField] private Slider fpsLimitSlider;
     
+    /// <summary>
+    /// Loads all the options from the Local Save
+    /// </summary>
     private void LoadOptions()
     {
         gameOptions = SaveManager.LoadData<GameOptions>();
@@ -68,6 +71,9 @@ public partial class MainUI
         gameOptionsScriptableObject.fpsLimit = gameOptions.fpsLimit;
     }
 
+    /// <summary>
+    /// Saves all the options to the Local Save
+    /// </summary>
     private void SaveOptions()
     {
         SaveManager.SaveData(gameOptions);

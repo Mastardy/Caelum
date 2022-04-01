@@ -6,7 +6,11 @@ public partial class MainUI
     [Header("Graphics")]
     [SerializeField] private TextMeshProUGUI framesPerSecondLimit;
 
-    public void VerticalSync(ToggleButton toggleButton)
+    /// <summary>
+    /// Handles Vertical Sync value
+    /// </summary>
+    /// <param name="toggleButton"></param>
+    public void VerticalSyncHandle(ToggleButton toggleButton)
     {
         ToggleButton(toggleButton);
         gameOptions.verticalSync = toggleButton.Value;
@@ -14,7 +18,11 @@ public partial class MainUI
         SaveOptions();
     }
     
-    public void FramesPerSecondLimit(float newValue)
+    /// <summary>
+    /// Handles FPS Limit value
+    /// </summary>
+    /// <param name="newValue"></param>
+    public void FramesPerSecondLimitHandle(float newValue)
     {
         framesPerSecondLimit.text = newValue == 0 ? "INF" : newValue.ToString("N0");
 

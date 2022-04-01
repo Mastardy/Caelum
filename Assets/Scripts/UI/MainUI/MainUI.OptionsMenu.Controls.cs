@@ -6,7 +6,11 @@ public partial class MainUI
     [Header("Controls")]
     [SerializeField] private TextMeshProUGUI mouseSensitivity;
     
-    public void MouseSensitivity(float newValue)
+    /// <summary>
+    /// Handles the Mouse Sensitivity value
+    /// </summary>
+    /// <param name="newValue"></param>
+    public void MouseSensitivityHandle(float newValue)
     {
         mouseSensitivity.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.mouseSensitivity = newValue;
@@ -14,7 +18,11 @@ public partial class MainUI
         SaveOptions();
     }
     
-    public void ToggleDuck(ToggleButton toggleButton)
+    /// <summary>
+    /// Handles the way Duck Input works
+    /// </summary>
+    /// <param name="toggleButton"></param>
+    public void ToggleDuckHandle(ToggleButton toggleButton)
     {
         ToggleButton(toggleButton);
         gameOptions.toggleDuck = toggleButton.Value;
@@ -22,7 +30,11 @@ public partial class MainUI
         SaveOptions();
     }
     
-    public void ToggleSprint(ToggleButton toggleButton)
+    /// <summary>
+    /// Handles the way the Sprint Input works
+    /// </summary>
+    /// <param name="toggleButton"></param>
+    public void ToggleSprintHandle(ToggleButton toggleButton)
     {
         ToggleButton(toggleButton);
         gameOptions.toggleSprint = toggleButton.Value;
