@@ -1,7 +1,6 @@
-WAIT SHARED SOURCE LICENSE
-Version 1.0, 1 April 2022
-		
-Copyright (c) 2022 Wait & Boomer Cave
+<b>WAIT SHARED SOURCE LICENSE<br>
+Version 1.0, 1 April 2022<br>
+Copyright (c) 2022 Wait & Boomer Cave</b>
  
  Everyone is permitted to copy and distribute verbatim
  copies of this license document, but changing it is
