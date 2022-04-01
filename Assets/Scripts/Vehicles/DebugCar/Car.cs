@@ -5,15 +5,16 @@ public class Car : NetworkBehaviour
 {
     private Player driver;
 
-    private float carSpeed;
+    public Transform cameraPosition;
+    
+    [SerializeField] private float carSpeed;
+    [SerializeField] private float turnSpeed;
 
     [ServerRpc]
     public void CarEnterServerRpc(NetworkBehaviourReference player)
     {
         if (!IsServer) return;
-        if (!driver) return;
-
-        Debug.Log("Try to make player the driver");
+        if (driver != null) return;
 
         if (player.TryGet(out Player ply))
         {
@@ -41,13 +42,15 @@ public class Car : NetworkBehaviour
     public void CarMovementServerRpc(NetworkBehaviourReference player, Vector2 input)
     {
         if (!IsServer) return;
+        
+        Debug.Log(input);
 
         if (player.TryGet(out Player ply))
         {
             if (driver != ply) return;
 
-            gameObject.transform.position += Vector3.right * input.x * carSpeed * Time.deltaTime +
-                                             Vector3.forward * input.y * carSpeed * Time.deltaTime;   
+            gameObject.transform.position += gameObject.transform.forward * input.y * carSpeed * Time.deltaTime;
+            gameObject.transform.Rotate(Vector3.up, input.x * turnSpeed * Time.deltaTime);
         }
     }
 }

@@ -60,7 +60,7 @@ public partial class Player
         {
             if (Input.GetKeyDown(gameOptions.useKey))
             {
-                Debug.Log("Try to Enter Car");
+                lastUse = Time.time;
                 _car.CarEnterServerRpc(this);
             }
         }
