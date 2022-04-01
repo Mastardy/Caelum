@@ -10,7 +10,7 @@ public class Car : NetworkBehaviour
     [SerializeField] private float carSpeed;
     [SerializeField] private float turnSpeed;
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void CarEnterServerRpc(NetworkBehaviourReference player)
     {
         if (!IsServer) return;
@@ -23,7 +23,7 @@ public class Car : NetworkBehaviour
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void CarExitServerRpc(NetworkBehaviourReference player)
     {
         if (!IsServer) return;
@@ -38,7 +38,7 @@ public class Car : NetworkBehaviour
         }
     }
     
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void CarMovementServerRpc(NetworkBehaviourReference player, Vector2 input)
     {
         if (!IsServer) return;
