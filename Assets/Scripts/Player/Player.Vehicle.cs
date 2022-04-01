@@ -1,15 +1,37 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public partial class Player
 {
-    private GameObject car;
+    private Car car;
     
     private void CarMovement()
     {
+        if (!car) return;
+        
         Vector2 carInput = Vector2.zero;
         carInput.x = Input.GetKey(gameOptions.rightKey) ? 1 : Input.GetKey(gameOptions.leftKey) ? -1 : 0;
         carInput.y = Input.GetKey(gameOptions.forwardKey) ? 1 : Input.GetKey(gameOptions.backwardKey) ? -1 : 0;
+        
+        car.CarMovementServerRpc(this, carInput);
+    }
 
-        car.GetComponent<Car>().CarMovementServerRpc(gameObject, carInput);
+    [ClientRpc]
+    public void EnterCarClientRpc(NetworkBehaviourReference netCar)
+    {
+        if (netCar.TryGet(out Car _car))
+        {
+            car = _car;
+            Debug.Log("Entrou no carro");
+        }
+    }
+
+    [ClientRpc]
+    public void ExitCarClientRpc(NetworkBehaviourReference netCar)
+    {
+        if (netCar.TryGet(out Car _car))
+        {
+            car = null;
+        }
     }
 }

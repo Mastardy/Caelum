@@ -42,6 +42,13 @@ public partial class Player : NetworkBehaviour
         if (!IsLocalPlayer) return;
 
         if (Input.GetKeyDown(gameOptions.chatKey)) OpenChat();
+
+        if (car != null)
+        {
+            CarMovement();
+            
+            return;
+        }
         
         MovementUpdate();
 

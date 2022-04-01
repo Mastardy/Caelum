@@ -31,8 +31,15 @@ public partial class Player
     
     private void EyeTrace()
     {
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, resourceMask))
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
         {
+            if (hitInfo.transform.TryGetComponent(out Car _car))
+            {
+                aimText.SetText(_car.name);
+                lookingAt = _car.gameObject;
+                return;
+            }
+            
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
                 aimText.SetText(resource.resourceName);
@@ -48,6 +55,15 @@ public partial class Player
     private void EyeTraceInfo()
     {
         if (lookingAt == null) return;
+
+        if (lookingAt.TryGetComponent(out Car _car))
+        {
+            if (Input.GetKeyDown(gameOptions.useKey))
+            {
+                Debug.Log("Try to Enter Car");
+                _car.CarEnterServerRpc(this);
+            }
+        }
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
