@@ -1,13 +1,13 @@
-        WAIT SHARED SOURCE LICENSE
-        Version 1.0, 1 April 2022
+WAIT SHARED SOURCE LICENSE
+Version 1.0, 1 April 2022
 		
-        Copyright (c) 2022 Wait & Boomer Cave
+Copyright (c) 2022 Wait & Boomer Cave
  
  Everyone is permitted to copy and distribute verbatim
  copies of this license document, but changing it is
  not allowed.
 
-        TERMS AND CONDITIONS
+TERMS AND CONDITIONS
 		 
   0. Definitions.
   
@@ -90,4 +90,4 @@
  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY
  OTHER PROGRAMS)
  
-        END OF TERMS AND CONDITIONS
+END OF TERMS AND CONDITIONS
