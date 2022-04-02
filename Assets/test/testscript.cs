@@ -13,7 +13,13 @@ public class testscript : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", speed);
-        animator.SetFloat("Direction", direction);
+        animator.SetFloat("Direction", map(direction, -180, 180));
         animator.SetBool("Crouch", crouch);
+    }
+
+    // Maps a value from some arbitrary range to the 0 to 1 range
+    public static float map(float value, float min, float max)
+    {
+        return (value - min) * 1f / (max - min);
     }
 }
