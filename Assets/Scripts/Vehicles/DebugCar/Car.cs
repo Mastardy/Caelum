@@ -39,7 +39,7 @@ public class Car : NetworkBehaviour
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void CarMovementServerRpc(NetworkBehaviourReference player, Vector2 input)
+    public void CarMovementServerRpc(NetworkBehaviourReference player, Vector2 input, float deltaTime)
     {
         if (!IsServer) return;
         
@@ -47,8 +47,8 @@ public class Car : NetworkBehaviour
         {
             if (driver != ply) return;
 
-            gameObject.transform.position += gameObject.transform.forward * (input.y * carSpeed);
-            gameObject.transform.Rotate(Vector3.up, input.x * input.y * turnSpeed);
+            gameObject.transform.position += gameObject.transform.forward * (input.y * carSpeed * deltaTime);
+            gameObject.transform.Rotate(Vector3.up, input.x * input.y * turnSpeed * deltaTime);
         }
     }
 }
