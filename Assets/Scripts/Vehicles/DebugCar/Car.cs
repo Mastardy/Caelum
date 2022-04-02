@@ -43,14 +43,12 @@ public class Car : NetworkBehaviour
     {
         if (!IsServer) return;
         
-        Debug.Log(input);
-
         if (player.TryGet(out Player ply))
         {
             if (driver != ply) return;
 
-            gameObject.transform.position += gameObject.transform.forward * input.y * carSpeed * Time.deltaTime;
-            gameObject.transform.Rotate(Vector3.up, input.x * turnSpeed * Time.deltaTime);
+            gameObject.transform.position += gameObject.transform.forward * (input.y * carSpeed);
+            gameObject.transform.Rotate(Vector3.up, input.x * input.y * turnSpeed);
         }
     }
 }

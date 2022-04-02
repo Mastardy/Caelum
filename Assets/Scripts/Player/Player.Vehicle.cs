@@ -25,7 +25,7 @@ public partial class Player
             return;
         }
         
-        car.CarMovementServerRpc(this, carInput);
+        car.CarMovementServerRpc(this, carInput * Time.deltaTime);
     }
 
     [ClientRpc]
