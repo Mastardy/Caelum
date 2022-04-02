@@ -56,7 +56,7 @@ public partial class Player
         {
             MovementInput();
         }
-        
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)

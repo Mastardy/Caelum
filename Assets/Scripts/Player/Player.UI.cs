@@ -10,7 +10,7 @@ public partial class Player
     [SerializeField] private GameObject chatEntryPrefab;
     
     [SerializeField] private TextMeshProUGUI aimText;
-    [SerializeField] private LayerMask resourceMask;
+    [SerializeField] private LayerMask hitMask;
 
     [SerializeField] private GameObject chatBox;
     
