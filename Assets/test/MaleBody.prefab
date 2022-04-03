@@ -297,7 +297,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -330,7 +330,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 2622413268920017230, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -413,10 +413,10 @@ Cloth:
   m_GameObject: {fileID: 719941657440916247}
   m_Enabled: 1
   m_StretchingStiffness: 1
-  m_BendingStiffness: 0
+  m_BendingStiffness: 1
   m_UseTethers: 1
   m_UseGravity: 1
-  m_Damping: 0.5
+  m_Damping: 1
   m_ExternalAcceleration: {x: 0, y: 0, z: 0}
   m_RandomAcceleration: {x: 0, y: 0, z: 0}
   m_WorldVelocityScale: 0
@@ -456,35 +456,25 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
   - maxDistance: 0.3
     collisionSphereDistance: 1
-  - maxDistance: 0.1
+  - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0.1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
     collisionSphereDistance: 1
   - maxDistance: 0.3
     collisionSphereDistance: 1
@@ -493,118 +483,6 @@ Cloth:
   - maxDistance: 0.3
     collisionSphereDistance: 1
   - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
     collisionSphereDistance: 1
   - maxDistance: 0.3
     collisionSphereDistance: 1
@@ -618,9 +496,9 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
-  - maxDistance: 0.6
+  - maxDistance: 0.3
     collisionSphereDistance: 1
-  - maxDistance: 0.6
+  - maxDistance: 0.3
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
@@ -646,197 +524,17 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
@@ -850,103 +548,7 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
   - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.1
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.3
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
-    collisionSphereDistance: 1
-  - maxDistance: 0.6
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
@@ -956,6 +558,306 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0.6
@@ -964,7 +866,105 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0.6
     collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
   - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 1
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.6
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0.3
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
+    collisionSphereDistance: 1
+  - maxDistance: 0
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
@@ -1152,7 +1152,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1185,7 +1185,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -3178576508544696699, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -1666,7 +1666,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1699,7 +1699,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -923988741537625483, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -2368,7 +2368,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2401,7 +2401,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 1457676713342000413, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -2612,7 +2612,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -2645,7 +2645,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 7666266049737368757, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -3347,7 +3347,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3380,7 +3380,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: -2785905844601245878, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -3632,7 +3632,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3665,7 +3665,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 3900480760133451625, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
@@ -3880,7 +3880,7 @@ SkinnedMeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3890,10 +3890,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01b206bea72973942ae12d69902fff03, type: 2}
-  - {fileID: 2100000, guid: 252408576b4f6dd43bae0a95ae9bdce0, type: 2}
+  - {fileID: 2100000, guid: cc8b41498341cf0418fe3b2f395b07d8, type: 2}
   - {fileID: 2100000, guid: a4a1ccc04b0ddad4d8700a617a49c29e, type: 2}
-  - {fileID: 2100000, guid: cdb83f53e140ebb49a3a507664a5ec32, type: 2}
+  - {fileID: 2100000, guid: 01b206bea72973942ae12d69902fff03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3916,9 +3915,9 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 1368039401119186617, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
+  m_Mesh: {fileID: 3621554888825754127, guid: d9a23bcc85200194ca916fb797b24fa1, type: 3}
   m_Bones:
   - {fileID: 462319711256027871}
   - {fileID: 4160992078111018442}
