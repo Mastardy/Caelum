@@ -35,8 +35,8 @@ public partial class Player
             isSprinting = false;
         }
 
-        input.x = Input.GetKey(gameOptions.leftKey) ? -1 : Input.GetKey(gameOptions.rightKey) ? 1 : 0;
-        input.y = Input.GetKey(gameOptions.backwardKey) ? -1 : Input.GetKey(gameOptions.forwardKey) ? 1 : 0;
+        input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
+        input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
         
         if (input.x != 0) lastInput.x = input.x;
         if (input.y != 0) lastInput.y = input.y;

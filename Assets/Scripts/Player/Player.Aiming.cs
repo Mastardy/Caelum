@@ -33,10 +33,10 @@ public partial class Player
     {
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
         {
-            if (hitInfo.transform.TryGetComponent(out Car _car))
+            if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
-                aimText.SetText(_car.name);
-                lookingAt = _car.gameObject;
+                aimText.SetText(vehicle.name);
+                lookingAt = vehicle.gameObject;
                 return;
             }
             
@@ -56,18 +56,17 @@ public partial class Player
     {
         if (lookingAt == null) return;
 
-        if (lookingAt.TryGetComponent(out Car _car))
+        if (lookingAt.TryGetComponent(out Car vehicle))
         {
-            if (Input.GetKeyDown(gameOptions.useKey))
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.2f))
             {
-                lastUse = Time.time;
-                _car.CarEnterServerRpc(this);
+                vehicle.CarEnterServerRpc(this);
             }
         }
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if (Input.GetKeyDown(gameOptions.primaryAttackKey))
+            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.2f))
             {
                 resource.HitResourceServerRpc(this, resource.resourceName, 2);
             }
