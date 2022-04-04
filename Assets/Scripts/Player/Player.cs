@@ -27,7 +27,9 @@ public partial class Player : NetworkBehaviour
             var cameraMain = Camera.main;
             if(cameraMain != null)
                 if(cameraMain != playerCamera.GetComponent<Camera>())
-                    cameraMain.gameObject.SetActive(false);   
+                    cameraMain.gameObject.SetActive(false);
+            
+            AnimatorStart();
         }
     }
 

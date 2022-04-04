@@ -250,6 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headTransform: {fileID: 3176719483760028903}
   thirdPersonAnimator: {fileID: 7316921762375508595}
+  thirdPersonModel: {fileID: 7587303419417960875}
   firstPersonAnimator: {fileID: 6567962394696326916}
   playerCamera: {fileID: 3176719483760028903}
   crouchSpeed: 1
@@ -2182,6 +2183,12 @@ Transform:
 --- !u!95 &7316921762375508595 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4033691194759885025, guid: 82cc73e4805be1740801b908b5f08dbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5940354931889214098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7587303419417960875 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4268256949943710521, guid: 82cc73e4805be1740801b908b5f08dbb,
     type: 3}
   m_PrefabInstance: {fileID: 5940354931889214098}
   m_PrefabAsset: {fileID: 0}

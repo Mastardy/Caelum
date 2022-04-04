@@ -4,6 +4,7 @@ public partial class Player
 {
     [Header("Animator")]
     [SerializeField] private Animator thirdPersonAnimator;
+    [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
     
     private static readonly int speedCache = Animator.StringToHash("Speed");
@@ -12,6 +13,18 @@ public partial class Player
     private static readonly int jumpCache = Animator.StringToHash("Jump");
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
+
+    private void AnimatorStart()
+    {
+        //dar Hide no world model mantendo as sombras
+        if (IsLocalPlayer)
+        {
+            foreach(SkinnedMeshRenderer smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
+            }
+        }
+    }
 
     private void AnimatorUpdate()
     {
