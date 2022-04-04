@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public partial class Player
@@ -14,23 +15,42 @@ public partial class Player
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
+    private NetworkVariable<bool> isCrouchedNet;
+    private NetworkVariable<float> moveMagnitudeNet;
+    private NetworkVariable<float> inputXNet;
+    private NetworkVariable<float> inputYNet;
+    private NetworkVariable<bool> isGroundedNet;
+    private NetworkVariable<float> xRotationNet;
+    private NetworkVariable<float> velocityYNet;
+
     private void AnimatorStart()
     {
         //dar Hide no world model mantendo as sombras
         if (IsLocalPlayer)
         {
-            foreach(SkinnedMeshRenderer smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
+            foreach(var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
             {
                 smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
             }
         }
     }
 
+    private void NetworkAnimatorUpdate()
+    {
+        isCrouchedNet.Value = isCrouched;
+        moveMagnitudeNet.Value = move.magnitude;
+        inputXNet.Value = input.x;
+        inputYNet.Value = input.y;
+        isGroundedNet.Value = isGrounded;
+        xRotationNet.Value = xRotation;
+        velocityYNet.Value = velocity.y;
+    }
+    
     private void AnimatorUpdate()
     {
-        thirdPersonAnimator.SetFloat(speedCache, isCrouched ? move.magnitude : Map(move.magnitude, 0, 5));
-        thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg, -180, 180));
-        thirdPersonAnimator.SetBool(crouchCache, isCrouched);
+        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
+        thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
+        thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
         thirdPersonAnimator.SetBool(jumpCache, !isGrounded);
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotation, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocity.y, -4, 7)); //velocidade vertical

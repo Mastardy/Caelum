@@ -13,7 +13,6 @@ public partial class Player : NetworkBehaviour
         if (!IsLocalPlayer)
         {
             firstPersonAnimator.enabled = false;
-            enabled = false; // TODO : Isto não devia de ser assim
         }
         else
         {
@@ -42,22 +41,25 @@ public partial class Player : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsLocalPlayer) return;
-
-        if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
-
-        if (car != null)
+        if (IsLocalPlayer)
         {
-            CarMovement();
-            
-            return;
-        }
-        
-        MovementUpdate();
+            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
 
-        AimUpdate();
-        
-        EyeTraceInfo();
+            if (car != null)
+            {
+                CarMovement();
+
+                return;
+            }
+
+            MovementUpdate();
+
+            AimUpdate();
+
+            EyeTraceInfo();
+            
+            NetworkAnimatorUpdate();
+        }
 
         AnimatorUpdate();
     }
