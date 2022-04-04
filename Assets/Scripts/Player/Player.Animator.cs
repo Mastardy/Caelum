@@ -52,9 +52,9 @@ public partial class Player
         thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
         thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
         thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
-        thirdPersonAnimator.SetBool(jumpCache, !isGrounded);
-        thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotation, -50, 50), -90, 90));
-        thirdPersonAnimator.SetFloat(yvelCache, Map(velocity.y, -4, 7)); //velocidade vertical
+        thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);
+        thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
+        thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7)); //velocidade vertical
     }
     
     // Maps a value from some arbitrary range to the 0 to 1 range

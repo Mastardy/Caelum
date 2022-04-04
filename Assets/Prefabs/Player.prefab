@@ -1047,7 +1047,6 @@ GameObject:
   m_Component:
   - component: {fileID: 392946148629645875}
   - component: {fileID: 6567962394696326916}
-  - component: {fileID: 618137411974161521}
   m_Layer: 0
   m_Name: ViewModel
   m_TagString: Untagged
@@ -1090,19 +1089,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &618137411974161521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3533221182945674569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 6567962394696326916}
 --- !u!1 &3751128997218986912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1237,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.6
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
