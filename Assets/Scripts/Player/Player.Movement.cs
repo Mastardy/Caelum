@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public partial class Player
 {
@@ -113,7 +112,7 @@ public partial class Player
             if(isGrounded) Mathf.Clamp(horizontalVelocity.y, -maxSpeed, maxSpeed);
         }
 
-        if (horizontalVelocity.magnitude > maxSpeed)
+        if (horizontalVelocity.magnitude > maxSpeed && isGrounded)
         {
             horizontalVelocity.Normalize();
             horizontalVelocity *= maxSpeed;
