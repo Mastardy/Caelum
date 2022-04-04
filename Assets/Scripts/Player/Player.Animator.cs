@@ -15,13 +15,13 @@ public partial class Player
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
-    private NetworkVariable<bool> isCrouchedNet = new();
-    private NetworkVariable<float> moveMagnitudeNet = new();
-    private NetworkVariable<float> inputXNet = new();
-    private NetworkVariable<float> inputYNet = new();
-    private NetworkVariable<bool> isGroundedNet = new();
-    private NetworkVariable<float> xRotationNet = new();
-    private NetworkVariable<float> velocityYNet = new();
+    private NetworkVariable<bool> isCrouchedNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> moveMagnitudeNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputXNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputYNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isGroundedNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> xRotationNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> velocityYNet = new(NetworkVariableReadPermission.Everyone);
 
     private void AnimatorStart()
     {        
@@ -36,15 +36,18 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc()
+    private void NetworkAnimatorUpdateServerRpc(bool _isCrouched, float _moveMagnitude, float inputX, float inputY,
+        bool _isGrounded, float _xRotation, float velocityY)
     {
-        isCrouchedNet.Value = isCrouched;
-        moveMagnitudeNet.Value = move.magnitude;
-        inputXNet.Value = input.x;
-        inputYNet.Value = input.y;
-        isGroundedNet.Value = isGrounded;
-        xRotationNet.Value = xRotation;
-        velocityYNet.Value = velocity.y;
+        if (!IsServer) return;
+        
+        isCrouchedNet.Value = _isCrouched;
+        moveMagnitudeNet.Value = _moveMagnitude;
+        inputXNet.Value = inputX;
+        inputYNet.Value = inputY;
+        isGroundedNet.Value = _isGrounded;
+        xRotationNet.Value = _xRotation;
+        velocityYNet.Value = velocityY;
     }
     
     private void AnimatorUpdate()
