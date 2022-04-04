@@ -58,7 +58,7 @@ public partial class Player : NetworkBehaviour
 
             EyeTraceInfo();
             
-            NetworkAnimatorUpdate();
+            NetworkAnimatorUpdateServerRpc();
         }
 
         AnimatorUpdate();

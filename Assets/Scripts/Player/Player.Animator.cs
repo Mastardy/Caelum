@@ -15,16 +15,16 @@ public partial class Player
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
-    private NetworkVariable<bool> isCrouchedNet;
-    private NetworkVariable<float> moveMagnitudeNet;
-    private NetworkVariable<float> inputXNet;
-    private NetworkVariable<float> inputYNet;
-    private NetworkVariable<bool> isGroundedNet;
-    private NetworkVariable<float> xRotationNet;
-    private NetworkVariable<float> velocityYNet;
+    private NetworkVariable<bool> isCrouchedNet = new();
+    private NetworkVariable<float> moveMagnitudeNet = new();
+    private NetworkVariable<float> inputXNet = new();
+    private NetworkVariable<float> inputYNet = new();
+    private NetworkVariable<bool> isGroundedNet = new();
+    private NetworkVariable<float> xRotationNet = new();
+    private NetworkVariable<float> velocityYNet = new();
 
     private void AnimatorStart()
-    {
+    {        
         //dar Hide no world model mantendo as sombras
         if (IsLocalPlayer)
         {
@@ -35,7 +35,8 @@ public partial class Player
         }
     }
 
-    private void NetworkAnimatorUpdate()
+    [ServerRpc(RequireOwnership = false)]
+    private void NetworkAnimatorUpdateServerRpc()
     {
         isCrouchedNet.Value = isCrouched;
         moveMagnitudeNet.Value = move.magnitude;
