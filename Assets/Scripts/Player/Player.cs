@@ -12,7 +12,8 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            enabled = false;
+            firstPersonAnimator.enabled = false;
+            enabled = false; // TODO : Isto não devia de ser assim
         }
         else
         {
@@ -55,5 +56,7 @@ public partial class Player : NetworkBehaviour
         AimUpdate();
         
         EyeTraceInfo();
+
+        AnimatorUpdate();
     }
 }

@@ -18,6 +18,7 @@ public partial class Player
     [SerializeField] private float movementEasing;
     
     private Vector3 velocity;
+    private Vector3 move;
     private bool isGrounded;
     
     private bool isCrouched;
@@ -85,7 +86,7 @@ public partial class Player
                 isCrouched = Input.GetKey(gameOptions.duckKey);
             }
 
-            playerCamera.localPosition = new Vector3(0, isCrouched ? 0 : 0.5f, 0);
+            playerCamera.localPosition = new Vector3(0, isCrouched ? 2f : 3, 0);
             
             velocity.y = -2f;
             
@@ -110,13 +111,14 @@ public partial class Player
         }
 
         var playerTransform = transform;
-        Vector3 move = playerTransform.right * input.x + playerTransform.forward * input.y;
+        
+        move = playerTransform.right * input.x + playerTransform.forward * input.y;
 
         if(move.magnitude > 1) move.Normalize();
 
-        characterController.Move(move * (isCrouched ? crouchSpeed 
-                                     : isSprinting ? sprintSpeed 
-                                     : speed) * Time.deltaTime);
+        move *= (isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed);
+        
+        characterController.Move(move * Time.deltaTime);
         
         velocity.y += gravity * Time.deltaTime;
 
