@@ -1,53 +1,31 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class Player
 {
     [Header("Movement")]
     private CharacterController characterController;
 
-    [SerializeField] private float crouchSpeed = 1.5f;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float sprintSpeed = 5f;
-    [SerializeField] private float gravity = -20f;
-    [SerializeField] private float jumpHeight = 5f;
+    [SerializeField] private float crouchSpeed = 1;
+    [SerializeField] private float speed = 3;
+    [SerializeField] private float sprintSpeed = 5;
+    [SerializeField] private float accelerationEasing = 5f;
+    [SerializeField] private float gravity = -30;
+    [SerializeField] private float jumpHeight = 1.75f;
 
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private LayerMask groundMask;
-
-    [SerializeField] private float movementEasing;
     
-    private Vector3 velocity;
-    private Vector3 move;
+    private Vector2 horizontalVelocity;
+    private float verticalVelocity;
+    
     private bool isGrounded;
-    
     private bool isCrouched;
     private bool isSprinting;
 
-    private Vector2 input, lastInput;
-    private float startInputXTimer, endInputXTimer, startInputYTimer, endInputYTimer;
-
-    private void MovementInput()
-    {
-        if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            isCrouched = false;
-            isSprinting = false;
-        }
-
-        input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
-        input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
-        
-        if (input.x != 0) lastInput.x = input.x;
-        if (input.y != 0) lastInput.y = input.y;
-        
-        if (input.x != 0) endInputXTimer = Time.time;
-        if (input.y != 0) endInputYTimer = Time.time;
-        if (input.x == 0) startInputXTimer = Time.time;
-        if (input.y == 0) startInputYTimer = Time.time;
-    }
-
+    private Vector2 input;
+    
     private void MovementUpdate()
     {
         input.x = 0;
@@ -58,70 +36,82 @@ public partial class Player
             MovementInput();
         }
 
+        playerCamera.localPosition = new Vector3(0, isCrouched ? 2 : 3, 0);
+        
+        IsGrounded();
+
+        IsSprinting();
+
+        IsCrouching();
+
+        Move();
+    }
+    
+    private void MovementInput()
+    {
+        if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded) verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * -gravity);
+
+        input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
+        input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
+    }
+    
+    private void IsGrounded()
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0)
+        if (isGrounded && verticalVelocity < 0) verticalVelocity = -1f;
+    }
+
+    private void IsSprinting()
+    {
+        if (gameOptions.toggleSprint)
         {
-            if (gameOptions.toggleSprint)
-            {
-                if (Input.GetKeyDown(gameOptions.sprintKey))
-                {
-                    isSprinting = !isSprinting;
-                }
-            }
-            else
-            {
-                isSprinting = Input.GetKey(gameOptions.sprintKey);
-            }
-
-            if (gameOptions.toggleDuck)
-            {
-                if (Input.GetKeyDown(gameOptions.duckKey))
-                {
-                    isCrouched = !isCrouched;
-                }
-            }
-            else
-            {
-                isCrouched = Input.GetKey(gameOptions.duckKey);
-            }
-
-            playerCamera.localPosition = new Vector3(0, isCrouched ? 2f : 3, 0);
-            
-            velocity.y = -2f;
-            
-            input.x = input.x == 0
-                ? Mathf.Lerp(lastInput.x, 0, (Time.time - endInputXTimer) / 0.1f)
-                : Mathf.Lerp(0, input.x, (Time.time - startInputXTimer) / 0.1f);
-        
-            input.y = input.y == 0
-                ? Mathf.Lerp(lastInput.y, 0, (Time.time - endInputYTimer) / 0.1f)
-                : Mathf.Lerp(0, input.y, (Time.time - startInputYTimer) / 0.1f); 
+            if (Input.GetKeyDown(gameOptions.sprintKey)) isSprinting = !isSprinting;
+            return;
         }
         
-        if (!isGrounded)
+        isSprinting = Input.GetKey(gameOptions.sprintKey);
+    }
+
+    private void IsCrouching()
+    {
+        if (gameOptions.toggleDuck)
         {
-            input.x = input.x == 0
-                ? Mathf.Lerp(lastInput.x, 0, (Time.time - endInputXTimer) / movementEasing)
-                : Mathf.Lerp(0, input.x, (Time.time - startInputXTimer) / movementEasing);
-        
-            input.y = input.y == 0
-                ? Mathf.Lerp(lastInput.y, 0, (Time.time - endInputYTimer) / movementEasing)
-                : Mathf.Lerp(0, input.y, (Time.time - startInputYTimer) / movementEasing);   
+            if (Input.GetKeyDown(gameOptions.duckKey)) isCrouched = !isCrouched;
+            return;
         }
-
-        var playerTransform = transform;
         
-        move = playerTransform.right * input.x + playerTransform.forward * input.y;
+        isCrouched = Input.GetKey(gameOptions.duckKey);
+    }
 
-        if(move.magnitude > 1) move.Normalize();
+    private void Move()
+    {
+        var maxSpeed = isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
 
-        move *= (isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed);
+        if (input.x == 0)
+        {
+            if (horizontalVelocity.x > -0.05f && horizontalVelocity.x < 0.05f) horizontalVelocity.x = 0.0f;
+            else if (input.x < 0) horizontalVelocity.x += 1 * Time.deltaTime * accelerationEasing;
+            else horizontalVelocity.x -= 1 * Time.deltaTime * accelerationEasing;
+        }
+        else if (horizontalVelocity.x < maxSpeed) horizontalVelocity.x += input.x * Time.deltaTime * accelerationEasing;
+
+        if (input.y == 0)
+        {
+            if (horizontalVelocity.y > -0.05f && horizontalVelocity.y < 0.05f) horizontalVelocity.y = 0.0f;
+            else if (input.y < 0) horizontalVelocity.y += 1 * Time.deltaTime * accelerationEasing;
+            else horizontalVelocity.y -= 1 * Time.deltaTime * accelerationEasing;
+        }
+        else if (horizontalVelocity.y < maxSpeed) horizontalVelocity.y += input.y * Time.deltaTime * accelerationEasing;
+
+        if (horizontalVelocity.magnitude > maxSpeed)
+        {
+            horizontalVelocity.Normalize();
+            horizontalVelocity *= maxSpeed;
+        }
         
-        characterController.Move(move * Time.deltaTime);
+        verticalVelocity += gravity * Time.deltaTime;
         
-        velocity.y += gravity * Time.deltaTime;
-
-        characterController.Move(velocity * Time.deltaTime);
+        characterController.Move((transform.up * verticalVelocity + transform.right * horizontalVelocity.x + transform.forward * horizontalVelocity.y) * Time.deltaTime);
     }
 }
