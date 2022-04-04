@@ -41,7 +41,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer) return;
 
-        if (Input.GetKeyDown(gameOptions.chatKey)) OpenChat();
+        if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
 
         if (car != null)
         {
