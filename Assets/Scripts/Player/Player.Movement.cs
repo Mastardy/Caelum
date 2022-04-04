@@ -10,6 +10,7 @@ public partial class Player
     [SerializeField] private float speed = 3;
     [SerializeField] private float sprintSpeed = 5;
     [SerializeField] private float accelerationEasing = 5f;
+    [SerializeField] private float airAccelerationEasing = 2.0f;
     [SerializeField] private float gravity = -30;
     [SerializeField] private float jumpHeight = 1.75f;
 
@@ -90,19 +91,27 @@ public partial class Player
 
         if (input.x == 0)
         {
-            if (horizontalVelocity.x > -0.05f && horizontalVelocity.x < 0.05f) horizontalVelocity.x = 0.0f;
-            else if (input.x < 0) horizontalVelocity.x += 1 * Time.deltaTime * accelerationEasing;
-            else horizontalVelocity.x -= 1 * Time.deltaTime * accelerationEasing;
+            if (horizontalVelocity.x > -0.1f && horizontalVelocity.x < 0.1f) horizontalVelocity.x = 0.0f;
+            else if (horizontalVelocity.x < 0) horizontalVelocity.x += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            else horizontalVelocity.x -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
-        else if (horizontalVelocity.x < maxSpeed) horizontalVelocity.x += input.x * Time.deltaTime * accelerationEasing;
+        else
+        {
+            horizontalVelocity.x += input.x * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            if(isGrounded) Mathf.Clamp(horizontalVelocity.x, -maxSpeed, maxSpeed);
+        }
 
         if (input.y == 0)
         {
-            if (horizontalVelocity.y > -0.05f && horizontalVelocity.y < 0.05f) horizontalVelocity.y = 0.0f;
-            else if (input.y < 0) horizontalVelocity.y += 1 * Time.deltaTime * accelerationEasing;
-            else horizontalVelocity.y -= 1 * Time.deltaTime * accelerationEasing;
+            if (horizontalVelocity.y > -0.1f && horizontalVelocity.y < 0.1f) horizontalVelocity.y = 0.0f;
+            else if (horizontalVelocity.y < 0) horizontalVelocity.y += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            else horizontalVelocity.y -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
-        else if (horizontalVelocity.y < maxSpeed) horizontalVelocity.y += input.y * Time.deltaTime * accelerationEasing;
+        else
+        {
+            horizontalVelocity.y += input.y * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            if(isGrounded) Mathf.Clamp(horizontalVelocity.y, -maxSpeed, maxSpeed);
+        }
 
         if (horizontalVelocity.magnitude > maxSpeed)
         {
