@@ -58,7 +58,7 @@ public partial class Player : NetworkBehaviour
 
             EyeTraceInfo();
             
-            NetworkAnimatorUpdateServerRpc(isGrounded, move.magnitude, input.x, input.y, 
+            NetworkAnimatorUpdateServerRpc(isCrouched, move.magnitude, input.x, input.y, 
                 isGrounded, xRotation, velocity.y);
         }
 
