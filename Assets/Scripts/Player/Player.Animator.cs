@@ -11,6 +11,7 @@ public partial class Player
     private static readonly int crouchCache = Animator.StringToHash("Crouch");
     private static readonly int jumpCache = Animator.StringToHash("Jump");
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
+    private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
     private void AnimatorUpdate()
     {
@@ -19,6 +20,7 @@ public partial class Player
         thirdPersonAnimator.SetBool(crouchCache, isCrouched);
         thirdPersonAnimator.SetBool(jumpCache, !isGrounded);
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotation, -50, 50), -90, 90));
+        thirdPersonAnimator.SetFloat(yvelCache, Map(velocity.y, -4, 7)); //velocidade vertical
     }
     
     // Maps a value from some arbitrary range to the 0 to 1 range
