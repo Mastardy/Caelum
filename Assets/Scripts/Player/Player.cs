@@ -12,7 +12,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
-            enabled = false;
+            firstPersonAnimator.enabled = false;
         }
         else
         {
@@ -26,7 +26,9 @@ public partial class Player : NetworkBehaviour
             var cameraMain = Camera.main;
             if(cameraMain != null)
                 if(cameraMain != playerCamera.GetComponent<Camera>())
-                    cameraMain.gameObject.SetActive(false);   
+                    cameraMain.gameObject.SetActive(false);
+            
+            AnimatorStart();
         }
     }
 
@@ -39,21 +41,27 @@ public partial class Player : NetworkBehaviour
 
     private void Update()
     {
-        if (!IsLocalPlayer) return;
-
-        if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
-
-        if (car != null)
+        if (IsLocalPlayer)
         {
-            CarMovement();
-            
-            return;
-        }
-        
-        MovementUpdate();
+            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
 
-        AimUpdate();
-        
-        EyeTraceInfo();
+            if (car != null)
+            {
+                CarMovement();
+
+                return;
+            }
+
+            MovementUpdate();
+
+            AimUpdate();
+
+            EyeTraceInfo();
+            
+            NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
+                isGrounded, xRotation, verticalVelocity);
+        }
+
+        AnimatorUpdate();
     }
 }

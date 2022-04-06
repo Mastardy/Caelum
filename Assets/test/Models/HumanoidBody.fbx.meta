@@ -35,7 +35,7 @@ ModelImporter:
     second: Walking_Backwards|Player
   - first:
       74: 7478122292733868173
-    second: JumpStart|Player
+    second: JumpUp|Player
   - first:
       74: 5903817753728149134
     second: JumpLoop
@@ -44,7 +44,7 @@ ModelImporter:
     second: JumpEnd
   - first:
       74: -8017132209110427154
-    second: JumpLoop|Player
+    second: JumpDown|Player
   - first:
       74: 5305954165682493293
     second: JumpEnd|Player
@@ -189,7 +189,7 @@ ModelImporter:
       takeName: Armature|Walking_Forward
       internalID: 0
       firstFrame: 0
-      lastFrame: 29
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -359,11 +359,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: JumpStart|Player
+      name: JumpUp|Player
       takeName: Armature|Jump
       internalID: 0
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 4
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -388,11 +388,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: JumpLoop|Player
+      name: JumpDown|Player
       takeName: Armature|Jump
       internalID: 0
-      firstFrame: 15
-      lastFrame: 19
+      firstFrame: 5
+      lastFrame: 10
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -420,8 +420,8 @@ ModelImporter:
       name: JumpEnd|Player
       takeName: Armature|Jump
       internalID: 0
-      firstFrame: 19
-      lastFrame: 32
+      firstFrame: 10
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
