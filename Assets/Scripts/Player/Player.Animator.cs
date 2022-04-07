@@ -69,7 +69,7 @@ public partial class Player
         //View Model animator
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0); //mostrar braços correndo se estiver correndo apenas para frente
         firstPersonAnimator.SetBool(crouchCache, isCrouched);
-        firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
+        if(isGrounded) firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
         firstPersonAnimator.SetBool("Tool", tool);
