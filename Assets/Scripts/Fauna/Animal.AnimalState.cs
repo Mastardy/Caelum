@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using TMPro;
 
 public class AnimalState
 {
@@ -32,11 +33,14 @@ public partial class Animal
             if (currentState != null) animalStates[currentState].OnEnd.Invoke();
 
             currentState = value;
+            stateText.text = currentState;
 
             animalStates[currentState].OnStart.Invoke();
         }
     }
     // TODO: REFACTOR
+
+    [SerializeField] private TextMeshProUGUI stateText;
     
     private float transitionTimer;
     private float transitionDelay;
@@ -78,9 +82,11 @@ public partial class Animal
         return false;
     }
 
+    private string currentRandomState;
+    
     private string RandomState()
     {
-        if (Time.time - transitionTimer < transitionDelay) return CurrentState;
+        if (Time.time - transitionTimer < transitionDelay) return currentRandomState;
 
         transitionTimer = Time.time;
         
@@ -88,12 +94,15 @@ public partial class Animal
         {
             case 0:
                 transitionDelay = Random.Range(2f, 5f);
+                currentRandomState = idleState;
                 return idleState;
             case 1:
                 transitionDelay = Random.Range(5f, 10f);
+                currentRandomState = roamState;
                 return roamState;
             default:
                 transitionDelay = Random.Range(2f, 5f);
+                currentRandomState = idleState;
                 return idleState;
         }
     }

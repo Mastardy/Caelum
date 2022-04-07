@@ -3,6 +3,8 @@ using Unity.Netcode;
 
 public partial class Player : NetworkBehaviour
 {
+    public static Player localPlayer;
+    
     private GameOptionsScriptableObjects gameOptions;
     
     [Header("Player")]
@@ -16,6 +18,8 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
+            localPlayer = this;
+            
             gameOptions = GameManager.Instance.gameOptions;
             
             playerCanvas.gameObject.SetActive(true);

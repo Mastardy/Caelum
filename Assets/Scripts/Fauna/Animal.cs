@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.AI;
 
 public partial class Animal : NetworkBehaviour
@@ -16,6 +17,11 @@ public partial class Animal : NetworkBehaviour
 
     private void Update()
     {
+        if (Player.localPlayer != null)
+        {
+            stateText.transform.LookAt(Player.localPlayer.transform);
+            stateText.transform.Rotate(Vector3.up, 180);
+        }
         ChangeState();
         animalStates[CurrentState].OnUpdate.Invoke();
     }

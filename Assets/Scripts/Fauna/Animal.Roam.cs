@@ -29,7 +29,7 @@ public partial class Animal
 
     private void RoamUpdate()
     {
-        if (agent.remainingDistance < 0.5f) RoamStart();
+        if (agent.remainingDistance < 1) RoamStart();
     }
     
     private void RoamEnd() { }

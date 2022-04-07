@@ -24,7 +24,7 @@ public partial class Animal
         
         var animalPosition = transform.position;
 
-        NavMesh.SamplePosition(animalPosition + (animalPosition - predator.transform.position).normalized * 5, out NavMeshHit navMeshHit, 5,  1);
+        NavMesh.SamplePosition(animalPosition + (animalPosition - predator.transform.position).normalized * 12, out NavMeshHit navMeshHit, 5,  1);
         
         agent.SetDestination(navMeshHit.position);
     }

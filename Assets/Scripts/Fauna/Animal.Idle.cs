@@ -12,8 +12,11 @@ public partial class Animal
 
         return tempIdleState;
     }
-    
-    private void IdleStart() { }
+
+    private void IdleStart()
+    {
+        agent.ResetPath();
+    }
     
     private void IdleUpdate() { }
     
