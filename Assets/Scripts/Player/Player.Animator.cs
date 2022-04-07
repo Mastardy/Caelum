@@ -24,6 +24,8 @@ public partial class Player
     private NetworkVariable<float> xRotationNet = new(NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> velocityYNet = new(NetworkVariableReadPermission.Everyone);
 
+    private bool tool = false;
+
     private void AnimatorStart()
     {        
         if (IsLocalPlayer)
@@ -53,7 +55,7 @@ public partial class Player
         xRotationNet.Value = _xRotation;
         velocityYNet.Value = velocityY;
     }
-    
+
     private void AnimatorUpdate()
     {
         //TPS Model animator
@@ -67,9 +69,15 @@ public partial class Player
         //View Model animator
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0); //mostrar braços correndo se estiver correndo apenas para frente
         firstPersonAnimator.SetBool(crouchCache, isCrouched);
-        firstPersonAnimator.SetFloat(speedCache, isCrouched ? horizontalVelocity.magnitude : Map(horizontalVelocity.magnitude, 0, 5));
+        firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
+        firstPersonAnimator.SetBool("Tool", tool);
+
+        //debug segurar tool
+        if (Input.GetKeyDown(KeyCode.E))
+            tool = !tool;
+
     }
     
     public static float Map(float value, float min, float max)

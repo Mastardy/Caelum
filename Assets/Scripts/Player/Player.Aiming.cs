@@ -66,9 +66,21 @@ public partial class Player
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
+            //mudar isso para dar play na animação correspondente à ferramenta (machado / picareta / enxada) e usar o trigger DA animaçao para receber o resource
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.2f))
             {
                 resource.HitResourceServerRpc(this, resource.resourceName, 2);
+                //debug de animação
+                switch (resource.resourceName)
+                {
+                    case "Tree":
+                        firstPersonAnimator.SetTrigger("Axe");
+                        break;
+                    case "Stone":
+                        firstPersonAnimator.SetTrigger("Pickaxe");
+                        break;
+                }
+                
             }
         }
     }
