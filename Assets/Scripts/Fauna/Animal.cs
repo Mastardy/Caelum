@@ -5,17 +5,14 @@ using UnityEngine.AI;
 public partial class Animal : NetworkBehaviour
 {
     private NavMeshAgent agent;
-    
+
     private void Start()
     {
-        if (IsServer)
-        {
-            agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
 
-            animalStates.Add(idleState, IdleState());
-            animalStates.Add(roamState, RoamState());
-            animalStates.Add(fleeState, FleeState());
-        }
+        animalStates.Add(idleState, IdleState());
+        animalStates.Add(roamState, RoamState());
+        animalStates.Add(fleeState, FleeState());
     }
 
     private void Update()
