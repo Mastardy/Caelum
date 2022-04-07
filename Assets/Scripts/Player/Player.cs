@@ -3,6 +3,7 @@ using Unity.Netcode;
 
 public partial class Player : NetworkBehaviour
 {
+    public static Player[] players;
     public static Player localPlayer;
     
     private GameOptionsScriptableObjects gameOptions;
