@@ -15,6 +15,7 @@ public partial class Player : NetworkBehaviour
     {
         if (!IsLocalPlayer)
         {
+            playerCamera.gameObject.SetActive(false);
             firstPersonAnimator.enabled = false;
         }
         else
@@ -28,10 +29,6 @@ public partial class Player : NetworkBehaviour
             
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
-            var cameraMain = Camera.main;
-            if(cameraMain != null)
-                if(cameraMain != playerCamera.GetComponent<Camera>())
-                    cameraMain.gameObject.SetActive(false);
             
             AnimatorStart();
         }
