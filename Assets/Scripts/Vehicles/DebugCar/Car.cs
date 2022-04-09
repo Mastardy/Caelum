@@ -47,8 +47,10 @@ public class Car : NetworkBehaviour
         {
             if (driver != ply) return;
 
-            gameObject.transform.position += gameObject.transform.forward * (input.y * carSpeed * deltaTime);
-            gameObject.transform.Rotate(Vector3.up, input.x * input.y * turnSpeed * deltaTime);
+            var carTransform = transform;
+            
+            carTransform.position += carTransform.forward * (input.y * carSpeed * deltaTime);
+            carTransform.Rotate(Vector3.up, input.x * input.y * turnSpeed * deltaTime);
         }
     }
 }

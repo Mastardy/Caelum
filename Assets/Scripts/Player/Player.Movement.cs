@@ -35,7 +35,7 @@ public partial class Player
         {
             MovementInput();
         }
-
+        
         playerCamera.localPosition = new Vector3(0, isCrouched ? 2 : 3, 0);
         
         IsGrounded();
@@ -90,7 +90,7 @@ public partial class Player
 
         if (input.x == 0)
         {
-            if (horizontalVelocity.x > -0.1f && horizontalVelocity.x < 0.1f) horizontalVelocity.x = 0.0f;
+            if (horizontalVelocity.x is > -0.1f and < 0.1f) horizontalVelocity.x = 0.0f;
             else if (horizontalVelocity.x < 0) horizontalVelocity.x += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
             else horizontalVelocity.x -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
@@ -102,7 +102,7 @@ public partial class Player
 
         if (input.y == 0)
         {
-            if (horizontalVelocity.y > -0.1f && horizontalVelocity.y < 0.1f) horizontalVelocity.y = 0.0f;
+            if (horizontalVelocity.y is > -0.1f and < 0.1f) horizontalVelocity.y = 0.0f;
             else if (horizontalVelocity.y < 0) horizontalVelocity.y += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
             else horizontalVelocity.y -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
@@ -119,7 +119,8 @@ public partial class Player
         }
         
         verticalVelocity += gravity * Time.deltaTime;
-        
-        characterController.Move((transform.up * verticalVelocity + transform.right * horizontalVelocity.x + transform.forward * horizontalVelocity.y) * Time.deltaTime);
+
+        var playerTransform = transform;
+        characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);
     }
 }
