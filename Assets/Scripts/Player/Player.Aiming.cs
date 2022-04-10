@@ -42,8 +42,15 @@ public partial class Player
             
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
-                aimText.SetText(resource.resourceName);
+                aimText.SetText(resource.name);
                 lookingAt = resource.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
+            {
+                aimText.SetText(groundItem.inventoryItem.itemName);
+                lookingAt = groundItem.gameObject;
                 return;
             }
         }
@@ -68,7 +75,15 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.2f))
             {
-                resource.HitResourceServerRpc(this, resource.resourceName, 2);
+                resource.HitResourceServerRpc(this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out InventoryGroundItem groundItem))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                groundItem.PickUpServerRpc(this);
             }
         }
     }

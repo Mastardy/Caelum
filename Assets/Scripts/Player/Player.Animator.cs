@@ -15,23 +15,19 @@ public partial class Player
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
-    private NetworkVariable<bool> isCrouchedNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> moveMagnitudeNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputXNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputYNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> isGroundedNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> xRotationNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> velocityYNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
 
     private void AnimatorStart()
-    {        
-        //dar Hide no world model mantendo as sombras
-        if (IsLocalPlayer)
+    {
+        foreach (var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
         {
-            foreach(var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
-            {
-                smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-            }
+            smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
     }
 

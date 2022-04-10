@@ -14,8 +14,6 @@ public partial class Player : NetworkBehaviour
     private void Start()
     {
         allPlayers.Add(this);
-
-        Debug.Log(allPlayers.Count);
         
         if (!IsLocalPlayer)
         {
@@ -24,15 +22,20 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
-            gameOptions = GameManager.Instance.gameOptions;
-            
-            playerCanvas.gameObject.SetActive(true);
-            playerCamera.gameObject.SetActive(true);
-            
-            characterController = GetComponent<CharacterController>();
-            Cursor.lockState = CursorLockMode.Locked;
-            
-            AnimatorStart();
+            InventoryStart();
+
+            if (IsLocalPlayer)
+            {
+                gameOptions = GameManager.Instance.gameOptions;
+
+                playerCanvas.gameObject.SetActive(true);
+                playerCamera.gameObject.SetActive(true);
+
+                characterController = GetComponent<CharacterController>();
+                Cursor.lockState = CursorLockMode.Locked;
+
+                AnimatorStart();
+            }
         }
     }
 
@@ -47,7 +50,12 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
+            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f) && !inInventory) OpenChat();
+            if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f) && !inChat)
+            {
+                if (inInventory) HideInventory();
+                else OpenInventory();
+            }
 
             if (car != null)
             {

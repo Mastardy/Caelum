@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public partial class Player
 {
@@ -8,6 +9,8 @@ public partial class Player
 
     [SerializeField] private Transform chatPanel;
     [SerializeField] private GameObject chatEntryPrefab;
+
+    [SerializeField] private GameObject inventory;
     
     [SerializeField] private TextMeshProUGUI aimText;
     [SerializeField] private LayerMask hitMask;
@@ -18,27 +21,6 @@ public partial class Player
 
     private bool takeInput = true;
     
-    [SerializeField] private TextMeshProUGUI woodText;
-    private int wood;
-    public int Wood
-    {
-        get => wood;
-        set
-        {
-            woodText.SetText(value.ToString());
-            wood = value;
-        }
-    }
-    
-    [SerializeField] private TextMeshProUGUI stoneText;
-    private int stone;
-    private int Stone
-    {
-        get => stone;
-        set
-        {
-            stoneText.SetText(value.ToString());
-            stone = value;
-        }
-    }
+    [Header("Inventory")]
+    [SerializeField] private InventorySlot[] inventorySlots;
 }
