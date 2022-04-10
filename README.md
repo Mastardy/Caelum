@@ -1,3 +1,3 @@
 Sky Isles
 
-[WIKI](https://github.com/GelaPT/Sky-Isles/wiki)
+Read the [Wiki](https://github.com/GelaPT/Sky-Isles/wiki)
