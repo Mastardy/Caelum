@@ -7,14 +7,14 @@ public class AnimalState
 {
     public AnimalState()
     {
-        OnStart = new();
-        OnUpdate = new();
-        OnEnd = new();
+        onStart = new UnityEvent();
+        onUpdate = new UnityEvent();
+        onEnd = new UnityEvent();
     }
     
-    public readonly UnityEvent OnStart;
-    public readonly UnityEvent OnUpdate;
-    public readonly UnityEvent OnEnd;
+    public readonly UnityEvent onStart;
+    public readonly UnityEvent onUpdate;
+    public readonly UnityEvent onEnd;
 }
 
 public partial class Animal
@@ -25,17 +25,17 @@ public partial class Animal
     private string currentState;
     private string CurrentState
     {
-        get { return currentState; }
+        get => currentState;
         set
         {
             if (currentState != null && value == currentState) return;
 
-            if (currentState != null) animalStates[currentState].OnEnd.Invoke();
+            if (currentState != null) animalStates[currentState].onEnd.Invoke();
 
             currentState = value;
             stateText.text = currentState;
 
-            animalStates[currentState].OnStart.Invoke();
+            animalStates[currentState].onStart.Invoke();
         }
     }
     // TODO: REFACTOR
@@ -74,7 +74,6 @@ public partial class Animal
         {
             if (Vector3.Distance(player.transform.position, transform.position) < distance)
             {
-                predator = player;
                 return true;
             }
         }

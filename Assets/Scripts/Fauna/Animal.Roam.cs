@@ -9,9 +9,9 @@ public partial class Animal
     {
         var tempRoamState = new AnimalState();
         
-        tempRoamState.OnStart.AddListener(RoamStart);
-        tempRoamState.OnUpdate.AddListener(RoamUpdate);
-        tempRoamState.OnEnd.AddListener(RoamEnd);
+        tempRoamState.onStart.AddListener(RoamStart);
+        tempRoamState.onUpdate.AddListener(RoamUpdate);
+        tempRoamState.onEnd.AddListener(RoamEnd);
 
         return tempRoamState;
     }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections.Generic;
 
 public partial class Player : NetworkBehaviour
 {
-    public static Player[] players;
-    public static Player localPlayer;
+    public static List<Player> allPlayers = new();
     
     private GameOptionsScriptableObjects gameOptions;
     
@@ -13,6 +13,10 @@ public partial class Player : NetworkBehaviour
     
     private void Start()
     {
+        allPlayers.Add(this);
+
+        Debug.Log(allPlayers.Count);
+        
         if (!IsLocalPlayer)
         {
             playerCamera.gameObject.SetActive(false);
@@ -20,8 +24,6 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
-            localPlayer = this;
-            
             gameOptions = GameManager.Instance.gameOptions;
             
             playerCanvas.gameObject.SetActive(true);

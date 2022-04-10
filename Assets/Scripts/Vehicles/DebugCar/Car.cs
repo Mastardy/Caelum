@@ -13,7 +13,6 @@ public class Car : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void CarEnterServerRpc(NetworkBehaviourReference player)
     {
-        if (!IsServer) return;
         if (driver != null) return;
 
         if (player.TryGet(out Player ply))

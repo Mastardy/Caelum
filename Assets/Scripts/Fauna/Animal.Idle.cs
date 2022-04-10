@@ -6,9 +6,9 @@ public partial class Animal
     {
         var tempIdleState = new AnimalState();
         
-        tempIdleState.OnStart.AddListener(IdleStart);
-        tempIdleState.OnUpdate.AddListener(IdleUpdate);
-        tempIdleState.OnEnd.AddListener(IdleEnd);
+        tempIdleState.onStart.AddListener(IdleStart);
+        tempIdleState.onUpdate.AddListener(IdleUpdate);
+        tempIdleState.onEnd.AddListener(IdleEnd);
 
         return tempIdleState;
     }

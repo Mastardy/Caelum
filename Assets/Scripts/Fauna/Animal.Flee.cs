@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class Animal
 {
-    private Player predator;
-
     [SerializeField] private float fleeSpeed = 9f;
     
     private AnimalState FleeState()
     {
         var tempFleeState = new AnimalState();
         
-        tempFleeState.OnStart.AddListener(FleeStart);
-        tempFleeState.OnUpdate.AddListener(FleeUpdate);
-        tempFleeState.OnEnd.AddListener(FleeEnd);
+        tempFleeState.onStart.AddListener(FleeStart);
+        tempFleeState.onUpdate.AddListener(FleeUpdate);
+        tempFleeState.onEnd.AddListener(FleeEnd);
 
         return tempFleeState;
     }
@@ -24,7 +24,7 @@ public partial class Animal
         
         var animalPosition = transform.position;
 
-        NavMesh.SamplePosition(animalPosition + (animalPosition - predator.transform.position).normalized * 12, out NavMeshHit navMeshHit, 5,  1);
+        NavMesh.SamplePosition(animalPosition + GetFleeDirection() * 12, out NavMeshHit navMeshHit, 5,  1);
         
         agent.SetDestination(navMeshHit.position);
     }
@@ -37,4 +37,22 @@ public partial class Animal
     }
     
     private void FleeEnd() { }
+
+    private Vector3 GetFleeDirection()
+    {
+        var nearPlayersAngles = new List<float>();
+
+        foreach (var ply in Player.allPlayers)
+        {
+            Vector3 direction = transform.position - ply.transform.position;
+            if (direction.magnitude < 5)
+            {
+                nearPlayersAngles.Add(Mathf.Atan2(direction.z, direction.x));
+            }
+        }
+
+        var averageAngle = nearPlayersAngles.Sum() / nearPlayersAngles.Count;
+
+        return new Vector3(Mathf.Cos(averageAngle), 0, Mathf.Sin(averageAngle));
+    }
 }

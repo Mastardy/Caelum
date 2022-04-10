@@ -17,19 +17,7 @@ public partial class Animal : NetworkBehaviour
 
     private void Update()
     {
-        if (IsServer)
-        {
-            ChangeState();
-            animalStates[CurrentState].OnUpdate.Invoke();   
-        }
-
-        if (IsLocalPlayer)
-        {
-            if (Player.localPlayer != null)
-            {
-                stateText.transform.LookAt(Player.localPlayer.transform);
-                stateText.transform.Rotate(Vector3.up, 180);
-            }
-        }
+        ChangeState();
+        animalStates[CurrentState].onUpdate.Invoke();
     }
 }
