@@ -1,3 +1,3 @@
 Sky Isles
 
-test
+[WIKI](https://github.com/GelaPT/Sky-Isles/wiki)
