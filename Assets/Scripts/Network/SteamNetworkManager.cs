@@ -86,14 +86,12 @@ public class SteamNetworkManager : MonoBehaviour
 
     #region NetworkCallbacks
 
-    private void OnServerStarted() => Debug.Log("Server has started!");
+    private void OnServerStarted() { }
 
-    private void OnClientConnectedCallback(ulong clientId) => Debug.Log($"Client connected, clientId = {clientId}");
+    private void OnClientConnectedCallback(ulong clientId) { }
 
-    private void OnClientDisconnectCallback(ulong clientId)
+    private void OnClientDisconnectCallback(ulong clientId) 
     {
-        Debug.Log($"Client disconnected, clientId = {clientId}");
-     
         NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnectCallback;
     }
