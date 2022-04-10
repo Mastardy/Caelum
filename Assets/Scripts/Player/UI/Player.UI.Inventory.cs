@@ -6,12 +6,6 @@ public partial class Player
 {
     private bool inInventory;
     private Dictionary<int, InventoryItem> inventoryItems = new();
-
-    private void InventoryStart()
-    {
-        GetInventoryItems();
-        HideInventory();
-    }
     
     /// <summary>
     /// Hides the Inventory

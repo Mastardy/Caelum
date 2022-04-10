@@ -15,16 +15,14 @@ public partial class Player : NetworkBehaviour
     {
         allPlayers.Add(this);
         
+        GetInventoryItems();
+        
         if (!IsLocalPlayer)
         {
-            playerCanvas.gameObject.SetActive(false);
-            playerCamera.gameObject.SetActive(false);
             firstPersonAnimator.enabled = false;
         }
         else
         {
-            InventoryStart();
-
             if (IsLocalPlayer)
             {
                 gameOptions = GameManager.Instance.gameOptions;
