@@ -17,6 +17,7 @@ public partial class Player : NetworkBehaviour
         
         if (!IsLocalPlayer)
         {
+            playerCanvas.gameObject.SetActive(false);
             playerCamera.gameObject.SetActive(false);
             firstPersonAnimator.enabled = false;
         }

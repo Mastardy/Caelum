@@ -38,9 +38,11 @@ public partial class Player
     [ClientRpc]
     public void PickUpClientRpc(int id)
     {
+        Debug.Log(IsServer);
         foreach (var slot in inventorySlots)
         {
             if (slot.isEmpty) continue;
+            Debug.Log(slot.isEmpty);
             if (slot.inventoryItem.id != id) continue;
             if (slot.Amount == slot.inventoryItem.maxStack) continue;
                 
