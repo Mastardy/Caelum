@@ -40,14 +40,24 @@ public partial class Player
     {
         foreach (var slot in inventorySlots)
         {
-            if (slot.isEmpty)
-            {
-                slot.isEmpty = false;
-                slot.inventoryItem = inventoryItems[id];
-                slot.image.sprite = slot.inventoryItem.sprite;
-                slot.image.enabled = true;
-                return;
-            }
+            if (slot.isEmpty) continue;
+            if (slot.inventoryItem.id != id) continue;
+            if (slot.Amount == slot.inventoryItem.maxStack) continue;
+                
+            slot.Amount++;
+            return;
+        }
+
+        foreach (var slot in inventorySlots)
+        {
+            if (!slot.isEmpty) continue;
+
+            slot.Amount = 1;
+            slot.isEmpty = false;
+            slot.inventoryItem = inventoryItems[id];
+            slot.image.sprite = slot.inventoryItem.sprite;
+            slot.image.enabled = true;
+            return;
         }
     }
 
@@ -78,6 +88,10 @@ public partial class Player
     [ClientRpc]
     public void DropItemClientRpc(int slot)
     {
+        inventorySlots[slot].Amount--;
+
+        if (inventorySlots[slot].Amount > 0) return;
+        
         inventorySlots[slot].isEmpty = true;
         inventorySlots[slot].inventoryItem = null;
         inventorySlots[slot].image.sprite = null;
