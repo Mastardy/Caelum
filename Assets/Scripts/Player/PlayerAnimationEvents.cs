@@ -19,6 +19,16 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void ThrowSpear()
     {
-        player.animSpear = player.AnimEquip(false);
+        
+    }
+
+    public void EndLeftArm()
+    {
+        player.SetLeftArmWeight(0);
+    }
+
+    public void CanAim()
+    {
+        player.CanAim = true;
     }
 }

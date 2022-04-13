@@ -74,10 +74,10 @@ public partial class Player
                 switch (resource.resourceName)
                 {
                     case "Tree":
-                        firstPersonAnimator.SetTrigger("Axe");
+                        firstPersonAnimator.SetTrigger("UseAxe");
                         break;
                     case "Stone":
-                        firstPersonAnimator.SetTrigger("Pickaxe");
+                        firstPersonAnimator.SetTrigger("UsePickaxe");
                         break;
                 }
                 

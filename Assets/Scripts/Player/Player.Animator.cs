@@ -8,6 +8,7 @@ public partial class Player
     [SerializeField] private Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
+    [SerializeField] private Animator bowAnimator;
     
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int sprintCache = Animator.StringToHash("Sprint");
@@ -21,6 +22,9 @@ public partial class Player
     private static readonly int spearCache = Animator.StringToHash("Spear");
     private static readonly int swordCache = Animator.StringToHash("Sword");
     private static readonly int comboCache = Animator.StringToHash("SwordCombo");
+    private static readonly int bowCache = Animator.StringToHash("Bow");
+    private static readonly int drawbowCache = Animator.StringToHash("Draw");
+    private static readonly int shootCache = Animator.StringToHash("Shoot");
 
     private NetworkVariable<bool> isCrouchedNet = new(NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> moveMagnitudeNet = new(NetworkVariableReadPermission.Everyone);
@@ -32,13 +36,20 @@ public partial class Player
 
     //debug
     private bool animTool = false;
-    public bool animSpear = false;
+    private bool animSpear = false;
     private bool animSword = false;
     private bool animBow = false;
     private int animCombo = 1;
+    private bool canAimAnim = false;
     private bool animAim = false;
     private float layerWeight = 0;
     private bool animCoroutine = false;
+
+    public bool CanAim
+    {
+        get { return canAimAnim; }
+        set { canAimAnim = value; }
+    }
 
     private void AnimatorStart()
     {        
@@ -72,7 +83,7 @@ public partial class Player
 
     private void AnimatorUpdate()
     {
-        //TPS Model animator
+        //TPS Model animator variables
         thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
         thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
         thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
@@ -80,34 +91,35 @@ public partial class Player
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
 
-        //View Model animator
+        //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0); //mostrar braços correndo se estiver correndo apenas para frente
         firstPersonAnimator.SetBool(crouchCache, isCrouched);
         if(isGrounded) firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
 
-        //View model tools and weapons
+        //View model tools and weapons variables
         firstPersonAnimator.SetBool(toolCache, animTool);
         firstPersonAnimator.SetBool(aimCache, animAim);
         firstPersonAnimator.SetBool(spearCache, animSpear);
         firstPersonAnimator.SetBool(swordCache, animSword);
         firstPersonAnimator.SetInteger(comboCache, animCombo);
+        firstPersonAnimator.SetBool(bowCache, animBow);
 
         //layer weight corountine
         if (animCoroutine)
             firstPersonAnimator.SetLayerWeight(1, layerWeight);
 
-        //debug
+        //debug---------------------------------------------------------------------------------------------------------------
 
-        //tool
+        //tool--------------------------------------------------------------------------
         //if (Input.GetKeyDown(KeyCode.E) && !spear && !sword)
         //{
         //    tool = !tool;
         //    toolObject.SetActive(tool);
         //}
 
-        //spear
+        //spear--------------------------------------------------------------------------
         //if (Input.GetKeyDown(KeyCode.Q) && !sword && !tool)
         //{
         //    spear = !spear;
@@ -125,7 +137,7 @@ public partial class Player
         //if (animAim && InputHelper.GetKeyDown(gameOptions.primaryAttackKey))
         //    firstPersonAnimator.SetTrigger("ThrowSpear");
 
-        //sword
+        //sword--------------------------------------------------------------------------
         //if (Input.GetKeyDown(KeyCode.F) && !animSpear && !animTool)
         //{
         //    animSword = !animSword;
@@ -143,6 +155,29 @@ public partial class Player
         //        case 2:
         //            animCombo = 1;
         //            break;
+        //    }
+        //}
+
+        //bow--------------------------------------------------------------------------
+        //if (Input.GetKeyDown(KeyCode.F))
+        //    animBow = !animBow;
+
+        //if (!animBow)
+        //    canAimAnim = false;
+
+        //if (animBow)
+        //{
+        //    animAim = InputHelper.GetKey(gameOptions.secondaryAttackKey) && canAimAnim;
+        //    bowAnimator.SetBool(drawbowCache, animAim);
+        //    if (animAim && InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 1f))
+        //    {
+        //        firstPersonAnimator.SetTrigger(shootCache);
+        //        bowAnimator.SetTrigger(shootCache);
+        //    }
+        //    else
+        //    {
+        //        firstPersonAnimator.ResetTrigger(shootCache);
+        //        bowAnimator.ResetTrigger(shootCache);
         //    }
         //}
     }
@@ -167,6 +202,16 @@ public partial class Player
     private void AnimatorAim(bool e)
     {
         animAim = e;
+        if (animBow)
+        {
+            bowAnimator.SetBool(drawbowCache, animAim);
+            if (!animAim)
+            {
+                firstPersonAnimator.ResetTrigger(shootCache);
+                bowAnimator.ResetTrigger(shootCache);
+            }
+        }
+
     }
 
     private void AnimatorUseSpear()
@@ -193,7 +238,42 @@ public partial class Player
         }
     }
 
+    private void AnimatorEquipBow(bool e)
+    {
+        animBow = e;
+        canAimAnim = animBow;
+    }
+
+    private void AnimatorShootBow()
+    {
+        firstPersonAnimator.SetTrigger(shootCache);
+        bowAnimator.SetTrigger(shootCache);
+    }
+
+    private void AnimatorCollect()
+    {
+        SetLeftArmWeight(1);
+        firstPersonAnimator.SetTrigger("Collect");
+    }
+
+    private void AnimatorEat() //not done
+    {
+        SetLeftArmWeight(1);
+        firstPersonAnimator.SetTrigger("Eat");
+    }
+
+    private void AnimatorDrink() //not done
+    {
+        SetLeftArmWeight(1);
+        firstPersonAnimator.SetTrigger("Drink");
+    }
+
     #region support_functions
+    public void SetLeftArmWeight(float w)
+    {
+        firstPersonAnimator.SetLayerWeight(2, w);
+    }
+
     private static float Map(float value, float min, float max)
     {
         return (value - min) * 1f / (max - min);
