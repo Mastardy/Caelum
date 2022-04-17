@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Leaves 2
+  m_Name: Leaves 9
   m_Shader: {fileID: -6465566751694194690, guid: 33d635cf70140db4383f442e97f7d9a0,
     type: 3}
   m_ShaderKeywords: 
@@ -58,11 +58,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Leaf_Mask:
-        m_Texture: {fileID: 2800000, guid: 270f92de91317764bbec4e8da73de00c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 15ff1b3714b1b8c47901d41ea7200992, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Leaf_Normal:
-        m_Texture: {fileID: 2800000, guid: 270f92de91317764bbec4e8da73de00c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 52f723b37fca09143a7de88c72d8cd3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -70,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: 270f92de91317764bbec4e8da73de00c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4a968a049f0847e40934b07c1ec4b23d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -78,7 +78,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 11b55d8238c886641bdd5b4e9f703d06, type: 3}
+        m_Texture: {fileID: 2800000, guid: 52f723b37fca09143a7de88c72d8cd3a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
@@ -125,9 +125,9 @@ Material:
     m_Floats:
     - _AlphaClip: 1
     - _Blend: 0
-    - _Branch_Opacity: 4.06
+    - _Branch_Opacity: 5.81
     - _BumpScale: 1
-    - _Center: 0.543
+    - _Center: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Clip: 0.5
@@ -141,7 +141,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Hardness: 0.503
+    - _Hardness: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -149,33 +149,31 @@ Material:
     - _Power2: 0.36
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Radius: 0.456
+    - _Radius: 0
     - _ReceiveShadows: 0
-    - _Rim_Thicc: 0.2
     - _Shininess: 0.7
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 5
     - _Surface: 1
-    - _Wiggle_Speed: 0.317
+    - _Wiggle_Speed: 0.333
     - _WindQuality: 0
     - _Wind_Force: 0.2
-    - _Wind_Speed: 1.24
+    - _Wind_Speed: 1.2
     - _WorkflowMode: 0
     - _ZWrite: 0
     - _clip: 0.264
     m_Colors:
     - _BaseColor: {r: 0.5460136, g: 0.8679245, b: 0.51174796, a: 1}
-    - _Branch_Color: {r: 0.5754717, g: 0.39794418, b: 0.21444464, a: 0}
+    - _Branch_Color: {r: 0.5, g: 0.36628997, b: 0.25235844, a: 0}
     - _Color: {r: 0.5460136, g: 0.8679245, b: 0.5117479, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
-    - _Hue_Variation: {r: 1, g: 0.5, b: 0.79, a: 0.5}
-    - _Leaf_Color: {r: 0.69803923, g: 1, b: 0, a: 0}
+    - _Leaf_Color: {r: 0.6988884, g: 1, b: 0, a: 0}
     - _Rim_Color: {r: 0.31820557, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Vector3: {r: 0, g: 1, b: 0, a: 0}
-    - _Wind_Direction: {r: 0.67, g: 0.67, b: 0, a: 0}
+    - _Wind_Direction: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
