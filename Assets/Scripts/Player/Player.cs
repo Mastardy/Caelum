@@ -49,13 +49,31 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f) && !inInventory) OpenChat();
-            if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f) && !inChat)
+            if (!inInventory && !inCrafting)
             {
-                if (inInventory) HideInventory();
-                else OpenInventory();
+                if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
+                {
+                    OpenChat();
+                }
+            }
+            
+            if (!inChat && !inCrafting)
+            {
+                if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
+                {
+                    if (inInventory) HideInventory();
+                    else OpenInventory();
+                }
             }
 
+            if (inCrafting)
+            {
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    craftingTable.CloseCraftingServerRpc(this);
+                }
+            }
+            
             if (car != null)
             {
                 CarMovement();

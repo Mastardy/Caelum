@@ -85,11 +85,8 @@ public partial class Player
         inventorySlots[slot].Amount--;
 
         if (inventorySlots[slot].Amount > 0) return;
-        
-        inventorySlots[slot].isEmpty = true;
-        inventorySlots[slot].inventoryItem = null;
-        inventorySlots[slot].image.sprite = null;
-        inventorySlots[slot].image.enabled = false;
+
+        inventorySlots[slot].Clear();
     }
     
     public bool CanPickUpItem()

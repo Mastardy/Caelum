@@ -11,6 +11,7 @@ public partial class Player
     [SerializeField] private GameObject chatEntryPrefab;
 
     [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject crafting;
     
     [SerializeField] private TextMeshProUGUI aimText;
     [SerializeField] private LayerMask hitMask;

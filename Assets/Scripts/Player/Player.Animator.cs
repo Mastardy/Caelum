@@ -32,17 +32,17 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc(bool _isCrouched, float _moveMagnitude, float inputX, float inputY,
-        bool _isGrounded, float _xRotation, float velocityY)
+    private void NetworkAnimatorUpdateServerRpc(bool crouched, float moveMag, float xInput, float yInput,
+        bool grounded, float rotationX, float velocityY)
     {
         if (!IsServer) return;
         
-        isCrouchedNet.Value = _isCrouched;
-        moveMagnitudeNet.Value = _moveMagnitude;
-        inputXNet.Value = inputX;
-        inputYNet.Value = inputY;
-        isGroundedNet.Value = _isGrounded;
-        xRotationNet.Value = _xRotation;
+        isCrouchedNet.Value = crouched;
+        moveMagnitudeNet.Value = moveMag;
+        inputXNet.Value = xInput;
+        inputYNet.Value = yInput;
+        isGroundedNet.Value = grounded;
+        xRotationNet.Value = rotationX;
         velocityYNet.Value = velocityY;
     }
     

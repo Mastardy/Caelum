@@ -49,8 +49,15 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
-                aimText.SetText(groundItem.inventoryItem.itemName);
+                aimText.SetText(groundItem.name);
                 lookingAt = groundItem.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out CraftingTable craftingTable))
+            {
+                aimText.SetText("Crafting Table");
+                lookingAt = craftingTable.gameObject;
                 return;
             }
         }
@@ -84,6 +91,16 @@ public partial class Player
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
             {
                 groundItem.PickUpServerRpc(this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out CraftingTable craftTable))
+        {
+            Debug.Log("cringe");
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                Debug.Log("Pressed E on Crafting Table");
+                craftTable.OpenCraftingServerRpc(this);
             }
         }
     }

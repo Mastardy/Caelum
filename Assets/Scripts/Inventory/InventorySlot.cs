@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -24,4 +23,12 @@ public class InventorySlot : NetworkBehaviour
     
     public Image image;
     public TextMeshProUGUI text;
+
+    public void Clear()
+    {
+        isEmpty = true;
+        inventoryItem = null;
+        image.sprite = null;
+        image.enabled = false;
+    }
 }
