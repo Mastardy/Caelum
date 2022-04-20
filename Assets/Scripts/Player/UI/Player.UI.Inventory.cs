@@ -16,6 +16,8 @@ public partial class Player
         inInventory = false;
         takeInput = true;
         inventory.SetActive(false);
+        crosshair.SetActive(true);
+        aimText.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -27,30 +29,48 @@ public partial class Player
         inInventory = true;
         takeInput = false;
         inventory.SetActive(true);
+        crosshair.SetActive(false);
+        aimText.gameObject.SetActive(false);
     }
     
     [ClientRpc]
-    public void PickUpClientRpc(int id)
+    public void PickUpClientRpc(int id, int amountToAdd = 1)
     {
+        int amountAdded = 0;
+        
         foreach (var slot in inventorySlots)
         {
             if (slot.isEmpty) continue;
             if (slot.inventoryItem.id != id) continue;
             if (slot.Amount == slot.inventoryItem.maxStack) continue;
-                
-            slot.Amount++;
-            return;
+
+            do
+            {
+                slot.Amount++;
+                amountAdded++;
+            } while (slot.Amount < slot.inventoryItem.maxStack && amountAdded < amountToAdd);
+
+            if (amountAdded >= amountToAdd) return;
         }
 
         foreach (var slot in inventorySlots)
         {
             if (!slot.isEmpty) continue;
 
-            slot.Amount = 1;
+            slot.Amount = 0;
             slot.isEmpty = false;
             slot.inventoryItem = inventoryItems[id];
             slot.image.sprite = slot.inventoryItem.sprite;
             slot.image.enabled = true;
+            
+            do
+            {
+                slot.Amount++;
+                amountAdded++;
+            } while (slot.Amount < slot.inventoryItem.maxStack && amountAdded < amountToAdd);
+
+            if (amountAdded >= amountToAdd) return;
+            
             return;
         }
     }
@@ -69,11 +89,15 @@ public partial class Player
 
         if (ply.TryGet(out Player player))
         {
-            var worldGameObject = Instantiate(player.inventoryItems[item].worldPrefab, player.playerCamera.transform.position + player.playerCamera.transform.forward,
+            var playerTransform = player.playerCamera.transform;
+            var playerTransformForward = playerTransform.forward;
+            
+            var worldGameObject = Instantiate(player.inventoryItems[item].worldPrefab, playerTransform.position + playerTransformForward,
                 player.inventoryItems[item].worldPrefab.transform.rotation);
-            worldGameObject.GetComponent<NetworkObject>().Spawn();
+            worldGameObject.name = player.inventoryItems[item].name;
 
-            worldGameObject.GetComponent<Rigidbody>().AddForce(player.playerCamera.transform.forward * 2, ForceMode.Impulse);
+            worldGameObject.GetComponent<NetworkObject>().Spawn();
+            worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
             
             player.DropItemClientRpc(slot);
         }

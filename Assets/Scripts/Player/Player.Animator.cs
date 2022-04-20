@@ -48,7 +48,7 @@ public partial class Player
     
     private void AnimatorUpdate()
     {
-        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
+        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 8));
         thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
         thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
         thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);

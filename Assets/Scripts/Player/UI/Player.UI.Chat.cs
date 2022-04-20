@@ -21,6 +21,8 @@ public partial class Player
         takeInput = true;
         EventSystem.current.SetSelectedGameObject(null);
         chatBox.SetActive(false);
+        crosshair.SetActive(true);
+        aimText.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -32,6 +34,8 @@ public partial class Player
         inChat = true;
         takeInput = false;
         chatBox.SetActive(true);
+        crosshair.SetActive(false);
+        aimText.gameObject.SetActive(false);
         EventSystem.current.SetSelectedGameObject(chatBox);
     }
     

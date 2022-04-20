@@ -12,7 +12,8 @@ public partial class Player
 
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject crafting;
-    
+
+    [SerializeField] private GameObject crosshair;
     [SerializeField] private TextMeshProUGUI aimText;
     [SerializeField] private LayerMask hitMask;
 

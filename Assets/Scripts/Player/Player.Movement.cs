@@ -5,13 +5,17 @@ public partial class Player
     [Header("Movement")]
     private CharacterController characterController;
 
-    [SerializeField] private float crouchSpeed = 1;
-    [SerializeField] private float speed = 3;
-    [SerializeField] private float sprintSpeed = 5;
-    [SerializeField] private float accelerationEasing = 5f;
-    [SerializeField] private float airAccelerationEasing = 2.0f;
-    [SerializeField] private float gravity = -30;
+    [SerializeField] private float crouchSpeed = 3.5f;
+    [SerializeField] private float speed = 6;
+    [SerializeField] private float sprintSpeed = 9.5f;
+    [SerializeField] private float deaccelerationEasing = 60f;
+    [SerializeField] private float accelerationEasing = 30f;
+    [SerializeField] private float airAccelerationEasing = 3f;
+    [SerializeField] private float gravity = -30f;
     [SerializeField] private float jumpHeight = 1.75f;
+
+    [SerializeField] private float playerCameraHeight = 3;
+    [SerializeField] private float playerCameraEasing = 2;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.1f;
@@ -35,8 +39,19 @@ public partial class Player
         {
             MovementInput();
         }
+
+        if (isCrouched)
+        {
+            if (playerCameraHeight < 2) playerCameraHeight = 2;
+            else if (playerCameraHeight > 2) playerCameraHeight -= Time.deltaTime * playerCameraEasing;
+        }
+        else
+        {
+            if (playerCameraHeight > 3) playerCameraHeight = 3;
+            else if (playerCameraHeight < 3) playerCameraHeight += Time.deltaTime * playerCameraEasing;
+        }
         
-        playerCamera.localPosition = new Vector3(0, isCrouched ? 2 : 3, 0);
+        playerCamera.localPosition = new Vector3(0, playerCameraHeight, 0);
         
         IsGrounded();
 
@@ -96,7 +111,9 @@ public partial class Player
         }
         else
         {
-            horizontalVelocity.x += input.x * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            horizontalVelocity.x += input.x * Time.deltaTime * (isGrounded
+                ? (input.x < 0 && horizontalVelocity.x > 0) || (input.x > 0 && horizontalVelocity.x < 0) ? deaccelerationEasing : accelerationEasing
+                : airAccelerationEasing);
             if(isGrounded) Mathf.Clamp(horizontalVelocity.x, -maxSpeed, maxSpeed);
         }
 
@@ -108,7 +125,9 @@ public partial class Player
         }
         else
         {
-            horizontalVelocity.y += input.y * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            horizontalVelocity.y += input.y * Time.deltaTime * (isGrounded 
+                ? (input.y < 0 && horizontalVelocity.y > 0) || (input.x > 0 && horizontalVelocity.y < 0) ? deaccelerationEasing : accelerationEasing 
+                : airAccelerationEasing);
             if(isGrounded) Mathf.Clamp(horizontalVelocity.y, -maxSpeed, maxSpeed);
         }
 

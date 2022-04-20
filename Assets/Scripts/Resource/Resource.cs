@@ -3,24 +3,24 @@ using Unity.Netcode;
 public class Resource : NetworkBehaviour
 {
     public int resourceId;
-    public int maxHealth;
     public int maxResources;
-    public NetworkVariable<int> curHealth = new();
     public NetworkVariable<int> curResources = new();
 
     [ServerRpc(RequireOwnership = false)]
-    public void HitResourceServerRpc(NetworkBehaviourReference player)
+    public void HitResourceServerRpc(NetworkBehaviourReference player, int resourcesToGather = 1)
     {
-        curHealth.Value -= 1;
+        curResources.Value -= resourcesToGather;
 
-        if (curHealth.Value <= 0) DestroyResource();
-            
-        int resourcesGathered = (int)(maxResources * (1 / (float)maxHealth));
-        curResources.Value -= resourcesGathered;
+        int resourcesGathered = curResources.Value < 0 ? resourcesToGather + curResources.Value : resourcesToGather;
+        
+        if (curResources.Value <= 0)
+        {
+            DestroyResource();
+        }
         
         if(player.TryGet(out Player ply))
         {
-            ply.PickUpClientRpc(resourceId);
+            ply.PickUpClientRpc(resourceId, resourcesGathered);
         }
     }
 

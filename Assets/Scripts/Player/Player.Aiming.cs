@@ -31,7 +31,7 @@ public partial class Player
     
     private void EyeTrace()
     {
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 3, hitMask))
         {
             if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
@@ -49,7 +49,7 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
-                aimText.SetText(groundItem.name);
+                aimText.SetText(groundItem.name + "\n" + groundItem.amount + "x");
                 lookingAt = groundItem.gameObject;
                 return;
             }
@@ -76,14 +76,29 @@ public partial class Player
             {
                 vehicle.CarEnterServerRpc(this);
             }
+
+            return;
         }
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.2f))
+            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                resource.HitResourceServerRpc(this);
+                switch (resource.resourceId)
+                {
+                    case 1:
+                        resource.HitResourceServerRpc(this, 5);
+                        break;
+                    case 2:
+                        resource.HitResourceServerRpc(this, 3);
+                        break;
+                    default:
+                        resource.HitResourceServerRpc(this);
+                        break;
+                }
             }
+            
+            return;
         }
 
         if (lookingAt.TryGetComponent(out InventoryGroundItem groundItem))
@@ -92,14 +107,14 @@ public partial class Player
             {
                 groundItem.PickUpServerRpc(this);
             }
+            
+            return;
         }
 
         if (lookingAt.TryGetComponent(out CraftingTable craftTable))
         {
-            Debug.Log("cringe");
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
             {
-                Debug.Log("Pressed E on Crafting Table");
                 craftTable.OpenCraftingServerRpc(this);
             }
         }

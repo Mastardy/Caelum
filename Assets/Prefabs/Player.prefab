@@ -2071,13 +2071,16 @@ MonoBehaviour:
   thirdPersonModel: {fileID: 1413831994091308485}
   firstPersonAnimator: {fileID: 314876487168140714}
   playerCamera: {fileID: 3176719483760028903}
-  crouchSpeed: 1
-  speed: 3
-  sprintSpeed: 5
-  accelerationEasing: 15
-  airAccelerationEasing: 1
+  crouchSpeed: 3
+  speed: 5
+  sprintSpeed: 8
+  deaccelerationEasing: 75
+  accelerationEasing: 25
+  airAccelerationEasing: 3
   gravity: -30
   jumpHeight: 1.75
+  playerCameraHeight: 3
+  playerCameraEasing: 5
   groundCheck: {fileID: 8772669607038965389}
   groundDistance: 0.1
   groundMask:
@@ -2089,6 +2092,7 @@ MonoBehaviour:
     type: 3}
   inventory: {fileID: 5055287690059097225}
   crafting: {fileID: 1491947265796849192}
+  crosshair: {fileID: 5592163839937983293}
   aimText: {fileID: 8659347784123554621}
   hitMask:
     serializedVersion: 2
@@ -4069,7 +4073,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5680,8 +5684,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3373030035295966243}
   m_AABB:
-    m_Center: {x: -0.0007305145, y: 2.4084785, z: -0.09120014}
-    m_Extent: {x: 1.0090739, y: 0.5187478, z: 0.32818934}
+    m_Center: {x: -0.00062930584, y: 2.4084868, z: -0.091228865}
+    m_Extent: {x: 1.0090849, y: 0.51873946, z: 0.32821807}
   m_DirtyAABB: 0
 --- !u!183 &8904342680180136909
 Cloth:
@@ -10438,7 +10442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3941597471808051077
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10541,7 +10545,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6010601169681210184}
   m_HandleRect: {fileID: 2337798766743767588}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12990,7 +12994,7 @@ GameObject:
   - component: {fileID: 9153276364413893853}
   - component: {fileID: 4280529799348384902}
   m_Layer: 9
-  m_Name: Panel
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13014,7 +13018,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
+  m_SizeDelta: {x: 15, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9153276364413893853
 CanvasRenderer:

@@ -19,6 +19,8 @@ public partial class Player
         inCrafting = false;
         takeInput = true;
         crafting.SetActive(false);
+        crosshair.SetActive(true);
+        aimText.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -30,6 +32,8 @@ public partial class Player
         inCrafting = true;
         takeInput = false;
         crafting.SetActive(true);
+        crosshair.SetActive(false);
+        aimText.gameObject.SetActive(false);
     }
 
     [ClientRpc]
@@ -62,10 +66,12 @@ public partial class Player
                 {
                     RemoveItem("stone", 5);
                     RemoveItem("wood", 10);
+                    PickUpClientRpc(4);
                 }
                 break;
             case "wooden":
                 if (GetItemAmount("wood") >= 15) RemoveItem("wood", 15);
+                PickUpClientRpc(3);
                 break;
             default:
                 Debug.Log("Unknown item - trying to craft something that doesn't exist?");

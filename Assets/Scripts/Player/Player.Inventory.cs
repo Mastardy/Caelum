@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public partial class Player
 {
     private int GetItemAmount(string itemName)
@@ -30,7 +28,7 @@ public partial class Player
         {
             foreach (var inventorySlot in inventorySlots)
             {
-                if (inventorySlot.inventoryItem == null) continue;
+                if (inventorySlot.isEmpty) continue;
 
                 if (inventorySlot.inventoryItem.itemName == itemName)
                 {
@@ -46,13 +44,12 @@ public partial class Player
 
         foreach (var inventorySlot in inventorySlots)
         {
-            if (inventorySlot.inventoryItem == null) continue;
+            if (inventorySlot.isEmpty) continue;
 
             if (inventorySlot.inventoryItem.itemName == itemName)
             {
                 do
                 {
-                    Debug.Log(inventorySlot.Amount);
                     inventorySlot.Amount--;
                     amountRemoved++;
                 } while (amountRemoved < amountToRemove && inventorySlot.Amount > 0);
