@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4304737896232902291
+--- !u!114 &-6999089459734332194
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,12 +20,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass 1
-  m_Shader: {fileID: -6465566751694194690, guid: 4949cec483163d64f839ad7255127175,
+  m_Name: Leaves I_1
+  m_Shader: {fileID: -6465566751694194690, guid: 33d635cf70140db4383f442e97f7d9a0,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -57,8 +57,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Grass_Mask:
-        m_Texture: {fileID: 2800000, guid: 518c42843bf4a5c428fa813ad5cfa0da, type: 3}
+    - _Leaf_Mask:
+        m_Texture: {fileID: 2800000, guid: 270f92de91317764bbec4e8da73de00c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -74,6 +74,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_fca21e03effe465c9a9c5f91df1f2f4a_Texture_1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -102,10 +106,11 @@ Material:
     - _AlphaClip: 0
     - _Ambient_Occlusion: 1
     - _Blend: 0
+    - _Branch_Opacity: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clip: 0.827
+    - _Clip: 0.884
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -118,27 +123,27 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Power: 2.99
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Rim_Thicc: 0.2
+    - _Rim_Thicc: 0.3
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Wind_Force: 0.091
-    - _Wind_Speed: 2
+    - _Wiggle_Speed: 0.145
+    - _Wind_Force: 0.2
+    - _Wind_Speed: 0.45
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Branch_Color: {r: 0.5, g: 0.36628997, b: 0.25235844, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Grass_Color: {r: 0.5807796, g: 0.9056604, b: 0.47419012, a: 0}
-    - _Hue_Variation: {r: 1, g: 0.786219, b: 0.5707547, a: 0.5372549}
-    - _Secondary_Color: {r: 0.509434, g: 0.507031, b: 0.507031, a: 0}
+    - _Hue_Variation: {r: 1, g: 0.5, b: 0, a: 0.5}
+    - _Leaf_Color: {r: 0.49610662, g: 0.75471693, b: 0.42363828, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Wind_Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _Wind_Direction: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
