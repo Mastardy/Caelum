@@ -5,8 +5,8 @@ public class InventoryGroundItem : NetworkBehaviour
 {
     public InventoryItem inventoryItem;
     [HideInInspector] public int amount = 1;
-    public Collider[] nearResources;
-    public LayerMask groundItemLayerMask;
+    [HideInInspector] public Collider[] nearResources;
+    [HideInInspector] public LayerMask groundItemLayerMask;
     
     [ServerRpc(RequireOwnership = false)]
     public void PickUpServerRpc(NetworkBehaviourReference ply)

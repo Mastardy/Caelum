@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class InventorySlot : NetworkBehaviour
+public class InventorySlot : MonoBehaviour
 {
     [HideInInspector] public bool isEmpty = true;
 
@@ -26,6 +26,7 @@ public class InventorySlot : NetworkBehaviour
 
     public void Clear()
     {
+        Amount = 0;
         isEmpty = true;
         inventoryItem = null;
         image.sprite = null;

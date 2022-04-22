@@ -75,15 +75,19 @@ public partial class Player
         }
     }
 
-    public void DropItem(int slot)
+    public void DropItem(InventorySlot inventorySlot, bool dropEverything = false)
     {
-        if (inventorySlots[slot].isEmpty) return;
-        
-        DropItemServerRpc(this, inventorySlots[slot].inventoryItem.id, slot);
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            if (inventorySlots[i].GetInstanceID() == inventorySlot.GetInstanceID())
+            {
+                DropItemServerRpc(this, inventorySlot.inventoryItem.id, i, inventorySlots[i].Amount, dropEverything);
+            }
+        }
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void DropItemServerRpc(NetworkBehaviourReference ply, int item, int slot)
+    public void DropItemServerRpc(NetworkBehaviourReference ply, int item, int slot, int dropAmount, bool dropEverything)
     {
         if (!IsServer) return;
 
@@ -96,17 +100,19 @@ public partial class Player
                 player.inventoryItems[item].worldPrefab.transform.rotation);
             worldGameObject.name = player.inventoryItems[item].name;
 
+            worldGameObject.GetComponent<InventoryGroundItem>().amount = dropEverything ? dropAmount : 1;
+
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
             
-            player.DropItemClientRpc(slot);
+            player.DropItemClientRpc(slot, dropEverything);
         }
     }
 
     [ClientRpc]
-    public void DropItemClientRpc(int slot)
+    public void DropItemClientRpc(int slot, bool dropEverything)
     {
-        inventorySlots[slot].Amount--;
+        inventorySlots[slot].Amount = dropEverything ? 0 : inventorySlots[slot].Amount - 1;
 
         if (inventorySlots[slot].Amount > 0) return;
 
