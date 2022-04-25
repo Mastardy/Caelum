@@ -13,6 +13,8 @@ public partial class Player : NetworkBehaviour
     
     private void Start()
     {
+        SetHealthServerRpc(maxHealth);
+        
         allPlayers.Add(this);
         
         GetInventoryItems();
@@ -49,6 +51,18 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
+            HUDUpdate();
+            
+            if (InputHelper.GetKeyDown(KeyCode.J, 0.5f))
+            {
+                TakeDamageServerRpc(5);
+            }
+            
+            if (InputHelper.GetKeyDown(KeyCode.K, 0.5f))
+            {
+                TakeDamageServerRpc(-5);
+            }
+            
             if (!inInventory && !inCrafting)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
