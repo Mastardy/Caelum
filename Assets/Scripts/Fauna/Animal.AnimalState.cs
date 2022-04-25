@@ -48,26 +48,39 @@ public partial class Animal
     private const string idleState = "Idle";
     private const string roamState = "Roam";
     private const string fleeState = "Flee";
+    private const string attackState = "Attack";
     
     private void ChangeState()
     {
         switch (CurrentState)
         {
             case idleState:
-                CurrentState = PlayerIsNear(5) ? fleeState : RandomState();
+                CurrentState = PlayerIsNear(5) 
+                    ? Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    : RandomState();
                 break;
             case roamState:
-                CurrentState = PlayerIsNear(5) ? fleeState : RandomState();
+                CurrentState = PlayerIsNear(5) 
+                    ? Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    : RandomState();
+                break;
+            case attackState:
+                if (playerTarget == null) CurrentState = RandomState();
+                else
+                {
+                    if (playerTarget.currentHealth.Value <= 0) CurrentState = RandomState();
+                    else if (Vector3.Distance(transform.position, playerTarget.transform.position) > 10) CurrentState = RandomState();
+                }
                 break;
             case fleeState:
-                if (agent.remainingDistance < 0.5f || !PlayerIsNear(15)) CurrentState = RandomState();
+                if (!PlayerIsNear(15)) CurrentState = RandomState();
                 break;
             default:
                 CurrentState = RandomState();
                 break;
         }
     }
-
+    
     private bool PlayerIsNear(float distance)
     {
         foreach (var player in FindObjectsOfType<Player>())
