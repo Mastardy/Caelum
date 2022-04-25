@@ -24,7 +24,8 @@ public partial class Animal
     private void AttackStart()
     {
         agent.speed = fleeSpeed;
-
+        agent.stoppingDistance = 1.0f;
+        
         playerTarget = GetNearPlayer(5);
         
         agent.SetDestination(playerTarget.transform.position);
@@ -33,18 +34,20 @@ public partial class Animal
     private void AttackUpdate()
     {
         agent.SetDestination(playerTarget.transform.position);
+
+        if (agent.remainingDistance > 1.0f) return;
         
         if (Time.time - lastAttack > 1 / attackRate)
         {
-            if (agent.remainingDistance < 0.5f)
-            {
-                playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
-                lastAttack = Time.time;
-            }
+            playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
+            lastAttack = Time.time;
         }
     }
-    
-    private void AttackEnd() { }
+
+    private void AttackEnd()
+    {
+        agent.stoppingDistance = 0.1f;
+    }
     
     private Player GetNearPlayer(float distance)
     {
