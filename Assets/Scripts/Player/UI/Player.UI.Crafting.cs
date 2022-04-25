@@ -66,12 +66,12 @@ public partial class Player
                 {
                     RemoveItem("stone", 5);
                     RemoveItem("wood", 10);
-                    PickUpClientRpc(4);
+                    GiveItemClientRpc(4);
                 }
                 break;
             case "wooden":
                 if (GetItemAmount("wood") >= 15) RemoveItem("wood", 15);
-                PickUpClientRpc(3);
+                GiveItemClientRpc(3);
                 break;
             default:
                 Debug.Log("Unknown item - trying to craft something that doesn't exist?");

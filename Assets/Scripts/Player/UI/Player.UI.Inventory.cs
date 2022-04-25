@@ -34,7 +34,7 @@ public partial class Player
     }
     
     [ClientRpc]
-    public void PickUpClientRpc(int id, int amountToAdd = 1)
+    public void GiveItemClientRpc(int id, int amountToAdd = 1)
     {
         int amountAdded = 0;
         
@@ -100,6 +100,7 @@ public partial class Player
                 player.inventoryItems[item].worldPrefab.transform.rotation);
             worldGameObject.name = player.inventoryItems[item].name;
 
+            worldGameObject.GetComponent<InventoryGroundItem>().inventoryItem = player.inventoryItems[item];
             worldGameObject.GetComponent<InventoryGroundItem>().amount = dropEverything ? dropAmount : 1;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();

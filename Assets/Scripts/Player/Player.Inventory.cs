@@ -1,6 +1,6 @@
 public partial class Player
 {
-    private int GetItemAmount(string itemName)
+    public int GetItemAmount(string itemName)
     {
         int itemAmount = 0;
         
@@ -22,7 +22,7 @@ public partial class Player
     /// </summary>
     /// <param name="itemName"></param>
     /// <param name="amountToRemove">0 - Remove All | N - Remove N quantity</param>
-    private void RemoveItem(string itemName, int amountToRemove = 0)
+    public void RemoveItem(string itemName, int amountToRemove = 0)
     {
         if (amountToRemove == 0)
         {
