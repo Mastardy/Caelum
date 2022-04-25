@@ -52,6 +52,12 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             HUDUpdate();
+
+            if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
+            {
+                if (!isFishing) StartFishing();
+                else StopFishing();
+            }
             
             if (InputHelper.GetKeyDown(KeyCode.J, 0.5f))
             {
