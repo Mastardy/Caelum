@@ -56,12 +56,12 @@ public partial class Animal
         {
             case idleState:
                 CurrentState = PlayerIsNear(5) 
-                    ? Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    ? fleeState// Random.Range(0, 2) == 0 ? fleeState : attackState 
                     : RandomState();
                 break;
             case roamState:
                 CurrentState = PlayerIsNear(5) 
-                    ? Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    ? attackState // Random.Range(0, 2) == 0 ? fleeState : attackState 
                     : RandomState();
                 break;
             case attackState:

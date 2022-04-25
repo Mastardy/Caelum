@@ -104,7 +104,7 @@ public partial class Player
     private void Parachute()
     {
         if (isGrounded) return;
-
+        if (verticalVelocity > -2f) return;
         if (Input.GetKey(KeyCode.O)) verticalVelocity = -2f;
     }
     

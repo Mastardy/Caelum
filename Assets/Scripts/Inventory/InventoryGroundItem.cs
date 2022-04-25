@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InventoryGroundItem : NetworkBehaviour
 {
-    public InventoryItem inventoryItem;
+    [HideInInspector] public InventoryItem inventoryItem;
     [HideInInspector] public int amount = 1;
     [HideInInspector] public Collider[] nearResources;
     [HideInInspector] public LayerMask groundItemLayerMask;
@@ -17,7 +17,7 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.PickUpClientRpc(inventoryItem.id, amount);
+            player.GiveItemClientRpc(inventoryItem.id, amount);
         }
     }
 

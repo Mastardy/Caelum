@@ -24,7 +24,7 @@ public partial class Animal
     private void AttackStart()
     {
         agent.speed = fleeSpeed;
-        agent.stoppingDistance = 1.0f;
+        agent.stoppingDistance = 3.0f;
         
         playerTarget = GetNearPlayer(5);
         
@@ -35,7 +35,12 @@ public partial class Animal
     {
         agent.SetDestination(playerTarget.transform.position);
 
-        if (agent.remainingDistance > 1.0f) return;
+        agent.isStopped = false;
+
+        if (Vector3.Distance(transform.position, playerTarget.transform.position) > 2.0f) return;
+        
+        agent.velocity = Vector3.zero;
+        agent.isStopped = true;
         
         if (Time.time - lastAttack > 1 / attackRate)
         {
@@ -46,6 +51,7 @@ public partial class Animal
 
     private void AttackEnd()
     {
+        agent.isStopped = false;
         agent.stoppingDistance = 0.1f;
     }
     

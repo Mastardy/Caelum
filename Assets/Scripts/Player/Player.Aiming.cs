@@ -60,6 +60,20 @@ public partial class Player
                 lookingAt = craftingTable.gameObject;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out Furnace furnace))
+            {
+                aimText.SetText("Furnace");
+                lookingAt = furnace.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out Animal animal))
+            {
+                aimText.SetText(animal.currentHealth.Value + "/" + animal.maxHealth);
+                lookingAt = animal.gameObject;
+                return;
+            }
         }
         
         lookingAt = null;
@@ -116,6 +130,14 @@ public partial class Player
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
             {
                 craftTable.OpenCraftingServerRpc(this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out Furnace furnace))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                furnace.CookItemServerRpc(this);
             }
         }
     }

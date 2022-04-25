@@ -20,7 +20,7 @@ public class Resource : NetworkBehaviour
         
         if(player.TryGet(out Player ply))
         {
-            ply.PickUpClientRpc(resourceId, resourcesGathered);
+            ply.GiveItemClientRpc(resourceId, resourcesGathered);
         }
     }
 
