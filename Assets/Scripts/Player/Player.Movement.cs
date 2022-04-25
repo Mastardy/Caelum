@@ -59,6 +59,8 @@ public partial class Player
 
         IsCrouching();
 
+        Parachute();
+        
         Move();
     }
     
@@ -99,6 +101,13 @@ public partial class Player
         isCrouched = Input.GetKey(gameOptions.duckKey);
     }
 
+    private void Parachute()
+    {
+        if (isGrounded) return;
+
+        if (Input.GetKey(KeyCode.O)) verticalVelocity = -2f;
+    }
+    
     private void Move()
     {
         var maxSpeed = isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
