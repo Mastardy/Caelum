@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cloud
-  m_Shader: {fileID: -6465566751694194690, guid: 46437305e0fb3584c90b7f7772f2afa4,
+  m_Name: Water
+  m_Shader: {fileID: -6465566751694194690, guid: 8fa440355d520b548b500e77c1766905,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,40 +34,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha_Add: 0
-    - _Alpha_Density: 0.01
-    - _Alpha_Noise: 1.53
-    - _Alpha_Power: 19.5
-    - _Ambient_Occlusion: 1
-    - _Cel_Density: 0.091
-    - _Edge_Power: 0
-    - _Fresnel_Alpha: 4.87
-    - _Noise_Power: 1.13
-    - _Noise_Scale: 0.05
-    - _Power: 2
+    - _FoamAmount: 16.76
+    - _FoamCutoff: 2.07
+    - _FoamScale: 215
+    - _FoamSpeed: 1
+    - _NormalStrength: 0.05
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Strength: 5
-    - _Subtract_Noise: 0.252
-    - _X_Power: 2.47
-    - _X_Scale: 0.1
-    - _X_Strength: 1
-    - _Y_Noise_Power: 5
-    - _Y_Noise_Scale: 0.08
-    - _Y_Power: 2.05
-    - _Y_Scale: 0.05
-    - _Y_Strength: 0.623
-    - _Z_Power: 0.77
-    - _Z_Scale: 0.1
-    - _Z_Strength: -0.13
+    - _RECEIVE_SHADOWS_OFF: 1
+    - _Scale: 89
+    - _Speed: 0.7
+    - _WaterDepth: 9.9
     m_Colors:
-    - _Color: {r: 0.764685, g: 0.8365758, b: 0.9056604, a: 0}
-    - _Edge_Color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
-    - _Fresnel_Color: {r: 1024, g: 1024, b: 1024, a: 0}
-    - _Primary_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0}
-    - _Secondary_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _DeepWater: {r: 0, g: 0.05, b: 0.17, a: 0.9019608}
+    - _FoamColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    - _ShallowWater: {r: 0.05, g: 0.2, b: 0.44, a: 0.5019608}
   m_BuildTextureStacks: []
---- !u!114 &3655257732860853390
+--- !u!114 &3667634598404483945
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
