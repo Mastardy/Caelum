@@ -52,6 +52,8 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             HUDUpdate();
+            
+            chatBox.SetActive(!inInventory && !inCrafting && !inOven);
 
             if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
             {
@@ -69,7 +71,7 @@ public partial class Player : NetworkBehaviour
                 TakeDamageServerRpc(-5);
             }
             
-            if (!inInventory && !inCrafting)
+            if (!inInventory && !inCrafting && !inOven)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
                 {
@@ -77,7 +79,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
             
-            if (!inChat && !inCrafting)
+            if (!inChat && !inCrafting && !inOven)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
@@ -91,6 +93,16 @@ public partial class Player : NetworkBehaviour
                 if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
                 {
                     craftingTable.CloseCraftingServerRpc(this);
+                }
+            }
+
+            if (inOven)
+            {
+                OvenUpdate();
+                
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    cooker.CloseOvenServerRpc(this);
                 }
             }
             

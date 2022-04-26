@@ -54,23 +54,23 @@ public partial class Player
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out CraftingTable craftingTable))
+            if (hitInfo.transform.TryGetComponent(out CraftingTable craftTable))
             {
                 aimText.SetText("Crafting Table");
-                lookingAt = craftingTable.gameObject;
+                lookingAt = craftTable.gameObject;
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out Furnace furnace))
+            if (hitInfo.transform.TryGetComponent(out Oven oven))
             {
-                aimText.SetText("Furnace");
-                lookingAt = furnace.gameObject;
+                aimText.SetText("Oven");
+                lookingAt = oven.gameObject;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out Animal animal))
             {
-                aimText.SetText(animal.currentHealth.Value + "/" + animal.maxHealth);
+                aimText.SetText(animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
                 lookingAt = animal.gameObject;
                 return;
             }
@@ -133,11 +133,23 @@ public partial class Player
             }
         }
 
-        if (lookingAt.TryGetComponent(out Furnace furnace))
+        if (lookingAt.TryGetComponent(out Oven oven))
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
             {
-                furnace.CookItemServerRpc(this);
+                oven.OpenOvenServerRpc(this);
+            }
+        }
+        
+        if (lookingAt.TryGetComponent(out Animal animal))
+        {
+            if(InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
+            {
+                animal.TakeDamageServerRpc(10, this);
+            } 
+            else if (InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 1.0f))
+            {
+                animal.TakeDamageServerRpc(25, this);
             }
         }
     }
