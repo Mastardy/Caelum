@@ -15,7 +15,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Locked;
         inInventory = false;
         takeInput = true;
-        inventory.SetActive(false);
+        inventoryPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
     }
@@ -28,7 +28,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Confined;
         inInventory = true;
         takeInput = false;
-        inventory.SetActive(true);
+        inventoryPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
     }

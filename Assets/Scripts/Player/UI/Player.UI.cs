@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public partial class Player
 {
@@ -10,8 +11,9 @@ public partial class Player
     [SerializeField] private Transform chatPanel;
     [SerializeField] private GameObject chatEntryPrefab;
 
-    [SerializeField] private GameObject inventory;
-    [SerializeField] private GameObject crafting;
+    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject craftingPanel;
+    [SerializeField] private GameObject ovenPanel;
 
     [SerializeField] private GameObject crosshair;
     [SerializeField] private TextMeshProUGUI aimText;
@@ -25,4 +27,9 @@ public partial class Player
     
     [Header("Inventory")]
     [SerializeField] private InventorySlot[] inventorySlots;
+
+    [Header("Oven")]
+    [SerializeField] private float ovenSpeed = 2f;
+    [SerializeField] private RectTransform ovenArrow;
+    [SerializeField] private RectTransform ovenScaler;
 }

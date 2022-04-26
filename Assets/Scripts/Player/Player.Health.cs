@@ -3,11 +3,11 @@ using UnityEngine;
 
 public partial class Player
 {
-    [SerializeField] private float maxHealth = 100f;
-    public NetworkVariable<float> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
+    [SerializeField] private int maxHealth = 100;
+    public NetworkVariable<int> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
 
     [ServerRpc(RequireOwnership = false)]
-    public void SetHealthServerRpc(float newValue)
+    public void SetHealthServerRpc(int newValue)
     {
         if (!IsServer) return;
         
@@ -15,7 +15,7 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void TakeDamageServerRpc(float value)
+    public void TakeDamageServerRpc(int value)
     {
         if (!IsServer) return;
         

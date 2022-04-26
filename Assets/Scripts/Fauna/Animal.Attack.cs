@@ -6,7 +6,7 @@ using System.Linq;
 public partial class Animal
 {
     private Player playerTarget;
-    [SerializeField] private float damage = 15f;
+    [SerializeField] private int damage = 15;
     [SerializeField] private float attackRate = 0.5f;
     private float lastAttack;
     

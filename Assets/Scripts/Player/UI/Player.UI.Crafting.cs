@@ -18,7 +18,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Locked;
         inCrafting = false;
         takeInput = true;
-        crafting.SetActive(false);
+        craftingPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
     }
@@ -31,7 +31,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Confined;
         inCrafting = true;
         takeInput = false;
-        crafting.SetActive(true);
+        craftingPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
     }

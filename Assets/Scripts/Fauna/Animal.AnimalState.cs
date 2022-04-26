@@ -83,7 +83,7 @@ public partial class Animal
     
     private bool PlayerIsNear(float distance)
     {
-        foreach (var player in FindObjectsOfType<Player>())
+        foreach (var player in Player.allPlayers)
         {
             if (Vector3.Distance(player.transform.position, transform.position) < distance)
             {

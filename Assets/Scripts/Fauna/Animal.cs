@@ -6,13 +6,13 @@ public partial class Animal : NetworkBehaviour
 {
     private NavMeshAgent agent;
 
-    public float maxHealth = 150f;
-    public NetworkVariable<float> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
-
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
+        maxHealth += Random.Range(-20, 21);
+        currentHealth.Value = maxHealth;
+        
         animalStates.Add(idleState, IdleState());
         animalStates.Add(roamState, RoamState());
         animalStates.Add(fleeState, FleeState());
@@ -21,7 +21,7 @@ public partial class Animal : NetworkBehaviour
 
     private void Update()
     {
-        ChangeState();
+        if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
     }
 }
