@@ -309,10 +309,11 @@ MonoBehaviour:
   stateText: {fileID: 1550776597}
   damage: 15
   attackRate: 0.5
+  fleeSpeed: 6
+  dead: 0
   maxHealth: 150
   currentHealth:
     m_InternalValue: 0
-  fleeSpeed: 6
   roamSpeed: 3
 --- !u!195 &103365056
 NavMeshAgent:
@@ -403,7 +404,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &169087088
 PrefabInstance:
   m_ObjectHideFlags: 0
