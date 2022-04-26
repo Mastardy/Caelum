@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class HotbarSlot : MonoBehaviour
 {
-    [SerializeField] private InventorySlot slot;
+    public InventorySlot slot;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI text;
     

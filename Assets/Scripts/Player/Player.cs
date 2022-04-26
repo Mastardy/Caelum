@@ -53,8 +53,6 @@ public partial class Player : NetworkBehaviour
         {
             HUDUpdate();
             
-            chatBox.SetActive(!inInventory && !inCrafting && !inOven);
-
             if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
             {
                 if (!isFishing) StartFishing();
@@ -113,6 +111,17 @@ public partial class Player : NetworkBehaviour
                 return;
             }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1)) currentSlot = 0;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha4)) currentSlot = 3;
+            if (Input.GetKeyDown(KeyCode.Alpha5)) currentSlot = 4;
+
+            if (hotbars[currentSlot].slot.inventoryItem != null)
+            {
+                Debug.Log(hotbars[currentSlot].slot.inventoryItem.itemTag);
+            }
+            
             MovementUpdate();
 
             AimUpdate();

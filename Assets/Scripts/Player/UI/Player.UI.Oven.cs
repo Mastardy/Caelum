@@ -52,8 +52,11 @@ public partial class Player
         HideOven();
     }
 
+    private float currentTimer;
+    
     private void PrepareOven()
     {
+        currentTimer = 0.0f;
         int randomValue = Random.Range(50, 90);
         ovenScaler.localScale = new Vector2(0, 1);
         ovenArrow.anchoredPosition = new Vector2(randomValue * 4, 0);
@@ -61,19 +64,19 @@ public partial class Player
     
     private void OvenUpdate()
     {
-        var currentDelta = (Time.time / ovenSpeed);
-        var currentDeltaFloor = Mathf.FloorToInt(currentDelta);
-        currentDelta -= currentDeltaFloor;
+        currentTimer += Time.deltaTime / ovenSpeed;
+        var currentTimerFloor = Mathf.FloorToInt(currentTimer);
+        currentTimer -= currentTimerFloor;
 
-        if (currentDeltaFloor % 2 == 0) currentDelta = 1 - currentDelta;
+        if (currentTimerFloor % 2 == 0) currentTimer = 1 - currentTimer;
 
-        ovenScaler.localScale = new Vector2(currentDelta, 1);
+        ovenScaler.localScale = new Vector2(currentTimer, 1);
 
         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.1f))
         {
             var curValue = ovenArrow.anchoredPosition.x / 400f;
             var curOffset = ovenArrow.rect.width / 800f; 
-            Debug.Log(curValue > (currentDelta - curOffset) && curValue < (currentDelta + curOffset) ? "Acertou" : "Errou");
+            Debug.Log(curValue > (currentTimer - curOffset) && curValue < (currentTimer + curOffset) ? "Acertou" : "Errou");
         }
     }
 }
