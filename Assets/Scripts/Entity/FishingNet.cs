@@ -1,18 +1,19 @@
 using System;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using Random = UnityEngine.Random;
 
 public class FishingNet : NetworkBehaviour
 {
+    public int fishesInNet;
+
     [SerializeField] private Vector2 timeRange = new Vector2(5, 10);
-    [SerializeField] private float extraFishPerSecond = 0.25f;
+    [SerializeField] private Vector2 extraFishTimeRange = new Vector2(1, 3);
 
-    private float fishingTime;
-    private int fishesInNet;
-    private float launchTime;
     private bool netLaunched;
-
+    private float launchTime;
+    private float fishingTime;
     private float nextFishTime;
     
     [ServerRpc]
@@ -22,11 +23,10 @@ public class FishingNet : NetworkBehaviour
         {
             if (!netLaunched)
             {
-                fishesInNet = 0;
                 netLaunched = true;
                 launchTime = Time.time;
                 fishingTime = Random.Range(timeRange.x, timeRange.y);
-                nextFishTime = fishingTime + 1 / extraFishPerSecond;
+                nextFishTime = fishingTime;
                 
                 return;
             }
@@ -34,7 +34,8 @@ public class FishingNet : NetworkBehaviour
             if (Time.time - launchTime > fishingTime)
             {
                 netLaunched = false;
-                ply.GiveItemClientRpc(6, fishesInNet);
+                ply.GiveItemClientRpc(5, fishesInNet);
+                fishesInNet = 0;
             }
         }
     }
@@ -46,7 +47,6 @@ public class FishingNet : NetworkBehaviour
         if (Time.time - launchTime < nextFishTime) return;
         
         fishesInNet++;
-        nextFishTime += 1 / extraFishPerSecond;
-        Debug.Log(fishesInNet);
+        nextFishTime += 1 / Random.Range(extraFishTimeRange.x, extraFishTimeRange.y);
     }
 }

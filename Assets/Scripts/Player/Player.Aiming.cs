@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public partial class Player
@@ -77,7 +78,7 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
             {
-                aimText.SetText("Fishing Net");
+                aimText.SetText("Fishing Net" + (fishingNet.fishesInNet > 0 ? $"\n{fishingNet.fishesInNet}" : String.Empty));
                 lookingAt = fishingNet.gameObject;
                 return;
             }

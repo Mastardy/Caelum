@@ -59,12 +59,12 @@ public partial class Player : NetworkBehaviour
                 else StopFishing();
             }
             
-            if (InputHelper.GetKeyDown(KeyCode.J, 0.5f))
+            if (InputHelper.GetKeyDown(KeyCode.J, 0.01f))
             {
                 TakeDamageServerRpc(5);
             }
             
-            if (InputHelper.GetKeyDown(KeyCode.K, 0.5f))
+            if (InputHelper.GetKeyDown(KeyCode.K, 0.01f))
             {
                 TakeDamageServerRpc(-5);
             }
@@ -76,6 +76,8 @@ public partial class Player : NetworkBehaviour
                     OpenChat();
                 }
             }
+            
+            
             
             if (!inChat && !inCrafting && !inOven)
             {

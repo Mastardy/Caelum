@@ -98,8 +98,9 @@ public partial class Player
                 player.inventoryItems[item].worldPrefab.transform.rotation);
             worldGameObject.name = player.inventoryItems[item].name;
 
-            worldGameObject.GetComponent<InventoryGroundItem>().inventoryItem = player.inventoryItems[item];
-            worldGameObject.GetComponent<InventoryGroundItem>().amount = dropEverything ? dropAmount : 1;
+            var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[item];
+            worldGameObjectInvItem.amount = dropEverything ? dropAmount : 1;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
