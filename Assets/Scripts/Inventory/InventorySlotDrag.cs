@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -72,8 +71,6 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
         Destroy(tempGameObjects[0]);
         Destroy(tempGameObjects[1]);
         
-        inventorySlot.Amount = inventorySlot.Amount;
-        
         rectTransform.SetParent(startParent);
         textRectTransform.SetParent(startParent);
         rectTransform.position = startPosition;
@@ -118,7 +115,11 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {
-                        if (invSlot.Amount + inventorySlot.Amount > inventorySlot.inventoryItem.maxStack) return;
+                        if (invSlot.Amount + inventorySlot.Amount > inventorySlot.inventoryItem.maxStack)
+                        {
+                            (invSlot.Amount, inventorySlot.Amount) = (inventorySlot.Amount, invSlot.Amount);
+                            return;
+                        }
 
                         invSlot.Amount += inventorySlot.Amount;
 
