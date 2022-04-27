@@ -66,17 +66,17 @@ public partial class Player
     {
         currentTimer += Time.deltaTime / ovenSpeed;
         var currentTimerFloor = Mathf.FloorToInt(currentTimer);
-        currentTimer -= currentTimerFloor;
+        var tempCurrentTimer = currentTimer - currentTimerFloor;
 
-        if (currentTimerFloor % 2 == 0) currentTimer = 1 - currentTimer;
+        if (currentTimerFloor % 2 == 1) tempCurrentTimer = 1 - tempCurrentTimer;
 
-        ovenScaler.localScale = new Vector2(currentTimer, 1);
+        ovenScaler.localScale = new Vector2(tempCurrentTimer, 1);
 
         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.1f))
         {
             var curValue = ovenArrow.anchoredPosition.x / 400f;
             var curOffset = ovenArrow.rect.width / 800f; 
-            Debug.Log(curValue > (currentTimer - curOffset) && curValue < (currentTimer + curOffset) ? "Acertou" : "Errou");
+            Debug.Log(curValue > (tempCurrentTimer - curOffset) && curValue < (tempCurrentTimer + curOffset) ? "Acertou" : "Errou");
         }
     }
 }
