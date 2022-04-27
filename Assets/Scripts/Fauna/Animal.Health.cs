@@ -15,7 +15,6 @@ public partial class Animal
         if (currentHealth.Value <= 0)
         {
             if (player.TryGet(out Player ply)) ply.GiveItemClientRpc(7);
-            
             currentHealth.Value = 0;
             Die();
         }
@@ -26,5 +25,6 @@ public partial class Animal
         dead = true;
         CurrentState = idleState;
         stateText.SetText("Dead");
+        Destroy(gameObject);
     }
 }

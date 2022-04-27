@@ -70,8 +70,6 @@ public partial class Player
             } while (slot.Amount < slot.inventoryItem.maxStack && amountAdded < amountToAdd);
 
             if (amountAdded >= amountToAdd) return;
-            
-            return;
         }
     }
 

@@ -74,6 +74,13 @@ public partial class Player
                 lookingAt = animal.gameObject;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
+            {
+                aimText.SetText("Fishing Net");
+                lookingAt = fishingNet.gameObject;
+                return;
+            }
         }
         
         lookingAt = null;
@@ -150,6 +157,14 @@ public partial class Player
             else if (InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 1.0f))
             {
                 animal.TakeDamageServerRpc(25, this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out FishingNet fishingNet))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                fishingNet.TryFishingServerRpc(this);
             }
         }
     }

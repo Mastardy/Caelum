@@ -10,13 +10,11 @@ public partial class Player
     
     private void StartFishing()
     {
-        Debug.Log("Fishing...");
-        
         isFishing = true;
         takeInput = false;
 
         timeToCatchFish = Random.Range(1f, 4f);
-        Invoke("CatchFish", timeToCatchFish);
+        Invoke(nameof(CatchFish), timeToCatchFish);
         timeToCatchFish += Time.time;
     }
 
@@ -33,8 +31,6 @@ public partial class Player
         if (Time.time - timeToCatchFish is < 0.5f and > 0f)
         {
             GiveItemClientRpc(5);
-            Debug.Log("Catched a fish!");
         }
-        else Debug.Log("Didn't catch a fish!");
     }
 }
