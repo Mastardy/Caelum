@@ -57,7 +57,7 @@ public partial class Player
     private void PrepareOven()
     {
         currentTimer = 0.0f;
-        int randomValue = Random.Range(50, 90);
+        int randomValue = Random.Range(5, 95);
         ovenScaler.localScale = new Vector2(0, 1);
         ovenArrow.anchoredPosition = new Vector2(randomValue * 4, 0);
     }
