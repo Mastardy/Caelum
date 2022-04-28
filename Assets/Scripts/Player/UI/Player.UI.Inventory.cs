@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -129,13 +130,21 @@ public partial class Player
         return false;
     }
     
-    private void GetInventoryItems()
+    private void GetItemsAndRecipes()
     {
         InventoryItem[] invItems = Resources.LoadAll<InventoryItem>("InventoryItems");
+        FoodItem[] allFoodItems = Resources.LoadAll<FoodItem>("FoodItems");
+        cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes").ToList();
+        CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
 
         foreach (var invItem in invItems)
         {
             inventoryItems.Add(invItem.id, invItem);
+        }
+
+        foreach (var foodItem in allFoodItems)
+        {
+            foodItems.Add(foodItem.id, foodItem);
         }
     }
 }

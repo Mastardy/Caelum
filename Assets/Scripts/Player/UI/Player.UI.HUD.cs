@@ -28,8 +28,5 @@ public partial class Player
             healthForegroundImage.fillAmount -= (healthForegroundImage.fillAmount - healthBackgroundImage.fillAmount) * Time.deltaTime * 2;
             lastValue = healthForegroundImage.fillAmount;
         }
-        
-        healthText.color = Color.Lerp(Color.red, Color.green, currentHealth.Value / 100f);
-        healthText.SetText(currentHealth.Value.ToString("F0"));
     }
 }

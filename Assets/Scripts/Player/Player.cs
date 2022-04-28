@@ -17,7 +17,7 @@ public partial class Player : NetworkBehaviour
         
         allPlayers.Add(this);
         
-        GetInventoryItems();
+        GetItemsAndRecipes();
         
         if (!IsLocalPlayer)
         {
@@ -98,7 +98,7 @@ public partial class Player : NetworkBehaviour
 
             if (inOven)
             {
-                OvenUpdate();
+                OvenMinigameUpdate();
                 
                 if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
                 {

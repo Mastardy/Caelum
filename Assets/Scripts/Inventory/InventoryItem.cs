@@ -4,12 +4,10 @@ public enum ItemTag
 {
     Other,
     Food,
-    Resource,
     Axe,
     Pickaxe,
-    Sword,
-    Spear,
-    Bow
+    Weapon,
+    RangeWeapon
 }
 
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/InventoryItem", order = 1)]

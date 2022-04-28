@@ -6,8 +6,6 @@ public partial class Player
 {
     private bool inCrafting;
     private CraftingTable craftingTable;
-
-    private Dictionary<string, Dictionary<string, int>> craftItems = new();
     
     /// <summary>
     /// Hides Crafting

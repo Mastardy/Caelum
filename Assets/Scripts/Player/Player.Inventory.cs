@@ -23,7 +23,7 @@ public partial class Player
     /// Removes a specific amount from an item in the inventory
     /// </summary>
     /// <param name="itemName"></param>
-    /// <param name="amountToRemove">0 - Remove All | N - Remove N quantity</param>
+    /// <param name="amountToRemove"> 0 - Remove All | N - Remove N quantity </param>
     public void RemoveItem(string itemName, int amountToRemove = 0)
     {
         if (amountToRemove == 0)

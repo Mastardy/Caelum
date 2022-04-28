@@ -1,15 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.UI;
 
 public partial class Player
 {
     private int itemId;
     private bool inOven;
     private Oven cooker;
+    
+    [Header("Oven")]
+    [SerializeField] private Transform recipesContent;
+    [SerializeField] private GameObject recipePrefab;
 
-    private Dictionary<string, Dictionary<string, int>> cookItems = new();
+    private List<CookingRecipe> cookingRecipes = new();
 
+    private Dictionary<int, FoodItem> foodItems = new ();
+    
     /// <summary>
     /// Opens Oven
     /// </summary>
@@ -56,13 +63,31 @@ public partial class Player
     
     private void PrepareOven()
     {
+        foreach (var cookingRecipe in cookingRecipes)
+        {
+            var recipe = Instantiate(recipePrefab, recipesContent);
+            var recipeUI = recipe.GetComponent<CookingRecipeUI>();
+            recipeUI.image.sprite = cookingRecipe.cooked.sprite;
+            recipeUI.title.SetText(cookingRecipe.cooked.name);
+            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareRecipe(foodItems[cookingRecipe.cooked.id]));
+        }
+        // Lista 
+    }
+
+    private void PrepareRecipe(FoodItem foodItem)
+    {
+        
+    }
+    
+    private void PrepareOvenMinigame()
+    {
         currentTimer = 0.0f;
         int randomValue = Random.Range(5, 95);
         ovenScaler.localScale = new Vector2(0, 1);
         ovenArrow.anchoredPosition = new Vector2(randomValue * 4, 0);
     }
-    
-    private void OvenUpdate()
+
+    private void OvenMinigameUpdate()
     {
         currentTimer += Time.deltaTime / ovenSpeed;
         var currentTimerFloor = Mathf.FloorToInt(currentTimer);

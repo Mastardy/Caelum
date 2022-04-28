@@ -22,6 +22,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
     private Vector3 textOffset;
 
     private bool hovering;
+    private bool busy;
     
     private void Update()
     {
@@ -41,6 +42,9 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
         
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (busy) return;
+        
+        busy = true;
         mode = eventData.button;
 
         var parent = rectTransform.parent;
@@ -68,6 +72,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        busy = false;
         Destroy(tempGameObjects[0]);
         Destroy(tempGameObjects[1]);
         
