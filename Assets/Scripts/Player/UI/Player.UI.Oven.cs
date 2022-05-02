@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
+using TMPro;
 
 public partial class Player
 {
@@ -13,6 +14,17 @@ public partial class Player
     [SerializeField] private Transform recipesContent;
     [SerializeField] private GameObject recipePrefab;
 
+    [SerializeField] private Transform ingredientsContent;
+    [SerializeField] private GameObject ingredientPrefab;
+
+    [SerializeField] private TextMeshProUGUI recipeDescription;
+
+    [SerializeField] private GameObject hungerAttribute;
+    [SerializeField] private GameObject thirstAttribute;
+    [SerializeField] private GameObject temperatureAttribute;
+
+    [SerializeField] private Button cookingMinigameButton;
+    
     private List<CookingRecipe> cookingRecipes = new();
 
     private Dictionary<int, FoodItem> foodItems = new ();
@@ -69,14 +81,47 @@ public partial class Player
             var recipeUI = recipe.GetComponent<CookingRecipeUI>();
             recipeUI.image.sprite = cookingRecipe.cooked.sprite;
             recipeUI.title.SetText(cookingRecipe.cooked.name);
-            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareRecipe(foodItems[cookingRecipe.cooked.id]));
+            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareRecipe(cookingRecipe));
         }
         // Lista 
     }
 
-    private void PrepareRecipe(FoodItem foodItem)
+    private void PrepareRecipe(CookingRecipe cookingRecipe)
     {
+        foreach (var ingredient in cookingRecipe.ingredients)
+        {
+            var ingr = Instantiate(ingredientPrefab, ingredientsContent);
+            var ingrUI = ingr.GetComponent<IngredientUI>();
+            ingrUI.image.sprite = ingredient.inventoryItem.sprite;
+            ingrUI.title.SetText(GetItemAmount(ingredient.inventoryItem.itemName) + "/" + ingredient.quantity);
+        }
+
+        recipeDescription.SetText(cookingRecipe.cooked.description);
+
+        hungerAttribute.SetActive(false);
+        thirstAttribute.SetActive(false);
+        temperatureAttribute.SetActive(false);
         
+        if (foodItems[cookingRecipe.cooked.id].hunger != 0)
+        {
+            hungerAttribute.SetActive(true);
+            hungerAttribute.GetComponent<TextMeshProUGUI>()
+                .SetText(foodItems[cookingRecipe.cooked.id].hunger.ToString("F0"));
+        }
+        if (foodItems[cookingRecipe.cooked.id].thirst != 0)
+        {
+            thirstAttribute.SetActive(true);
+            thirstAttribute.GetComponent<TextMeshProUGUI>()
+                .SetText(foodItems[cookingRecipe.cooked.id].thirst.ToString("F0"));
+        }
+        if (foodItems[cookingRecipe.cooked.id].temperature != 0)
+        {
+            temperatureAttribute.SetActive(true);
+            temperatureAttribute.GetComponent<TextMeshProUGUI>()
+                .SetText(foodItems[cookingRecipe.cooked.id].temperature.ToString("F0"));
+        }
+
+        cookingMinigameButton.onClick.AddListener(PrepareOvenMinigame);
     }
     
     private void PrepareOvenMinigame()

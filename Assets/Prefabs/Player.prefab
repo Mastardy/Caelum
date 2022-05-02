@@ -2051,6 +2051,8 @@ MonoBehaviour:
   healthText: {fileID: 0}
   healthBackgroundImage: {fileID: 8075507775372933506}
   healthForegroundImage: {fileID: 7686358750803794854}
+  recipesContent: {fileID: 0}
+  recipePrefab: {fileID: 0}
 --- !u!1 &916624212204737557
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +4092,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7820413361102191241}
   - component: {fileID: 2927451980836086222}
-  - component: {fileID: 4926045081109374986}
   m_Layer: 9
   m_Name: Oven
   m_TagString: Untagged
@@ -4131,18 +4132,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704563033090509769}
   m_CullTransparentMesh: 1
---- !u!114 &4926045081109374986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704563033090509769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36cf95590cfdc484ebb940ade9f2fca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1736950750452670289
 GameObject:
   m_ObjectHideFlags: 0
