@@ -125,7 +125,7 @@
                 "selectedBrushTab": "All",
                 "selectedBrushId": "73f0185efb84025498f560d45340df93",
                 "brushSize": 84.0,
-                "brushSpeed": 23.0,
+                "brushSpeed": 10.0,
                 "brushRoundness": 1.0,
                 "brushAngle": -50.0,
                 "brushFalloff": {
@@ -176,8 +176,8 @@
                 "invertFalloff": false,
                 "selectedBrushTab": "All",
                 "selectedBrushId": "_DefaultPerlinNoiseBrushName",
-                "brushSize": 113.0,
-                "brushSpeed": 96.0,
+                "brushSize": 167.0,
+                "brushSpeed": 16.0,
                 "brushRoundness": 1.0,
                 "brushAngle": 0.0,
                 "brushFalloff": {
