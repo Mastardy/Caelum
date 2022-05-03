@@ -1985,10 +1985,11 @@ MonoBehaviour:
   thirdPersonAnimator: {fileID: 5910228235231975394}
   thirdPersonModel: {fileID: 1413831994091308485}
   firstPersonAnimator: {fileID: 314876487168140714}
+  bowAnimator: {fileID: 0}
   playerCamera: {fileID: 3176719483760028903}
   maxHealth: 100
   currentHealth:
-    m_InternalValue: 0
+    m_InternalValue: 100
   crouchSpeed: 3
   speed: 5
   sprintSpeed: 8
@@ -2048,11 +2049,17 @@ MonoBehaviour:
   ovenSpeed: 2
   ovenArrow: {fileID: 8036363138916365157}
   ovenScaler: {fileID: 4671196403524406613}
-  healthText: {fileID: 0}
   healthBackgroundImage: {fileID: 8075507775372933506}
   healthForegroundImage: {fileID: 7686358750803794854}
-  recipesContent: {fileID: 0}
+  recipesContent: {fileID: 2648471601133250028}
   recipePrefab: {fileID: 0}
+  ingredientsContent: {fileID: 8257860784824354661}
+  ingredientPrefab: {fileID: 0}
+  recipeDescription: {fileID: 7941485797443096163}
+  hungerAttribute: {fileID: 7586963551306700982}
+  thirstAttribute: {fileID: 5375780032133279361}
+  temperatureAttribute: {fileID: 3976745146509040418}
+  cookingMinigameButton: {fileID: 94679280300160501}
 --- !u!1 &916624212204737557
 GameObject:
   m_ObjectHideFlags: 0
@@ -11743,7 +11750,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6010601169681210184}
   m_HandleRect: {fileID: 2337798766743767588}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13702,8 +13709,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1732037054346912952}
   m_HandleRect: {fileID: 7552395292505011116}
   m_Direction: 2
-  m_Value: 0.9999999
-  m_Size: 0.36806637
+  m_Value: 1
+  m_Size: 0.36806634
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -6,7 +6,6 @@ using TMPro;
 public partial class Player
 {
     [Header("HUD")]
-    [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private Image healthBackgroundImage;
     [SerializeField] private Image healthForegroundImage;
 
