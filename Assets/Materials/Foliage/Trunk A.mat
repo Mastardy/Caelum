@@ -84,6 +84,7 @@ Material:
     - _Cel_Desity: 5
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Color_Power: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -93,13 +94,16 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Invert_Detail: 1
     - _Metallic: 0
     - _Normal: 0.022
+    - _Normal_Strength: 0.031
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Same_Color: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -109,11 +113,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7075472, g: 0.35848534, b: 0.28368637, a: 1}
+    - _Color: {r: 0.6392157, g: 0.3764706, b: 0.23921569, a: 1}
     - _Color_2: {r: 0.5566038, g: 0.29518002, b: 0.24417052, a: 0}
+    - _Color_Tilling: {r: 22.35, g: 2.3, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Normal_Tilling: {r: 9.47, g: 5.13, b: 0, a: 0}
+    - _Same_Color_Adjust: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tilling: {r: 30, g: 5.5, b: 0, a: 0}
+    - _Vector3: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2158733140782343213
 MonoBehaviour:
