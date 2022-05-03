@@ -15,44 +15,40 @@ public partial class Player
     private static readonly int pitchCache = Animator.StringToHash("Pitch");
     private static readonly int yvelCache = Animator.StringToHash("YVelocity");
 
-    private NetworkVariable<bool> isCrouchedNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> moveMagnitudeNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputXNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputYNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> isGroundedNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> xRotationNet = new(NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> velocityYNet = new(NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
 
     private void AnimatorStart()
-    {        
-        //dar Hide no world model mantendo as sombras
-        if (IsLocalPlayer)
+    {
+        foreach (var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
         {
-            foreach(var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
-            {
-                smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-            }
+            smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc(bool _isCrouched, float _moveMagnitude, float inputX, float inputY,
-        bool _isGrounded, float _xRotation, float velocityY)
+    private void NetworkAnimatorUpdateServerRpc(bool crouched, float moveMag, float xInput, float yInput,
+        bool grounded, float rotationX, float velocityY)
     {
         if (!IsServer) return;
         
-        isCrouchedNet.Value = _isCrouched;
-        moveMagnitudeNet.Value = _moveMagnitude;
-        inputXNet.Value = inputX;
-        inputYNet.Value = inputY;
-        isGroundedNet.Value = _isGrounded;
-        xRotationNet.Value = _xRotation;
+        isCrouchedNet.Value = crouched;
+        moveMagnitudeNet.Value = moveMag;
+        inputXNet.Value = xInput;
+        inputYNet.Value = yInput;
+        isGroundedNet.Value = grounded;
+        xRotationNet.Value = rotationX;
         velocityYNet.Value = velocityY;
     }
     
     private void AnimatorUpdate()
     {
-        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
+        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 8));
         thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
         thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
         thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public partial class Player
@@ -31,7 +32,7 @@ public partial class Player
     
     private void EyeTrace()
     {
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
+        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 3, hitMask))
         {
             if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
@@ -42,8 +43,43 @@ public partial class Player
             
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
-                aimText.SetText(resource.resourceName);
+                aimText.SetText(resource.name);
                 lookingAt = resource.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
+            {
+                aimText.SetText(groundItem.name + "\n" + groundItem.amount + "x");
+                lookingAt = groundItem.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out CraftingTable craftTable))
+            {
+                aimText.SetText("Crafting Table");
+                lookingAt = craftTable.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out Oven oven))
+            {
+                aimText.SetText("Oven");
+                lookingAt = oven.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out Animal animal))
+            {
+                aimText.SetText(animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
+                lookingAt = animal.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
+            {
+                aimText.SetText("Fishing Net" + (fishingNet.fishesInNet > 0 ? $"\n{fishingNet.fishesInNet}" : String.Empty));
+                lookingAt = fishingNet.gameObject;
                 return;
             }
         }
@@ -62,13 +98,74 @@ public partial class Player
             {
                 vehicle.CarEnterServerRpc(this);
             }
+
+            return;
         }
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.2f))
+            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                resource.HitResourceServerRpc(this, resource.resourceName, 2);
+                switch (resource.resourceId)
+                {
+                    case 1:
+                        resource.HitResourceServerRpc(this, 5);
+                        break;
+                    case 2:
+                        resource.HitResourceServerRpc(this, 3);
+                        break;
+                    default:
+                        resource.HitResourceServerRpc(this);
+                        break;
+                }
+            }
+            
+            return;
+        }
+
+        if (lookingAt.TryGetComponent(out InventoryGroundItem groundItem))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                groundItem.PickUpServerRpc(this);
+            }
+            
+            return;
+        }
+
+        if (lookingAt.TryGetComponent(out CraftingTable craftTable))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                craftTable.OpenCraftingServerRpc(this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out Oven oven))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+            {
+                oven.OpenOvenServerRpc(this);
+            }
+        }
+        
+        if (lookingAt.TryGetComponent(out Animal animal))
+        {
+            if(InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
+            {
+                animal.TakeDamageServerRpc(10, this);
+            } 
+            else if (InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 1.0f))
+            {
+                animal.TakeDamageServerRpc(25, this);
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out FishingNet fishingNet))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                fishingNet.TryFishingServerRpc(this);
             }
         }
     }

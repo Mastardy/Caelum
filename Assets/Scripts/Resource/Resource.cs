@@ -2,25 +2,25 @@ using Unity.Netcode;
 
 public class Resource : NetworkBehaviour
 {
-    public string resourceName;
-    public int maxHealth;
+    public int resourceId;
     public int maxResources;
-    public NetworkVariable<int> curHealth = new();
     public NetworkVariable<int> curResources = new();
 
     [ServerRpc(RequireOwnership = false)]
-    public void HitResourceServerRpc(NetworkBehaviourReference player, string rscName, int damage)
+    public void HitResourceServerRpc(NetworkBehaviourReference player, int resourcesToGather = 1)
     {
-        curHealth.Value -= damage;
+        curResources.Value -= resourcesToGather;
 
-        if (curHealth.Value <= 0) DestroyResource();
-            
-        int resourcesGathered = (int)(maxResources * (damage / (float)maxHealth));
-        curResources.Value -= resourcesGathered;
+        int resourcesGathered = curResources.Value < 0 ? resourcesToGather + curResources.Value : resourcesToGather;
+        
+        if (curResources.Value <= 0)
+        {
+            DestroyResource();
+        }
         
         if(player.TryGet(out Player ply))
         {
-            ply.GatherResourcesClientRpc(rscName, resourcesGathered);
+            ply.GiveItemClientRpc(resourceId, resourcesGathered);
         }
     }
 

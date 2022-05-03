@@ -13,26 +13,30 @@ public partial class Player : NetworkBehaviour
     
     private void Start()
     {
+        SetHealthServerRpc(maxHealth);
+        
         allPlayers.Add(this);
-
-        Debug.Log(allPlayers.Count);
+        
+        GetItemsAndRecipes();
         
         if (!IsLocalPlayer)
         {
-            playerCamera.gameObject.SetActive(false);
             firstPersonAnimator.enabled = false;
         }
         else
         {
-            gameOptions = GameManager.Instance.gameOptions;
-            
-            playerCanvas.gameObject.SetActive(true);
-            playerCamera.gameObject.SetActive(true);
-            
-            characterController = GetComponent<CharacterController>();
-            Cursor.lockState = CursorLockMode.Locked;
-            
-            AnimatorStart();
+            if (IsLocalPlayer)
+            {
+                gameOptions = GameManager.Instance.gameOptions;
+
+                playerCanvas.gameObject.SetActive(true);
+                playerCamera.gameObject.SetActive(true);
+
+                characterController = GetComponent<CharacterController>();
+                Cursor.lockState = CursorLockMode.Locked;
+
+                AnimatorStart();
+            }
         }
     }
 
@@ -47,8 +51,61 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f)) OpenChat();
+            HUDUpdate();
+            
+            if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
+            {
+                if (!isFishing) StartFishing();
+                else StopFishing();
+            }
+            
+            if (InputHelper.GetKeyDown(KeyCode.J, 0.01f))
+            {
+                TakeDamageServerRpc(5);
+            }
+            
+            if (InputHelper.GetKeyDown(KeyCode.K, 0.01f))
+            {
+                TakeDamageServerRpc(-5);
+            }
+            
+            if (!inInventory && !inCrafting && !inOven)
+            {
+                if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
+                {
+                    OpenChat();
+                }
+            }
+            
+            
+            
+            if (!inChat && !inCrafting && !inOven)
+            {
+                if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
+                {
+                    if (inInventory) HideInventory();
+                    else OpenInventory();
+                }
+            }
 
+            if (inCrafting)
+            {
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    craftingTable.CloseCraftingServerRpc(this);
+                }
+            }
+
+            if (inOven)
+            {
+                OvenMinigameUpdate();
+                
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    cooker.CloseOvenServerRpc(this);
+                }
+            }
+            
             if (car != null)
             {
                 CarMovement();
@@ -56,6 +113,17 @@ public partial class Player : NetworkBehaviour
                 return;
             }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1)) currentSlot = 0;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha4)) currentSlot = 3;
+            if (Input.GetKeyDown(KeyCode.Alpha5)) currentSlot = 4;
+
+            if (hotbars[currentSlot].slot.inventoryItem != null)
+            {
+                Debug.Log(hotbars[currentSlot].slot.inventoryItem.itemTag);
+            }
+            
             MovementUpdate();
 
             AimUpdate();

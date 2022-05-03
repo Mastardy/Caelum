@@ -24,7 +24,7 @@ public partial class Animal
         
         var animalPosition = transform.position;
 
-        NavMesh.SamplePosition(animalPosition + GetFleeDirection() * 12, out NavMeshHit navMeshHit, 5,  1);
+        NavMesh.SamplePosition(animalPosition + GetFleeDirection() * 12, out NavMeshHit navMeshHit, 15,  1);
         
         agent.SetDestination(navMeshHit.position);
     }

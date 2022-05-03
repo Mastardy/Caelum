@@ -10,14 +10,18 @@ public partial class Animal : NetworkBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        maxHealth += Random.Range(-20, 21);
+        currentHealth.Value = maxHealth;
+        
         animalStates.Add(idleState, IdleState());
         animalStates.Add(roamState, RoamState());
         animalStates.Add(fleeState, FleeState());
+        animalStates.Add(attackState, AttackState());
     }
 
     private void Update()
     {
-        ChangeState();
+        if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
     }
 }

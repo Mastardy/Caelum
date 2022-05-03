@@ -9,15 +9,20 @@ using UnityEngine.UI;
 
 public partial class Player
 {
+    private bool inChat;
+    
     /// <summary>
     /// Hides the Chat
     /// </summary>
     public void HideChat()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        inChat = false;
         takeInput = true;
         EventSystem.current.SetSelectedGameObject(null);
         chatBox.SetActive(false);
+        crosshair.SetActive(true);
+        aimText.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -26,8 +31,11 @@ public partial class Player
     public void OpenChat()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        inChat = true;
         takeInput = false;
         chatBox.SetActive(true);
+        crosshair.SetActive(false);
+        aimText.gameObject.SetActive(false);
         EventSystem.current.SetSelectedGameObject(chatBox);
     }
     
