@@ -22,24 +22,25 @@ public partial class Player
 
         if (inParachute)
         {
-            headTransform.localRotation = quaternion.Euler(25, 0, 0);
-            playerCamera.localRotation = Quaternion.Euler(25, 0, 0);
+            headTransform.localRotation = Quaternion.Euler(-25, 0f, 0f);
+
+            playerCamera.localRotation = Quaternion.Euler(40, 0f, 0f);
         }
         else
         {
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -85f, 85f);
-            
+
             var headRotation = Mathf.Clamp(xRotation * 2, -45, 35f);
-        
+
             headTransform.localRotation = Quaternion.Euler(headRotation, 0f, 0f);
-        
+
             playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
-        
+
         transform.Rotate(Vector3.up * mouseX);
     }
-    
+
     private void EyeTrace()
     {
         if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 3, hitMask))
