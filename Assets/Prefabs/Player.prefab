@@ -783,7 +783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   headTransform: {fileID: 3176719483760028903}
-  playerCameraAnchor: {fileID: 231134345629595924}
   thirdPersonAnimator: {fileID: 5910228235231975394}
   thirdPersonModel: {fileID: 1413831994091308485}
   firstPersonAnimator: {fileID: 4022323238140545911}
@@ -797,6 +796,7 @@ MonoBehaviour:
   airAccelerationEasing: 3
   gravity: -30
   jumpHeight: 1.75
+  parachuteAcceleration: 25
   playerCameraHeight: 3
   playerCameraEasing: 5
   groundCheck: {fileID: 8772669607038965389}

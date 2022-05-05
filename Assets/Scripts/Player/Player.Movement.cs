@@ -14,6 +14,7 @@ public partial class Player
     [SerializeField] private float airAccelerationEasing = 3f;
     [SerializeField] private float gravity = -30f;
     [SerializeField] private float jumpHeight = 1.75f;
+    [SerializeField] private float parachuteAcceleration = 1000f;
 
     [SerializeField] private float playerCameraHeight = 3;
     [SerializeField] private float playerCameraEasing = 2;
@@ -140,7 +141,8 @@ public partial class Player
         
         if (inParachute)
         {
-            verticalVelocity = -2f;
+            verticalVelocity += parachuteAcceleration * Time.deltaTime;
+            if (verticalVelocity > -2.1f) verticalVelocity = -2f;
         }
     }
 
@@ -182,7 +184,7 @@ public partial class Player
             horizontalVelocity *= maxSpeed;
         }
 
-        verticalVelocity += gravity * Time.deltaTime;
+        if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
 
         var playerTransform = transform;
         characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);

@@ -24,7 +24,7 @@ public partial class Player
         {
             headTransform.localRotation = Quaternion.Euler(-25, 0f, 0f);
 
-            playerCamera.localRotation = Quaternion.Euler(40, 0f, 0f);
+            playerCamera.localRotation = Quaternion.Euler(50, 0f, 0f);
         }
         else
         {
