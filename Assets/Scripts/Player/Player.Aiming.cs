@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public partial class Player
@@ -21,19 +22,21 @@ public partial class Player
 
         if (inParachute)
         {
-            xRotation = 25f;
+            headTransform.localRotation = quaternion.Euler(25, 0, 0);
+            playerCamera.localRotation = Quaternion.Euler(25, 0, 0);
         }
         else
         {
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -85f, 85f);
+            
+            var headRotation = Mathf.Clamp(xRotation * 2, -45, 35f);
+        
+            headTransform.localRotation = Quaternion.Euler(headRotation, 0f, 0f);
+        
+            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
-
-        var headRotation = Mathf.Clamp(xRotation * 2, -45, 35f);
         
-        headTransform.localRotation = Quaternion.Euler(headRotation, 0f, 0f);
-        
-        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
     

@@ -36,7 +36,6 @@ public partial class Player
         currentHealth.Value -= value;
 
         if (currentHealth.Value > maxHealth) currentHealth.Value = maxHealth;
-        if (currentHealth.Value < 1) Debug.Log("Player Dead");
     }
 
     private void StatusUpdate()

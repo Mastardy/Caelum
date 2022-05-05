@@ -188,10 +188,13 @@ public partial class Player
         characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);
     }
 
-    public void Geyser(float velocity)
+    public bool Geyser(float velocity)
     {
-        if (!inParachute) return;
+        if (!inParachute) return false;
 
         verticalVelocity = velocity;
+        inParachute = false;
+        
+        return true;
     }
 }
