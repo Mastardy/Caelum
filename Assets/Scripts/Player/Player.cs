@@ -14,6 +14,8 @@ public partial class Player : NetworkBehaviour
     private void Start()
     {
         SetHealthServerRpc(maxHealth);
+        currentHunger = maxHunger;
+        currentThirst = maxThirst;
         
         allPlayers.Add(this);
         
@@ -111,22 +113,19 @@ public partial class Player : NetworkBehaviour
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) currentSlot = 0;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) currentSlot = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) currentSlot = 2;
-            if (Input.GetKeyDown(KeyCode.Alpha4)) currentSlot = 3;
-            if (Input.GetKeyDown(KeyCode.Alpha5)) currentSlot = 4;
+            if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;
+            if (Input.GetKeyDown(KeyCode.Alpha2)) CurrentSlot = 1;
+            if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
+            if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
+            if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
 
-            if (hotbars[currentSlot].slot.inventoryItem != null)
-            {
-                Debug.Log(hotbars[currentSlot].slot.inventoryItem.itemTag);
-            }
-            
             MovementUpdate();
 
             AimUpdate();
 
             EyeTraceInfo();
+            
+            StatusUpdate();
             
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
                 isGrounded, xRotation, verticalVelocity);

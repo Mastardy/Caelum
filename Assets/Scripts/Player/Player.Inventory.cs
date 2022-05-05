@@ -1,7 +1,5 @@
 public partial class Player
 {
-    private int currentSlot;
-    
     public int GetItemAmount(string itemName)
     {
         int itemAmount = 0;

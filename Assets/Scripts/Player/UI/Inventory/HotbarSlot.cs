@@ -7,6 +7,8 @@ public class HotbarSlot : MonoBehaviour
     public InventorySlot slot;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI text;
+
+    // TODO: REFACTOR WTF?
     
     private void Update()
     {

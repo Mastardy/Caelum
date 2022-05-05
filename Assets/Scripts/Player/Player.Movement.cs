@@ -121,11 +121,11 @@ public partial class Player
     {
         if (inParachute && !wasInParachute)
         {
-            EnablePlayerModel();
+            DisableFirstPerson();
         }
         else if(!inParachute && wasInParachute)
         {
-            DisablePlayerModel();
+            EnableFirstPerson();
         }
         
         wasInParachute = inParachute;
@@ -146,7 +146,7 @@ public partial class Player
 
     private void Move()
     {
-        var maxSpeed = isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
+        var maxSpeed = inParachute ? crouchSpeed : isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
 
         if (input.x == 0)
         {
@@ -176,15 +176,22 @@ public partial class Player
             if(isGrounded) Mathf.Clamp(horizontalVelocity.y, -maxSpeed, maxSpeed);
         }
 
-        if (horizontalVelocity.magnitude > maxSpeed && isGrounded)
+        if (horizontalVelocity.magnitude > maxSpeed && (isGrounded || inParachute))
         {
             horizontalVelocity.Normalize();
             horizontalVelocity *= maxSpeed;
         }
-        
+
         verticalVelocity += gravity * Time.deltaTime;
 
         var playerTransform = transform;
         characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);
+    }
+
+    public void Geyser(float velocity)
+    {
+        if (!inParachute) return;
+
+        verticalVelocity = velocity;
     }
 }

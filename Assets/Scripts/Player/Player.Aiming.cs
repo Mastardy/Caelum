@@ -97,7 +97,15 @@ public partial class Player
     
     private void EyeTraceInfo()
     {
-        if (lookingAt == null) return;
+        if (lookingAt == null)
+        {
+            // if(InputHelper.GetKeyDown(KeyCode.T, 0.75f))
+            // {
+            //     Debug.Log(InputHelper.lastPress[KeyCode.T]);
+            //     AnimatorCollect();
+            // }
+            return;
+        }
 
         if (lookingAt.TryGetComponent(out Car vehicle))
         {
