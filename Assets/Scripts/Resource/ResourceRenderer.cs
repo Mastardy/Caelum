@@ -8,50 +8,59 @@ using UnityEngine.Jobs;
 [ExecuteInEditMode]
 public class ResourceRenderer : MonoBehaviour
 {
-    public GameObject treePrefab;
+    public bool Place = false;
+    public bool Clear = false;
+    public GameObject[] ResourcePrefab;
     public int TreeCount = 10;
     public int StartHeight = 1000;
     public int size = 1;
-    public int seed = 0;
+    [Range(-10,10)]public int seed = 0;
     public float distancex = 0.5f;
     public float distancez = 0.5f;
 
     private List<GameObject> trees = new List<GameObject>();
+    private List<Vector3> points = new List<Vector3>();
 
     private void Update()
     {
-        Random.InitState(seed);
+        if (Place)
+        {
+            Place = false;
+            for(int i = 0; i < 5; i++)
+                PlaceTrees();
+        }
+        if (Clear)
+        {
+            Clear = false;
+            ClearTrees();
+        }
+    }
 
+    private void PlaceTrees()
+    {
         ClearTrees();
 
         Vector3 origin = transform.position;
 
         origin.y = StartHeight;
 
-        for (int i = 0; i < TreeCount; i++)
+        for (int i = 0; i < points.Count; i++)
         {
-            Vector3 position = origin;
-            position.x += size * Random.Range(-distancex, distancex);
-            position.z += size * Random.Range(-distancez, distancez);
-
-            Vector2 rotatedPoint = RotatePoint(new Vector2(position.x, position.z), new Vector2(transform.position.x, transform.position.z), -transform.rotation.eulerAngles.y);
-
-            position.x = rotatedPoint.x;
-            position.z = rotatedPoint.y;
-
-            RaycastHit hit;
-            if (Physics.Linecast(position, position + new Vector3(0, -1000, 0), out hit, -LayerMask.NameToLayer("Ground")))
-            {
-                GameObject tree = Instantiate(treePrefab, transform);
-                tree.transform.position = hit.point;
-                trees.Add(tree);
-            }
+            int rand = Random.Range(0, ResourcePrefab.Length);
+            GameObject tree = Instantiate(ResourcePrefab[rand], transform);
+            tree.transform.position = points[i];
+            tree.transform.Rotate(0, Random.Range(0, 359), 0);
+            tree.transform.localScale = Vector3.one * Random.Range(1.3f, 1.5f);
+            trees.Add(tree);
         }
     }
 
     public void OnDrawGizmos()
     {
         Random.InitState(seed);
+        
+        points.Clear();
+
         Vector3 origin = transform.position;
 
         origin.y = StartHeight;
@@ -68,10 +77,16 @@ public class ResourceRenderer : MonoBehaviour
             position.z = rotatedPoint.y;
 
             RaycastHit hit;
-            if (Physics.Linecast(position, position + new Vector3(0,-1000,0), out hit)) {
-                Gizmos.color = Color.white;
-                Gizmos.DrawWireSphere(hit.point, 1);
+            if (Physics.Linecast(position, position + new Vector3(0,-1000,0), out hit, -LayerMask.NameToLayer("Ground")))
+            {
+                points.Add(hit.point);
             }
+        }
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(points[i], 1);
         }
 
         #region BOUNDS
@@ -128,5 +143,6 @@ public class ResourceRenderer : MonoBehaviour
             {
                 DestroyImmediate(tree.gameObject);
             }
+        trees.Clear();
     }
 }

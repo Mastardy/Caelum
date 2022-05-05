@@ -7,12 +7,6 @@ public class Resource : NetworkBehaviour
     public int maxResources;
     public NetworkVariable<int> curResources = new();
 
-    private void Start()
-    {
-        transform.Rotate(0, Random.Range(0, 359), 0);
-        transform.localScale = Vector3.one * Random.Range(1.3f, 1.5f);
-    }
-
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(NetworkBehaviourReference player, int resourcesToGather = 1)
     {
