@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public partial class Player
@@ -40,19 +41,8 @@ public partial class Player
             MovementInput();
         }
 
-        if (isCrouched)
-        {
-            if (playerCameraHeight < 2) playerCameraHeight = 2;
-            else if (playerCameraHeight > 2) playerCameraHeight -= Time.deltaTime * playerCameraEasing;
-        }
-        else
-        {
-            if (playerCameraHeight > 3) playerCameraHeight = 3;
-            else if (playerCameraHeight < 3) playerCameraHeight += Time.deltaTime * playerCameraEasing;
-        }
-        
-        playerCamera.localPosition = new Vector3(0, playerCameraHeight, 0);
-        
+        CameraUpdate();
+
         IsGrounded();
 
         IsSprinting();
@@ -62,6 +52,29 @@ public partial class Player
         Parachute();
         
         Move();
+    }
+
+    private void CameraUpdate()
+    {
+        if (inParachute)
+        {
+            playerCamera.localPosition = new Vector3(0, 5, -3);
+        }
+        else
+        {
+            if (isCrouched)
+            {
+                if (playerCameraHeight < 2) playerCameraHeight = 2;
+                else if (playerCameraHeight > 2) playerCameraHeight -= Time.deltaTime * playerCameraEasing;
+            }
+            else
+            {
+                if (playerCameraHeight > 3) playerCameraHeight = 3;
+                else if (playerCameraHeight < 3) playerCameraHeight += Time.deltaTime * playerCameraEasing;
+            }
+            
+            playerCamera.localPosition = new Vector3(0, playerCameraHeight, 0);
+        }
     }
     
     private void MovementInput()
@@ -101,13 +114,36 @@ public partial class Player
         isCrouched = Input.GetKey(gameOptions.duckKey);
     }
 
+    private bool wasInParachute;
+    private bool inParachute;
+    
     private void Parachute()
     {
+        if (inParachute && !wasInParachute)
+        {
+            EnablePlayerModel();
+        }
+        else if(!inParachute && wasInParachute)
+        {
+            DisablePlayerModel();
+        }
+        
+        wasInParachute = inParachute;
+        
+        inParachute = false;
+        
         if (isGrounded) return;
-        if (verticalVelocity > -2f) return;
-        if (Input.GetKey(KeyCode.O)) verticalVelocity = -2f;
+        
+        if (verticalVelocity > -2f && !wasInParachute) return;
+
+        inParachute = Input.GetKey(KeyCode.O);
+        
+        if (inParachute)
+        {
+            verticalVelocity = -2f;
+        }
     }
-    
+
     private void Move()
     {
         var maxSpeed = isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;

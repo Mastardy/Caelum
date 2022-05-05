@@ -2295,7 +2295,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3718000749779325564}
   - component: {fileID: 3752136785056035343}
-  - component: {fileID: 3752136785056035377}
   m_Layer: 0
   m_Name: FemBody
   m_TagString: Untagged
@@ -2348,25 +2347,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3752136785056035377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4094666338827225286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6f0905054e8134694139c7876081bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 3752136785056035343}
-  speed: 0
-  direction: 0
-  crouch: 0
-  jump: 0
-  pitch: 0
-  original_position: {x: -8, y: 0, z: 2.573}
 --- !u!1 &4492668809395047754
 GameObject:
   m_ObjectHideFlags: 0

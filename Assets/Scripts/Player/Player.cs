@@ -76,9 +76,7 @@ public partial class Player : NetworkBehaviour
                     OpenChat();
                 }
             }
-            
-            
-            
+
             if (!inChat && !inCrafting && !inOven)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
@@ -98,9 +96,9 @@ public partial class Player : NetworkBehaviour
 
             if (inOven)
             {
-                OvenMinigameUpdate();
+                if(inOvenMinigame) OvenMinigameUpdate();
                 
-                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f)) 
                 {
                     cooker.CloseOvenServerRpc(this);
                 }

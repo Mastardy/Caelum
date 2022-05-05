@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5116dbb663a51e14f90de47f2f0d83c7, type: 3}
-  m_Name: Fish
+  m_Name: Cooked Fish
   m_EditorClassIdentifier: 
-  raw: {fileID: 11400000, guid: 79be4588e34635f46b0d38a85a1b0f08, type: 2}
+  ingredients:
+  - inventoryItem: {fileID: 11400000, guid: 79be4588e34635f46b0d38a85a1b0f08, type: 2}
+    quantity: 1
+  - inventoryItem: {fileID: 11400000, guid: 94d70b9f0c36b5e4ea79b7635109cc96, type: 2}
+    quantity: 2
   cooked: {fileID: 11400000, guid: 8059fa6136b7e5848ab96fea55a9931e, type: 2}
-  burnt: {fileID: 0}
+  burnt: {fileID: 11400000, guid: 41802a716007bbb4ab611843de218fea, type: 2}

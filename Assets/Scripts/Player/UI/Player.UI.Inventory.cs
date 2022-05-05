@@ -6,7 +6,7 @@ using UnityEngine;
 public partial class Player
 {
     private bool inInventory;
-    private Dictionary<int, InventoryItem> inventoryItems = new();
+    private Dictionary<string, InventoryItem> inventoryItems = new();
     
     /// <summary>
     /// Hides the Inventory
@@ -35,14 +35,14 @@ public partial class Player
     }
     
     [ClientRpc]
-    public void GiveItemClientRpc(int id, int amountToAdd = 1)
+    public void GiveItemClientRpc(string itemName, int amountToAdd = 1)
     {
         int amountAdded = 0;
         
         foreach (var slot in inventorySlots)
         {
             if (slot.isEmpty) continue;
-            if (slot.inventoryItem.id != id) continue;
+            if (slot.inventoryItem.itemName != itemName) continue;
             if (slot.Amount == slot.inventoryItem.maxStack) continue;
 
             do
@@ -60,7 +60,7 @@ public partial class Player
 
             slot.Amount = 0;
             slot.isEmpty = false;
-            slot.inventoryItem = inventoryItems[id];
+            slot.inventoryItem = inventoryItems[itemName];
             slot.image.sprite = slot.inventoryItem.sprite;
             slot.image.enabled = true;
             
@@ -80,13 +80,13 @@ public partial class Player
         {
             if (inventorySlots[i].GetInstanceID() == inventorySlot.GetInstanceID())
             {
-                DropItemServerRpc(this, inventorySlot.inventoryItem.id, i, inventorySlots[i].Amount, dropEverything);
+                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, dropEverything);
             }
         }
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void DropItemServerRpc(NetworkBehaviourReference ply, int item, int slot, int dropAmount, bool dropEverything)
+    public void DropItemServerRpc(NetworkBehaviourReference ply, string itemName, int slot, int dropAmount, bool dropEverything)
     {
         if (!IsServer) return;
 
@@ -95,12 +95,12 @@ public partial class Player
             var playerTransform = player.playerCamera.transform;
             var playerTransformForward = playerTransform.forward;
             
-            var worldGameObject = Instantiate(player.inventoryItems[item].worldPrefab, playerTransform.position + playerTransformForward,
-                player.inventoryItems[item].worldPrefab.transform.rotation);
-            worldGameObject.name = player.inventoryItems[item].name;
+            var worldGameObject = Instantiate(player.inventoryItems[itemName].worldPrefab, playerTransform.position + playerTransformForward,
+                player.inventoryItems[itemName].worldPrefab.transform.rotation);
+            worldGameObject.name = player.inventoryItems[itemName].name;
 
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
-            worldGameObjectInvItem.inventoryItem = player.inventoryItems[item];
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
             worldGameObjectInvItem.amount = dropEverything ? dropAmount : 1;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
@@ -134,17 +134,17 @@ public partial class Player
     {
         InventoryItem[] invItems = Resources.LoadAll<InventoryItem>("InventoryItems");
         FoodItem[] allFoodItems = Resources.LoadAll<FoodItem>("FoodItems");
-        cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes").ToList();
+        cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes");
         CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
 
         foreach (var invItem in invItems)
         {
-            inventoryItems.Add(invItem.id, invItem);
+            inventoryItems.Add(invItem.itemName, invItem);
         }
 
         foreach (var foodItem in allFoodItems)
         {
-            foodItems.Add(foodItem.id, foodItem);
+            foodItems.Add(foodItem.itemName, foodItem);
         }
     }
 }

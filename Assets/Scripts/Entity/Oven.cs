@@ -10,7 +10,7 @@ public class Oven : NetworkBehaviour
     public void OpenOvenServerRpc(NetworkBehaviourReference player)
     {
         if (!IsServer) return;
-        
+
         if (player.TryGet(out Player ply))
         {
             ply.OpenOvenClientRpc(this);

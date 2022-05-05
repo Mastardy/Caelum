@@ -116,7 +116,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                 else
                 {
                     if (invSlot.inventoryItem == null) return;
-                    if (invSlot.inventoryItem.id != inventorySlot.inventoryItem.id) return;
+                    if (invSlot.inventoryItem.itemName != inventorySlot.inventoryItem.itemName) return;
 
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {

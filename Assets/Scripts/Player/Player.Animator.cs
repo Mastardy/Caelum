@@ -45,22 +45,38 @@ public partial class Player
     private float layerWeight = 0;
     private bool animCoroutine = false;
 
+    private SkinnedMeshRenderer[] playerSkinnedMeshRenderers;
+    
     public bool CanAim
     {
         get { return canAimAnim; }
         set { canAimAnim = value; }
     }
 
-    private void AnimatorStart()
+    private void DisablePlayerModel()
     {
-        //dar Hide no world model mantendo as sombras
-        foreach (var smr in thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>())
+        foreach (var smr in playerSkinnedMeshRenderers)
         {
             smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
         }
-           
-        //mover world model para tr�s para n�o fazer sombras nos bra�os
-        thirdPersonModel.transform.position = new Vector3(0f, 0f, -0.5f);
+        
+        thirdPersonModel.transform.localPosition = new Vector3(0f, 0f, -0.5f);
+    }
+    
+    private void EnablePlayerModel()
+    {
+        foreach (var smr in playerSkinnedMeshRenderers)
+        {
+            smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+        }
+        
+        thirdPersonModel.transform.localPosition = new Vector3(0f, 0f, 0f);
+    }
+    
+    private void AnimatorStart()
+    {
+        playerSkinnedMeshRenderers = thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>();
+        DisablePlayerModel();
     }
 
     [ServerRpc(RequireOwnership = false)]

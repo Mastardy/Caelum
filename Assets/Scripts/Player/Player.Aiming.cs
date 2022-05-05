@@ -19,8 +19,15 @@ public partial class Player
             mouseY = Input.GetAxis("Mouse Y") * gameOptions.mouseSensitivity;
         }
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -85f, 85f);
+        if (inParachute)
+        {
+            xRotation = 25f;
+        }
+        else
+        {
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -85f, 85f);
+        }
 
         var headRotation = Mathf.Clamp(xRotation * 2, -45, 35f);
         
@@ -106,12 +113,12 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                switch (resource.resourceId)
+                switch (resource.resourceName)
                 {
-                    case 1:
+                    case "wood":
                         resource.HitResourceServerRpc(this, 5);
                         break;
-                    case 2:
+                    case "stone":
                         resource.HitResourceServerRpc(this, 3);
                         break;
                     default:

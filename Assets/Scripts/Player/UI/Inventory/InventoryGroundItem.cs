@@ -17,7 +17,7 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.GiveItemClientRpc(inventoryItem.id, amount);
+            player.GiveItemClientRpc(inventoryItem.itemName, amount);
         }
     }
 
@@ -36,7 +36,7 @@ public class InventoryGroundItem : NetworkBehaviour
             {
                 if (resource == this) continue;
                 
-                if (resource.inventoryItem.id == inventoryItem.id)
+                if (resource.inventoryItem.itemName == inventoryItem.itemName)
                     if (resource.amount + amount <= inventoryItem.maxStack)
                     {
                         amount += resource.amount;

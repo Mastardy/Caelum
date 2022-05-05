@@ -2,7 +2,7 @@ using Unity.Netcode;
 
 public class Resource : NetworkBehaviour
 {
-    public int resourceId;
+    public string resourceName;
     public int maxResources;
     public NetworkVariable<int> curResources = new();
 
@@ -20,7 +20,7 @@ public class Resource : NetworkBehaviour
         
         if(player.TryGet(out Player ply))
         {
-            ply.GiveItemClientRpc(resourceId, resourcesGathered);
+            ply.GiveItemClientRpc(resourceName, resourcesGathered);
         }
     }
 

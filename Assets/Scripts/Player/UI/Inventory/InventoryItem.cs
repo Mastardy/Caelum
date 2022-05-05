@@ -13,11 +13,11 @@ public enum ItemTag
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/InventoryItem", order = 1)]
 public class InventoryItem : ScriptableObject
 {
-    public int id;
     public string itemName;
     public ItemTag itemTag;
     
     public Sprite sprite;
+    [TextArea(1, 10)]
     public string description;
     public int maxStack;
 
