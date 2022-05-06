@@ -60,15 +60,15 @@ public partial class Player : NetworkBehaviour
                 if (!isFishing) StartFishing();
                 else StopFishing();
             }
-            
-            if (InputHelper.GetKeyDown(KeyCode.J, 0.01f))
+
+            if (InputHelper.GetKeyDown(KeyCode.J, 0.2f))
             {
-                TakeDamageServerRpc(5);
+                BeginGrapple();
             }
             
-            if (InputHelper.GetKeyDown(KeyCode.K, 0.01f))
+            if (InputHelper.GetKeyDown(KeyCode.J))
             {
-                TakeDamageServerRpc(-5);
+                
             }
             
             if (!inInventory && !inCrafting && !inOven)

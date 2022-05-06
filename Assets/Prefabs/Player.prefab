@@ -788,6 +788,11 @@ MonoBehaviour:
   firstPersonAnimator: {fileID: 4022323238140545911}
   bowAnimator: {fileID: 6157533906298608677}
   playerCamera: {fileID: 3176719483760028903}
+  grappleVelocity: 10
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  grappleMaxLength: 50
   crouchSpeed: 3
   speed: 5
   sprintSpeed: 8
@@ -797,7 +802,6 @@ MonoBehaviour:
   gravity: -30
   jumpHeight: 1.75
   parachuteAcceleration: 50
-  playerCameraHeight: 3
   playerCameraEasing: 5
   groundCheck: {fileID: 8772669607038965389}
   groundDistance: 0.2

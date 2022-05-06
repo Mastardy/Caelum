@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public partial class Player
@@ -16,12 +15,13 @@ public partial class Player
     [SerializeField] private float jumpHeight = 1.75f;
     [SerializeField] private float parachuteAcceleration = 1000f;
 
-    [SerializeField] private float playerCameraHeight = 3;
     [SerializeField] private float playerCameraEasing = 2;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private LayerMask groundMask;
+
+    private Vector3 playerCameraPosition = new Vector3(0, 3, 0);
     
     private Vector2 horizontalVelocity;
     private float verticalVelocity;
@@ -29,6 +29,9 @@ public partial class Player
     private bool isGrounded;
     private bool isCrouched;
     private bool isSprinting;
+    
+    private bool isTethered;
+    private bool isTetheredPlus;
 
     private Vector2 input;
     
@@ -44,6 +47,8 @@ public partial class Player
 
         CameraUpdate();
 
+        if (IsTethered()) return;
+        
         IsGrounded();
 
         IsSprinting();
@@ -59,25 +64,33 @@ public partial class Player
     {
         if (inParachute)
         {
-            playerCamera.localPosition = new Vector3(0, 5, -3);
+            if (playerCameraPosition.y > 5) playerCameraPosition.y = 5;
+            else if (playerCameraPosition.y < 5) playerCameraPosition.y += Time.deltaTime * playerCameraEasing * 2f;
+
+            if (playerCameraPosition.z < -3) playerCameraPosition.z = -3;
+            else if (playerCameraPosition.z > -3) playerCameraPosition.z -= Time.deltaTime * playerCameraEasing * 3f;
         }
         else
         {
             if (isCrouched)
             {
-                if (playerCameraHeight < 2) playerCameraHeight = 2;
-                else if (playerCameraHeight > 2) playerCameraHeight -= Time.deltaTime * playerCameraEasing;
+                if (playerCameraPosition.y < 2) playerCameraPosition.y = 2;
+                else if (playerCameraPosition.y > 2) playerCameraPosition.y -= Time.deltaTime * playerCameraEasing;
             }
             else
             {
-                if (playerCameraHeight > 3) playerCameraHeight = 3;
-                else if (playerCameraHeight < 3) playerCameraHeight += Time.deltaTime * playerCameraEasing;
+                if (Mathf.Abs(playerCameraPosition.y - 3) < 0.1f) playerCameraPosition.y = 3;
+                else if (playerCameraPosition.y > 3) playerCameraPosition.y -= Time.deltaTime * playerCameraEasing;
+                else if (playerCameraPosition.y < 3) playerCameraPosition.y += Time.deltaTime * playerCameraEasing;
             }
             
-            playerCamera.localPosition = new Vector3(0, playerCameraHeight, 0);
+            if (playerCameraPosition.z > 0) playerCameraPosition.z = 0;
+            else if (playerCameraPosition.z < 0) playerCameraPosition.z += Time.deltaTime * playerCameraEasing * 2f;
         }
+
+        playerCamera.localPosition = playerCameraPosition;
     }
-    
+
     private void MovementInput()
     {
         if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded) verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * -gravity);
