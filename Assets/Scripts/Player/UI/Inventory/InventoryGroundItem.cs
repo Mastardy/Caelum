@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InventoryGroundItem : NetworkBehaviour
 {
-    [HideInInspector] public InventoryItem inventoryItem;
+    public InventoryItem inventoryItem;
     [HideInInspector] public int amount = 1;
     [HideInInspector] public Collider[] nearResources;
     [HideInInspector] public LayerMask groundItemLayerMask;
@@ -44,11 +44,5 @@ public class InventoryGroundItem : NetworkBehaviour
                         Destroy(resource.gameObject);
                     }
             }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1);
     }
 }
