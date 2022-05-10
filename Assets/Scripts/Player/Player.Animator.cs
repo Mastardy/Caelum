@@ -123,6 +123,16 @@ public partial class Player
         firstPersonAnimator.SetBool(toolCache, equip);
     }
 
+    private void AnimatorUseAxe()
+    {
+        firstPersonAnimator.SetTrigger("UseAxe");
+    }
+
+    private void AnimatorUsePickaxe()
+    {
+        firstPersonAnimator.SetTrigger("UsePickaxe");
+    }
+
     private void AnimatorEquipSpear(bool equip)
     {
         firstPersonAnimator.SetBool(spearCache, equip);

@@ -125,13 +125,25 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
+                if (hotbars[currentSlot].slot.inventoryItem == null) return;
+
                 switch (resource.resourceName)
                 {
                     case "wood":
-                        resource.HitResourceServerRpc(this, 5);
+                        if(hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Axe)
+                        {
+                            Debug.Log("madeira");
+                            AnimatorUseAxe();
+                            resource.HitResourceServerRpc(this, 5);
+                        }
                         break;
                     case "stone":
-                        resource.HitResourceServerRpc(this, 3);
+                        if (hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Pickaxe)
+                        {
+                            Debug.Log("pedra");
+                            AnimatorUsePickaxe();
+                            resource.HitResourceServerRpc(this, 3);
+                        }
                         break;
                     default:
                         resource.HitResourceServerRpc(this);
