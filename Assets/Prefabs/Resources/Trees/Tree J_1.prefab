@@ -77,12 +77,32 @@ PrefabInstance:
     - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Height
-      value: 3.73
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Center.y
-      value: 1.74
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Direction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7426251377044060167, guid: 296b991202c695f43989350207230ee5,
         type: 3}
@@ -145,6 +165,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8257898826831411407, guid: 34a3ddd82b821a744b8131ef66ac5c05,
         type: 3}
+    - target: {fileID: 8457801341831228654, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: resourceName
+      value: wood
+      objectReference: {fileID: 0}
     - target: {fileID: 9203810082427972816, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_LocalPosition.y

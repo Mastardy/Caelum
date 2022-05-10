@@ -86,6 +86,8 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
         foreach (var raycastResult in raycastResults)
         {
+            if(inventorySlot.Amount != 0) inventorySlot.text.SetText(inventorySlot.Amount + "x");
+            
             if (raycastResult.gameObject.TryGetComponent(out InventorySlot invSlot))
             {
                 if (invSlot == inventorySlot) return;
@@ -95,23 +97,18 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {
                         invSlot.Amount = inventorySlot.Amount;
-                        invSlot.image.sprite = inventorySlot.image.sprite;
-                        invSlot.image.enabled = true;
-                        invSlot.isEmpty = false;
-                        invSlot.inventoryItem = inventorySlot.inventoryItem;
-                
                         inventorySlot.Clear();
                     }
                     else
                     {
                         invSlot.Amount = Mathf.FloorToInt(inventorySlot.Amount / 2f);
                         inventorySlot.Amount = Mathf.CeilToInt(inventorySlot.Amount / 2f);
-
-                        invSlot.image.sprite = inventorySlot.image.sprite;
-                        invSlot.image.enabled = true;
-                        invSlot.isEmpty = false;
-                        invSlot.inventoryItem = inventorySlot.inventoryItem;
                     }
+                    
+                    invSlot.image.sprite = inventorySlot.image.sprite;
+                    invSlot.image.enabled = true;
+                    invSlot.isEmpty = false;
+                    invSlot.inventoryItem = inventorySlot.inventoryItem;
                 }
                 else
                 {

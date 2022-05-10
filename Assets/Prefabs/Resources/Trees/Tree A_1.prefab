@@ -217,10 +217,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.11, z: 0}
+  m_Radius: 1.5
+  m_Height: 4.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &2055376845921934216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473e417a94fc3314cade67a76004cb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceId: 1
+  resourceName: wood
   maxResources: 20
   curResources:
     m_InternalValue: 20
@@ -275,7 +275,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 7201044162495950466}
-  - screenRelativeHeight: 0.01
+  - screenRelativeHeight: 0.020862555
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 894415160264526198}

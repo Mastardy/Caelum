@@ -38,6 +38,8 @@ public partial class Player : NetworkBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
 
                 AnimatorStart();
+                
+                Invoke(nameof(SpawnPlayer), 0.1f);
             }
         }
     }

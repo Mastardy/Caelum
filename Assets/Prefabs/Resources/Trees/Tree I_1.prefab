@@ -69,6 +69,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree I_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426251377044060164, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7426251377044060167, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_RootOrder
@@ -130,6 +140,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -944934157070953014, guid: 572f54e69e0339d4db457b4c9af955aa,
         type: 3}
+    - target: {fileID: 8457801341831228654, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: resourceName
+      value: wood
+      objectReference: {fileID: 0}
     - target: {fileID: 9203810082427972816, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -137,3 +152,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296b991202c695f43989350207230ee5, type: 3}
+--- !u!1 &8605129967128399978 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7426251377044060163, guid: 296b991202c695f43989350207230ee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1181289269503109225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6609428818786108406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8605129967128399978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1, z: 4.5}
+  m_Center: {x: 1, y: 0, z: 0}

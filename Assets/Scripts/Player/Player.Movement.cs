@@ -8,9 +8,12 @@ public partial class Player
     [SerializeField] private float crouchSpeed = 3.5f;
     [SerializeField] private float speed = 6;
     [SerializeField] private float sprintSpeed = 9.5f;
+    [SerializeField] private float dashSpeed = 30f;
+    [SerializeField] private float dashTime = 0.15f;
     [SerializeField] private float deaccelerationEasing = 60f;
     [SerializeField] private float accelerationEasing = 30f;
     [SerializeField] private float airAccelerationEasing = 3f;
+    [SerializeField] private float fallDamageMultiplier = 1.75f;
     [SerializeField] private float gravity = -30f;
     [SerializeField] private float jumpHeight = 1.75f;
     [SerializeField] private float parachuteAcceleration = 1000f;
@@ -25,6 +28,13 @@ public partial class Player
     
     private Vector2 horizontalVelocity;
     private float verticalVelocity;
+
+    private bool dashing;
+    private float dashed;
+    private Vector2 dashVelocity;
+    
+    private bool wasGrounded;
+    private int fallDamage;
     
     private bool isGrounded;
     private bool isCrouched;
@@ -48,9 +58,19 @@ public partial class Player
         CameraUpdate();
 
         if (IsTethered()) return;
+
+        if (dashing)
+        {
+            ApplyDashPhysics();
+            return;
+        }
+        
+        PreFallDamage();
         
         IsGrounded();
 
+        FallDamage();
+        
         IsSprinting();
 
         IsCrouching();
@@ -97,6 +117,42 @@ public partial class Player
 
         input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
         input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
+
+        if (InputHelper.GetKeyDown(KeyCode.B, 0.5f))
+        {
+            BeginDash();
+        }
+    }
+
+    private void BeginDash()
+    {
+        dashing = true;
+        dashVelocity = new Vector2(input.x, input.y);
+        dashVelocity = dashVelocity == Vector2.zero ? Vector2.up : dashVelocity;
+        dashed = Time.time;
+    }
+
+    private void ApplyDashPhysics()
+    {
+        if (Time.time - dashed > dashTime)
+        {
+            EndDash();
+            return;
+        }
+        
+        characterController.Move((transform.forward * dashVelocity.y + transform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime));
+    }
+    
+    private void EndDash()
+    {
+        dashing = false;
+    }
+    
+    private void PreFallDamage()
+    {
+        wasGrounded = isGrounded;
+        if (verticalVelocity > -30) return;
+        fallDamage = (int)(fallDamageMultiplier * verticalVelocity);
     }
     
     private void IsGrounded()
@@ -106,6 +162,13 @@ public partial class Player
         if (isGrounded && verticalVelocity < 0) verticalVelocity = -1f;
     }
 
+    private void FallDamage()
+    {
+        if (wasGrounded || !isGrounded || fallDamage == 0) return;
+        TakeDamageServerRpc(-fallDamage);
+        fallDamage = 0;
+    }
+    
     private void IsSprinting()
     {
         if (gameOptions.toggleSprint)
