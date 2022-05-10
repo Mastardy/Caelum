@@ -35,6 +35,12 @@
         },
         {
             "m_Id": "0cb6d944ec994b969c695649ac06a692"
+        },
+        {
+            "m_Id": "f38c1fdf8b5e445792d6baabc9c42fc9"
+        },
+        {
+            "m_Id": "8942b43b0e1149ed98cbea7d0d8c8757"
         }
     ],
     "m_Keywords": [],
@@ -2721,6 +2727,28 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "8942b43b0e1149ed98cbea7d0d8c8757",
+    "m_Guid": {
+        "m_GuidSerialized": "00b82756-7fa1-4c11-9c5d-b7a4ec90e63d"
+    },
+    "m_Name": "Use Normal",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Use Normal",
+    "m_DefaultReferenceName": "_Use_Normal",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "8ddb49ed408e4550bc6e69041c34cb80",
     "m_Id": 1,
@@ -4371,6 +4399,12 @@
             "m_Id": "025adb26a05243a38d2b13656db8b4fa"
         },
         {
+            "m_Id": "8942b43b0e1149ed98cbea7d0d8c8757"
+        },
+        {
+            "m_Id": "f38c1fdf8b5e445792d6baabc9c42fc9"
+        },
+        {
             "m_Id": "c727f3ed78a94b35aa2117ff59a7c97d"
         },
         {
@@ -4405,6 +4439,35 @@
     },
     "m_Labels": [],
     "m_Channel": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "f38c1fdf8b5e445792d6baabc9c42fc9",
+    "m_Guid": {
+        "m_GuidSerialized": "e5a18312-20b4-44e9-ac24-7199c937fd8d"
+    },
+    "m_Name": "Normal",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Normal",
+    "m_DefaultReferenceName": "_Normal",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
