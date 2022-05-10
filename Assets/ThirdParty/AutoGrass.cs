@@ -6,7 +6,7 @@ using UnityEngine;
 public class AutoGrass : MonoBehaviour
 {
     public bool Place;
-    public Terrain terrain;
+    public Terrain[] terrains;
 
     [SerializeField] private int detailStrength = 10; //A fair value to make the grass thick and luscious
 
@@ -19,12 +19,15 @@ public class AutoGrass : MonoBehaviour
         if (Place)
         {
             Place = false;
-            PlaceGrass();
+            for(int i = 0; i < terrains.Length; i++)
+            {
+                PlaceGrass(terrains[i]);
+            }
         }
     }
 
     // Use this for initialization
-    private void PlaceGrass()
+    private void PlaceGrass(Terrain terrain)
     {
         Random.InitState(seed);
 
