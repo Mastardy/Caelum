@@ -25,6 +25,8 @@ public partial class Player
     private static readonly int bowCache = Animator.StringToHash("Bow");
     private static readonly int drawbowCache = Animator.StringToHash("Draw");
     private static readonly int shootCache = Animator.StringToHash("Shoot");
+    private static readonly int grapplingCache = Animator.StringToHash("Grappling");
+    private static readonly int grapplingPullCache = Animator.StringToHash("GrapplingPull");
 
     private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
@@ -150,7 +152,13 @@ public partial class Player
         firstPersonAnimator.SetBool(bowCache, equip);
         canAimAnim = equip;
     }
-    
+
+    private void AnimatorEquipGrappling(bool equip)
+    {
+        firstPersonAnimator.SetBool(grapplingCache, equip);
+        AnimEquip(equip);
+    }
+
     private void AnimatorAim(bool aim)
     {
         animAim = aim;
@@ -194,6 +202,16 @@ public partial class Player
         bowAnimator.SetTrigger(shootCache);
     }
 
+    private void AnimatorShootGrappling()
+    {
+        firstPersonAnimator.SetTrigger(shootCache);
+    }
+
+    private void AnimatorPullGrappling(bool pull)
+    {
+        firstPersonAnimator.SetBool(grapplingPullCache, pull);
+    }
+
     private void AnimatorCollect()
     {
         SetLeftArmWeight(1);
@@ -210,6 +228,11 @@ public partial class Player
     public void SetLeftArmWeight(float w)
     {
         firstPersonAnimator.SetLayerWeight(2, w);
+    }
+
+    public void SetRightArmWeight(float w)
+    {
+        firstPersonAnimator.SetLayerWeight(1, w);
     }
 
     private static float Map(float value, float min, float max)
