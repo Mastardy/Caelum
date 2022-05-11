@@ -39,9 +39,16 @@ public partial class Player : NetworkBehaviour
 
                 AnimatorStart();
                 
-                Invoke(nameof(SpawnPlayer), 0.1f);
+                Invoke(nameof(LateStart), 0.1f);
             }
         }
+    }
+
+    private void LateStart()
+    {
+        SpawnPlayer();
+        GiveItemClientRpc("axe_wood", 1);
+        GiveItemClientRpc("pickaxe_wood", 1);
     }
 
     private void FixedUpdate()
