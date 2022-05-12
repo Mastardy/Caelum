@@ -136,6 +136,10 @@ public partial class Player : NetworkBehaviour
             
             StatusUpdate();
             
+            if(Time.time - lastSafePosition > safePositionTimer) CalculateSafePosition();
+            
+            if(currentHealth.Value < 1) RespawnPlayer();
+            
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
                 isGrounded, xRotation, verticalVelocity);
         }

@@ -157,7 +157,8 @@ public partial class Player
     
     private void IsGrounded()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        var sideSize = characterController.radius * transform.localScale.x;
+        isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), transform.rotation, groundMask);
 
         if (isGrounded && verticalVelocity < 0) verticalVelocity = -1f;
     }

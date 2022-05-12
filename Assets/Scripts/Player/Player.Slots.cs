@@ -3,7 +3,7 @@ using UnityEngine;
 
 public partial class Player
 {
-    private bool handIsEmpty;
+    private bool handIsEmpty = true;
     private int lastSlot;
     private int currentSlot;
     private int CurrentSlot
@@ -16,80 +16,27 @@ public partial class Player
                 else UnequipItem();
                 return;
             }
-
+            
+            hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
+            hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
             lastSlot = currentSlot;
             currentSlot = value;
+            InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
+            hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem(currentItem));
             
             EquipItem();
         }
     }
     
-    private void UnequipItem()
+    private void EquipItem()
     {
-        handIsEmpty = true;
-        
-        InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
-
-        if (currentItem == null)
+        if (!handIsEmpty)
         {
-            currentItem = hotbars[lastSlot].slot.inventoryItem;
-
-            if (currentItem == null) return;
-
-            switch (currentItem.itemTag)
-            {
-                case ItemTag.Axe:
-                    AnimatorEquipTool(false);
-                    break;
-                case ItemTag.Pickaxe:
-                    AnimatorEquipTool(false);
-                    break;
-                case ItemTag.Weapon:
-                    switch (currentItem.itemName)
-                    {
-                        case "sword":
-                            AnimatorEquipSword(false);
-                            break;
-                        case "spear":
-                            AnimatorEquipSpear(false);
-                            break;
-                    }
-                    break;
-                case ItemTag.RangeWeapon:
-                    AnimatorEquipBow(false);
-                    break;
-            }
-            
+            UnequipItem(hotbars[lastSlot].slot.inventoryItem);
+            Invoke(nameof(EquipItem), 0.1f);
             return;
         }
         
-        switch (currentItem.itemTag)
-        {
-            case ItemTag.Axe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Pickaxe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Weapon:
-                switch (currentItem.itemName)
-                {
-                    case "sword":
-                        AnimatorEquipSword(false);
-                        break;
-                    case "spear":
-                        AnimatorEquipSpear(false);
-                        break;
-                }
-                break;
-            case ItemTag.RangeWeapon:
-                AnimatorEquipBow(false);
-                break;
-        }
-    }
-    
-    private void EquipItem()
-    {
         handIsEmpty = false;
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
@@ -99,6 +46,8 @@ public partial class Player
             UnequipItem();
             return;
         }
+
+        hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
         
         switch (currentItem.itemTag)
         {
@@ -130,6 +79,71 @@ public partial class Player
                 break;
             default:
                 Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
+                break;
+        }
+    }
+
+    private void UnequipItem(InventoryItem item)
+    {
+        handIsEmpty = true;
+
+        switch (item.itemTag)
+        {
+            case ItemTag.Axe:
+                AnimatorEquipTool(false);
+                break;
+            case ItemTag.Pickaxe:
+                AnimatorEquipTool(false);
+                break;
+            case ItemTag.Weapon:
+                switch (item.itemName)
+                {
+                    case "sword":
+                        AnimatorEquipSword(false);
+                        break;
+                    case "spear":
+                        AnimatorEquipSpear(false);
+                        break;
+                }
+
+                break;
+            case ItemTag.RangeWeapon:
+                AnimatorEquipBow(false);
+                break;
+        }
+    }
+
+    private void UnequipItem()
+    {
+        handIsEmpty = true;
+
+        InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
+        InventoryItem lastItem = hotbars[currentSlot].slot.inventoryItem;
+
+        if (!currentItem && !lastItem) return;
+
+        switch (currentItem ? currentItem.itemTag : lastItem.itemTag)
+        {
+            case ItemTag.Axe:
+                AnimatorEquipTool(false);
+                break;
+            case ItemTag.Pickaxe:
+                AnimatorEquipTool(false);
+                break;
+            case ItemTag.Weapon:
+                switch (currentItem.itemName)
+                {
+                    case "sword":
+                        AnimatorEquipSword(false);
+                        break;
+                    case "spear":
+                        AnimatorEquipSpear(false);
+                        break;
+                }
+
+                break;
+            case ItemTag.RangeWeapon:
+                AnimatorEquipBow(false);
                 break;
         }
     }
