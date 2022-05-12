@@ -1,8 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class Player
 {
+    private Dictionary<string, WeaponItem> weaponItems = new();
+    [SerializeField] private Transform weaponBone;
+
+    private GameObject currentWeapon;
     private bool handIsEmpty = true;
     private int lastSlot;
     private int currentSlot;
@@ -33,7 +38,7 @@ public partial class Player
         if (!handIsEmpty)
         {
             UnequipItem(hotbars[lastSlot].slot.inventoryItem);
-            Invoke(nameof(EquipItem), 0.1f);
+            Invoke(nameof(EquipItem), 0.3f);
             return;
         }
         
@@ -48,6 +53,11 @@ public partial class Player
         }
 
         hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
+
+        if (currentItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Weapon or ItemTag.RangeWeapon)
+        {
+            currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, weaponBone);
+        }
         
         switch (currentItem.itemTag)
         {
@@ -86,7 +96,9 @@ public partial class Player
     private void UnequipItem(InventoryItem item)
     {
         handIsEmpty = true;
-
+        
+        Invoke(nameof(UnequipWeapon), 0.3f);
+        
         switch (item.itemTag)
         {
             case ItemTag.Axe:
@@ -116,6 +128,8 @@ public partial class Player
     private void UnequipItem()
     {
         handIsEmpty = true;
+        
+        Invoke(nameof(UnequipWeapon), 0.3f);
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         InventoryItem lastItem = hotbars[currentSlot].slot.inventoryItem;
@@ -146,5 +160,10 @@ public partial class Player
                 AnimatorEquipBow(false);
                 break;
         }
+    }
+
+    private void UnequipWeapon()
+    {
+        if(currentWeapon) Destroy(currentWeapon);
     }
 }

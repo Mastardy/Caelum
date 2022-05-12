@@ -7,7 +7,7 @@ public partial class Player
 {
     private bool inInventory;
     private Dictionary<string, InventoryItem> inventoryItems = new();
-    
+
     /// <summary>
     /// Hides the Inventory
     /// </summary>
@@ -134,9 +134,10 @@ public partial class Player
     {
         InventoryItem[] invItems = Resources.LoadAll<InventoryItem>("InventoryItems");
         FoodItem[] allFoodItems = Resources.LoadAll<FoodItem>("FoodItems");
+        WeaponItem[] allWeaponItems = Resources.LoadAll<WeaponItem>("Weapons");
         cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes");
         CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
-
+        
         foreach (var invItem in invItems)
         {
             inventoryItems.Add(invItem.itemName, invItem);
@@ -145,6 +146,11 @@ public partial class Player
         foreach (var foodItem in allFoodItems)
         {
             foodItems.Add(foodItem.itemName, foodItem);
+        }
+
+        foreach (var weaponItem in allWeaponItems)
+        {
+            weaponItems.Add(weaponItem.itemName, weaponItem);
         }
     }
 }

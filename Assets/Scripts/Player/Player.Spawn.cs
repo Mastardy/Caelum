@@ -10,7 +10,7 @@ public partial class Player
     [SerializeField] private float safePositionTimer = 2;
     [SerializeField] private Vector3 safePosition;
     private float lastSafePosition;
-    
+
     private void CalculateSafePosition()
     {
         if (isGrounded) safePosition = groundCheck.position;
