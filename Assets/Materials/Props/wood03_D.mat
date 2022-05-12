@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-345546629888537603
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GrandphaBed
-  m_Shader: {fileID: -6465566751694194690, guid: 281c7bb4b9a0a714c91e81251acf932a,
+  m_Name: wood03_D
+  m_Shader: {fileID: -6465566751694194690, guid: affa4bebbdcd20d4aaac4cb2e17c5a47,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,19 +34,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Black_Normal:
-        m_Texture: {fileID: 2800000, guid: 0901d93ebd2d4af4e902fc53909fd5df, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Black_Texture:
-        m_Texture: {fileID: 2800000, guid: e0534ad843c44824d89ea291549bcfa2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 144840756aa0568478eeba38e4fe689f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ff3a59ea96de2e04b8bb72fd35870906, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -52,20 +57,16 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Green_Normal:
-        m_Texture: {fileID: 2800000, guid: 0901d93ebd2d4af4e902fc53909fd5df, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Green_Texture:
-        m_Texture: {fileID: 2800000, guid: e0534ad843c44824d89ea291549bcfa2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 144840756aa0568478eeba38e4fe689f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: ff3a59ea96de2e04b8bb72fd35870906, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -76,23 +77,11 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Red_Normal:
-        m_Texture: {fileID: 2800000, guid: 0901d93ebd2d4af4e902fc53909fd5df, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Red_Texture:
-        m_Texture: {fileID: 2800000, guid: e0534ad843c44824d89ea291549bcfa2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _White_Normal:
-        m_Texture: {fileID: 2800000, guid: ff3a59ea96de2e04b8bb72fd35870906, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _White_Texture:
+    - _Texture:
         m_Texture: {fileID: 2800000, guid: 144840756aa0568478eeba38e4fe689f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -111,10 +100,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _Black_Metalness: 0
-    - _Black_Normal_Str: 1
-    - _Black_Smoothness: 0
-    - _Black_Use_Color: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -128,62 +113,35 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Green_Metalness: 0
-    - _Green_Normal_Str: 1
-    - _Green_Smoothness: 0
-    - _Green_Use_Color: 0
     - _Metallic: 0
+    - _Normal_Strength: 0.62
     - _OcclusionStrength: 1
-    - _Offset: 0.422
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ramp_Smoothness: 0.188
     - _ReceiveShadows: 1
-    - _Red_Metalness: 0
-    - _Red_Normal_Str: 0.6
-    - _Red_Smoothness: 0
-    - _Red_Use_Color: 0
-    - _Rim_Brightness: 2.06
-    - _Rim_Power: 5
-    - _Rim_Step: 0.501
-    - _Smoothness: 0.5
+    - _RimBrightness: 1
+    - _RimPower: 5
+    - _RimStep: 1
+    - _Saturation: 1
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _Toon_Strength: 0.34
-    - _White_Metalness: 0
-    - _White_Normal_Str: 0.24
-    - _White_Smoothness: 0
-    - _White_Use_Color: 0
+    - _ToonRampOffset: 0.3
+    - _ToonRampSmoothness: 0
+    - _Toon_Strength: 0.3
+    - _Use_Normal: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Black_Color: {r: 0.31659, g: 0.509434, b: 0.29556784, a: 0}
-    - _Black_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
+    - _ColorMultiply: {r: 0.532, g: 0.3346152, b: 0.294196, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Green_Color: {r: 0.9433962, g: 0.88117594, b: 0.81434673, a: 0}
-    - _Green_Tilling: {r: 3, g: 3, b: 0, a: 0}
-    - _Red_Color: {r: 0.47729093, g: 0.603, b: 0.461898, a: 0}
-    - _Red_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tint: {r: 1, g: 1, b: 1, a: 0}
-    - _White_Color: {r: 0.574, g: 0.3854437, b: 0.25138682, a: 0}
-    - _White_Tilling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _ToonRampTinting: {r: 0.8431373, g: 0.8431373, b: 0.8431373, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3421513188668220986
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
