@@ -44,6 +44,7 @@ public partial class Player
     private int animCombo = 1;
 
     private SkinnedMeshRenderer[] playerSkinnedMeshRenderers;
+    private SkinnedMeshRenderer[] playerViewModelSkinnedMeshRenderers;
     
     public bool CanAim
     {
@@ -53,7 +54,10 @@ public partial class Player
 
     private void EnableFirstPerson()
     {
-        firstPersonAnimator.gameObject.SetActive(true);
+        foreach (var smr in playerViewModelSkinnedMeshRenderers)
+        {
+            smr.enabled = true;
+        }
         
         foreach (var smr in playerSkinnedMeshRenderers)
         {
@@ -65,7 +69,10 @@ public partial class Player
     
     private void DisableFirstPerson()
     {
-        firstPersonAnimator.gameObject.SetActive(false);
+        foreach (var smr in playerViewModelSkinnedMeshRenderers)
+        {
+            smr.enabled = false;
+        }
         
         foreach (var smr in playerSkinnedMeshRenderers)
         {
@@ -78,6 +85,7 @@ public partial class Player
     private void AnimatorStart()
     {
         playerSkinnedMeshRenderers = thirdPersonModel.GetComponentsInChildren<SkinnedMeshRenderer>();
+        playerViewModelSkinnedMeshRenderers = firstPersonAnimator.gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
         EnableFirstPerson();
     }
 
