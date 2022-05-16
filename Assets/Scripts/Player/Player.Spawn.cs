@@ -9,6 +9,8 @@ public partial class Player
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private float safePositionTimer = 2;
     [SerializeField] private Vector3 safePosition;
+
+    private float respawnTime;
     private float lastSafePosition;
 
     private void CalculateSafePosition()
@@ -68,8 +70,10 @@ public partial class Player
         currentHealth.Value = maxHealth;
         currentHunger = maxHunger;
         currentThirst = maxThirst;
-        
+
         transform.position = spawnPosition;
+
+        respawnTime = Time.time;
     }
 
     private void OnDrawGizmos()

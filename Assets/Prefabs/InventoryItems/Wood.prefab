@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c073ed89c07b634c8d0d6a33994a3b6, type: 2}
+  - {fileID: 2100000, guid: 9fbee80298d8c5f4182ba556dfc22e5a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -114,6 +114,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItem: {fileID: 11400000, guid: 94d70b9f0c36b5e4ea79b7635109cc96, type: 2}
+  amount: 1
+  nearResources: []
+  groundItemLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8955440015304406929
 MonoBehaviour:
   m_ObjectHideFlags: 0

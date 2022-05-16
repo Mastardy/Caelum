@@ -63,6 +63,19 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             HUDUpdate();
+
+            if (Time.time - respawnTime < 0.1f)
+            {
+                return;
+            }
+            
+            if(Time.time - lastSafePosition > safePositionTimer) CalculateSafePosition();
+
+            if (currentHealth.Value < 1)
+            {
+                RespawnPlayer();
+                return;
+            }
             
             if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
             {
@@ -73,11 +86,6 @@ public partial class Player : NetworkBehaviour
             if (InputHelper.GetKeyDown(KeyCode.J, 0.2f))
             {
                 BeginGrapple();
-            }
-            
-            if (InputHelper.GetKeyDown(KeyCode.J))
-            {
-                
             }
             
             if (!inInventory && !inCrafting && !inOven)
@@ -115,7 +123,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
             
-            if (car != null)
+            if (car)
             {
                 CarMovement();
 
@@ -135,10 +143,6 @@ public partial class Player : NetworkBehaviour
             EyeTraceInfo();
             
             StatusUpdate();
-            
-            if(Time.time - lastSafePosition > safePositionTimer) CalculateSafePosition();
-            
-            if(currentHealth.Value < 1) RespawnPlayer();
             
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
                 isGrounded, xRotation, verticalVelocity);
