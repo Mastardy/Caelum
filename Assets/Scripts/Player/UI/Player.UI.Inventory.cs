@@ -35,7 +35,7 @@ public partial class Player
     }
     
     [ClientRpc]
-    public void GiveItemClientRpc(string itemName, int amountToAdd = 1)
+    public void GiveItemClientRpc(string itemName, int amountToAdd = 1, float durability = 0)
     {
         int amountAdded = 0;
         
@@ -63,6 +63,7 @@ public partial class Player
             slot.inventoryItem = inventoryItems[itemName];
             slot.image.sprite = slot.inventoryItem.sprite;
             slot.image.enabled = true;
+            slot.Durability = durability;
             
             do
             {
@@ -80,13 +81,13 @@ public partial class Player
         {
             if (inventorySlots[i].GetInstanceID() == inventorySlot.GetInstanceID())
             {
-                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, dropEverything);
+                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, dropEverything, inventorySlots[i].Durability);
             }
         }
     }
     
     [ServerRpc(RequireOwnership = false)]
-    public void DropItemServerRpc(NetworkBehaviourReference ply, string itemName, int slot, int dropAmount, bool dropEverything)
+    public void DropItemServerRpc(NetworkBehaviourReference ply, string itemName, int slot, int dropAmount, bool dropEverything, float durability = 0)
     {
         if (!IsServer) return;
 
@@ -102,6 +103,7 @@ public partial class Player
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
             worldGameObjectInvItem.amount = dropEverything ? dropAmount : 1;
+            worldGameObjectInvItem.durability = durability;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);

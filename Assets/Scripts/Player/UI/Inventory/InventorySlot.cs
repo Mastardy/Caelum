@@ -12,7 +12,9 @@ public class InventorySlot : MonoBehaviour
 
     public UnityEvent OnClear;
     public UnityEvent OnFill;
-
+    public UnityEvent OnDurabilityChange;
+    public UnityEvent OnAmountChange;
+    
     private int amount;
     public int Amount
     {
@@ -21,21 +23,35 @@ public class InventorySlot : MonoBehaviour
         {
             amount = value;
             text.SetText(value == 0 ? "" : value + "x");
+            OnAmountChange.Invoke();
         }
     }
 
+    private float durability;
+
+    public float Durability
+    {
+        get => durability;
+        set
+        {
+            durability = value;
+            OnDurabilityChange.Invoke();            
+        }
+    }
+    
     [HideInInspector] public InventoryItem inventoryItem;
     
     public Image image;
     public TextMeshProUGUI text;
 
-    public void Fill(InventoryItem invItem, Sprite itemSprite, int newAmount)
+    public void Fill(InventoryItem invItem, Sprite itemSprite, int newAmount, float newDurability)
     {
         isEmpty = false;
         inventoryItem = invItem;
         image.enabled = true;
         image.sprite = itemSprite;
         Amount = newAmount;
+        durability = newDurability;
         
         OnFill.Invoke();
     }
@@ -47,6 +63,7 @@ public class InventorySlot : MonoBehaviour
         inventoryItem = null;
         image.sprite = null;
         image.enabled = false;
+        durability = 0;
 
         OnClear.Invoke();
     }

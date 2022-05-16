@@ -101,7 +101,7 @@ public partial class Player
     
     private void EyeTraceInfo()
     {
-        if (lookingAt == null)
+        if (!lookingAt)
         {
             // if(InputHelper.GetKeyDown(KeyCode.T, 0.75f))
             // {
@@ -125,14 +125,15 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                if (hotbars[currentSlot].slot.inventoryItem == null) return;
+                if (!hotbars[currentSlot].slot.inventoryItem) return;
 
                 switch (resource.resourceName)
                 {
                     case "wood":
                         if(hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Axe)
                         {
-                            Debug.Log("madeira");
+                            if (hotbars[currentSlot].slot.Durability <= 0) return;
+                            hotbars[currentSlot].slot.Durability -= 0.1f;
                             AnimatorUseAxe();
                             resource.HitResourceServerRpc(this, 5);
                         }
@@ -140,7 +141,8 @@ public partial class Player
                     case "stone":
                         if (hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Pickaxe)
                         {
-                            Debug.Log("pedra");
+                            if (hotbars[currentSlot].slot.Durability <= 0) return;
+                            hotbars[currentSlot].slot.Durability -= 0.1f;
                             AnimatorUsePickaxe();
                             resource.HitResourceServerRpc(this, 3);
                         }

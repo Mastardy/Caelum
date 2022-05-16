@@ -96,12 +96,12 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                 {
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {
-                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, inventorySlot.Amount);
+                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, inventorySlot.Amount, inventorySlot.Durability);
                         inventorySlot.Clear();
                     }
                     else
                     {
-                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, Mathf.FloorToInt(inventorySlot.Amount / 2f));
+                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, Mathf.FloorToInt(inventorySlot.Amount / 2f), inventorySlot.Durability);
                         inventorySlot.Amount = Mathf.CeilToInt(inventorySlot.Amount / 2f);
                     }
                 }

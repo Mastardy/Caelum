@@ -5,6 +5,7 @@ public class InventoryGroundItem : NetworkBehaviour
 {
     public InventoryItem inventoryItem;
     [HideInInspector] public int amount = 1;
+    [HideInInspector] public float durability;
     [HideInInspector] public Collider[] nearResources;
     [HideInInspector] public LayerMask groundItemLayerMask;
     
@@ -17,7 +18,7 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.GiveItemClientRpc(inventoryItem.itemName, amount);
+            player.GiveItemClientRpc(inventoryItem.itemName, amount, durability);
         }
     }
 
