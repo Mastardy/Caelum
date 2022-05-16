@@ -230,8 +230,8 @@ public partial class Player
         if (input.x == 0)
         {
             if (horizontalVelocity.x is > -0.1f and < 0.1f) horizontalVelocity.x = 0.0f;
-            else if (horizontalVelocity.x < 0) horizontalVelocity.x += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
-            else horizontalVelocity.x -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            else if (horizontalVelocity.x < 0) horizontalVelocity.x += Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            else horizontalVelocity.x -= Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
         else
         {
@@ -244,7 +244,7 @@ public partial class Player
         if (input.y == 0)
         {
             if (horizontalVelocity.y is > -0.1f and < 0.1f) horizontalVelocity.y = 0.0f;
-            else if (horizontalVelocity.y < 0) horizontalVelocity.y += 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
+            else if (horizontalVelocity.y < 0) horizontalVelocity.y += Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
             else horizontalVelocity.y -= 1 * Time.deltaTime * (isGrounded ? accelerationEasing : airAccelerationEasing);
         }
         else
