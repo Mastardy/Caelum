@@ -8,7 +8,6 @@ public partial class Player
     [SerializeField] private Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
-    [SerializeField] private Animator bowAnimator;
     
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int sprintCache = Animator.StringToHash("Sprint");
@@ -28,6 +27,10 @@ public partial class Player
     private static readonly int grapplingCache = Animator.StringToHash("Grappling");
     private static readonly int grapplingPullCache = Animator.StringToHash("GrapplingPull");
 
+    //tps model variables
+    private static readonly int holdToolCache = Animator.StringToHash("HoldTool");
+    private static readonly int useToolCache = Animator.StringToHash("UseTool");
+
     private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone);
@@ -35,8 +38,9 @@ public partial class Player
     private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
 
-    //debug
     private float layerWeight;
     private bool canAimAnim;
     private bool animAim;
@@ -91,7 +95,7 @@ public partial class Player
 
     [ServerRpc(RequireOwnership = false)]
     private void NetworkAnimatorUpdateServerRpc(bool crouched, float moveMag, float xInput, float yInput,
-        bool grounded, float rotationX, float velocityY)
+        bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool)
     {
         if (!IsServer) return;
         
@@ -102,16 +106,20 @@ public partial class Player
         isGroundedNet.Value = grounded;
         xRotationNet.Value = rotationX;
         velocityYNet.Value = velocityY;
+        holdToolNet.Value = holdTool;
+        useToolNet.Value = useTool;
     }
 
     private void AnimatorUpdate()
     {
-        thirdPersonAnimator.SetFloat(speedCache, isCrouchedNet.Value ? moveMagnitudeNet.Value : Map(moveMagnitudeNet.Value, 0, 5));
+        thirdPersonAnimator.SetFloat(speedCache, moveMagnitudeNet.Value);
         thirdPersonAnimator.SetFloat(directionCache, Map(Mathf.Atan2(inputXNet.Value, inputYNet.Value) * Mathf.Rad2Deg, -180, 180));
         thirdPersonAnimator.SetBool(crouchCache, isCrouchedNet.Value);
         thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
+        thirdPersonAnimator.SetBool(holdToolCache, holdToolNet.Value);
+        thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
 
         //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0);
@@ -166,7 +174,7 @@ public partial class Player
         firstPersonAnimator.SetBool(grapplingCache, equip);
         AnimEquip(equip);
     }
-
+    /*
     private void AnimatorAim(bool aim)
     {
         animAim = aim;
@@ -178,7 +186,7 @@ public partial class Player
         }
 
     }
-
+    */
     private void AnimatorUseSpear()
     {
         firstPersonAnimator.SetTrigger("UseSpear");
@@ -203,13 +211,13 @@ public partial class Player
                 break;
         }
     }
-
+    /*
     private void AnimatorShootBow()
     {
         firstPersonAnimator.SetTrigger(shootCache);
         bowAnimator.SetTrigger(shootCache);
     }
-
+    */
     private void AnimatorShootGrappling()
     {
         firstPersonAnimator.SetTrigger(shootCache);
@@ -243,6 +251,11 @@ public partial class Player
         firstPersonAnimator.SetLayerWeight(1, w);
     }
 
+    public void SetTPSArmsWeight(float w)
+    {
+        thirdPersonAnimator.SetLayerWeight(2, w);
+    }
+
     private static float Map(float value, float min, float max)
     {
         return (value - min) * 1f / (max - min);
@@ -250,7 +263,7 @@ public partial class Player
 
     private bool AnimEquip(bool e)
     {
-        //Essa fun��o trata da corotina que faz o blend da layer do animator baseado se equipou ou desequipou
+        //Essa funcao trata da corotina que faz o blend da layer do animator baseado se equipou ou desequipou
         if (!e)
         {
             StopAllCoroutines();

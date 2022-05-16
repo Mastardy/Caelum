@@ -47,8 +47,10 @@ public partial class Player : NetworkBehaviour
     private void LateStart()
     {
         SpawnPlayer();
-        GiveItemClientRpc("axe_wood", 1, 1);
-        GiveItemClientRpc("pickaxe_wood", 1, 1);
+        GiveItemClientRpc("axe_stone", 1, 1);
+        GiveItemClientRpc("axe_iron", 1, 1);
+        GiveItemClientRpc("pickaxe_stone", 1, 1);
+        GiveItemClientRpc("pickaxe_iron", 1, 1);
     }
 
     private void FixedUpdate()
@@ -152,9 +154,17 @@ public partial class Player : NetworkBehaviour
             EyeTraceInfo();
             
             StatusUpdate();
-            
+
+            //ANDRÉ, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
+            bool holdTool = false;
+            if (!handIsEmpty)
+            {
+                holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe;
+                thirdPersonAnimator.SetLayerWeight(2, 1);
+            }
+
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
-                isGrounded, xRotation, verticalVelocity);
+                isGrounded, xRotation, verticalVelocity, holdTool, false);
         }
 
         AnimatorUpdate();

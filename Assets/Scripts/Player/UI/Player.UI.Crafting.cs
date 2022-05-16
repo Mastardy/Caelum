@@ -69,7 +69,7 @@ public partial class Player
                 break;
             case "wooden":
                 if (GetItemAmount("wood") >= 15) RemoveItem("wood", 15);
-                GiveItemClientRpc("pickaxe_wood");
+                GiveItemClientRpc("pickaxe_iron");
                 break;
             default:
                 Debug.Log("Unknown item - trying to craft something that doesn't exist?");
