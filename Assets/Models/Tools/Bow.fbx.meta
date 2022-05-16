@@ -18,7 +18,17 @@ ModelImporter:
   - first:
       74: 3855788336597040848
     second: BowArmature|BowIDrawHold
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope
+    second: {fileID: 2100000, guid: abcd932a44748d341ba3c99f6b8f023b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 6b655897c7d384947adde9bbbc434c67, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
