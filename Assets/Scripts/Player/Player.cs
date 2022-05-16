@@ -47,8 +47,8 @@ public partial class Player : NetworkBehaviour
     private void LateStart()
     {
         SpawnPlayer();
-        GiveItemClientRpc("axe_wood", 1);
-        GiveItemClientRpc("pickaxe_wood", 1);
+        GiveItemClientRpc("axe_wood", 1, 1);
+        GiveItemClientRpc("pickaxe_wood", 1, 1);
     }
 
     private void FixedUpdate()
@@ -87,7 +87,16 @@ public partial class Player : NetworkBehaviour
             {
                 BeginGrapple();
             }
-            
+
+            if (InputHelper.GetKeyDown(KeyCode.K, 0.1f))
+            {
+                BeginGrapplePlus();
+            }
+            else if (Input.GetKeyUp(KeyCode.K))
+            {
+                EndGrapplePlus();
+            }
+
             if (!inInventory && !inCrafting && !inOven)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))

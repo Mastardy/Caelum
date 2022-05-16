@@ -10,6 +10,9 @@ using UnityEngine.UI;
 public partial class Player
 {
     private bool inChat;
+    [SerializeField] private Image chatBoxBackground;
+    [SerializeField] private GameObject chatScrollBar;
+    [SerializeField] private GameObject chatEntries;
     
     /// <summary>
     /// Hides the Chat
@@ -21,8 +24,16 @@ public partial class Player
         takeInput = true;
         EventSystem.current.SetSelectedGameObject(null);
         chatBox.SetActive(false);
+        chatBoxBackground.enabled = false;
+        chatScrollBar.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+
+        foreach (var chatEntry in chatEntries.GetComponentsInChildren<ChatEntry>(true))
+        {
+            if(!chatEntry.active) chatEntry.gameObject.SetActive(false);
+            chatEntry.OnDisabling.RemoveAllListeners();
+        }
     }
 
     /// <summary>
@@ -34,9 +45,25 @@ public partial class Player
         inChat = true;
         takeInput = false;
         chatBox.SetActive(true);
+        chatBoxBackground.enabled = true;
+        chatScrollBar.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
         EventSystem.current.SetSelectedGameObject(chatBox);
+
+        foreach (var chatEntry in chatEntries.GetComponentsInChildren<ChatEntry>(true))
+        {
+            chatEntry.gameObject.SetActive(true);
+            if (chatEntry.active)
+            {
+                Debug.Log("fuck you");
+                var thisChatEntry = chatEntry;
+                chatEntry.OnDisabling.AddListener(() =>
+                {
+                    thisChatEntry.gameObject.SetActive(true);
+                });
+            }
+        }
     }
     
     /// <summary>
@@ -91,7 +118,7 @@ public partial class Player
     {
         var chatEntry = Instantiate(chatEntryPrefab, chatPanel);
 
-        chatEntry.GetComponentInChildren<TextMeshProUGUI>().text = $"<color=#55FF55>{clientName}:</color> {message}";
+        chatEntry.GetComponentInChildren<TextMeshProUGUI>().text = $"<color=#BC935F>{clientName}:</color> {message}";
 
         var avatar = GetAvatar(client).Result;
 
