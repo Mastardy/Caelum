@@ -290,9 +290,9 @@
                 "useFalloffForCustomBrushes": false,
                 "invertFalloff": false,
                 "selectedBrushTab": "All",
-                "selectedBrushId": "_DefaultFalloffBrushName",
-                "brushSize": 35.0,
-                "brushSpeed": 100.0,
+                "selectedBrushId": "73f0185efb84025498f560d45340df93",
+                "brushSize": 15.0,
+                "brushSpeed": 74.4000015258789,
                 "brushRoundness": 1.0,
                 "brushAngle": 0.0,
                 "brushFalloff": {
@@ -341,7 +341,7 @@
     "perlinNoiseMin": 0.0,
     "perlinNoiseMax": 1.0,
     "generateRampCurveInXAxis": false,
-    "generateHeight": 930.0,
+    "generateHeight": 250.0,
     "flattenMode": 1,
     "setHeight": 250.0,
     "boxFilterSize": 2,
@@ -351,6 +351,6 @@
     "mouldToolBoxFilterSize": 3,
     "mouldAllIterations": 3,
     "targetOpacity": 1.0,
-    "selectedTextureIndex": 0,
+    "selectedTextureIndex": 4,
     "mainDirectory": "Assets/ThirdParty/TerrainFormer/"
 }

@@ -886,7 +886,6 @@ MonoBehaviour:
   thirdPersonAnimator: {fileID: 5910228235231975394}
   thirdPersonModel: {fileID: 1413831994091308485}
   firstPersonAnimator: {fileID: 4022323238140545911}
-  bowAnimator: {fileID: 0}
   playerCamera: {fileID: 3176719483760028903}
   lineRenderer: {fileID: 8626793073339585499}
   grappleLayer:
@@ -924,7 +923,7 @@ MonoBehaviour:
   thirstTickRate: 0.2
   maxThirst: 100
   starvingTickRate: 2
-  maxHealth: 100
+  maxHealth: 10000
   currentHealth:
     m_InternalValue: 100
   chatBoxBackground: {fileID: 3803734834830220896}
