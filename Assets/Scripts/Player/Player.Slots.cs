@@ -5,7 +5,10 @@ using UnityEngine;
 public partial class Player
 {
     private Dictionary<string, WeaponItem> weaponItems = new();
-    [SerializeField] private Transform weaponBone;
+    [SerializeField] private Transform toolBone;
+    [SerializeField] private Transform spearBone;
+    [SerializeField] private Transform bowBone;
+    [SerializeField] private Transform swordBone;
 
     private GameObject currentWeapon;
     private bool handIsEmpty = true;
@@ -54,9 +57,21 @@ public partial class Player
 
         hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
 
-        if (currentItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Weapon or ItemTag.RangeWeapon)
+        switch (currentItem.itemTag)
         {
-            currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, weaponBone);
+            case ItemTag.Axe:
+            case ItemTag.Pickaxe:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, toolBone);
+                break;
+            case ItemTag.Sword:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, swordBone);
+                break;
+            case ItemTag.Bow:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, bowBone);
+                break;
+            case ItemTag.Spear:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, spearBone);
+                break;
         }
         
         switch (currentItem.itemTag)
@@ -73,19 +88,15 @@ public partial class Player
             case ItemTag.Pickaxe:
                 AnimatorEquipTool(true);
                 break;
-            case ItemTag.Weapon:
-                switch (currentItem.itemName)
-                {
-                    case "sword":
-                        AnimatorEquipSword(true);
-                        break;
-                    case "spear":
-                        AnimatorEquipSpear(true);
-                        break;
-                }
+            case ItemTag.Sword:
+                AnimatorEquipSword(true);
                 break;
-            case ItemTag.RangeWeapon:
+            case ItemTag.Spear:
+                AnimatorEquipSpear(true);
+                break;
+            case ItemTag.Bow:
                 AnimatorEquipBow(true);
+                bowAnimator = currentWeapon.GetComponent<Animator>();
                 break;
             default:
                 Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
@@ -107,19 +118,14 @@ public partial class Player
             case ItemTag.Pickaxe:
                 AnimatorEquipTool(false);
                 break;
-            case ItemTag.Weapon:
-                switch (item.itemName)
-                {
-                    case "sword":
-                        AnimatorEquipSword(false);
-                        break;
-                    case "spear":
-                        AnimatorEquipSpear(false);
-                        break;
-                }
-
+            case ItemTag.Sword:
+                AnimatorEquipSword(false);
                 break;
-            case ItemTag.RangeWeapon:
+            case ItemTag.Spear:
+                AnimatorEquipSpear(false);
+                break;
+            case ItemTag.Bow:
+                bowAnimator = null;
                 AnimatorEquipBow(false);
                 break;
         }
@@ -144,19 +150,14 @@ public partial class Player
             case ItemTag.Pickaxe:
                 AnimatorEquipTool(false);
                 break;
-            case ItemTag.Weapon:
-                switch (currentItem.itemName)
-                {
-                    case "sword":
-                        AnimatorEquipSword(false);
-                        break;
-                    case "spear":
-                        AnimatorEquipSpear(false);
-                        break;
-                }
-
+            case ItemTag.Sword:
+                AnimatorEquipSword(false);
                 break;
-            case ItemTag.RangeWeapon:
+            case ItemTag.Spear:
+                AnimatorEquipSpear(false);
+                break;
+            case ItemTag.Bow:
+                bowAnimator = null;
                 AnimatorEquipBow(false);
                 break;
         }

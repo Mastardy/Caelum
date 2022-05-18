@@ -32,8 +32,14 @@ public class PlayerAnimationEvents : MonoBehaviour
         player.SetRightArmWeight(0);
     }
 
-    public void CanAim(bool canAim)
+    public void CanAim(int canAim)
     {
-        player.CanAim = canAim;
+        switch (canAim)
+        {
+            case 0: player.CanAim = false; break;
+            case 1: player.CanAim = true; break;
+            default: player.CanAim = false; break;
+
+        }
     }
 }

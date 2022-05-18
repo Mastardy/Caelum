@@ -51,6 +51,8 @@ public partial class Player : NetworkBehaviour
         GiveItemClientRpc("axe_iron", 1, 1);
         GiveItemClientRpc("pickaxe_stone", 1, 1);
         GiveItemClientRpc("pickaxe_iron", 1, 1);
+        GiveItemClientRpc("bow", 1, 1);
+        GiveItemClientRpc("sword", 1, 1);
     }
 
     private void FixedUpdate()
@@ -159,8 +161,13 @@ public partial class Player : NetworkBehaviour
             bool holdTool = false;
             if (!handIsEmpty)
             {
-                holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe;
-                thirdPersonAnimator.SetLayerWeight(2, 1);
+                holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Sword;
+                if(holdTool) thirdPersonAnimator.SetLayerWeight(2, 1);
+
+                if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Bow)
+                {
+                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
+                }
             }
 
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 

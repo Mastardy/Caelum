@@ -31,7 +31,7 @@ public class HotbarSlot : MonoBehaviour
     {
         image.enabled = true;
         image.sprite = slot.image.sprite;
-        if (slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Weapon or ItemTag.RangeWeapon)
+        if (slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Sword or ItemTag.Bow or ItemTag.Spear)
         {
             durability.SetActive(true);
             durabilityForeground.fillAmount = 0.5f * slot.Durability;

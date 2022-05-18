@@ -8,6 +8,7 @@ public partial class Player
     [SerializeField] private Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
+    private Animator bowAnimator;
     
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int sprintCache = Animator.StringToHash("Sprint");
@@ -118,8 +119,6 @@ public partial class Player
         thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
-        thirdPersonAnimator.SetBool(holdToolCache, holdToolNet.Value);
-        thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
 
         //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0);
@@ -127,13 +126,19 @@ public partial class Player
         if(isGrounded) firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
-        
-        //View model tools and weapons variables
-        firstPersonAnimator.SetBool(aimCache, animAim);
 
-        //layer weight corountine
+        //tools and weapons variables
+        thirdPersonAnimator.SetBool(holdToolCache, holdToolNet.Value);
+        thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
+        firstPersonAnimator.SetBool(aimCache, animAim);
+        thirdPersonAnimator.SetBool(aimCache, animAim);
+
+        //layer weight corountine for fps left arm
         if (animCoroutine)
+        {
             firstPersonAnimator.SetLayerWeight(1, layerWeight);
+            thirdPersonAnimator.SetLayerWeight(3, layerWeight);
+        }
     }
 
     private void AnimatorEquipTool(bool equip)
@@ -174,7 +179,7 @@ public partial class Player
         firstPersonAnimator.SetBool(grapplingCache, equip);
         AnimEquip(equip);
     }
-    /*
+
     private void AnimatorAim(bool aim)
     {
         animAim = aim;
@@ -182,11 +187,11 @@ public partial class Player
         if (!animAim)
         {
             firstPersonAnimator.ResetTrigger(shootCache);
+            thirdPersonAnimator.SetBool(shootCache, false);
             bowAnimator.ResetTrigger(shootCache);
         }
-
     }
-    */
+
     private void AnimatorUseSpear()
     {
         firstPersonAnimator.SetTrigger("UseSpear");
@@ -211,13 +216,14 @@ public partial class Player
                 break;
         }
     }
-    /*
+
     private void AnimatorShootBow()
     {
         firstPersonAnimator.SetTrigger(shootCache);
+        thirdPersonAnimator.SetBool(shootCache, true);
         bowAnimator.SetTrigger(shootCache);
     }
-    */
+
     private void AnimatorShootGrappling()
     {
         firstPersonAnimator.SetTrigger(shootCache);
