@@ -68,8 +68,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3205cd0848db3ac46a65a3a79ecd9c14, type: 2}
+  m_sharedMaterial: {fileID: -1716829984142119994, guid: 3205cd0848db3ac46a65a3a79ecd9c14,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -366,6 +367,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmpty: 1
+  OnClear:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFill:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDurabilityChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAmountChange:
+    m_PersistentCalls:
+      m_Calls: []
   inventoryItem: {fileID: 0}
   image: {fileID: 166370031685227200}
   text: {fileID: 3258322901475034983}

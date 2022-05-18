@@ -8,7 +8,8 @@ public enum ItemTag
     Pickaxe,
     Sword,
     Spear,
-    Bow
+    Bow,
+    Grappling
 }
 
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/InventoryItem", order = 1)]

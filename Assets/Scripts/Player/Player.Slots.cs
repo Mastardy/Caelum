@@ -9,6 +9,7 @@ public partial class Player
     [SerializeField] private Transform spearBone;
     [SerializeField] private Transform bowBone;
     [SerializeField] private Transform swordBone;
+    [SerializeField] private Transform grapplingBone;
 
     private GameObject currentWeapon;
     private bool handIsEmpty = true;
@@ -72,6 +73,9 @@ public partial class Player
             case ItemTag.Spear:
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, spearBone);
                 break;
+            case ItemTag.Grappling:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
+                break;
         }
         
         switch (currentItem.itemTag)
@@ -97,6 +101,9 @@ public partial class Player
             case ItemTag.Bow:
                 AnimatorEquipBow(true);
                 bowAnimator = currentWeapon.GetComponent<Animator>();
+                break;
+            case ItemTag.Grappling:
+                AnimatorEquipGrappling(true);
                 break;
             default:
                 Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
@@ -127,6 +134,9 @@ public partial class Player
             case ItemTag.Bow:
                 bowAnimator = null;
                 AnimatorEquipBow(false);
+                break;
+            case ItemTag.Grappling:
+                AnimatorEquipGrappling(false);
                 break;
         }
     }
@@ -159,6 +169,9 @@ public partial class Player
             case ItemTag.Bow:
                 bowAnimator = null;
                 AnimatorEquipBow(false);
+                break;
+            case ItemTag.Grappling:
+                AnimatorEquipGrappling(false);
                 break;
         }
     }
