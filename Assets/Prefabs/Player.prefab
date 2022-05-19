@@ -937,6 +937,7 @@ MonoBehaviour:
   accelerationEasing: 25
   airAccelerationEasing: 3
   fallDamageMultiplier: 1.75
+  minFallDamageVelocity: -40
   gravity: -30
   jumpHeight: 1.75
   parachuteAcceleration: 50
@@ -954,7 +955,7 @@ MonoBehaviour:
   swordBone: {fileID: 8646491123180069033}
   grapplingBone: {fileID: 2869505551674538762}
   currentWeapon: {fileID: 0}
-  spawnPosition: {x: 20, y: 16, z: 2}
+  spawnPosition: {x: -20, y: 167, z: -680}
   safePositionTimer: 2
   safePosition: {x: 0, y: 0, z: 0}
   hungerTickRate: 0.5
