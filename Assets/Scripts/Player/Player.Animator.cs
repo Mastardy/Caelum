@@ -134,11 +134,11 @@ public partial class Player
         thirdPersonAnimator.SetBool(aimCache, animAim);
 
         //layer weight corountine for fps left arm
-        if (animCoroutine)
-        {
-            firstPersonAnimator.SetLayerWeight(1, layerWeight);
-            thirdPersonAnimator.SetLayerWeight(3, layerWeight);
-        }
+        //if (animCoroutine)
+        //{
+        //    firstPersonAnimator.SetLayerWeight(1, layerWeight);
+        //    thirdPersonAnimator.SetLayerWeight(3, layerWeight);
+        //}
     }
 
     private void AnimatorEquipTool(bool equip)
@@ -159,13 +159,15 @@ public partial class Player
     private void AnimatorEquipSpear(bool equip)
     {
         firstPersonAnimator.SetBool(spearCache, equip);
-        AnimEquip(equip);
+        SetRightArmWeight(1);
+        //AnimEquip(equip);
     }
 
     private void AnimatorEquipSword(bool equip)
     {
         firstPersonAnimator.SetBool(swordCache, equip);
-        AnimEquip(equip);
+        SetRightArmWeight(1);
+        //AnimEquip(equip);
     }
 
     private void AnimatorEquipBow(bool equip)
@@ -177,18 +179,19 @@ public partial class Player
     private void AnimatorEquipGrappling(bool equip)
     {
         firstPersonAnimator.SetBool(grapplingCache, equip);
-        AnimEquip(equip);
+        SetRightArmWeight(1);
+        //AnimEquip(equip);
     }
 
     private void AnimatorAim(bool aim)
     {
         animAim = aim;
-        bowAnimator.SetBool(drawbowCache, animAim);
+        if(bowAnimator) bowAnimator.SetBool(drawbowCache, animAim);
         if (!animAim)
         {
             firstPersonAnimator.ResetTrigger(shootCache);
             thirdPersonAnimator.SetBool(shootCache, false);
-            bowAnimator.ResetTrigger(shootCache);
+            if (bowAnimator) bowAnimator.ResetTrigger(shootCache);
         }
     }
 

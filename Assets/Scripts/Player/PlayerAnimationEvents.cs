@@ -22,6 +22,16 @@ public class PlayerAnimationEvents : MonoBehaviour
         
     }
 
+    public void HideWeapon()
+    {
+        player.DestroyWeapon();
+    }
+
+    public void ShowWeapon()
+    {
+        player.ShowModel();
+    }
+
     public void EndLeftArm()
     {
         player.SetLeftArmWeight(0);

@@ -11,7 +11,8 @@ public partial class Player
     [SerializeField] private Transform swordBone;
     [SerializeField] private Transform grapplingBone;
 
-    private GameObject currentWeapon;
+    public GameObject currentWeapon;
+    private float lastSlotChange;
     private bool handIsEmpty = true;
     private int lastSlot;
     private int currentSlot;
@@ -25,15 +26,18 @@ public partial class Player
                 else UnequipItem();
                 return;
             }
-            
+
+            if (Time.time - lastSlotChange < 1) return;
+
             hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
             hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
             lastSlot = currentSlot;
             currentSlot = value;
             InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
             hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem(currentItem));
-            
+
             EquipItem();
+            lastSlotChange = Time.time;
         }
     }
     
@@ -42,7 +46,7 @@ public partial class Player
         if (!handIsEmpty)
         {
             UnequipItem(hotbars[lastSlot].slot.inventoryItem);
-            Invoke(nameof(EquipItem), 0.3f);
+            Invoke(nameof(EquipItem), 0.9f);
             return;
         }
         
@@ -57,7 +61,41 @@ public partial class Player
         }
 
         hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
+        
+        switch (currentItem.itemTag)
+        {
+            case ItemTag.Other:
+                UnequipItem();
+                break;
+            case ItemTag.Food:
+                CurrentSlot = lastSlot;
+                break;
+            case ItemTag.Axe:
+            case ItemTag.Pickaxe:
+                AnimatorEquipTool(true);
+                break;
+            case ItemTag.Sword:
+                AnimatorEquipSword(true);
+                break;
+            case ItemTag.Spear:
+                AnimatorEquipSpear(true);
+                break;
+            case ItemTag.Bow:
+                AnimatorEquipBow(true);
+                Invoke(nameof(SetBowAnimator), 0.2f);
+                break;
+            case ItemTag.Grappling:
+                AnimatorEquipGrappling(true);
+                break;
+            default:
+                Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
+                break;
+        }
+    }
 
+    public void ShowModel()
+    {
+        InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         switch (currentItem.itemTag)
         {
             case ItemTag.Axe:
@@ -77,46 +115,12 @@ public partial class Player
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
                 break;
         }
-        
-        switch (currentItem.itemTag)
-        {
-            case ItemTag.Other:
-                UnequipItem();
-                break;
-            case ItemTag.Food:
-                CurrentSlot = lastSlot;
-                break;
-            case ItemTag.Axe:
-                AnimatorEquipTool(true);
-                break;
-            case ItemTag.Pickaxe:
-                AnimatorEquipTool(true);
-                break;
-            case ItemTag.Sword:
-                AnimatorEquipSword(true);
-                break;
-            case ItemTag.Spear:
-                AnimatorEquipSpear(true);
-                break;
-            case ItemTag.Bow:
-                AnimatorEquipBow(true);
-                bowAnimator = currentWeapon.GetComponent<Animator>();
-                break;
-            case ItemTag.Grappling:
-                AnimatorEquipGrappling(true);
-                break;
-            default:
-                Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
-                break;
-        }
     }
 
     private void UnequipItem(InventoryItem item)
     {
         handIsEmpty = true;
-        
-        Invoke(nameof(UnequipWeapon), 0.3f);
-        
+
         switch (item.itemTag)
         {
             case ItemTag.Axe:
@@ -144,8 +148,6 @@ public partial class Player
     private void UnequipItem()
     {
         handIsEmpty = true;
-        
-        Invoke(nameof(UnequipWeapon), 0.3f);
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         InventoryItem lastItem = hotbars[currentSlot].slot.inventoryItem;
@@ -176,8 +178,13 @@ public partial class Player
         }
     }
 
-    private void UnequipWeapon()
+    public void DestroyWeapon()
     {
         if(currentWeapon) Destroy(currentWeapon);
+    }
+
+    private void SetBowAnimator()
+    {
+        bowAnimator = currentWeapon.GetComponent<Animator>();
     }
 }

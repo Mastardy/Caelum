@@ -8,8 +8,6 @@ public class AutoGrass : MonoBehaviour
     public bool Place;
     public Terrain[] terrains;
 
-    [SerializeField] private int detailStrength = 10; //A fair value to make the grass thick and luscious
-
     [SerializeField] private int myTextureLayer = 1; //Assumed to be the first non-base texture layer - this is the ground texture from which we wish to sprout grass
     [SerializeField] private int myDetailLayer = 0; //Assumed to be the first detail layer - this is the grass we wish to auto-populate
     public int seed;
@@ -29,8 +27,6 @@ public class AutoGrass : MonoBehaviour
     // Use this for initialization
     private void PlaceGrass(Terrain terrain)
     {
-        Random.InitState(seed);
-
         TerrainData terrainData = terrain.terrainData;
 
         // get the alhpa maps - i.e. all the ground texture layers
