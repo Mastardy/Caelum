@@ -8,11 +8,13 @@ using UnityEngine.Jobs;
 [ExecuteInEditMode]
 public class ResourceRenderer : MonoBehaviour
 {
+    public bool drawGizmo = true;
     public bool Place = false;
     public bool Clear = false;
     public GameObject[] ResourcePrefab;
     public int TreeCount = 10;
     public int StartHeight = 1000;
+    public int lineTraceLength = -1000;
     public int size = 1;
     [Range(-10,10)]public int seed = 0;
     public float distancex = 0.5f;
@@ -50,7 +52,7 @@ public class ResourceRenderer : MonoBehaviour
             GameObject tree = Instantiate(ResourcePrefab[rand], transform);
             tree.transform.position = points[i];
             tree.transform.Rotate(0, Random.Range(0, 359), 0);
-            tree.transform.localScale = Vector3.one * Random.Range(1.3f, 1.5f);
+            tree.transform.localScale = Vector3.one * Random.Range(1.9f, 2.3f);
             trees.Add(tree);
         }
     }
@@ -77,12 +79,12 @@ public class ResourceRenderer : MonoBehaviour
             position.z = rotatedPoint.y;
 
             RaycastHit hit;
-            if (Physics.Linecast(position, position + new Vector3(0,-1000,0), out hit, -LayerMask.NameToLayer("Ground")))
+            if (Physics.Linecast(position, position + new Vector3(0, lineTraceLength, 0), out hit, -LayerMask.NameToLayer("Ground")))
             {
                 points.Add(hit.point);
             }
         }
-
+        if (!drawGizmo) return;
         for (int i = 0; i < points.Count; i++)
         {
             Gizmos.color = Color.white;
