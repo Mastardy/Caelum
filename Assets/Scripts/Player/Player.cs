@@ -56,6 +56,7 @@ public partial class Player : NetworkBehaviour
         GiveItemClientRpc("spear_wood", 1, 1);
         GiveItemClientRpc("spear_stone", 1, 1);
         GiveItemClientRpc("spear_iron", 1, 1);
+        GiveItemClientRpc("grappling_hook", 1, 1);
     }
 
     private void FixedUpdate()
@@ -95,7 +96,7 @@ public partial class Player : NetworkBehaviour
                 BeginGrapple();
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.K, 0.1f))
+            if (InputHelper.GetKeyDown(KeyCode.Q, 0.1f))
             {
                 BeginGrapplePlus();
             }
@@ -160,7 +161,7 @@ public partial class Player : NetworkBehaviour
             
             StatusUpdate();
 
-            //ANDRÉ, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
+            //ANDRï¿½, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
             bool holdTool = false;
             if (!handIsEmpty)
             {

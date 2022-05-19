@@ -152,6 +152,13 @@ public partial class Player
                         break;
                 }
             }
+            else if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
+            {
+                if (resource.name != "Fruit") return;
+                
+                resource.HitResourceServerRpc(this, 1);
+                AnimatorCollect();
+            }
             
             return;
         }

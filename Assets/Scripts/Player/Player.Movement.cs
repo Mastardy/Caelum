@@ -13,10 +13,11 @@ public partial class Player
     [SerializeField] private float deaccelerationEasing = 60f;
     [SerializeField] private float accelerationEasing = 30f;
     [SerializeField] private float airAccelerationEasing = 3f;
-    [SerializeField] private float fallDamageMultiplier = 1.75f;
+    [SerializeField] private float fallDamageMultiplier = 1.2f;
+    [SerializeField] private float minFallDamageVelocity = -40f;
     [SerializeField] private float gravity = -30f;
     [SerializeField] private float jumpHeight = 1.75f;
-    [SerializeField] private float parachuteAcceleration = 1000f;
+    [SerializeField] private float parachuteAcceleration = 50;
 
     [SerializeField] private float playerCameraEasing = 2;
 
@@ -139,8 +140,9 @@ public partial class Player
             EndDash();
             return;
         }
-        
-        characterController.Move((transform.forward * dashVelocity.y + transform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime));
+
+        var playerTransform = transform;
+        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime));
     }
     
     private void EndDash()
@@ -151,14 +153,15 @@ public partial class Player
     private void PreFallDamage()
     {
         wasGrounded = isGrounded;
-        if (verticalVelocity > -30) return;
+        if (verticalVelocity > minFallDamageVelocity) return;
         fallDamage = (int)(fallDamageMultiplier * verticalVelocity);
     }
     
     private void IsGrounded()
     {
-        var sideSize = characterController.radius * transform.localScale.x;
-        isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), transform.rotation, groundMask);
+        var playerTransform = transform;
+        var sideSize = characterController.radius * playerTransform.localScale.x;
+        isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), playerTransform.rotation, groundMask);
 
         if (isGrounded && verticalVelocity < 0) verticalVelocity = -1f;
     }
