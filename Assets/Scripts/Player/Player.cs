@@ -169,7 +169,7 @@ public partial class Player : NetworkBehaviour
                 holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Sword;
                 thirdPersonAnimator.SetLayerWeight(2, holdTool? 0: 1);
 
-                if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Bow)
+                if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Bow or ItemTag.Spear)
                 {
                     AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                 }
