@@ -27,6 +27,7 @@ public partial class Player
     private static readonly int shootCache = Animator.StringToHash("Shoot");
     private static readonly int grapplingCache = Animator.StringToHash("Grappling");
     private static readonly int grapplingPullCache = Animator.StringToHash("GrapplingPull");
+    private static readonly int parachuteCache = Animator.StringToHash("Parachute");
 
     //tps model variables
     private static readonly int holdToolCache = Animator.StringToHash("HoldTool");
@@ -41,11 +42,11 @@ public partial class Player
     private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> parachuteNet = new(readPerm: NetworkVariableReadPermission.Everyone);
 
     private float layerWeight;
     private bool canAimAnim;
     private bool animAim;
-    private bool animCoroutine;
     private int animCombo = 1;
 
     private SkinnedMeshRenderer[] playerSkinnedMeshRenderers;
@@ -96,7 +97,7 @@ public partial class Player
 
     [ServerRpc(RequireOwnership = false)]
     private void NetworkAnimatorUpdateServerRpc(bool crouched, float moveMag, float xInput, float yInput,
-        bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool)
+        bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool, bool parachute)
     {
         if (!IsServer) return;
         
@@ -109,6 +110,7 @@ public partial class Player
         velocityYNet.Value = velocityY;
         holdToolNet.Value = holdTool;
         useToolNet.Value = useTool;
+        parachuteNet.Value = parachute;
     }
 
     private void AnimatorUpdate()
@@ -119,6 +121,7 @@ public partial class Player
         thirdPersonAnimator.SetBool(jumpCache, !isGroundedNet.Value);
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
+        thirdPersonAnimator.SetBool(parachuteCache, parachuteNet.Value);
 
         //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0);
@@ -132,13 +135,6 @@ public partial class Player
         thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
         firstPersonAnimator.SetBool(aimCache, animAim);
         thirdPersonAnimator.SetBool(aimCache, animAim);
-
-        //layer weight corountine for fps left arm
-        //if (animCoroutine)
-        //{
-        //    firstPersonAnimator.SetLayerWeight(1, layerWeight);
-        //    thirdPersonAnimator.SetLayerWeight(3, layerWeight);
-        //}
     }
 
     private void AnimatorEquipTool(bool equip)
@@ -160,14 +156,12 @@ public partial class Player
     {
         firstPersonAnimator.SetBool(spearCache, equip);
         SetRightArmWeight(1);
-        //AnimEquip(equip);
     }
 
     private void AnimatorEquipSword(bool equip)
     {
         firstPersonAnimator.SetBool(swordCache, equip);
         SetRightArmWeight(1);
-        //AnimEquip(equip);
     }
 
     private void AnimatorEquipBow(bool equip)
@@ -180,7 +174,6 @@ public partial class Player
     {
         firstPersonAnimator.SetBool(grapplingCache, equip);
         SetRightArmWeight(1);
-        //AnimEquip(equip);
     }
 
     private void AnimatorAim(bool aim)
@@ -268,58 +261,6 @@ public partial class Player
     private static float Map(float value, float min, float max)
     {
         return (value - min) * 1f / (max - min);
-    }
-
-    private bool AnimEquip(bool e)
-    {
-        //Essa funcao trata da corotina que faz o blend da layer do animator baseado se equipou ou desequipou
-        if (!e)
-        {
-            StopAllCoroutines();
-            StartCoroutine(BlendWeight(1));
-        }
-        else
-        {
-            StopAllCoroutines();
-            StartCoroutine(BlendWeight(-1));
-        }
-
-        return e;
-    }
-
-    private IEnumerator BlendWeight(int direction)
-    {
-        //direction -1: vai de 1 a 0
-        //direction 1: vai de 0 a 1
-        //usado para o blend da layer weight do animator, utilizando a variavel layerWeight
-        
-        float amount = 0.01f;
-        animCoroutine = true;
-
-        switch (direction)
-        {
-            case 1: layerWeight = 1; break;
-            case -1: layerWeight = 0; break;
-        }
-
-        while (layerWeight is >= 0 and <= 1)
-        {
-            switch (direction)
-            {
-                case 1: layerWeight -= amount; break;
-                case -1: layerWeight += amount; break;
-            }
-
-            yield return null;
-        }
-
-        switch (direction)
-        {
-            case 1: layerWeight = 0; break;
-            case -1: layerWeight = 1; break;
-        }
-        
-        animCoroutine = false;
     }
     #endregion
 }

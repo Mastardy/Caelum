@@ -152,6 +152,7 @@ public partial class Player : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
             if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
             if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
+            if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
 
             MovementUpdate();
 
@@ -166,7 +167,7 @@ public partial class Player : NetworkBehaviour
             if (!handIsEmpty)
             {
                 holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Sword;
-                if(holdTool) thirdPersonAnimator.SetLayerWeight(2, 1);
+                thirdPersonAnimator.SetLayerWeight(2, holdTool? 0: 1);
 
                 if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Bow)
                 {
@@ -175,7 +176,7 @@ public partial class Player : NetworkBehaviour
             }
 
             NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
-                isGrounded, xRotation, verticalVelocity, holdTool, false);
+                isGrounded, xRotation, verticalVelocity, holdTool, false, inParachute);
         }
 
         AnimatorUpdate();

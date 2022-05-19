@@ -26,6 +26,8 @@ public partial class Player
     [SerializeField] private LayerMask groundMask;
 
     private Vector3 playerCameraPosition = new Vector3(0, 3, 0);
+    [SerializeField] Vector3 parachuteCameraLocation = new Vector3(0,5,-3);
+    [SerializeField] GameObject parachuteObject;
     
     private Vector2 horizontalVelocity;
     private float verticalVelocity;
@@ -85,11 +87,11 @@ public partial class Player
     {
         if (inParachute)
         {
-            if (playerCameraPosition.y > 5) playerCameraPosition.y = 5;
-            else if (playerCameraPosition.y < 5) playerCameraPosition.y += Time.deltaTime * playerCameraEasing * 2f;
+            if (playerCameraPosition.y > parachuteCameraLocation.y) playerCameraPosition.y = parachuteCameraLocation.y;
+            else if (playerCameraPosition.y < parachuteCameraLocation.y) playerCameraPosition.y += Time.deltaTime * playerCameraEasing * 2f;
 
-            if (playerCameraPosition.z < -3) playerCameraPosition.z = -3;
-            else if (playerCameraPosition.z > -3) playerCameraPosition.z -= Time.deltaTime * playerCameraEasing * 3f;
+            if (playerCameraPosition.z < parachuteCameraLocation.z) playerCameraPosition.z = parachuteCameraLocation.z;
+            else if (playerCameraPosition.z > parachuteCameraLocation.z) playerCameraPosition.z -= Time.deltaTime * playerCameraEasing * 3f;
         }
         else
         {
@@ -203,10 +205,12 @@ public partial class Player
         if (inParachute && !wasInParachute)
         {
             DisableFirstPerson();
+            parachuteObject.SetActive(true);
         }
         else if(!inParachute && wasInParachute)
         {
             EnableFirstPerson();
+            parachuteObject.SetActive(false);
         }
         
         wasInParachute = inParachute;

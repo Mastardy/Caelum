@@ -116,7 +116,16 @@ ModelImporter:
     second: BowAimDraw|Player
   - first:
       74: -1465153407392040926
-    second: Armature|Take Damage
+    second: Take Damage|Player
+  - first:
+      74: -3874517940576225079
+    second: ParachuteIdle|Player
+  - first:
+      74: -2151354218913243581
+    second: ParachuteForward|Player
+  - first:
+      74: 4082992993571603341
+    second: ParachuteBackwards|Player
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -192,7 +201,7 @@ ModelImporter:
       quality report for clip 'Armature|BowHold':\n\tRetargeting quality is good.
       No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|BowShoot':\n\tLeftHand average position error
-      2.3 mm and maximum position error 2.3 mm at time 0:25 (41.7%) Frame 25\n\nRetargeting
+      2.3 mm and maximum position error 2.3 mm at time 0: 3 (5.0%) Frame 3\n\nRetargeting
       quality report for clip 'Armature|BowWalk':\n\tRetargeting quality is good.
       No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|Collect':\n\tRetargeting quality is good.
@@ -218,7 +227,13 @@ ModelImporter:
       quality report for clip 'Armature|Idle_LookUp':\n\tRetargeting quality is good.
       No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|Jump':\n\tLeftFoot average position error
-      0.6 mm and maximum position error 6.8 mm at time 0: 2 (3.3%) Frame 2\n\nRetargeting
+      0.6 mm and maximum position error 6.8 mm at time 0: 4 (6.7%) Frame 4\n\nRetargeting
+      quality report for clip 'Armature|ParachuteBackwards':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Armature|ParachuteForward':\n\tRetargeting quality
+      is good. No significant differences with original animation were found.\n\nRetargeting
+      quality report for clip 'Armature|ParachuteIdle':\n\tRetargeting quality is
+      good. No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|Running':\n\tRetargeting quality is good.
       No significant differences with original animation were found.\n\nRetargeting
       quality report for clip 'Armature|Take Damage':\n\tRetargeting quality is good.
@@ -1121,11 +1136,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Take Damage
+      name: Take Damage|Player
       takeName: Armature|Take Damage
       internalID: 0
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1133,6 +1148,93 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ParachuteIdle|Player
+      takeName: Armature|ParachuteIdle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ParachuteForward|Player
+      takeName: Armature|ParachuteForward
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ParachuteBackwards|Player
+      takeName: Armature|ParachuteBackwards
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1

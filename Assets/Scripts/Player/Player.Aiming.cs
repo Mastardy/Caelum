@@ -6,6 +6,7 @@ public partial class Player
 {
     [Header("Aiming")]
     [SerializeField] private Transform headTransform;
+    [SerializeField] private Vector3 parachuteCameraRotation = new Vector3(-25, 0, 0);
 
     private float xRotation;
 
@@ -22,9 +23,9 @@ public partial class Player
 
         if (inParachute)
         {
-            headTransform.localRotation = Quaternion.Euler(-25, 0f, 0f);
+            headTransform.localRotation = Quaternion.Euler(parachuteCameraRotation);
 
-            playerCamera.localRotation = Quaternion.Euler(50, 0f, 0f);
+            playerCamera.localRotation = Quaternion.Euler(parachuteCameraRotation.x *-2, 0f, 0f);
         }
         else
         {
