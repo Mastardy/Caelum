@@ -102,15 +102,54 @@ public partial class Player
     
     private void EyeTraceInfo()
     {
-        if (!lookingAt)
+        if (hotbars[currentSlot].slot.inventoryItem)
         {
-            // if(InputHelper.GetKeyDown(KeyCode.T, 0.75f))
-            // {
-            //     Debug.Log(InputHelper.lastPress[KeyCode.T]);
-            //     AnimatorCollect();
-            // }
-            return;
+            switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
+            {
+                case ItemTag.Sword:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
+                    {
+                        AnimatorUseSword();
+                        
+                        if (!lookingAt) return;
+                        
+                        if (lookingAt.TryGetComponent(out Animal animal))
+                        {
+                            animal.TakeDamageServerRpc(20, this);
+                        }
+                    }
+                    break;
+                case ItemTag.Spear:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
+                    {
+                        AnimatorUseSpear();
+                        
+                        if (!lookingAt) return;
+                        
+                        if (lookingAt.TryGetComponent(out Animal animal))
+                        {
+                            animal.TakeDamageServerRpc(10, this);
+                        }
+                    }
+                    break;
+                case ItemTag.Bow:
+                    if (!Input.GetKey(gameOptions.secondaryAttackKey)) break;
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
+                    {
+                        AnimatorShootBow();
+                        
+                        if (!lookingAt) return;
+                        
+                        if (lookingAt.TryGetComponent(out Animal animal))
+                        {
+                            animal.TakeDamageServerRpc(50, this);
+                        }
+                    }
+                    break;
+            }
         }
+        
+        if (!lookingAt) return;
 
         if (lookingAt.TryGetComponent(out Car vehicle))
         {
@@ -180,6 +219,8 @@ public partial class Player
             {
                 craftTable.OpenCraftingServerRpc(this);
             }
+
+            return;
         }
 
         if (lookingAt.TryGetComponent(out Oven oven))
@@ -188,18 +229,8 @@ public partial class Player
             {
                 oven.OpenOvenServerRpc(this);
             }
-        }
-        
-        if (lookingAt.TryGetComponent(out Animal animal))
-        {
-            if(InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
-            {
-                animal.TakeDamageServerRpc(10, this);
-            } 
-            else if (InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 1.0f))
-            {
-                animal.TakeDamageServerRpc(25, this);
-            }
+
+            return;
         }
 
         if (lookingAt.TryGetComponent(out FishingNet fishingNet))
