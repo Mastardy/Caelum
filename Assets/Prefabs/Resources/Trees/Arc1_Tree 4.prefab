@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 176809006, guid: 296b991202c695f43989350207230ee5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 584491641264340265, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -177,22 +181,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296b991202c695f43989350207230ee5, type: 3}
---- !u!1 &6470740444019509649 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7426251377044060163, guid: 296b991202c695f43989350207230ee5,
-    type: 3}
-  m_PrefabInstance: {fileID: 4522714011883418002}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &5727823176006105042
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6470740444019509649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.6, y: 1, z: 3.7}
-  m_Center: {x: 0.5, y: 0, z: 0}
