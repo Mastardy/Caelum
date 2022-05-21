@@ -12,6 +12,8 @@ public partial class Animal
     
     private AnimalState AttackState()
     {
+        animator.SetBool(runningCache, true);
+        
         var tempAttackState = new AnimalState();
         
         tempAttackState.onStart.AddListener(AttackStart);
@@ -23,6 +25,8 @@ public partial class Animal
     
     private void AttackStart()
     {
+        animator.SetBool(runningCache, true);
+        
         agent.speed = fleeSpeed;
         agent.stoppingDistance = 3.0f;
         
@@ -44,6 +48,7 @@ public partial class Animal
         
         if (Time.time - lastAttack > 1 / attackRate)
         {
+            animator.SetTrigger(attackCache);
             playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
             lastAttack = Time.time;
         }
@@ -53,6 +58,7 @@ public partial class Animal
     {
         agent.isStopped = false;
         agent.stoppingDistance = 0.1f;
+        animator.SetBool(runningCache, false);
     }
     
     private Player GetNearPlayer(float distance)

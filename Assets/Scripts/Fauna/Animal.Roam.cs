@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public partial class Animal
 {
     [SerializeField] private float roamSpeed = 5f;
-    
+
     private AnimalState RoamState()
     {
         var tempRoamState = new AnimalState();
@@ -18,9 +18,11 @@ public partial class Animal
     
     private void RoamStart()
     {
+        animator.SetBool(walkingCache, true);
+        
         agent.speed = roamSpeed;
         
-        var randomPosition = Random.insideUnitSphere * Random.Range(5.0f, 20.0f);
+        var randomPosition = Random.insideUnitSphere * Random.Range(10.0f, 20.0f);
 
         NavMesh.SamplePosition(transform.position + randomPosition, out NavMeshHit navMeshHit, 25f,  1);
         
@@ -31,6 +33,9 @@ public partial class Animal
     {
         if (agent.remainingDistance < 1) RoamStart();
     }
-    
-    private void RoamEnd() { }
+
+    private void RoamEnd()
+    {
+        animator.SetBool(walkingCache, false);
+    }
 }

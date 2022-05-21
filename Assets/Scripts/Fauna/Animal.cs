@@ -5,9 +5,16 @@ using UnityEngine.AI;
 public partial class Animal : NetworkBehaviour
 {
     private NavMeshAgent agent;
+    [SerializeField] private Animator animator;
+    private static readonly int walkingCache = Animator.StringToHash("Walking");
+    private static readonly int runningCache = Animator.StringToHash("Running");
+    private static readonly int attackCache = Animator.StringToHash("Attack");
+    
 
     private void Start()
     {
+        Random.state = new Random.State {};
+    
         agent = GetComponent<NavMeshAgent>();
 
         maxHealth += Random.Range(-20, 21);

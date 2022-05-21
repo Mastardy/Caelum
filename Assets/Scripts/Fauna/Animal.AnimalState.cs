@@ -65,7 +65,7 @@ public partial class Animal
                     : RandomState();
                 break;
             case attackState:
-                if (playerTarget == null) CurrentState = RandomState();
+                if (!playerTarget) CurrentState = RandomState();
                 else
                 {
                     if (playerTarget.currentHealth.Value <= 0) CurrentState = RandomState();
@@ -101,21 +101,21 @@ public partial class Animal
         if (Time.time - transitionTimer < transitionDelay) return currentRandomState;
 
         transitionTimer = Time.time;
-        
+
         switch (Random.Range(0, 2))
         {
             case 0:
+                Debug.Log("Idle");
                 transitionDelay = Random.Range(2f, 5f);
+                Debug.Log(transitionDelay);
                 currentRandomState = idleState;
                 return idleState;
             case 1:
                 transitionDelay = Random.Range(5f, 10f);
                 currentRandomState = roamState;
                 return roamState;
-            default:
-                transitionDelay = Random.Range(2f, 5f);
-                currentRandomState = idleState;
-                return idleState;
         }
+
+        return idleState;
     }
 }
