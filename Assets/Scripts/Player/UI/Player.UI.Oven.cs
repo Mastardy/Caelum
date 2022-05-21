@@ -21,7 +21,6 @@ public partial class Player
 
     [SerializeField] private GameObject recipeTitle;
 
-    [SerializeField] private GameObject recipeDescriptionTitle;
     [SerializeField] private TextMeshProUGUI recipeDescription;
 
     [SerializeField] private FoodAttributeUI hungerAttribute;
@@ -124,7 +123,6 @@ public partial class Player
         }
 
         recipeTitle.gameObject.SetActive(true);
-        recipeDescriptionTitle.gameObject.SetActive(true);
         
         recipeDescription.gameObject.SetActive(true);
         recipeDescription.SetText(cookingRecipe.cooked.description);
@@ -136,17 +134,17 @@ public partial class Player
         if (foodItems[cookingRecipe.cooked.itemName].hunger != 0)
         {
             hungerAttribute.gameObject.SetActive(true);
-            hungerAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].hunger.ToString("F0"));
+            hungerAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].hunger.ToString("F0") + "%");
         }
         if (foodItems[cookingRecipe.cooked.itemName].thirst != 0)
         {
             thirstAttribute.gameObject.SetActive(true);
-            thirstAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].thirst.ToString("F0"));
+            thirstAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].thirst.ToString("F0") + "%");
         }
         if (foodItems[cookingRecipe.cooked.itemName].temperature != 0)
         {
             temperatureAttribute.gameObject.SetActive(true);
-            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0"));
+            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "º");
         }
 
         cookingMinigameButton.gameObject.SetActive(true);
