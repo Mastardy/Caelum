@@ -17,9 +17,7 @@ public partial class Animal
     }
     
     private void RoamStart()
-    {
-        animator.SetBool(walkingCache, true);
-        
+    {        
         agent.speed = roamSpeed;
         
         var randomPosition = Random.insideUnitSphere * Random.Range(10.0f, 20.0f);
@@ -36,6 +34,6 @@ public partial class Animal
 
     private void RoamEnd()
     {
-        animator.SetBool(walkingCache, false);
+        
     }
 }

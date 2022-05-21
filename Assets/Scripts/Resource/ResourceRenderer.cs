@@ -23,28 +23,8 @@ public class ResourceRenderer : MonoBehaviour
     private List<Vector3> points = new List<Vector3>();
     [HideInInspector] public GameObject[] resourcePrefab;
 
-    public void PlaceTrees()
+    public void RandomizePoints()
     {
-        Vector3 origin = transform.position;
-
-        origin.y = StartHeight;
-
-        for (int i = 0; i < points.Count; i++)
-        {
-            int rand = Random.Range(0, resourcePrefab.Length);
-            GameObject tree = Instantiate(resourcePrefab[rand], transform);
-            tree.transform.position = points[i];
-            tree.transform.Rotate(0, Random.Range(0, 359), 0);
-            tree.transform.localScale = Vector3.one * Random.Range(1.9f, 2.3f);
-            tree.name = "Tree";
-            trees.Add(tree);
-        }
-    }
-
-    public void OnDrawGizmos()
-    {
-        Random.InitState(seed);
-        
         points.Clear();
 
         Vector3 origin = transform.position;
@@ -69,14 +49,37 @@ public class ResourceRenderer : MonoBehaviour
                 points.Add(hit.point);
             }
         }
+
+    }
+
+    public void PlaceTrees()
+    {
+        Vector3 origin = transform.position;
+
+        origin.y = StartHeight;
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            int rand = Random.Range(0, resourcePrefab.Length);
+            GameObject tree = Instantiate(resourcePrefab[rand], transform);
+            tree.transform.position = points[i];
+            tree.transform.Rotate(0, Random.Range(0, 359), 0);
+            tree.transform.localScale = Vector3.one * Random.Range(1.9f, 2.3f);
+            tree.name = "Tree";
+            trees.Add(tree);
+        }
+    }
+
+    public void OnDrawGizmos()
+    {
+
         if (!drawGizmo) return;
+
         for (int i = 0; i < points.Count; i++)
         {
             Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(points[i], 1);
         }
-
-        #region BOUNDS
 
         Vector3[] bounds = new Vector3[4];
 
@@ -100,7 +103,6 @@ public class ResourceRenderer : MonoBehaviour
         Gizmos.DrawLine(bounds[1], bounds[2]);
         Gizmos.DrawLine(bounds[2], bounds[3]);
         Gizmos.DrawLine(bounds[3], bounds[0]);
-        #endregion
     }
 
     public void ClearTrees()

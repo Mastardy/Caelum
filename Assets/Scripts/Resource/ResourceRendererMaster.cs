@@ -11,6 +11,14 @@ public class ResourceRendererMaster : MonoBehaviour
     private ResourceRenderer[] resources;
     public GameObject[] resourcePrefab;
 
+    public void RandomizePoints()
+    {
+        resources = GetComponents<ResourceRenderer>();
+        foreach (var r in resources)
+        {
+            r.RandomizePoints();
+        }
+    }
     public void Place()
     {
         resources = GetComponents<ResourceRenderer>();
@@ -43,6 +51,11 @@ public class ResourceRendererMasterEditor : Editor
 
         base.OnInspectorGUI();
 
+        if (GUILayout.Button(new GUIContent("Randomize Points")))
+        {
+            resourcesMaster.RandomizePoints();
+        }
+
         if (GUILayout.Button(new GUIContent("Place Trees")))
         {
             resourcesMaster.Place();
@@ -50,7 +63,7 @@ public class ResourceRendererMasterEditor : Editor
         if (GUILayout.Button(new GUIContent("Clear Trees")))
         {
             resourcesMaster.Clear();
-        }
+        }        
     }
 }
 #endif

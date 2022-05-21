@@ -19,9 +19,7 @@ public partial class Animal
     }
     
     private void FleeStart()
-    {
-        animator.SetBool(runningCache, true);
-        
+    {        
         agent.speed = fleeSpeed;
         
         var animalPosition = transform.position;
@@ -40,7 +38,7 @@ public partial class Animal
 
     private void FleeEnd()
     {
-        animator.SetBool(runningCache, false);
+        
     }
 
     private Vector3 GetFleeDirection()

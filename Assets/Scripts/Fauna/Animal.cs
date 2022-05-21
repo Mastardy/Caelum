@@ -6,13 +6,13 @@ public partial class Animal : NetworkBehaviour
 {
     private NavMeshAgent agent;
     [SerializeField] private Animator animator;
-    private static readonly int walkingCache = Animator.StringToHash("Walking");
-    private static readonly int runningCache = Animator.StringToHash("Running");
     private static readonly int attackCache = Animator.StringToHash("Attack");
-    
+    private static readonly int speedCache = Animator.StringToHash("Speed");
+
 
     private void Start()
     {
+        Random.InitState((int)System.DateTime.Now.Ticks);
         Random.state = new Random.State {};
     
         agent = GetComponent<NavMeshAgent>();
@@ -30,5 +30,6 @@ public partial class Animal : NetworkBehaviour
     {
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
+        animator.SetFloat(speedCache, agent.velocity.magnitude);
     }
 }

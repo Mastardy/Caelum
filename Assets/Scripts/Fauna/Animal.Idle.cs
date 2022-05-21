@@ -16,8 +16,6 @@ public partial class Animal
     private void IdleStart()
     {
         agent.ResetPath();
-        animator.SetBool(runningCache, false);
-        animator.SetBool(walkingCache, false);
     }
     
     private void IdleUpdate() { }
