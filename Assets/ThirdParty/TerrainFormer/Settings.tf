@@ -342,7 +342,7 @@
     "perlinNoiseMax": 1.0,
     "generateRampCurveInXAxis": false,
     "generateHeight": 250.0,
-    "flattenMode": 2,
+    "flattenMode": 1,
     "setHeight": 250.0,
     "boxFilterSize": 2,
     "smoothingIterations": 1,
