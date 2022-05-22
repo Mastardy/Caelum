@@ -12,9 +12,6 @@ public partial class Animal : NetworkBehaviour
 
     private void Start()
     {
-        Random.InitState((int)System.DateTime.Now.Ticks);
-        Random.state = new Random.State {};
-    
         agent = GetComponent<NavMeshAgent>();
 
         maxHealth += Random.Range(-20, 21);

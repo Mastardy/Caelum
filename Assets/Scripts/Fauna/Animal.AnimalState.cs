@@ -102,16 +102,16 @@ public partial class Animal
 
         transitionTimer = Time.time;
 
-        switch (Random.Range(0, 2))
+        var random = new System.Random();
+        
+        switch (random.Next(0, 2))
         {
             case 0:
-                Debug.Log("Idle");
-                transitionDelay = Random.Range(2f, 5f);
-                Debug.Log(transitionDelay);
+                transitionDelay = (float)(random.NextDouble() * random.Next(2, 5));
                 currentRandomState = idleState;
                 return idleState;
             case 1:
-                transitionDelay = Random.Range(5f, 10f);
+                transitionDelay = (float)(random.NextDouble() * random.Next(5, 10));
                 currentRandomState = roamState;
                 return roamState;
         }
