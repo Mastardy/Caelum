@@ -8,7 +8,6 @@ public partial class Player
     [SerializeField] private Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
-    private Animator bowAnimator;
     
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int sprintCache = Animator.StringToHash("Sprint");
@@ -179,12 +178,12 @@ public partial class Player
     private void AnimatorAim(bool aim)
     {
         animAim = aim;
-        if(bowAnimator) bowAnimator.SetBool(drawbowCache, animAim);
+        if(bow) bow.bowAnimator.SetBool(drawbowCache, animAim);
         if (!animAim)
         {
             firstPersonAnimator.ResetTrigger(shootCache);
             thirdPersonAnimator.SetBool(shootCache, false);
-            if (bowAnimator) bowAnimator.ResetTrigger(shootCache);
+            if (bow) bow.bowAnimator.ResetTrigger(shootCache);
         }
     }
 
@@ -217,7 +216,7 @@ public partial class Player
     {
         firstPersonAnimator.SetTrigger(shootCache);
         thirdPersonAnimator.SetBool(shootCache, true);
-        bowAnimator.SetTrigger(shootCache);
+        bow.bowAnimator.SetTrigger(shootCache);
     }
 
     private void AnimatorShootGrappling()

@@ -12,6 +12,7 @@ public partial class Player
     [SerializeField] private Transform grapplingBone;
 
     public GameObject currentWeapon;
+    private Bow bow;
     private float lastSlotChange;
     private bool handIsEmpty = true;
     private int lastSlot;
@@ -136,7 +137,7 @@ public partial class Player
                 AnimatorEquipSpear(false);
                 break;
             case ItemTag.Bow:
-                bowAnimator = null;
+                bow = null;
                 AnimatorEquipBow(false);
                 break;
             case ItemTag.Grappling:
@@ -169,7 +170,7 @@ public partial class Player
                 AnimatorEquipSpear(false);
                 break;
             case ItemTag.Bow:
-                bowAnimator = null;
+                bow = null;
                 AnimatorEquipBow(false);
                 break;
             case ItemTag.Grappling:
@@ -185,6 +186,6 @@ public partial class Player
 
     private void SetBowAnimator()
     {
-        bowAnimator = currentWeapon.GetComponent<Animator>();
+        bow = currentWeapon.GetComponent<Bow>();
     }
 }
