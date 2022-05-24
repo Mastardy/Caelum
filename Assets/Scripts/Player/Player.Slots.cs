@@ -16,7 +16,7 @@ public partial class Player
     private float lastSlotChange;
     private bool handIsEmpty = true;
     private int lastSlot;
-    private int currentSlot;
+    public int currentSlot;
     private int CurrentSlot
     {
         set

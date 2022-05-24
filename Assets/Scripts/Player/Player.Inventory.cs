@@ -32,7 +32,6 @@ public partial class Player
 
                 if (inventorySlot.inventoryItem.itemName == itemName)
                 {
-                    inventorySlot.Amount = 0;
                     inventorySlot.Clear();
                 }
             }

@@ -1,5 +1,6 @@
 using System;
 using Unity.Mathematics;
+using Unity.Netcode;
 using UnityEngine;
 
 public partial class Player
@@ -120,6 +121,14 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Spear:
+                    if (InputHelper.GetKey(gameOptions.secondaryAttackKey))
+                    {
+                        if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
+                        {
+                            AnimatorThrowSpear();
+                        }
+                        break;
+                    }
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                     {
                         AnimatorUseSpear();
@@ -239,6 +248,27 @@ public partial class Player
             {
                 fishingNet.TryFishingServerRpc(this);
             }
+        }
+    }
+
+    [ServerRpc]
+    public void ThrowSpearServerRpc(NetworkBehaviourReference ply, string itemName, int slot)
+    {
+        if (!IsServer) return;
+
+        if (ply.TryGet(out Player player))
+        {
+            player.hotbars[currentSlot].slot.Clear();
+            
+            var playerCameraTransform = playerCamera.transform;
+            var spear = Instantiate(weaponItems[itemName].throwablePrefab, playerCameraTransform.position + playerCameraTransform.forward,
+                Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
+
+            spear.GetComponent<NetworkObject>().Spawn();
+            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
+
+            spear.GetComponent<ThrowableSpear>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
+            spear.GetComponent<ThrowableSpear>().player = ply;
         }
     }
 }

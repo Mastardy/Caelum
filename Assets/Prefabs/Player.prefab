@@ -1244,6 +1244,9 @@ MonoBehaviour:
   swordBone: {fileID: 8646491123180069033}
   grapplingBone: {fileID: 2869505551674538762}
   currentWeapon: {fileID: 0}
+  currentSlot: 0
+  audioSource: {fileID: 8270581101591546577, guid: 30e2eba0c403a854ea7211c628ef5941,
+    type: 3}
   spawnPosition: {x: -20, y: 167, z: -680}
   safePositionTimer: 2
   safePosition: {x: 0, y: 0, z: 0}
@@ -4385,8 +4388,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3373030035295966243}
   m_AABB:
-    m_Center: {x: 0.000009536743, y: 2.4085748, z: -0.09177083}
-    m_Extent: {x: 1.0156618, y: 0.51865125, z: 0.32876}
+    m_Center: {x: -0.00074005127, y: 2.408491, z: -0.09120819}
+    m_Extent: {x: 1.0090675, y: 0.5187356, z: 0.3281974}
   m_DirtyAABB: 0
 --- !u!183 &8904342680180136909
 Cloth:

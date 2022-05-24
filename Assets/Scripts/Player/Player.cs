@@ -179,6 +179,8 @@ public partial class Player : NetworkBehaviour
                 isGrounded, xRotation, verticalVelocity, holdTool, false, inParachute);
         }
 
+        PlayFootstepSounds();
+        
         AnimatorUpdate();
     }
 }

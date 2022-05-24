@@ -23,7 +23,7 @@ public partial class Player
     
     [HideInInspector] public GameObject lookingAt;
 
-    [SerializeField] private List<HotbarSlot> hotbars;
+    public List<HotbarSlot> hotbars;
 
     private bool takeInput = true;
     

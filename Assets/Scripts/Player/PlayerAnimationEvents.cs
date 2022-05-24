@@ -19,7 +19,9 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void ThrowSpear()
     {
-        
+        HideWeapon();
+        EndRightArm();
+        player.ThrowSpearServerRpc(player, player.hotbars[player.currentSlot].slot.inventoryItem.itemName, player.currentSlot);
     }
 
     public void HideWeapon()
