@@ -1,21 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
-using Unity.Jobs;
 using UnityEngine;
-using UnityEngine.Jobs;
 
 [ExecuteInEditMode]
 public class ResourceRenderer : MonoBehaviour
 {
     public bool drawGizmo = true;
+    public Color color = Color.yellow;
     public Vector3 offset;
     [Range(-360, 360)] public float rotation = 0;
     public int TreeCount = 10;
     public int size = 1;
     public float sizeX = 0.5f;
     public float sizeZ = 0.5f;
-    [Range(-10,10)]public int seed = 0;
     public int StartHeight = 1000;
     public int lineTraceLength = -1000;
 
@@ -72,8 +68,10 @@ public class ResourceRenderer : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-
         if (!drawGizmo) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position + offset + new Vector3(0,StartHeight,0), transform.position + offset + new Vector3(0, lineTraceLength, 0));
 
         for (int i = 0; i < points.Count; i++)
         {
@@ -98,7 +96,7 @@ public class ResourceRenderer : MonoBehaviour
             bounds[i] += offset;
         }
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = color;
         Gizmos.DrawLine(bounds[0], bounds[1]);
         Gizmos.DrawLine(bounds[1], bounds[2]);
         Gizmos.DrawLine(bounds[2], bounds[3]);
@@ -115,5 +113,10 @@ public class ResourceRenderer : MonoBehaviour
         }
 
         trees.Clear();
+    }
+
+    public void RenameTrees()
+    {
+        if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject) tree.name = "Tree";
     }
 }

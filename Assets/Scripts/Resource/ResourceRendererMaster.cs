@@ -37,6 +37,15 @@ public class ResourceRendererMaster : MonoBehaviour
             r.ClearTrees();
         }
     }
+
+    public void Rename()
+    {
+        resources = GetComponents<ResourceRenderer>();
+        foreach (var r in resources)
+        {
+            r.RenameTrees();
+        }
+    }
 }
 
 [CustomEditor(typeof(ResourceRendererMaster), true)]
@@ -63,7 +72,11 @@ public class ResourceRendererMasterEditor : Editor
         if (GUILayout.Button(new GUIContent("Clear Trees")))
         {
             resourcesMaster.Clear();
-        }        
+        }
+        if (GUILayout.Button(new GUIContent("Rename Trees")))
+        {
+            resourcesMaster.Rename();
+        }
     }
 }
 #endif
