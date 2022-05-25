@@ -254,6 +254,9 @@ MonoBehaviour:
   maxResources: 20
   curResources:
     m_InternalValue: 20
+  onGather:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!205 &3778810163057922403
 LODGroup:
   m_ObjectHideFlags: 0
@@ -308,6 +311,7 @@ GameObject:
   - component: {fileID: 1953778229022211802}
   - component: {fileID: 6724742275051497753}
   - component: {fileID: 7675716440369190723}
+  - component: {fileID: 3720435160440063958}
   m_Layer: 6
   m_Name: Fruit
   m_TagString: Untagged
@@ -359,6 +363,23 @@ MonoBehaviour:
   maxResources: 5
   curResources:
     m_InternalValue: 5
+  onGather:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3720435160440063958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707957198208611381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e181ab415c5744fb64714ddc99fbc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: 7675716440369190723}
+  fruit: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138, type: 3}
 --- !u!1 &8930060310367157155
 GameObject:
   m_ObjectHideFlags: 0

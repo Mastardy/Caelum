@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Resource : NetworkBehaviour
 {
@@ -7,6 +8,8 @@ public class Resource : NetworkBehaviour
     public int maxResources;
     public NetworkVariable<int> curResources = new();
 
+    public UnityEvent onGather;
+    
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(NetworkBehaviourReference player, int resourcesToGather = 1)
     {
@@ -22,6 +25,7 @@ public class Resource : NetworkBehaviour
         if(player.TryGet(out Player ply))
         {
             ply.GiveItemClientRpc(resourceName, resourcesGathered);
+            onGather.Invoke();
         }
     }
 

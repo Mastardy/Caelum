@@ -26,10 +26,17 @@ public partial class MainUI
     /// <summary>
     /// Play Game Menu
     /// </summary>
-    public void PlayGame()
+    public void PlayMenu()
     {
+        mainMenu.SetActive(false);
+        playMenu.SetActive(true);
         LoadOptions();
-        SceneManager.LoadScene(1);
+    }
+
+    public void CreditsMenu()
+    {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
     }
     
     /// <summary>
