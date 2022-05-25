@@ -14,8 +14,9 @@ public partial class MainUI : MonoBehaviour
         controlsPanel.SetActive(false);
         graphicsPanel.SetActive(false);
         
-        optionsMenu.SetActive(false);
         playMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
         
         LoadOptions();
@@ -23,8 +24,9 @@ public partial class MainUI : MonoBehaviour
 
     public void MainMenu()
     {
-        optionsMenu.SetActive(false);
         playMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
     }
 }
