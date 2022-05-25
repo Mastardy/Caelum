@@ -216,7 +216,7 @@ public partial class Player
     {
         firstPersonAnimator.SetTrigger(shootCache);
         thirdPersonAnimator.SetBool(shootCache, true);
-        bow.bowAnimator.SetTrigger(shootCache);
+        if(bow) bow.bowAnimator.SetTrigger(shootCache);
     }
 
     private void AnimatorShootGrappling()

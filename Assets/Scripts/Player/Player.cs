@@ -29,6 +29,11 @@ public partial class Player : NetworkBehaviour
         {
             if (IsLocalPlayer)
             {
+                for (int i = 0; i < hotbars.Count; i++)
+                {
+                    hotbars[i].Selected = false;
+                }
+                
                 gameOptions = GameManager.Instance.gameOptions;
 
                 playerCanvas.gameObject.SetActive(true);

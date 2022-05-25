@@ -28,8 +28,8 @@ public partial class Player
                 return;
             }
 
-            if (Time.time - lastSlotChange < 1) return;
-
+            if (!hotbars[value].slot.isEmpty && Time.time - lastSlotChange < 1.5f) return;
+            
             hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
             hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
             lastSlot = currentSlot;
@@ -44,9 +44,12 @@ public partial class Player
     
     private void EquipItem()
     {
+        hotbars[currentSlot].Selected = true;
+        
         if (!handIsEmpty)
         {
             UnequipItem(hotbars[lastSlot].slot.inventoryItem);
+            if (hotbars[currentSlot].slot.isEmpty) hotbars[currentSlot].Selected = false;
             Invoke(nameof(EquipItem), 0.9f);
             return;
         }
@@ -55,12 +58,12 @@ public partial class Player
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
 
-        if (currentItem == null)
+        if (!currentItem)
         {
             UnequipItem();
             return;
         }
-
+        
         hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
         
         switch (currentItem.itemTag)
@@ -120,6 +123,8 @@ public partial class Player
 
     private void UnequipItem(InventoryItem item)
     {
+        hotbars[lastSlot].Selected = false;
+        
         handIsEmpty = true;
 
         switch (item.itemTag)
@@ -148,6 +153,8 @@ public partial class Player
 
     private void UnequipItem()
     {
+        hotbars[currentSlot].Selected = false;
+        
         handIsEmpty = true;
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
@@ -186,6 +193,6 @@ public partial class Player
 
     private void SetBowAnimator()
     {
-        bow = currentWeapon.GetComponent<Bow>();
+        if(currentWeapon) currentWeapon.TryGetComponent(out bow);
     }
 }
