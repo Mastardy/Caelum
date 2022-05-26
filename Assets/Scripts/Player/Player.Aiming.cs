@@ -103,13 +103,17 @@ public partial class Player
     
     private void EyeTraceInfo()
     {
-        if (hotbars[currentSlot].slot.inventoryItem)
+        var invItem = hotbars[currentSlot].slot.inventoryItem;
+        
+        if (invItem && !handIsEmpty)
         {
-            switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
+            switch (invItem.itemTag)
             {
                 case ItemTag.Sword:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
+                        PlayToolSwing(invItem.itemTag.ToString());
+                        
                         AnimatorUseSword();
                         
                         if (!lookingAt) return;
@@ -129,8 +133,10 @@ public partial class Player
                         }
                         break;
                     }
-                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
+                        PlayToolSwing(invItem.itemTag.ToString());
+                        
                         AnimatorUseSpear();
                         
                         if (!lookingAt) return;
@@ -174,24 +180,26 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                if (!hotbars[currentSlot].slot.inventoryItem) return;
+                if (!invItem) return;
 
                 switch (resource.resourceName)
                 {
                     case "wood":
-                        if(hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Axe)
+                        if(invItem.itemTag == ItemTag.Axe)
                         {
                             if (hotbars[currentSlot].slot.Durability <= 0) return;
                             hotbars[currentSlot].slot.Durability -= 0.1f;
+                            PlayToolSwing(invItem.itemTag.ToString());
                             AnimatorUseAxe();
                             resource.HitResourceServerRpc(this, 5);
                         }
                         break;
                     case "stone":
-                        if (hotbars[currentSlot].slot.inventoryItem.itemTag == ItemTag.Pickaxe)
+                        if (invItem.itemTag == ItemTag.Pickaxe)
                         {
                             if (hotbars[currentSlot].slot.Durability <= 0) return;
                             hotbars[currentSlot].slot.Durability -= 0.1f;
+                            PlayToolSwing(invItem.itemTag.ToString());
                             AnimatorUsePickaxe();
                             resource.HitResourceServerRpc(this, 3);
                         }
@@ -258,17 +266,24 @@ public partial class Player
 
         if (ply.TryGet(out Player player))
         {
-            player.hotbars[slot].slot.Clear();
-            
             var playerCameraTransform = playerCamera.transform;
             var spear = Instantiate(weaponItems[itemName].throwablePrefab, playerCameraTransform.position + playerCameraTransform.forward,
                 Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
-
-            spear.GetComponent<NetworkObject>().Spawn();
-            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
+            spear.name = player.inventoryItems[itemName].name;
 
             spear.GetComponent<ThrowableSpear>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
             spear.GetComponent<ThrowableSpear>().player = ply;
+            
+            spear.AddComponent(typeof(InventoryGroundItem));
+            var worldGameObjectInvItem = spear.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
+            worldGameObjectInvItem.amount = 1;
+            worldGameObjectInvItem.durability = player.hotbars[player.currentSlot].slot.Durability;
+
+            spear.GetComponent<NetworkObject>().Spawn();
+            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
+            
+            player.hotbars[slot].slot.Clear();
         }
     }
 }

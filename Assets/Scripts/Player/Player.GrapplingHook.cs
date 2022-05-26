@@ -33,6 +33,8 @@ public partial class Player
             grapplePoint = hit.point;
             grappleTimer = Time.time;
             currentGrappleVelocity = 0;
+            
+            PlayToolSwing(ItemTag.Grappling.ToString());
         }
     }
 
@@ -48,6 +50,8 @@ public partial class Player
             
             horizontalVelocity = Vector2.zero;
             verticalVelocity = 0;
+            
+            PlayToolSwing(ItemTag.Grappling.ToString());
         }
     }
 
@@ -62,8 +66,15 @@ public partial class Player
 
     private void EndGrapplePlus()
     {
+        var grappleDirection = grapplePoint - playerCamera.transform.position;
+
         lineRenderer.enabled = false;
         isTetheredPlus = false;
+        // Vector3.Normalize(grappleDirection) * (currentGrappleVelocity * Time.deltaTime) + (transform.forward * horizontalVelocity.y + transform.right * horizontalVelocity.x) * Time.deltaTime        
+
+        horizontalVelocity.x += grappleDirection.x * currentGrappleVelocity * Time.deltaTime;
+        verticalVelocity += grappleDirection.y * currentGrappleVelocity * Time.deltaTime;
+        horizontalVelocity.y += grappleDirection.z * currentGrappleVelocity * Time.deltaTime;
     }
     
     private void ApplyGrapplePhysics()

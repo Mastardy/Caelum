@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
-using Random = UnityEngine.Random;
 
 public partial class Player
 {
@@ -32,8 +30,14 @@ public partial class Player
             var lightWalking = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Steps/Light");
 
             if (lightWalking.Length == 0) return;
-                
-            do { index = Random.Range(0, lightWalking.Length); } while (lastIndex == index);
+            if (lightWalking.Length > 1)
+            {
+                do
+                {
+                    index = Random.Range(0, lightWalking.Length);
+                } while (lastIndex == index);
+            }
+            else index = 0;
                 
             audioSrc.GetComponent<AudioSource>().PlayOneShot(lightWalking[index]);
 
@@ -53,5 +57,16 @@ public partial class Player
         audioSrc.GetComponent<AudioSource>().PlayOneShot(lightRunning[index]);
         
         lastFootStep = Time.time - 0.2f;
+    }
+
+    private void PlayToolSwing(string itemTag)
+    {
+        var toolSwing = Resources.LoadAll<AudioClip>($"Sounds/Player/Tools/{itemTag}/Swing/");
+        if (toolSwing.Length == 0)
+        {
+            Debug.LogWarning(itemTag + " doesn't have Swing Sounds!");
+            return;
+        }
+        audioSrc.GetComponent<AudioSource>().PlayOneShot(toolSwing[Random.Range(0, toolSwing.Length)]);
     }
 }
