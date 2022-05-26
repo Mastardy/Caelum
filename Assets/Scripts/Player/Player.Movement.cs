@@ -216,7 +216,7 @@ public partial class Player
         }
         
         wasInParachute = inParachute;
-        
+
         inParachute = false;
         
         if (isGrounded) return;
