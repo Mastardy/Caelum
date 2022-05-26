@@ -68,11 +68,11 @@ public class SteamNetworkManager : MonoBehaviour
         if (NetworkManager.Singleton.StartClient()) Debug.Log("Client has joined!", this);
     }
 
-    private void Disconnect()
+    public void Disconnect()
     {
         CurrentLobby?.Leave();
         
-        if (NetworkManager.Singleton == null) return;
+        if (!NetworkManager.Singleton) return;
         
         NetworkManager.Singleton.Shutdown();
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public partial class Player
 {
@@ -11,6 +12,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Confined;
         inPause = true;
         takeInput = false;
+        pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
     }
@@ -20,6 +22,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Locked;
         inPause = false;
         takeInput = true;
+        pauseMenu.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
     }
@@ -31,6 +34,9 @@ public partial class Player
     
     public void MainMenu()
     {
+        SteamNetworkManager.Singleton.Disconnect();
+        if(NetworkManager.Singleton.ShutdownInProgress) NetworkManager.Singleton.Shutdown();
+        Destroy(NetworkManager.Singleton.gameObject);
         SceneManager.LoadScene(0);
     }
 }

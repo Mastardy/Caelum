@@ -49,6 +49,13 @@ public partial class Player : NetworkBehaviour
         }
     }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+        
+        allPlayers.Clear();
+    }
+
     private void LateStart()
     {
         SpawnPlayer();
@@ -96,7 +103,7 @@ public partial class Player : NetworkBehaviour
                 else StopFishing();
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.J, 0.2f))
+            if (InputHelper.GetKeyDown(KeyCode.R, 0.2f))
             {
                 BeginGrapple();
             }
@@ -105,7 +112,7 @@ public partial class Player : NetworkBehaviour
             {
                 BeginGrapplePlus();
             }
-            else if (Input.GetKeyUp(KeyCode.K))
+            else if (Input.GetKeyUp(KeyCode.Q))
             {
                 EndGrapplePlus();
             }

@@ -123,8 +123,6 @@ public partial class Player
             horizontalVelocity.Normalize();
             horizontalVelocity *= grapplePlusVelocity - grappleVelocity;
         }
-
-        Debug.Log(horizontalVelocity);
         
         characterController.Move(Vector3.Normalize(grappleDirection) * (currentGrappleVelocity * Time.deltaTime) + (transform.forward * horizontalVelocity.y + transform.right * horizontalVelocity.x) * Time.deltaTime);
 

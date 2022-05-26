@@ -1010,7 +1010,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4280024449873998746}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7400396821221085243}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &848535176414528455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1484,7 +1496,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth:
     m_InternalValue: 100
-  pauseMenu: {fileID: 4091583072143688925}
   chatBoxBackground: {fileID: 3803734834830220896}
   chatScrollBar: {fileID: 4164028203788992289}
   chatEntries: {fileID: 1012806598629731161}
@@ -1566,6 +1577,7 @@ MonoBehaviour:
   temperatureAttribute: {fileID: 1931697646277092687}
   cookingMinigameButton: {fileID: 94679280300160501}
   ovenMinigame: {fileID: 3110859400763522698}
+  pauseMenu: {fileID: 4091583072143688925}
 --- !u!1 &916624212204737557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7136,7 +7148,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2239710151488722302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7400396821221085243}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3210579808159467182
 GameObject:
   m_ObjectHideFlags: 0
@@ -8214,7 +8238,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 338577435140107829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7400396821221085243}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: HidePauseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3860366670678137717
 GameObject:
   m_ObjectHideFlags: 0
@@ -9302,7 +9338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8388039119848289639
 RectTransform:
   m_ObjectHideFlags: 0
