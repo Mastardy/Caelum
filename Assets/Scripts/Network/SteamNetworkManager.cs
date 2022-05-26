@@ -12,23 +12,6 @@ public class SteamNetworkManager : MonoBehaviour
     
     public FacepunchTransport transport;
     public UnityTransport unityTransport;
-
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(10, 100, 300, 300));
-        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
-        {
-            StartButtons();
-        }
-            
-        GUILayout.EndArea();
-    }
-
-    private static void StartButtons()
-    {
-        if (GUILayout.Button("SinglePlayer")) Singleton.StartSingleplayer();
-        if (GUILayout.Button("Steam Multiplayer")) Singleton.StartHost();
-    }
     
     private void Awake()
     {

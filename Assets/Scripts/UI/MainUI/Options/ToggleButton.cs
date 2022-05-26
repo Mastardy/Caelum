@@ -15,17 +15,14 @@ public class ToggleButton : MonoBehaviour
             if (flag)
             {
                 label.text = "on";
-                label.color = new Color(0.7f, 0.7f, 0.7f);
-                image.color = new Color(0.4f, 0.4f, 0.4f);
+                label.color = new Color(0.95f, 0.8f, 0.6f);
                 return;
             }
 
             label.text = "off";
-            label.color = new Color(0.4f, 0.4f, 0.4f);
-            image.color = new Color(0.3f, 0.3f, 0.3f);
+            label.color = new Color(0.7f, 0.7f, 0.7f);
         }
     }
     
-    [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI label;
 }

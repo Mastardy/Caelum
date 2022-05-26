@@ -25,9 +25,10 @@ public partial class Player
     [SerializeField] private float groundDistance = 0.1f;
     [SerializeField] private LayerMask groundMask;
 
-    private Vector3 playerCameraPosition = new Vector3(0, 3, 0);
-    [SerializeField] Vector3 parachuteCameraLocation = new Vector3(0,5,-3);
-    [SerializeField] GameObject parachuteObject;
+    [SerializeField] private Vector3 parachuteCameraLocation = new(0,5,-3);
+    [SerializeField] private GameObject parachuteObject;
+    
+    private Vector3 playerCameraPosition = new(0, 3, 0);
     
     private Vector2 horizontalVelocity;
     private float verticalVelocity;
@@ -199,6 +200,7 @@ public partial class Player
 
     private bool wasInParachute;
     private bool inParachute;
+    private float lastParachuteOpen;
     
     private void Parachute()
     {
@@ -219,9 +221,13 @@ public partial class Player
         
         if (isGrounded) return;
         
-        if (verticalVelocity > -2f && !wasInParachute) return;
+        if (verticalVelocity > -20f && !wasInParachute) return;
 
-        inParachute = Input.GetKey(KeyCode.O);
+        if (Time.time - lastParachuteOpen < 1f) return;
+        
+        inParachute = Input.GetKey(gameOptions.jumpKey);
+
+        if (wasInParachute && !inParachute) lastParachuteOpen = Time.time;
         
         if (inParachute)
         {

@@ -56,12 +56,12 @@ public partial class Player : NetworkBehaviour
         GiveItemClientRpc("axe_iron", 1, 1);
         GiveItemClientRpc("pickaxe_stone", 1, 1);
         GiveItemClientRpc("pickaxe_iron", 1, 1);
-        GiveItemClientRpc("bow", 1, 1);
+        // GiveItemClientRpc("bow", 1, 1);
         GiveItemClientRpc("sword", 1, 1);
         GiveItemClientRpc("spear_wood", 1, 1);
         GiveItemClientRpc("spear_stone", 1, 1);
         GiveItemClientRpc("spear_iron", 1, 1);
-        GiveItemClientRpc("grappling_hook", 1, 1);
+        // GiveItemClientRpc("grappling_hook", 1, 1);
     }
 
     private void FixedUpdate()
