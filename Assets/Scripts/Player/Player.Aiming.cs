@@ -258,7 +258,7 @@ public partial class Player
 
         if (ply.TryGet(out Player player))
         {
-            player.hotbars[currentSlot].slot.Clear();
+            player.hotbars[slot].slot.Clear();
             
             var playerCameraTransform = playerCamera.transform;
             var spear = Instantiate(weaponItems[itemName].throwablePrefab, playerCameraTransform.position + playerCameraTransform.forward,
