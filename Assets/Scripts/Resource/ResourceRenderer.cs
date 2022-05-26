@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [ExecuteInEditMode]
 public class ResourceRenderer : MonoBehaviour
 {
-    public bool drawGizmo = true;
+    [HideInInspector] public bool drawGizmo = true;
     public Color color = Color.yellow;
     public Vector3 offset;
     [Range(-360, 360)] public float rotation = 0;
     public int TreeCount = 10;
     public int size = 1;
-    public float sizeX = 0.5f;
-    public float sizeZ = 0.5f;
+    [Range(0, 2f)]public float sizeX = 0.5f;
+    [Range(0, 2f)] public float sizeZ = 0.5f;
     public int StartHeight = 1000;
     public int lineTraceLength = -1000;
 
@@ -48,7 +49,7 @@ public class ResourceRenderer : MonoBehaviour
 
     }
 
-    public void PlaceTrees()
+    public void PlaceTrees(Vector2 size)
     {
         Vector3 origin = transform.position;
 
@@ -57,12 +58,12 @@ public class ResourceRenderer : MonoBehaviour
         for (int i = 0; i < points.Count; i++)
         {
             int rand = Random.Range(0, resourcePrefab.Length);
-            GameObject tree = Instantiate(resourcePrefab[rand], transform);
+            GameObject tree = PrefabUtility.InstantiatePrefab(resourcePrefab[rand], transform) as GameObject;
+            //GameObject tree = Instantiate(resourcePrefab[rand], transform);
             tree.transform.position = points[i];
             tree.transform.Rotate(0, Random.Range(0, 359), 0);
-            tree.transform.localScale = Vector3.one * Random.Range(1.9f, 2.3f);
+            tree.transform.localScale = Vector3.one * Random.Range(size.x, size.y);
             tree.name = "Tree";
-            trees.Add(tree);
         }
     }
 
@@ -72,6 +73,7 @@ public class ResourceRenderer : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position + offset + new Vector3(0,StartHeight,0), transform.position + offset + new Vector3(0, lineTraceLength, 0));
+        Gizmos.DrawWireSphere(transform.position + offset, 1);
 
         for (int i = 0; i < points.Count; i++)
         {
@@ -117,6 +119,16 @@ public class ResourceRenderer : MonoBehaviour
 
     public void RenameTrees()
     {
-        if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject) tree.name = "Tree";
+        if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject && tree.CompareTag("Resource")) tree.name = "Tree";
+    }
+
+    public void ResizeTrees(Vector2 size)
+    {
+        if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject && tree.CompareTag("Resource")) tree.gameObject.transform.localScale = Vector3.one * Random.Range(size.x, size.y);
+    }
+
+    public void RotateTrees()
+    {
+        if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject && tree.CompareTag("Resource")) tree.transform.Rotate(0, Random.Range(0, 359), 0);
     }
 }
