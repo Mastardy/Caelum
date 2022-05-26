@@ -110,7 +110,7 @@ public partial class Player : NetworkBehaviour
                 EndGrapplePlus();
             }
 
-            if (!inInventory && !inCrafting && !inOven)
+            if (!inInventory && !inCrafting && !inOven && !inPause)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
                 {
@@ -118,7 +118,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inChat && !inCrafting && !inOven)
+            if (!inChat && !inCrafting && !inOven && !inPause)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
@@ -127,6 +127,14 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
+            if (InputHelper.GetKeyDown(KeyCode.Escape, 0.1f))
+            {
+                if(inChat) HideChat();
+                else if(inInventory) HideInventory();
+                else if(inPause) HidePauseMenu();
+                else OpenPauseMenu();
+            }
+            
             if (inCrafting)
             {
                 if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))

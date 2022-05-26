@@ -6,7 +6,7 @@ public partial class Player
     [SerializeField] private GameObject pauseMenu;
     private bool inPause;
     
-    public void ShowPauseMenu()
+    public void OpenPauseMenu()
     {
         Cursor.lockState = CursorLockMode.Confined;
         inPause = true;
