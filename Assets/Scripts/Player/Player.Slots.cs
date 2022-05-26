@@ -99,6 +99,7 @@ public partial class Player
 
     public void ShowModel()
     {
+        DestroyWeapon();
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         switch (currentItem.itemTag)
         {
@@ -188,7 +189,21 @@ public partial class Player
 
     public void DestroyWeapon()
     {
-        if(currentWeapon) Destroy(currentWeapon);
+        DestroyChildren(toolBone);
+        DestroyChildren(swordBone);
+        DestroyChildren(bowBone);
+        DestroyChildren(grapplingBone);
+        DestroyChildren(spearBone);
+    }
+
+    private void DestroyChildren(Transform parent)
+    {
+        var children = parent.GetComponentsInChildren<Transform>();
+        if (children.Length <= 1) return;
+        for (int i = 1; i < children.Length; i++)
+        {
+            Destroy(children[i].gameObject);
+        }
     }
 
     private void SetBowAnimator()

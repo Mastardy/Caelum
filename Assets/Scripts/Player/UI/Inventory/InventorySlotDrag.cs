@@ -108,7 +108,20 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                 else
                 {
                     if (invSlot.inventoryItem == null) return;
-                    if (invSlot.inventoryItem.itemName != inventorySlot.inventoryItem.itemName) return;
+                    if (invSlot.inventoryItem.itemName != inventorySlot.inventoryItem.itemName)
+                    {
+                        var tempInvItem = inventorySlot.inventoryItem;
+                        var tempSprite = inventorySlot.image.sprite;
+                        var tempAmount = inventorySlot.Amount;
+                        var tempDurability = inventorySlot.Durability;
+                        
+                        inventorySlot.Clear();
+                        inventorySlot.Fill(invSlot.inventoryItem, invSlot.image.sprite, invSlot.Amount, invSlot.Durability);
+                        
+                        invSlot.Clear();
+                        invSlot.Fill(tempInvItem, tempSprite, tempAmount, tempDurability);
+                        return;
+                    }
 
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {

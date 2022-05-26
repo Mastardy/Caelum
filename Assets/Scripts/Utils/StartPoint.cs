@@ -13,10 +13,11 @@ public class StartPoint : MonoBehaviour
     {
         try
         {
-            var seconds = SteamUtils.SecondsSinceAppActive;
+            _ = SteamUtils.SecondsSinceAppActive;
         }
         catch (Exception e)
         {
+            Debug.LogError(e);
             multiplayerButton.interactable = false;
             multiplayerText.SetText("Multiplayer (Steam not Open)");
         }

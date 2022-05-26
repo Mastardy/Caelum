@@ -38,7 +38,7 @@ public partial class Player
     public void OpenCraftingClientRpc(NetworkBehaviourReference craftTable)
     {
         craftTable.TryGet(out craftingTable);
-        if(craftingTable != null) OpenCrafting();
+        if(craftingTable) OpenCrafting();
     }
 
     [ClientRpc]

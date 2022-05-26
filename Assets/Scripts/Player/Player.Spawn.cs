@@ -53,9 +53,9 @@ public partial class Player
         }
     }
     
-    private void RespawnPlayer()
+    private void RespawnPlayer(bool dropItems = true)
     {
-        DropAllItemsServerRpc(this);
+        if(dropItems) DropAllItemsServerRpc(this);
 
         // Advanced Movement
         if(dashing) EndDash();
