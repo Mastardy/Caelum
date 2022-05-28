@@ -91,14 +91,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894415160264526198, guid: 296b991202c695f43989350207230ee5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4ca6e65bbcbdae84a93ca7700519b079, type: 2}
-    - target: {fileID: 894415160264526198, guid: 296b991202c695f43989350207230ee5,
-        type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: df28083d53346b14888892f4d5e0c767, type: 2}
+      objectReference: {fileID: 2100000, guid: d28bc084c4897ee4cb9983cdc4d69c40, type: 2}
     - target: {fileID: 1035367452526957364, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Name
@@ -196,6 +191,11 @@ PrefabInstance:
       propertyPath: m_LODs.Array.data[2].screenRelativeHeight
       value: 0.08
       objectReference: {fileID: 0}
+    - target: {fileID: 3778810163057922403, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 2463476686224743559}
     - target: {fileID: 3997722377426427856, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -376,14 +376,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7201044162495950466, guid: 296b991202c695f43989350207230ee5,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 4ca6e65bbcbdae84a93ca7700519b079, type: 2}
-    - target: {fileID: 7201044162495950466, guid: 296b991202c695f43989350207230ee5,
-        type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: df28083d53346b14888892f4d5e0c767, type: 2}
+      objectReference: {fileID: 2100000, guid: d28bc084c4897ee4cb9983cdc4d69c40, type: 2}
     - target: {fileID: 7290428887821812695, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Mesh
@@ -564,3 +559,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296b991202c695f43989350207230ee5, type: 3}
+--- !u!23 &2463476686224743559 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 584491641264340265, guid: 296b991202c695f43989350207230ee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3038961024798499246}
+  m_PrefabAsset: {fileID: 0}
