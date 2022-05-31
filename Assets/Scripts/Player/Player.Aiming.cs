@@ -18,8 +18,8 @@ public partial class Player
 
         if (takeInput)
         {
-            mouseX = Input.GetAxis("Mouse X") * gameOptions.mouseSensitivity;
-            mouseY = Input.GetAxis("Mouse Y") * gameOptions.mouseSensitivity;
+            mouseX = Input.GetAxis("Mouse X") * gameOptions.mouseSensitivity / 5;
+            mouseY = Input.GetAxis("Mouse Y") * gameOptions.mouseSensitivity / 5;
         }
 
         if (inParachute)

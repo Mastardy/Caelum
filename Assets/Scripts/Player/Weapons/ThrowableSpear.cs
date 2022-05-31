@@ -1,6 +1,4 @@
-using Steamworks;
 using Unity.Netcode;
-using Unity.Netcode.Components;
 using UnityEngine;
 
 public class ThrowableSpear : MonoBehaviour
@@ -31,6 +29,5 @@ public class ThrowableSpear : MonoBehaviour
     private void StickToAnimal()
     {
         gameObject.transform.SetParent(animal.transform);
-        Destroy(this);
     }
 }

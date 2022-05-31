@@ -70,10 +70,10 @@ public partial class Player
 
         lineRenderer.enabled = false;
         isTetheredPlus = false;
-        // Vector3.Normalize(grappleDirection) * (currentGrappleVelocity * Time.deltaTime) + (transform.forward * horizontalVelocity.y + transform.right * horizontalVelocity.x) * Time.deltaTime        
+
+        verticalVelocity += grappleDirection.y * currentGrappleVelocity * Time.deltaTime;
 
         horizontalVelocity.x += grappleDirection.x * currentGrappleVelocity * Time.deltaTime;
-        verticalVelocity += grappleDirection.y * currentGrappleVelocity * Time.deltaTime;
         horizontalVelocity.y += grappleDirection.z * currentGrappleVelocity * Time.deltaTime;
     }
     
@@ -90,7 +90,7 @@ public partial class Player
         
         Collider[] results = new Collider[10];
         var localScale = transform.localScale.x * 1.25f;
-        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results) > 1)
+        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results, Quaternion.identity, groundMask) > 1)
         {
             EndGrapple();
         }

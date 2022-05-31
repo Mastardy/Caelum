@@ -112,7 +112,7 @@ public partial class Player : NetworkBehaviour
             {
                 BeginGrapplePlus();
             }
-            else if (Input.GetKeyUp(KeyCode.Q))
+            else if (Input.GetKeyUp(KeyCode.Q) && isTetheredPlus)
             {
                 EndGrapplePlus();
             }

@@ -18,6 +18,7 @@ public partial class Player
     [SerializeField] private float gravity = -30f;
     [SerializeField] private float jumpHeight = 1.75f;
     [SerializeField] private float parachuteAcceleration = 50;
+    [SerializeField] private float parachuteSpeed = 15f;
 
     [SerializeField] private float playerCameraEasing = 2;
 
@@ -156,6 +157,7 @@ public partial class Player
     private void PreFallDamage()
     {
         wasGrounded = isGrounded;
+        if (inParachute && verticalVelocity > minFallDamageVelocity) fallDamage = 0;
         if (verticalVelocity > minFallDamageVelocity) return;
         fallDamage = (int)(fallDamageMultiplier * verticalVelocity);
     }
@@ -232,13 +234,13 @@ public partial class Player
         if (inParachute)
         {
             verticalVelocity += parachuteAcceleration * Time.deltaTime;
-            if (verticalVelocity > -2.1f) verticalVelocity = -2f;
+            if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
         }
     }
 
     private void Move()
     {
-        var maxSpeed = inParachute ? crouchSpeed : isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
+        var maxSpeed = inParachute ? parachuteSpeed : isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
 
         if (input.x == 0)
         {
@@ -282,7 +284,7 @@ public partial class Player
 
     public bool Geyser(float velocity)
     {
-        if (!inParachute) return false;
+        if (!Input.GetKey(KeyCode.Space)) return false;
 
         verticalVelocity = velocity;
         inParachute = false;
