@@ -45,7 +45,7 @@ public partial class Player
 
     private void EyeTrace()
     {
-        if (Physics.Raycast(playerCamera.position, playerCamera.forward, out RaycastHit hitInfo, 3, hitMask))
+        if (Physics.CapsuleCast(playerCamera.position, playerCamera.forward, 1, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
         {
             if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
@@ -93,6 +93,13 @@ public partial class Player
             {
                 aimText.SetText("Fishing Net" + (fishingNet.fishesInNet > 0 ? $"\n{fishingNet.fishesInNet}" : String.Empty));
                 lookingAt = fishingNet.gameObject;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out ResourcePickable pickable))
+            {
+                aimText.SetText(pickable.gameObject.name);
+                lookingAt = pickable.gameObject;
                 return;
             }
         }
@@ -209,15 +216,16 @@ public partial class Player
                         break;
                 }
             }
-            else if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
+        }
+        
+        if(lookingAt.TryGetComponent(out ResourcePickable pickable))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
             {
-                if (resource.name != "Fruit") return;
-                
-                resource.HitResourceServerRpc(this, 1);
+                pickable.GatherResourceServerRpc(this);
                 AnimatorCollect();
+                return;
             }
-            
-            return;
         }
 
         if (lookingAt.TryGetComponent(out InventoryGroundItem groundItem))

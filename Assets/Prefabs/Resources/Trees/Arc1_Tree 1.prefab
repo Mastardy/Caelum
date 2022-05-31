@@ -410,7 +410,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onGather.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1841174974471628408}
+      objectReference: {fileID: 0}
     - target: {fileID: 7675716440369190723, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: onGather.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -452,11 +452,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a7961db8e3d57e24a9424aa5a87a9690, type: 2}
-    - target: {fileID: 8457801341831228654, guid: 296b991202c695f43989350207230ee5,
-        type: 3}
-      propertyPath: resourceName
-      value: wood
-      objectReference: {fileID: 0}
     - target: {fileID: 9090576509134363645, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -504,18 +499,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296b991202c695f43989350207230ee5, type: 3}
---- !u!114 &1841174974471628408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3720435160440063958, guid: 296b991202c695f43989350207230ee5,
-    type: 3}
-  m_PrefabInstance: {fileID: 3038961024798499246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e181ab415c5744fb64714ddc99fbc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &2463476686224743559 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 584491641264340265, guid: 296b991202c695f43989350207230ee5,

@@ -310,10 +310,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1953778229022211802}
   - component: {fileID: 6724742275051497753}
-  - component: {fileID: 7675716440369190723}
-  - component: {fileID: 3720435160440063958}
   m_Layer: 6
-  m_Name: Fruit
+  m_Name: Fruits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,37 +350,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 3.5, z: 3.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7675716440369190723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7707957198208611381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473e417a94fc3314cade67a76004cb4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resourceName: raw_meat
-  maxResources: 5
-  curResources:
-    m_InternalValue: 5
-  onGather:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3720435160440063958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7707957198208611381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86e181ab415c5744fb64714ddc99fbc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8930060310367157155
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +446,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157266302605207737, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2835498850523585378, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -498,6 +475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342826881398007000, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5359541187961691352, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
@@ -585,6 +567,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7255102655295104158, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd7a8b4555298a468e968706441b138, type: 3}
 --- !u!4 &6638350483581333273 stripped
@@ -605,6 +592,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157266302605207737, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2835498850523585378, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -624,6 +621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342826881398007000, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5359541187961691352, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
@@ -711,6 +713,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7255102655295104158, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd7a8b4555298a468e968706441b138, type: 3}
 --- !u!4 &5933261921280073871 stripped
@@ -731,6 +738,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157266302605207737, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2835498850523585378, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -750,6 +767,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342826881398007000, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5359541187961691352, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
@@ -837,6 +859,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7255102655295104158, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd7a8b4555298a468e968706441b138, type: 3}
 --- !u!4 &5597537894377645133 stripped
@@ -857,6 +884,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157266302605207737, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2835498850523585378, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -875,7 +912,12 @@ PrefabInstance:
     - target: {fileID: 3757213759406088705, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342826881398007000, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5359541187961691352, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
@@ -963,6 +1005,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7255102655295104158, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd7a8b4555298a468e968706441b138, type: 3}
 --- !u!4 &9090576509134363645 stripped
@@ -983,6 +1030,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pear
       objectReference: {fileID: 0}
+    - target: {fileID: 109339888316928836, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157266302605207737, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2835498850523585378, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -1002,6 +1059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4342826881398007000, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5359541187961691352, guid: ccd7a8b4555298a468e968706441b138,
         type: 3}
@@ -1088,6 +1150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7255102655295104158, guid: ccd7a8b4555298a468e968706441b138,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd7a8b4555298a468e968706441b138, type: 3}
