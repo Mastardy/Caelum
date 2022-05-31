@@ -1,6 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public partial class Animal : NetworkBehaviour
 {
@@ -8,6 +9,7 @@ public partial class Animal : NetworkBehaviour
     [SerializeField] private Animator animator;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
+    public UnityEvent onDestroy;
 
 
     private void Start()
@@ -28,5 +30,12 @@ public partial class Animal : NetworkBehaviour
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
         animator.SetFloat(speedCache, agent.velocity.magnitude);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+
+        onDestroy.Invoke();
     }
 }

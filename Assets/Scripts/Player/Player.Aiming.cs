@@ -180,7 +180,7 @@ public partial class Player
         {
             if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
             {
-                if (!invItem) return;
+                if (!invItem || handIsEmpty) return;
 
                 switch (resource.resourceName)
                 {
