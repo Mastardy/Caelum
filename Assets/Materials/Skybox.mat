@@ -80,27 +80,27 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _Bottom_Power: 1
+    - _Bottom_Power: 0.86
     - _BumpScale: 1
-    - _Cel_Density: 1.33
+    - _Cel_Density: 0.47
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clouds_Power: 1
-    - _Clouds_Scale: 2.5
+    - _Clouds_Power: 6.59
+    - _Clouds_Scale: 7.43
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Distance_Fade_Power: 1
+    - _Distance_Fade_Power: 2.37
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Gradient_Scale: 1.16
+    - _Gradient_Scale: 0.25
     - _Islands_Scale: 0.1
     - _Metallic: 0
-    - _Noise_Speed: 0.1
+    - _Noise_Speed: 0.36
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -110,22 +110,23 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Step_1: 0.06
-    - _Step_2: 0.111
+    - _Step_1: 0
+    - _Step_2: 0.043
     - _Surface: 0
-    - _Up_Power: 1
+    - _Up_Power: 0.48
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bottom_Color: {r: 0, g: 0.21429706, b: 0.44339618, a: 0}
+    - _Bottom_Color: {r: 0, g: 0.6492949, b: 0.6698113, a: 0}
     - _Cloud_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Cloud_Speed: {r: 0.1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Middle_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Islands_Color: {r: 0.26415086, g: 0.26415086, b: 0.26415086, a: 0}
+    - _Middle_Color: {r: 0.6179246, g: 1, b: 0.9961398, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Up_Color: {r: 0, g: 0.5688943, b: 1, a: 0}
+    - _Up_Color: {r: 0, g: 0.7647791, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5522107028582274245
 MonoBehaviour:
