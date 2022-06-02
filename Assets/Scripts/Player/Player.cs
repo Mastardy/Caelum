@@ -171,6 +171,8 @@ public partial class Player : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
             if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
 
+            if (Input.GetAxis("Mouse ScrollWheel") != 0) CurrentSlot += Input.GetAxis("Mouse ScrollWheel") < 0 ? 1 : -1;
+
             MovementUpdate();
 
             AimUpdate();

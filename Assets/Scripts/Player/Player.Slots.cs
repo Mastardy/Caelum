@@ -19,6 +19,10 @@ public partial class Player
     public int currentSlot;
     private int CurrentSlot
     {
+        get
+        {
+            return currentSlot;
+        }
         set
         {
             if (currentSlot == value)
@@ -28,12 +32,14 @@ public partial class Player
                 return;
             }
 
-            if (!hotbars[value].slot.isEmpty && Time.time - lastSlotChange < 0.35f) return;
+            if (Time.time - lastSlotChange < 0.35f) return;
+            var val = value < 0 ? 5 : value > 5 ? 0 : value;
+            if (!hotbars[val].slot.isEmpty) return;
             
             hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
             hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
             lastSlot = currentSlot;
-            currentSlot = value;
+            currentSlot = val;
             InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
             hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem(currentItem));
 
