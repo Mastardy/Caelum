@@ -80,12 +80,16 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _Bottom_Power: 0.86
+    - _Bottom_Clouds_Power: 2.47
+    - _Bottom_Clouds_Scale: 0.31
+    - _Bottom_Distance_Fade_Power: 1.27
+    - _Bottom_Gradient_Scale: 4.04
+    - _Bottom_Power: 0.76
     - _BumpScale: 1
     - _Cel_Density: 0.47
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clouds_Power: 6.59
+    - _Clouds_Power: 5.84
     - _Clouds_Scale: 7.43
     - _Cull: 2
     - _Cutoff: 0.5
@@ -98,7 +102,11 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Gradient_Scale: 0.25
-    - _Islands_Scale: 0.1
+    - _Islands_Fade_Power: 49.5
+    - _Islands_Gradient_Scale: 63.82
+    - _Islands_Multiply: 30
+    - _Islands_Power: 1.21
+    - _Islands_Scale: 0.44
     - _Metallic: 0
     - _Noise_Speed: 0.36
     - _OcclusionStrength: 1
@@ -118,13 +126,15 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bottom_Color: {r: 0, g: 0.6492949, b: 0.6698113, a: 0}
+    - _Bottom_Color: {r: 0, g: 0.8087063, b: 1, a: 0}
     - _Cloud_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Cloud_Speed: {r: 0.1, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Islands_Color: {r: 0.26415086, g: 0.26415086, b: 0.26415086, a: 0}
-    - _Middle_Color: {r: 0.6179246, g: 1, b: 0.9961398, a: 0}
+    - _Island_Tilling: {r: 0.87, g: 0.45, b: 0, a: 0}
+    - _Islands_Color: {r: 0.33490568, g: 0.72726357, b: 1, a: 1}
+    - _Islands_Smoothstep: {r: 1.5, g: 0.49, b: 0, a: 0}
+    - _Middle_Color: {r: 0.5896226, g: 0.96074665, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Up_Color: {r: 0, g: 0.7647791, b: 1, a: 0}
   m_BuildTextureStacks: []
