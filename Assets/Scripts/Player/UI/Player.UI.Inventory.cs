@@ -38,6 +38,15 @@ public partial class Player
         hotbarsGroup.alpha = 0;
     }
     
+    [ServerRpc]
+    public void GiveItemServerRpc(NetworkBehaviourReference player, string itemName, int amountToAdd = 1, float durability = 0)
+    {
+        if (player.TryGet(out Player ply))
+        {
+            ply.GiveItemClientRpc(itemName, amountToAdd, durability);
+        }
+    }
+    
     [ClientRpc]
     public void GiveItemClientRpc(string itemName, int amountToAdd = 1, float durability = 0)
     {

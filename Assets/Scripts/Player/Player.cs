@@ -60,15 +60,15 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             SpawnPlayer();
-            GiveItemClientRpc("axe_stone", 1, 1);
-            GiveItemClientRpc("axe_iron", 1, 1);
-            GiveItemClientRpc("pickaxe_stone", 1, 1);
-            GiveItemClientRpc("pickaxe_iron", 1, 1);
+            GiveItemServerRpc(this, "axe_stone", 1, 1);
+            GiveItemServerRpc(this, "axe_iron", 1, 1);
+            GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
+            GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
             // GiveItemClientRpc("bow", 1, 1);
-            GiveItemClientRpc("sword", 1, 1);
-            GiveItemClientRpc("spear_wood", 1, 1);
-            GiveItemClientRpc("spear_stone", 1, 1);
-            GiveItemClientRpc("spear_iron", 1, 1);
+            GiveItemServerRpc(this, "sword", 1, 1);
+            GiveItemServerRpc(this, "spear_wood", 1, 1);
+            GiveItemServerRpc(this, "spear_stone", 1, 1);
+            GiveItemServerRpc(this, "spear_iron", 1, 1);
             // GiveItemClientRpc("grappling_hook", 1, 1);
         }
     }
