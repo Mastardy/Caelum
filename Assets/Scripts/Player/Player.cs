@@ -13,13 +13,7 @@ public partial class Player : NetworkBehaviour
     
     private void Start()
     {
-        SetHealthServerRpc(maxHealth);
-        currentHunger = maxHunger;
-        currentThirst = maxThirst;
-        
         allPlayers.Add(this);
-        
-        GetItemsAndRecipes();
         
         if (!IsLocalPlayer)
         {
@@ -27,25 +21,28 @@ public partial class Player : NetworkBehaviour
         }
         else
         {
-            if (IsLocalPlayer)
+            SetHealthServerRpc(maxHealth);
+            GetItemsAndRecipes();
+
+            currentHunger = maxHunger;
+            currentThirst = maxThirst;
+
+            for (int i = 0; i < hotbars.Count; i++)
             {
-                for (int i = 0; i < hotbars.Count; i++)
-                {
-                    hotbars[i].Selected = false;
-                }
-                
-                gameOptions = GameManager.Instance.gameOptions;
-
-                playerCanvas.gameObject.SetActive(true);
-                playerCamera.gameObject.SetActive(true);
-
-                characterController = GetComponent<CharacterController>();
-                Cursor.lockState = CursorLockMode.Locked;
-
-                AnimatorStart();
-                
-                Invoke(nameof(LateStart), 0.1f);
+                hotbars[i].Selected = false;
             }
+
+            gameOptions = GameManager.Instance.gameOptions;
+
+            playerCanvas.gameObject.SetActive(true);
+            playerCamera.gameObject.SetActive(true);
+
+            characterController = GetComponent<CharacterController>();
+            Cursor.lockState = CursorLockMode.Locked;
+
+            AnimatorStart();
+
+            Invoke(nameof(LateStart), 0.1f);
         }
     }
 

@@ -38,6 +38,19 @@ public partial class Player
     public void GiveItemClientRpc(string itemName, int amountToAdd = 1, float durability = 0)
     {
         int amountAdded = 0;
+
+        if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword)
+        {
+            foreach (var hotbar in hotbars)
+            {
+                var slot = hotbar.slot;
+                if (!slot.isEmpty) continue;
+
+                slot.Fill(inventoryItems[itemName], 1, durability);
+
+                return;
+            }
+        }
         
         foreach (var slot in inventorySlots)
         {
@@ -58,12 +71,7 @@ public partial class Player
         {
             if (!slot.isEmpty) continue;
 
-            slot.Amount = 0;
-            slot.isEmpty = false;
-            slot.inventoryItem = inventoryItems[itemName];
-            slot.image.sprite = slot.inventoryItem.sprite;
-            slot.image.enabled = true;
-            slot.Durability = durability;
+            slot.Fill(inventoryItems[itemName], 0, durability);
             
             do
             {

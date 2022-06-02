@@ -44,12 +44,12 @@ public class InventorySlot : MonoBehaviour
     public Image image;
     public TextMeshProUGUI text;
 
-    public void Fill(InventoryItem invItem, Sprite itemSprite, int newAmount, float newDurability)
+    public void Fill(InventoryItem invItem, int newAmount, float newDurability)
     {
         isEmpty = false;
         inventoryItem = invItem;
         image.enabled = true;
-        image.sprite = itemSprite;
+        image.sprite = invItem.sprite;
         Amount = newAmount;
         durability = newDurability;
         

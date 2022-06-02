@@ -96,12 +96,12 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                 {
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {
-                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, inventorySlot.Amount, inventorySlot.Durability);
+                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.Amount, inventorySlot.Durability);
                         inventorySlot.Clear();
                     }
                     else
                     {
-                        invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.image.sprite, Mathf.FloorToInt(inventorySlot.Amount / 2f), inventorySlot.Durability);
+                        invSlot.Fill(inventorySlot.inventoryItem, Mathf.FloorToInt(inventorySlot.Amount / 2f), inventorySlot.Durability);
                         inventorySlot.Amount = Mathf.CeilToInt(inventorySlot.Amount / 2f);
                     }
                 }
@@ -116,10 +116,10 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                         var tempDurability = inventorySlot.Durability;
                         
                         inventorySlot.Clear();
-                        inventorySlot.Fill(invSlot.inventoryItem, invSlot.image.sprite, invSlot.Amount, invSlot.Durability);
+                        inventorySlot.Fill(invSlot.inventoryItem, invSlot.Amount, invSlot.Durability);
                         
                         invSlot.Clear();
-                        invSlot.Fill(tempInvItem, tempSprite, tempAmount, tempDurability);
+                        invSlot.Fill(tempInvItem, tempAmount, tempDurability);
                         return;
                     }
 
