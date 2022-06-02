@@ -28,7 +28,7 @@ public partial class Player
                 return;
             }
 
-            if (!hotbars[value].slot.isEmpty && Time.time - lastSlotChange < 1.5f) return;
+            if (!hotbars[value].slot.isEmpty && Time.time - lastSlotChange < 0.35f) return;
             
             hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
             hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
@@ -50,7 +50,7 @@ public partial class Player
         {
             UnequipItem(hotbars[lastSlot].slot.inventoryItem);
             if (hotbars[currentSlot].slot.isEmpty) hotbars[currentSlot].Selected = false;
-            Invoke(nameof(EquipItem), 0.9f);
+            Invoke(nameof(EquipItem), 0.2f);
             return;
         }
         
@@ -60,12 +60,13 @@ public partial class Player
 
         if (!currentItem)
         {
+            DestroyWeapon();
             UnequipItem();
             return;
         }
         
         hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
-        
+        DestroyWeapon();
         switch (currentItem.itemTag)
         {
             case ItemTag.Other:
@@ -76,48 +77,28 @@ public partial class Player
                 break;
             case ItemTag.Axe:
             case ItemTag.Pickaxe:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, toolBone);
                 AnimatorEquipTool(true);
                 break;
             case ItemTag.Sword:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, swordBone);
                 AnimatorEquipSword(true);
                 break;
             case ItemTag.Spear:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, spearBone);
                 AnimatorEquipSpear(true);
                 break;
             case ItemTag.Bow:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, bowBone);
                 AnimatorEquipBow(true);
                 Invoke(nameof(SetBowAnimator), 0.2f);
                 break;
             case ItemTag.Grappling:
+                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
                 AnimatorEquipGrappling(true);
                 break;
             default:
                 Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
-                break;
-        }
-    }
-
-    public void ShowModel()
-    {
-        DestroyWeapon();
-        InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
-        switch (currentItem.itemTag)
-        {
-            case ItemTag.Axe:
-            case ItemTag.Pickaxe:
-                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, toolBone);
-                break;
-            case ItemTag.Sword:
-                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, swordBone);
-                break;
-            case ItemTag.Bow:
-                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, bowBone);
-                break;
-            case ItemTag.Spear:
-                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, spearBone);
-                break;
-            case ItemTag.Grappling:
-                currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
                 break;
         }
     }
@@ -154,6 +135,8 @@ public partial class Player
 
     private void UnequipItem()
     {
+        DestroyWeapon();
+
         hotbars[currentSlot].Selected = false;
         
         handIsEmpty = true;

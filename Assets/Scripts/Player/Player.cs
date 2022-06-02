@@ -182,7 +182,7 @@ public partial class Player : NetworkBehaviour
             
             StatusUpdate();
 
-            //ANDR�, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
+            //ANDRE, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
             bool holdTool = false;
             if (!handIsEmpty)
             {

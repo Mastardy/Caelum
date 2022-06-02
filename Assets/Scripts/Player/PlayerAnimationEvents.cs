@@ -29,11 +29,6 @@ public class PlayerAnimationEvents : MonoBehaviour
         player.DestroyWeapon();
     }
 
-    public void ShowWeapon()
-    {
-        player.ShowModel();
-    }
-
     public void EndLeftArm()
     {
         player.SetLeftArmWeight(0);

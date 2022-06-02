@@ -138,6 +138,11 @@ public partial class Player
 
     private void AnimatorEquipTool(bool equip)
     {
+        if (equip)
+        {
+            SetLeftArmWeight(0);
+            SetRightArmWeight(0);
+        }
         firstPersonAnimator.SetBool(toolCache, equip);
     }
 
@@ -165,6 +170,11 @@ public partial class Player
 
     private void AnimatorEquipBow(bool equip)
     {
+        if (equip)
+        {
+            SetLeftArmWeight(0);
+            SetRightArmWeight(0);
+        }
         firstPersonAnimator.SetBool(bowCache, equip);
         canAimAnim = equip;
     }
