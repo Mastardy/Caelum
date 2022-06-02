@@ -105,13 +105,15 @@ public partial class Player
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
-            if (inventorySlots[i].GetInstanceID() == inventorySlot.GetInstanceID())
+            if (inventorySlot == inventorySlots[i])
             {
-                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, dropEverything, inventorySlots[i].Durability);
+                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, 
+                    dropEverything, inventorySlots[i].Durability);
+                break;
             }
         }
     }
-    
+
     [ServerRpc(RequireOwnership = false)]
     public void DropItemServerRpc(NetworkBehaviourReference ply, string itemName, int slot, int dropAmount, bool dropEverything, float durability = 0)
     {
