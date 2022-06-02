@@ -21,7 +21,6 @@ public partial class Player : NetworkBehaviour
         {
             firstPersonAnimator.enabled = false;
             playerCamera.gameObject.SetActive(false);
-            playerCanvas.gameObject.SetActive(false);
         }
         else
         {
@@ -60,6 +59,7 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
+            playerCanvas.gameObject.SetActive(true);
             SpawnPlayer();
             GiveItemServerRpc(this, "axe_stone", 1, 1);
             GiveItemServerRpc(this, "axe_iron", 1, 1);
