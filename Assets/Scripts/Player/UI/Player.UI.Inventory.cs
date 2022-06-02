@@ -143,7 +143,7 @@ public partial class Player
 
         return false;
     }
-    
+
     private void GetItemsAndRecipes()
     {
         InventoryItem[] invItems = Resources.LoadAll<InventoryItem>("InventoryItems");
@@ -151,7 +151,7 @@ public partial class Player
         WeaponItem[] allWeaponItems = Resources.LoadAll<WeaponItem>("Weapons");
         cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes");
         CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
-        
+
         foreach (var invItem in invItems)
         {
             inventoryItems.Add(invItem.itemName, invItem);

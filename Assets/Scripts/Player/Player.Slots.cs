@@ -25,8 +25,6 @@ public partial class Player
         }
         set
         {
-            Debug.Log(value);
-            
             if (currentSlot == value)
             {
                 if(handIsEmpty) EquipItem();

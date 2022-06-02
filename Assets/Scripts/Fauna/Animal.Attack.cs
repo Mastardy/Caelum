@@ -26,7 +26,7 @@ public partial class Animal
         agent.speed = fleeSpeed;
         agent.stoppingDistance = 3.0f;
         
-        playerTarget = GetNearPlayer(5);
+        playerTarget = GetNearPlayer(10);
         
         agent.SetDestination(playerTarget.transform.position);
     }
@@ -37,7 +37,7 @@ public partial class Animal
 
         agent.isStopped = false;
 
-        if (Vector3.Distance(transform.position, playerTarget.transform.position) > 2.0f) return;
+        if (Vector3.Distance(transform.position, playerTarget.transform.position) > 3.0f) return;
         
         agent.velocity = Vector3.zero;
         agent.isStopped = true;

@@ -44,6 +44,6 @@ public partial class Animal : NetworkBehaviour
     {
         base.OnDestroy();
 
-        onDestroy?.Invoke();
+        onDestroy.Invoke();
     }
 }

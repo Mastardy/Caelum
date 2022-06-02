@@ -56,15 +56,16 @@ public partial class Animal
         {
             case idleState:
                 CurrentState = PlayerIsNear(5) 
-                    ? fleeState// Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    ? (currentHealth.Value < 20 ? fleeState : attackState) 
                     : RandomState();
                 break;
             case roamState:
                 CurrentState = PlayerIsNear(5) 
-                    ? attackState // Random.Range(0, 2) == 0 ? fleeState : attackState 
+                    ? (currentHealth.Value < 20 ? fleeState : attackState) 
                     : RandomState();
                 break;
             case attackState:
+                if (currentHealth.Value < 20) CurrentState = fleeState;
                 if (!playerTarget) CurrentState = RandomState();
                 else
                 {
@@ -102,16 +103,14 @@ public partial class Animal
 
         transitionTimer = Time.time;
 
-        var random = new System.Random();
-        
-        switch (random.Next(0, 2))
+        switch (Random.Range(0, 2))
         {
             case 0:
-                transitionDelay = (float)(random.NextDouble() * random.Next(2, 5));
+                transitionDelay = (Random.Range(2, 5));
                 currentRandomState = idleState;
                 return idleState;
             case 1:
-                transitionDelay = (float)(random.NextDouble() * random.Next(5, 10));
+                transitionDelay = (Random.Range(5, 10));
                 currentRandomState = roamState;
                 return roamState;
         }
