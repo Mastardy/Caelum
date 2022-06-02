@@ -1,7 +1,9 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public partial class Animal : NetworkBehaviour
 {
@@ -27,17 +29,19 @@ public partial class Animal : NetworkBehaviour
         animalStates.Add(attackState, AttackState());
     }
 
+    private void FixedUpdate()
+    {
+        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out RaycastHit hit, -LayerMask.NameToLayer("Ground")))
+        {
+            model.transform.position = hit.point;
+        }
+    }
+
     private void Update()
     {
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
         animator.SetFloat(speedCache, agent.velocity.magnitude);
-
-        RaycastHit hit;
-        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out hit , -LayerMask.NameToLayer("Ground")))
-        {
-            model.transform.position = hit.point;
-        }
     }
 
     public override void OnDestroy()
