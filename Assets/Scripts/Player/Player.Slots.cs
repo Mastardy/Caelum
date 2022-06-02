@@ -25,6 +25,8 @@ public partial class Player
         }
         set
         {
+            Debug.Log(value);
+            
             if (currentSlot == value)
             {
                 if(handIsEmpty) EquipItem();
@@ -33,8 +35,10 @@ public partial class Player
             }
 
             if (Time.time - lastSlotChange < 0.35f) return;
+            
             var val = value < 0 ? 5 : value > 5 ? 0 : value;
-            if (!hotbars[val].slot.isEmpty) return;
+            
+            if (hotbars[val].slot.isEmpty) return;
             
             hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
             hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);

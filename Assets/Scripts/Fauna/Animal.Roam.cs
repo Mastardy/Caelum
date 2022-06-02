@@ -22,7 +22,7 @@ public partial class Animal
         
         var randomPosition = Random.insideUnitSphere * Random.Range(10.0f, 20.0f);
 
-        NavMesh.SamplePosition(transform.position + randomPosition, out NavMeshHit navMeshHit, 25f,  1);
+        NavMesh.SamplePosition(transform.position + randomPosition, out NavMeshHit navMeshHit, 25f,  4);
         
         agent.SetDestination(navMeshHit.position);
     }
@@ -32,8 +32,5 @@ public partial class Animal
         if (agent.remainingDistance < 1) RoamStart();
     }
 
-    private void RoamEnd()
-    {
-        
-    }
+    private void RoamEnd() { }
 }

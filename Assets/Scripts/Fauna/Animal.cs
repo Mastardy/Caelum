@@ -10,8 +10,7 @@ public partial class Animal : NetworkBehaviour
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     public UnityEvent onDestroy;
-
-
+    
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -36,6 +35,6 @@ public partial class Animal : NetworkBehaviour
     {
         base.OnDestroy();
 
-        onDestroy.Invoke();
+        onDestroy?.Invoke();
     }
 }
