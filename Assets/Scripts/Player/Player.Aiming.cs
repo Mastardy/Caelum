@@ -192,7 +192,7 @@ public partial class Player
             if(InputHelper.GetKeyDown(gameOptions.useKey, 0.3f)) {
                 if (resource.resourceName == "wood")
                 {
-                    GiveItemClientRpc("stick");
+                    GiveItemServerRpc(this, "stick");
                     AnimatorCollect();
                 }
             }

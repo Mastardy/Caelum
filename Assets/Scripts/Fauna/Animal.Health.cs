@@ -16,7 +16,7 @@ public partial class Animal
 
         if (currentHealth.Value <= 0)
         {
-            if (player.TryGet(out Player ply)) ply.GiveItemClientRpc("raw_meat");
+            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, "raw_meat");
             currentHealth.Value = 0;
             Die();
         }

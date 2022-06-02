@@ -144,7 +144,7 @@ public partial class Player
         if (foodItems[cookingRecipe.cooked.itemName].temperature != 0)
         {
             temperatureAttribute.gameObject.SetActive(true);
-            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "º");
+            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "ï¿½");
         }
 
         cookingMinigameButton.gameObject.SetActive(true);
@@ -189,11 +189,11 @@ public partial class Player
             
             if (curValue > (tempCurrentTimer - curOffset) && curValue < (tempCurrentTimer + curOffset))
             {
-                GiveItemClientRpc(currentRecipe.cooked.itemName, 1);
+                GiveItemServerRpc(this, currentRecipe.cooked.itemName, 1);
             }
             else
             {
-                GiveItemClientRpc(currentRecipe.burnt.itemName, 1);
+                GiveItemServerRpc(this, currentRecipe.burnt.itemName, 1);
             }
             
             ovenMinigame.SetActive(false);

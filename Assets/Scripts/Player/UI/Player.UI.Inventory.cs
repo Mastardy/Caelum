@@ -43,13 +43,18 @@ public partial class Player
     {
         if (player.TryGet(out Player ply))
         {
-            ply.GiveItemClientRpc(itemName, amountToAdd, durability);
+            ply.GiveItemClientRpc(player, itemName, amountToAdd, durability);
         }
     }
     
     [ClientRpc]
-    public void GiveItemClientRpc(string itemName, int amountToAdd = 1, float durability = 0)
+    public void GiveItemClientRpc(NetworkBehaviourReference player, string itemName, int amountToAdd = 1, float durability = 0)
     {
+        if (player.TryGet(out Player ply))
+        {
+            if (ply != this) return;
+        }
+        
         int amountAdded = 0;
 
         if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword)

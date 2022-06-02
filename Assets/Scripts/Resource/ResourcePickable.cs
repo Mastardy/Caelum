@@ -10,7 +10,7 @@ public class ResourcePickable : NetworkBehaviour
     {
         if (player.TryGet(out Player ply))
         {
-            ply.GiveItemClientRpc(resourceName);
+            ply.GiveItemServerRpc(player, resourceName);
             Destroy(gameObject);
         }
     }

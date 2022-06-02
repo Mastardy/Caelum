@@ -24,7 +24,7 @@ public class Resource : NetworkBehaviour
         
         if(player.TryGet(out Player ply))
         {
-            ply.GiveItemClientRpc(resourceName, resourcesGathered);
+            ply.GiveItemServerRpc(player, resourceName, resourcesGathered);
             onGather.Invoke();
         }
     }

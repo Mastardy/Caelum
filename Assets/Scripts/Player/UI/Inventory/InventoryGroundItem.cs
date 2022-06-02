@@ -18,7 +18,7 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.GiveItemClientRpc(inventoryItem.itemName, amount, durability);
+            player.GiveItemServerRpc(this, inventoryItem.itemName, amount, durability);
         }
     }
 

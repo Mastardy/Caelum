@@ -34,7 +34,7 @@ public class FishingNet : NetworkBehaviour
             if (Time.time - launchTime > fishingTime)
             {
                 netLaunched = false;
-                ply.GiveItemClientRpc("raw_fish", fishesInNet);
+                ply.GiveItemServerRpc(player, "raw_fish", fishesInNet);
                 fishesInNet = 0;
             }
         }
