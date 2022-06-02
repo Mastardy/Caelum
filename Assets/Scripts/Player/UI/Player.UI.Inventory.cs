@@ -8,6 +8,8 @@ public partial class Player
     private bool inInventory;
     private Dictionary<string, InventoryItem> inventoryItems = new();
 
+    [SerializeField] private CanvasGroup hotbarsGroup;
+
     /// <summary>
     /// Hides the Inventory
     /// </summary>
@@ -19,6 +21,7 @@ public partial class Player
         inventoryPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        hotbarsGroup.alpha = 1;
     }
 
     /// <summary>
@@ -32,6 +35,7 @@ public partial class Player
         inventoryPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        hotbarsGroup.alpha = 0;
     }
     
     [ClientRpc]

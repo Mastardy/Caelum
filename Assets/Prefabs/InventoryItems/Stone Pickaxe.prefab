@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8955440015304406929}
   - component: {fileID: 5262586470759745910}
   - component: {fileID: 6485742600948507369}
+  - component: {fileID: 1616783559280685787}
   m_Layer: 8
   m_Name: Stone Pickaxe
   m_TagString: Untagged
@@ -153,4 +154,30 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 4987632398419711469, guid: 7206c23c915afa04588a5dfef0a12283, type: 3}
+  m_Mesh: {fileID: 7206790511930869587, guid: da7f7cc838df4d542bb3ab26126f893f, type: 3}
+--- !u!114 &1616783559280685787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8989129131315078201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1

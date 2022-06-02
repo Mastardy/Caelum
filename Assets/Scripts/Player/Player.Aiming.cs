@@ -45,61 +45,65 @@ public partial class Player
 
     private void EyeTrace()
     {
-        if (Physics.CapsuleCast(playerCamera.position, playerCamera.forward, 1, playerCamera.forward, out RaycastHit hitInfo, 4, hitMask))
+        var results = new Collider[10];
+
+        if (Physics.OverlapCapsuleNonAlloc(playerCamera.position, playerCamera.position + playerCamera.forward * 4, 0.2f, results, hitMask) > 0)
         {
+            var hitInfo = results[0].gameObject;
+            
             if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
                 aimText.SetText(vehicle.name);
-                lookingAt = vehicle.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
             
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
                 aimText.SetText(resource.name);
-                lookingAt = resource.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
                 aimText.SetText(groundItem.name + "\n" + groundItem.amount + "x");
-                lookingAt = groundItem.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out CraftingTable craftTable))
             {
                 aimText.SetText("Crafting Table");
-                lookingAt = craftTable.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out Oven oven))
             {
                 aimText.SetText("Oven");
-                lookingAt = oven.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out Animal animal))
             {
                 aimText.SetText(animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
-                lookingAt = animal.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
             {
                 aimText.SetText("Fishing Net" + (fishingNet.fishesInNet > 0 ? $"\n{fishingNet.fishesInNet}" : String.Empty));
-                lookingAt = fishingNet.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out ResourcePickable pickable))
             {
                 aimText.SetText(pickable.gameObject.name);
-                lookingAt = pickable.gameObject;
+                lookingAt = hitInfo;
                 return;
             }
         }

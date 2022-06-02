@@ -1242,6 +1242,7 @@ GameObject:
   - component: {fileID: 908937297872379492}
   - component: {fileID: 8453621135448345901}
   - component: {fileID: 7400396821221085243}
+  - component: {fileID: 875030955171363728}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1565,6 +1566,7 @@ MonoBehaviour:
   hungerForegroundImage: {fileID: 2964673483598258112}
   thirstBackgroundImage: {fileID: 8764460390292689419}
   thirstForegroundImage: {fileID: 1187220160349805646}
+  hotbarsGroup: {fileID: 3061691427454290797}
   recipesContent: {fileID: 2648471601133250028}
   recipePrefab: {fileID: 172947030067319796, guid: 62c4ca9827393034b911ed0a8e1af9cf,
     type: 3}
@@ -1579,6 +1581,20 @@ MonoBehaviour:
   cookingMinigameButton: {fileID: 94679280300160501}
   ovenMinigame: {fileID: 3110859400763522698}
   pauseMenu: {fileID: 4091583072143688925}
+--- !u!136 &875030955171363728
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908937297872379495}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 7
+  m_Direction: 2
+  m_Center: {x: 0, y: 3, z: 3.5}
 --- !u!1 &916624212204737557
 GameObject:
   m_ObjectHideFlags: 0
@@ -13495,6 +13511,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605051786926076552}
   - component: {fileID: 8225008022819232024}
+  - component: {fileID: 3061691427454290797}
   m_Layer: 9
   m_Name: HotBar
   m_TagString: Untagged
@@ -13552,6 +13569,18 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!225 &3061691427454290797
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5997520695717556748}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6054851156779444365
 GameObject:
   m_ObjectHideFlags: 0
