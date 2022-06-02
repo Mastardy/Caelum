@@ -38,7 +38,7 @@ public partial class Player
         hotbarsGroup.alpha = 0;
     }
     
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void GiveItemServerRpc(NetworkBehaviourReference player, string itemName, int amountToAdd = 1, float durability = 0)
     {
         if (player.TryGet(out Player ply))
