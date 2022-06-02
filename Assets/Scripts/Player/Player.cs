@@ -15,6 +15,8 @@ public partial class Player : NetworkBehaviour
     {
         allPlayers.Add(this);
         
+        GetItemsAndRecipes();
+        
         if (!IsLocalPlayer)
         {
             firstPersonAnimator.enabled = false;
@@ -24,7 +26,6 @@ public partial class Player : NetworkBehaviour
         else
         {
             SetHealthServerRpc(maxHealth);
-            GetItemsAndRecipes();
 
             currentHunger = maxHunger;
             currentThirst = maxThirst;
