@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -10,16 +11,18 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
     [SerializeField] private Transform parentTransform;
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private RectTransform textRectTransform;
+    [SerializeField] private RectTransform durabilityRectTransform;
     [SerializeField] private InventorySlot inventorySlot;
 
     private PointerEventData.InputButton mode;
 
-    private GameObject[] tempGameObjects = new GameObject[2];
+    private GameObject[] tempGameObjects = new GameObject[3];
     
     private Transform startParent;
     private Vector3 startPosition;
     private Vector3 mouseOffset;
     private Vector3 textOffset;
+    private Vector3 durabilityOffset;
 
     private bool hovering;
     private bool busy;
@@ -48,39 +51,51 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
         mode = eventData.button;
 
         var parent = rectTransform.parent;
-        textOffset = textRectTransform.position - rectTransform.position;
+        var pos = rectTransform.position;
+        durabilityOffset = durabilityRectTransform.position - pos;
+        textOffset = textRectTransform.position - pos;
         startParent = parent;
         rectTransform.SetParent(parentTransform);
         textRectTransform.SetParent(parentTransform);
-        startPosition = rectTransform.position;
+        durabilityRectTransform.SetParent(parentTransform);
+        startPosition = pos;
 
         if (mode != PointerEventData.InputButton.Left && inventorySlot.Amount > 1)
         {
             tempGameObjects[0] = Instantiate(gameObject, transform.position, Quaternion.identity, parent);
             tempGameObjects[0].GetComponent<InventorySlotDrag>().enabled = false;
             tempGameObjects[1] = Instantiate(textRectTransform.gameObject, textRectTransform.position, Quaternion.identity, parent);
-            tempGameObjects[1].GetComponent<TextMeshProUGUI>().SetText(Mathf.CeilToInt(inventorySlot.Amount / 2f) + "x");
-            textRectTransform.GetComponent<TextMeshProUGUI>().SetText(Mathf.FloorToInt(inventorySlot.Amount / 2f) + "x");
+            tempGameObjects[1].GetComponentsInChildren<TextMeshProUGUI>()[0].SetText(Mathf.CeilToInt(inventorySlot.Amount / 2f).ToString());
+            tempGameObjects[2] = Instantiate(durabilityRectTransform.gameObject, durabilityRectTransform.position, Quaternion.identity, parent);
+            textRectTransform.GetComponentsInChildren<TextMeshProUGUI>()[0].SetText(Mathf.FloorToInt(inventorySlot.Amount / 2f).ToString());
         }
     }
     
     public void OnDrag(PointerEventData eventData)
     {
         rectTransform.position = new Vector3(eventData.position.x, eventData.position.y, 0) + mouseOffset;
-        textRectTransform.position = rectTransform.position + textOffset;
+        var pos = rectTransform.position;
+        textRectTransform.position = pos + textOffset;
+        durabilityRectTransform.position = pos + durabilityOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         busy = false;
+        
         Destroy(tempGameObjects[0]);
         Destroy(tempGameObjects[1]);
+        Destroy(tempGameObjects[2]);
         
         rectTransform.SetParent(startParent);
         textRectTransform.SetParent(startParent);
+        durabilityRectTransform.SetParent(startParent);
+        
         rectTransform.position = startPosition;
-        textRectTransform.position = rectTransform.position + textOffset;
-
+        var pos = rectTransform.position;
+        textRectTransform.position = pos + textOffset;
+        durabilityRectTransform.position = pos + durabilityOffset;
+        
         var raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
 

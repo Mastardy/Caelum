@@ -5,9 +5,9 @@ using UnityEngine.UI;
 public class HotbarSlot : MonoBehaviour
 {
     public InventorySlot slot;
-    public Outline outline;
     
     [SerializeField] private Image image;
+    [SerializeField] private Image background;
     [SerializeField] private GameObject amount;
     [SerializeField] private TextMeshProUGUI amountText;
     [SerializeField] private GameObject durability;
@@ -16,10 +16,8 @@ public class HotbarSlot : MonoBehaviour
 
     private Image backgroundImage;
     
-    private Color slotSelected = new(0.85f, 0.75f, 0.65f);
-    private Color slotUnselected = new(0.95f, 0.8f, 0.6f);
-    private Color outlineSelected = new(0.95f, 0.9f, 0.9f);
-    private Color outlineUnselected = new(0.65f, 0.55f, 0.4f);
+    private Color slotSelected = new(1f, 0.85f, 0.65f, 0.5f);
+    private Color slotUnselected = new(0.8f, 0.7f, 0.6f, 0.5f);
     private float lastSelected;
 
     private bool selected;
@@ -38,33 +36,33 @@ public class HotbarSlot : MonoBehaviour
         backgroundImage = GetComponent<Image>();
         slot.OnClear.AddListener(OnClear);
         slot.OnFill.AddListener(OnFill);
-        slot.OnDurabilityChange.AddListener(() => durabilityForeground.fillAmount = 0.5f * slot.Durability);
+        slot.OnDurabilityChange.AddListener(() =>
+        {
+            durabilityForeground.fillAmount = 0.5f * slot.Durability;
+            durabilityForeground.color = durabilityGradient.Evaluate((slot.Durability * -1) + 1);
+        });
         slot.OnAmountChange.AddListener(() => amountText.SetText(slot.Amount.ToString()));
     }
 
     private void Update()
     {
         var lastSelectedAdjusted = (Time.time - lastSelected) * 5f;
+
+        if (lastSelectedAdjusted > 1) return;
         
         if (selected)
         {
-            outline.effectColor = Color.Lerp(outlineUnselected, outlineSelected, lastSelectedAdjusted);
+            background.color = Color.Lerp(slotUnselected, slotSelected, lastSelectedAdjusted);
             backgroundImage.color = Color.Lerp(slotUnselected, slotSelected, lastSelectedAdjusted);
             var tempValue = Mathf.Lerp(1.0f, 1.1f, lastSelectedAdjusted);
             transform.localScale = new Vector3(tempValue, tempValue);
         }
         else
         {
-            outline.effectColor = Color.Lerp(outlineSelected, outlineUnselected, lastSelectedAdjusted);
+            background.color = Color.Lerp(slotSelected, slotUnselected, lastSelectedAdjusted);
             backgroundImage.color = Color.Lerp(slotSelected, slotUnselected, lastSelectedAdjusted);
             var tempValue = Mathf.Lerp(1.1f, 1.0f, lastSelectedAdjusted);
             transform.localScale = new Vector3(tempValue, tempValue);
-        }
-        
-        if (slot.isEmpty) return;
-        if (slot.inventoryItem.itemTag is not ItemTag.Food or ItemTag.Grappling or ItemTag.Other)
-        {
-            durabilityForeground.color = durabilityGradient.Evaluate((slot.Durability*-1) + 1);
         }
     }
 
@@ -80,19 +78,16 @@ public class HotbarSlot : MonoBehaviour
     {
         image.enabled = true;
         image.sprite = slot.image.sprite;
-        if (slot.inventoryItem.itemTag is not ItemTag.Food or ItemTag.Grappling or ItemTag.Other)
+        if (slot.inventoryItem.itemTag is not ItemTag.Food and not ItemTag.Grappling and not ItemTag.Other)
         {
             durability.SetActive(true);
             durabilityForeground.fillAmount = 0.5f * slot.Durability;
+            durabilityForeground.color = durabilityGradient.Evaluate((slot.Durability * -1) + 1);
         }
         else
         {
             amount.SetActive(true);
             amountText.SetText(slot.Amount.ToString());
         }
-    }
-
-    private void OnDurabilityChanged()
-    {
     }
 }

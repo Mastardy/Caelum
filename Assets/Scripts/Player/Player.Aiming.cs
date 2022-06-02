@@ -189,7 +189,15 @@ public partial class Player
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
+            if(InputHelper.GetKeyDown(gameOptions.useKey, 0.3f)) {
+                if (resource.resourceName == "wood")
+                {
+                    GiveItemClientRpc("stick");
+                    AnimatorCollect();
+                }
+            }
+            
+            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.4f))
             {
                 if (!invItem || handIsEmpty) return;
 
