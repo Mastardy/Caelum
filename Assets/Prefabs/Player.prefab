@@ -1242,7 +1242,6 @@ GameObject:
   - component: {fileID: 908937297872379492}
   - component: {fileID: 8453621135448345901}
   - component: {fileID: 7400396821221085243}
-  - component: {fileID: 875030955171363728}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1581,20 +1580,6 @@ MonoBehaviour:
   cookingMinigameButton: {fileID: 94679280300160501}
   ovenMinigame: {fileID: 3110859400763522698}
   pauseMenu: {fileID: 4091583072143688925}
---- !u!136 &875030955171363728
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908937297872379495}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 7
-  m_Direction: 2
-  m_Center: {x: 0, y: 3, z: 3.5}
 --- !u!1 &916624212204737557
 GameObject:
   m_ObjectHideFlags: 0
