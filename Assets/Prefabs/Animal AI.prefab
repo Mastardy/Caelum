@@ -134,7 +134,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.292717, y: 163.10196, z: -691.0598}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4238020770163135913}
   - {fileID: 5435786505466633186}
@@ -195,6 +195,7 @@ MonoBehaviour:
   damage: 15
   attackRate: 0.5
   animator: {fileID: 7886798919765814481}
+  model: {fileID: 3574637384886472467}
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
@@ -271,7 +272,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 2
-  m_Center: {x: 0, y: -0.1, z: -0.25}
+  m_Center: {x: 0, y: -0.12, z: 0}
 --- !u!1 &5435786505887193001
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +458,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7932c87ff7b06e54b842b0cd4f376668,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.77
+      value: -0.616
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7932c87ff7b06e54b842b0cd4f376668,
         type: 3}

@@ -11,6 +11,8 @@ public partial class Animal
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
     {
         currentHealth.Value -= damageTaken;
+        if(!dead)
+            animator.SetTrigger(hitCache);
 
         if (currentHealth.Value <= 0)
         {
@@ -25,6 +27,6 @@ public partial class Animal
         dead = true;
         CurrentState = idleState;
         stateText.SetText("Dead");
-        Destroy(gameObject);
+        animator.SetBool(deadCache, true);
     }
 }

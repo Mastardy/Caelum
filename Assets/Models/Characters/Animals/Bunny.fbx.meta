@@ -36,6 +36,21 @@ ModelImporter:
   - first:
       74: -5588674607753961876
     second: Bunny_Attack
+  - first:
+      74: -7629640383496787357
+    second: Bunny_IDLE
+  - first:
+      74: 7677237207048899016
+    second: Bunny_WALK2
+  - first:
+      74: -1316978396763746106
+    second: Bunny_ATTACK2
+  - first:
+      74: -6145574279214096998
+    second: Bunny_HIT
+  - first:
+      74: -8638696073120336949
+    second: Bunny_DEATH
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -76,8 +91,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bunny_Idle
-      takeName: Armature|Armature|Bunny_IDLE
+      name: Bunny_IDLE
+      takeName: Bunny_IDLE
       internalID: 0
       firstFrame: 0
       lastFrame: 30
@@ -105,11 +120,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Bunny_Walk
-      takeName: Armature|Armature|Bunny_WALK2
+      name: Bunny_WALK2
+      takeName: Bunny_WALK2
       internalID: 0
       firstFrame: 0
-      lastFrame: 34
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -134,8 +149,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Bunny_Run
-      takeName: Armature|Armature|Bunny_RUN2
+      name: Bunny_RUN2
+      takeName: Bunny_RUN2
       internalID: 0
       firstFrame: 0
       lastFrame: 19
@@ -163,11 +178,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Bunny_Attack
-      takeName: Armature|Armature|Bunny_ATTACK2
+      name: Bunny_ATTACK2
+      takeName: Bunny_ATTACK2
       internalID: 0
       firstFrame: 0
       lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Bunny_HIT
+      takeName: Bunny_HIT
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 7
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Bunny_DEATH
+      takeName: Bunny_DEATH
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

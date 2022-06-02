@@ -7,8 +7,11 @@ public partial class Animal : NetworkBehaviour
 {
     private NavMeshAgent agent;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject model;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
+    private static readonly int hitCache = Animator.StringToHash("Hit");
+    private static readonly int deadCache = Animator.StringToHash("Dead");
     public UnityEvent onDestroy;
     
     private void Start()
@@ -29,6 +32,12 @@ public partial class Animal : NetworkBehaviour
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
         animator.SetFloat(speedCache, agent.velocity.magnitude);
+
+        RaycastHit hit;
+        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out hit , -LayerMask.NameToLayer("Ground")))
+        {
+            model.transform.position = hit.point;
+        }
     }
 
     public override void OnDestroy()
