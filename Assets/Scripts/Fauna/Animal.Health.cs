@@ -11,8 +11,11 @@ public partial class Animal
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
     {
         currentHealth.Value -= damageTaken;
-        if(!dead)
+        if (!dead){
             animator.SetTrigger(hitCache);
+            FlashColor();
+            Invoke(nameof(ResetColor), 0.1f);
+        }
 
         if (currentHealth.Value <= 0)
         {
@@ -28,5 +31,15 @@ public partial class Animal
         CurrentState = idleState;
         stateText.SetText("Dead");
         animator.SetBool(deadCache, true);
+    }
+
+    private void FlashColor()
+    {
+        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 1);
+    }
+
+    private void ResetColor()
+    {
+        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 0);
     }
 }

@@ -10,6 +10,7 @@ public partial class Animal : NetworkBehaviour
     private NavMeshAgent agent;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject model;
+    [SerializeField] private SkinnedMeshRenderer modelRenderer;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");

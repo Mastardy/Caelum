@@ -196,6 +196,7 @@ MonoBehaviour:
   attackRate: 0.5
   animator: {fileID: 7886798919765814481}
   model: {fileID: 3574637384886472467}
+  modelRenderer: {fileID: 3169266890053168912}
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
@@ -987,6 +988,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7932c87ff7b06e54b842b0cd4f376668, type: 3}
+--- !u!137 &3169266890053168912 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1630794972795428178, guid: 7932c87ff7b06e54b842b0cd4f376668,
+    type: 3}
+  m_PrefabInstance: {fileID: 4421057171030045250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3574637384886472467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7932c87ff7b06e54b842b0cd4f376668,

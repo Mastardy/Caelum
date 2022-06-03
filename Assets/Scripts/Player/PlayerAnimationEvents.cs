@@ -18,6 +18,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         player.TryHarvest();
     }
 
+    public void TryAttack()
+    {
+        player.TryAttack();
+    }
+
     public void ThrowSpear()
     {
         HideWeapon();
