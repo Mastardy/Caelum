@@ -132,6 +132,7 @@ public partial class Player
                         if (lookingAt.TryGetComponent(out Animal animal))
                         {
                             animal.TakeDamageServerRpc(20, this);
+                            hotbars[currentSlot].slot.Durability -= 0.1f;
                         }
                     }
                     break;
@@ -141,6 +142,7 @@ public partial class Player
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                         {
                             AnimatorThrowSpear();
+                            hotbars[currentSlot].slot.Durability -= 0.25f;
                         }
                         break;
                     }
@@ -155,6 +157,7 @@ public partial class Player
                         if (lookingAt.TryGetComponent(out Animal animal))
                         {
                             animal.TakeDamageServerRpc(10, this);
+                            hotbars[currentSlot].slot.Durability -= 0.1f;
                         }
                     }
                     break;
@@ -169,6 +172,7 @@ public partial class Player
                         if (lookingAt.TryGetComponent(out Animal animal))
                         {
                             animal.TakeDamageServerRpc(50, this);
+                            hotbars[currentSlot].slot.Durability -= 0.01f;
                         }
                     }
                     break;

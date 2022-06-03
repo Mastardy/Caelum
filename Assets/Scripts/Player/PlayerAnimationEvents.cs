@@ -12,9 +12,10 @@ public class PlayerAnimationEvents : MonoBehaviour
     [Header("Player")]
     public Player player;
 
-    public void PlayShake(int amount)
+    public void Harvest(int amount)
     {
         shake.PlayShake(amount);
+        player.TryHarvest();
     }
 
     public void ThrowSpear()
