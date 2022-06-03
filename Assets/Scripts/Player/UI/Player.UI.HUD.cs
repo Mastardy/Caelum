@@ -15,6 +15,8 @@ public partial class Player
     [SerializeField] private Image thirstBackgroundImage;
     [SerializeField] private Image thirstForegroundImage;
 
+    [SerializeField] private DamageFilter damageFilter;
+
     private float lastHealthValue;
     private float lastThirstValue;
     private float lastHungerValue;

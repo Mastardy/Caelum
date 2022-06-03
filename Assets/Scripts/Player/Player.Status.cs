@@ -32,8 +32,10 @@ public partial class Player
     public void TakeDamageServerRpc(int value)
     {
         if (!IsServer) return;
-        
+        int lastHealth = currentHealth.Value;
         currentHealth.Value -= value;
+        if (lastHealth > currentHealth.Value)
+            damageFilter.lastAttack = Time.time;
 
         if (currentHealth.Value > maxHealth) currentHealth.Value = maxHealth;
     }
