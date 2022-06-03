@@ -15,7 +15,6 @@ public partial class Animal : NetworkBehaviour
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");
     private static readonly int deadCache = Animator.StringToHash("Dead");
-    public UnityEvent onDestroy;
     
     private void Start()
     {
@@ -43,12 +42,5 @@ public partial class Animal : NetworkBehaviour
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
         animator.SetFloat(speedCache, agent.velocity.magnitude);
-    }
-
-    public override void OnDestroy()
-    {
-        base.OnDestroy();
-
-        onDestroy.Invoke();
     }
 }

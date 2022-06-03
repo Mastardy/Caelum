@@ -29,6 +29,8 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
     
     private void Update()
     {
+        // TODO: Verificar inventário if(GetComponentInParent<Player>().)
+        
         if (!hovering) return;
 
         if (Input.GetKeyDown(/*GameManager.Instance.gameOptions.dropKey*/KeyCode.G))

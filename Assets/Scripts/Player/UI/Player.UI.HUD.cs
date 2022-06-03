@@ -43,8 +43,6 @@ public partial class Player
 
     private void UpdateDonut(ref float lastValue, float currentValue, Image foregroundImage, Image backgroundImage)
     {
-        if (Mathf.Abs(lastValue - currentValue) < 0.001f) return;
-
         if (lastValue > currentValue)
         {
             foregroundImage.fillAmount = currentValue;

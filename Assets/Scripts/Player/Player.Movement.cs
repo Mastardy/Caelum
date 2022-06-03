@@ -123,6 +123,8 @@ public partial class Player
         input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
         input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
 
+        if (input.x == 0 && input.y == 0) isSprinting = gameOptions.toggleSprint ? false : isSprinting;
+
         if (InputHelper.GetKeyDown(KeyCode.B, 0.5f))
         {
             BeginDash();
