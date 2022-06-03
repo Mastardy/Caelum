@@ -176,6 +176,18 @@ public partial class Player
                         }
                     }
                     break;
+                case ItemTag.Axe:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
+                    {
+                        AnimatorUseAxe();
+                    }
+                    break;
+                case ItemTag.Pickaxe:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
+                    {
+                        AnimatorUsePickaxe();
+                    }
+                    break;
             }
         }
         
@@ -198,35 +210,6 @@ public partial class Player
                 {
                     GiveItemServerRpc(this, "stick");
                     AnimatorCollect();
-                }
-            }
-            
-            if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.4f))
-            {
-                if (!invItem || handIsEmpty) return;
-
-                switch (resource.item.itemName)
-                {
-                    case "wood":
-                        if(invItem.itemTag == ItemTag.Axe)
-                        {
-                            if (hotbars[currentSlot].slot.Durability <= 0) return;
-                            hotbars[currentSlot].slot.Durability -= 0.1f;
-                            PlayToolSwing(invItem.itemTag.ToString());
-                            AnimatorUseAxe();
-                            resource.HitResourceServerRpc(1);
-                        }
-                        break;
-                    case "stone":
-                        if (invItem.itemTag == ItemTag.Pickaxe)
-                        {
-                            if (hotbars[currentSlot].slot.Durability <= 0) return;
-                            hotbars[currentSlot].slot.Durability -= 0.1f;
-                            PlayToolSwing(invItem.itemTag.ToString());
-                            AnimatorUsePickaxe();
-                            resource.HitResourceServerRpc(1);
-                        }
-                        break;
                 }
             }
         }
@@ -280,6 +263,32 @@ public partial class Player
         }
     }
 
+    public void TryHarvest()
+    {
+        if (!lookingAt) return;
+        if (lookingAt.TryGetComponent(out Resource resource))
+        {
+            var invItem = hotbars[currentSlot].slot.inventoryItem;
+            switch (resource.item.itemName)
+            {
+                case "wood":
+                    if(invItem.itemTag == ItemTag.Axe)
+                    {
+                        hotbars[currentSlot].slot.Durability -= 0.1f;
+                        resource.HitResourceServerRpc(1);
+                    }
+                    break;
+                case "stone":
+                    if (invItem.itemTag == ItemTag.Pickaxe)
+                    {
+                        hotbars[currentSlot].slot.Durability -= 0.1f;
+                        resource.HitResourceServerRpc(1);
+                    }
+                    break;
+            }
+        }
+    }
+    
     [ServerRpc]
     public void ThrowSpearServerRpc(NetworkBehaviourReference ply, string itemName, int slot)
     {

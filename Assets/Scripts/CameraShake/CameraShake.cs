@@ -26,6 +26,8 @@ public class CameraShake : MonoBehaviour
 
     public void PlayShake(int amount)
     {
+        if (!instance.enabled) return;
+        
         instance._originalPos = instance.gameObject.transform.localPosition;
         instance.StopAllCoroutines();
         instance.StartCoroutine(instance.cShake(0.1f, amount));
