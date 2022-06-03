@@ -12,7 +12,6 @@ public class Resource : NetworkBehaviour
 
     //animator stuff
     public Animator resourceAnimator;
-    private NetworkVariable<bool> fallNet = new(readPerm: NetworkVariableReadPermission.Everyone); //boleano que faz o animator derrubar a arvore
 
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(int resourceHP = 1)
@@ -39,8 +38,7 @@ public class Resource : NetworkBehaviour
 
     public void DestroyResourceAnimation()
     {
-        fallNet.Value = true;
-        resourceAnimator.SetBool("Fall", fallNet.Value);
+        resourceAnimator.SetBool("Fall", true);
     }
 
 
