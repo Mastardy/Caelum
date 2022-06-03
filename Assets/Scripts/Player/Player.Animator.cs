@@ -95,12 +95,12 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc(bool crouched, float moveMag, float xInput, float yInput,
+    private void NetworkAnimatorUpdateServerRpc(float moveMag, float xInput, float yInput,
         bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool, bool parachute)
     {
         if (!IsServer) return;
         
-        isCrouchedNet.Value = crouched;
+        isCrouchedNet.Value = isCrouched;
         moveMagnitudeNet.Value = moveMag;
         inputXNet.Value = xInput;
         inputYNet.Value = yInput;

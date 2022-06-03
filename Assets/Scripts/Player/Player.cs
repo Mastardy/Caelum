@@ -200,7 +200,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            NetworkAnimatorUpdateServerRpc(isCrouched, horizontalVelocity.magnitude, input.x, input.y, 
+            NetworkAnimatorUpdateServerRpc(horizontalVelocity.magnitude, input.x, input.y, 
                 isGrounded, xRotation, verticalVelocity, holdTool, false, inParachute);
         }
 
