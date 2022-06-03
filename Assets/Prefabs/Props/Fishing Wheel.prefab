@@ -73,8 +73,9 @@ MonoBehaviour:
   fishesInNet: 0
   timeRange: {x: 5, y: 10}
   extraFishTimeRange: {x: 1, y: 3}
-  wheelanimator: {fileID: 5281762597787077730}
-  fishanimator: {fileID: 5281762597152140602}
+  wheelAnimator: {fileID: 5281762597787077730}
+  kiteAnimator: {fileID: 5281762597152140602}
+  kiteRenderer: {fileID: 2144942954326894282}
   tipAnchor: {fileID: 5281762598123305174}
   ropeTip: {fileID: 4748129931061051302}
 --- !u!114 &5281762597787077740
@@ -527,6 +528,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a4add076526e004eb9e9104985f8184, type: 3}
+--- !u!137 &2144942954326894282 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3132032152598949453, guid: 6a4add076526e004eb9e9104985f8184,
+    type: 3}
+  m_PrefabInstance: {fileID: 5281762598224492409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5011942098418551336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6a4add076526e004eb9e9104985f8184,

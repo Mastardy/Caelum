@@ -12,8 +12,9 @@ public class FishingNet : NetworkBehaviour
     [SerializeField] private Vector2 extraFishTimeRange = new Vector2(1, 3);
 
     //model variables
-    [SerializeField] private Animator wheelanimator;
-    [SerializeField] private Animator fishanimator;
+    [SerializeField] private Animator wheelAnimator;
+    [SerializeField] private Animator kiteAnimator;
+    [SerializeField] private SkinnedMeshRenderer kiteRenderer;
     [SerializeField] private Transform tipAnchor;
     [SerializeField] private GameObject ropeTip;
 
@@ -52,8 +53,9 @@ public class FishingNet : NetworkBehaviour
     private void Update()
     {
         //alterar localização da corda apenas se tiver tocando as animaçoes, e nao em idle
-        if(wheelanimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_ReleaseKite") || wheelanimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_RetrieveKite") || wheelanimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_KiteInAir"))
+        if (wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_ReleaseKite") || wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_RetrieveKite") || wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_KiteInAir"))
             ropeTip.transform.position = tipAnchor.position;
+            kiteRenderer.material.SetFloat("Strength", 0.5f);
 
         if (!netLaunched) return;
         if (Time.time - launchTime < fishingTime) return;
@@ -66,16 +68,19 @@ public class FishingNet : NetworkBehaviour
 
     private void AnimatorRelease()
     {
-        wheelanimator.SetTrigger("Release");
+        wheelAnimator.SetTrigger("Release");
+
+        kiteRenderer.material.SetFloat("_Strength", 0.5f);
     }
 
     private void AnimatorRetrieve()
     {
-        wheelanimator.SetTrigger("Retrieve");
+        wheelAnimator.SetTrigger("Retrieve");
+        kiteRenderer.material.SetFloat("_Strength", 0);
     }
 
     private void AnimatorCatchFish(bool c)
     {
-        fishanimator.SetBool("Catch", c);
+        kiteAnimator.SetBool("Catch", c);
     }
 }
