@@ -25,7 +25,7 @@ public class InventoryGroundItem : NetworkBehaviour
     private void Start()
     {
         groundItemLayerMask = LayerMask.GetMask("GroundItem");
-        InvokeRepeating(nameof(CheckForNearbyItems), 1f, 2f);
+        InvokeRepeating(nameof(CheckForNearbyItems), Random.Range(0.1f, 1f), 2f);
     }
 
     private void CheckForNearbyItems()

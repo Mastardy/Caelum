@@ -81,13 +81,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473e417a94fc3314cade67a76004cb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceName: stone
-  maxResources: 20
-  curResources:
-    m_InternalValue: 20
+  item: {fileID: 11400000, guid: 3e77323421b64404da585a7d0f4d9ec5, type: 2}
+  resourcesQuantity: 3
+  curHP:
+    m_InternalValue: 3
   onGather:
     m_PersistentCalls:
       m_Calls: []
+  resourceAnimator: {fileID: 0}
 --- !u!1001 &723583690565723877
 PrefabInstance:
   m_ObjectHideFlags: 0

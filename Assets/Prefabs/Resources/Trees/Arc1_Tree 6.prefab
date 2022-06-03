@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 8457801341831228654}
   - component: {fileID: 3778810163057922403}
   - component: {fileID: 176809006}
+  - component: {fileID: 9178985780567850963}
   m_Layer: 6
   m_Name: Arc1_Tree 6
   m_TagString: Resource
@@ -283,13 +284,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473e417a94fc3314cade67a76004cb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceName: wood
-  maxResources: 20
-  curResources:
-    m_InternalValue: 20
+  item: {fileID: 11400000, guid: 94d70b9f0c36b5e4ea79b7635109cc96, type: 2}
+  resourcesQuantity: 3
+  curHP:
+    m_InternalValue: 5
   onGather:
     m_PersistentCalls:
       m_Calls: []
+  resourceAnimator: {fileID: 9178985780567850963}
 --- !u!205 &3778810163057922403
 LODGroup:
   m_ObjectHideFlags: 0
@@ -333,6 +335,26 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!95 &9178985780567850963
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426251377044060163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5891c2e102286db4a976c60e5800a6d0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7707957198208611381
 GameObject:
   m_ObjectHideFlags: 0

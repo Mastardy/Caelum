@@ -190,7 +190,7 @@ public partial class Player
         if (lookingAt.TryGetComponent(out Resource resource))
         {
             if(InputHelper.GetKeyDown(gameOptions.useKey, 0.3f)) {
-                if (resource.resourceName == "wood")
+                if (resource.item.itemName == "wood")
                 {
                     GiveItemServerRpc(this, "stick");
                     AnimatorCollect();
@@ -201,7 +201,7 @@ public partial class Player
             {
                 if (!invItem || handIsEmpty) return;
 
-                switch (resource.resourceName)
+                switch (resource.item.itemName)
                 {
                     case "wood":
                         if(invItem.itemTag == ItemTag.Axe)
@@ -210,7 +210,7 @@ public partial class Player
                             hotbars[currentSlot].slot.Durability -= 0.1f;
                             PlayToolSwing(invItem.itemTag.ToString());
                             AnimatorUseAxe();
-                            resource.HitResourceServerRpc(this, 5);
+                            resource.HitResourceServerRpc(1);
                         }
                         break;
                     case "stone":
@@ -220,11 +220,8 @@ public partial class Player
                             hotbars[currentSlot].slot.Durability -= 0.1f;
                             PlayToolSwing(invItem.itemTag.ToString());
                             AnimatorUsePickaxe();
-                            resource.HitResourceServerRpc(this, 3);
+                            resource.HitResourceServerRpc(1);
                         }
-                        break;
-                    default:
-                        resource.HitResourceServerRpc(this);
                         break;
                 }
             }
