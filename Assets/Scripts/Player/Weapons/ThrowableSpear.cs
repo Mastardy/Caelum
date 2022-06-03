@@ -19,23 +19,19 @@ public class ThrowableSpear : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Collider>().enabled = false;
             animal = collision.gameObject.GetComponent<Animal>();
-            Invoke(nameof(StickToAnimal), 0.1f);
+            if(animal) transform.SetParent(animal.transform);
+            transform.localPosition = transform.localPosition + transform.forward * 0.1f;
+            animal.onDestroy.AddListener(() =>
+            {
+                transform.parent = null;
+                Destroy(this);
+                GetComponent<Rigidbody>().isKinematic = false;
+                GetComponent<Collider>().enabled = true;
+            });
             cringeFlag = true;
             return;
         }
 
         Destroy(this);
-    }
-
-    private void StickToAnimal()
-    {
-        if(animal) transform.SetParent(animal.transform);
-        animal.onDestroy.AddListener(() =>
-        {
-            transform.parent = null;
-            Destroy(this);
-            GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Collider>().enabled = true;
-        });
     }
 }
