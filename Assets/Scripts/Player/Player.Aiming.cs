@@ -95,7 +95,7 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
             {
-                aimText.SetText("Fishing Net" + (fishingNet.fishesInNet.Value > 0 ? $"\n{fishingNet.fishesInNet}" : string.Empty));
+                aimText.SetText("Fishing Net" + (fishingNet.fishesInNet.Value > 0 ? $"\n{fishingNet.fishesInNet.Value}" : string.Empty));
                 lookingAt = hitInfo;
                 return;
             }

@@ -23,7 +23,7 @@ public class Resource : NetworkBehaviour
             if (item.itemName == "stone")
                 DestroyResource();
             else
-                DestroyResourceAnimation();
+                DestroyResourceAnimationClientRpc();
         }
     }
 
@@ -36,7 +36,8 @@ public class Resource : NetworkBehaviour
         Destroy(gameObject);
     }
 
-    public void DestroyResourceAnimation()
+    [ClientRpc]
+    public void DestroyResourceAnimationClientRpc()
     {
         resourceAnimator.SetBool("Fall", true);
     }

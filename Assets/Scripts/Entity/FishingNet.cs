@@ -1,8 +1,5 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using Random = UnityEngine.Random;
 
 public class FishingNet : NetworkBehaviour
 {
@@ -23,7 +20,7 @@ public class FishingNet : NetworkBehaviour
     private float fishingTime;
     private float nextFishTime;
     
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void TryFishingServerRpc(NetworkBehaviourReference player)
     {
         if (player.TryGet(out Player ply))
