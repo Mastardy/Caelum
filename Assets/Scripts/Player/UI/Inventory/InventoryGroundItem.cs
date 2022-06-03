@@ -22,6 +22,12 @@ public class InventoryGroundItem : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    public void ChangeNameClientRpc(string itemName)
+    {
+        name = itemName;
+    }
+    
     private void Start()
     {
         name = inventoryItem.worldPrefab.name;
@@ -31,6 +37,8 @@ public class InventoryGroundItem : NetworkBehaviour
 
     private void CheckForNearbyItems()
     {
+        if (!IsServer) return;
+        
         nearResources = Physics.OverlapSphere(transform.position, 1, groundItemLayerMask);
         
         foreach (var nearResource in nearResources)

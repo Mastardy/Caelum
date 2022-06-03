@@ -151,7 +151,6 @@ public partial class Player
             
             var worldGameObject = Instantiate(player.inventoryItems[itemName].worldPrefab, playerTransform.position + playerTransformForward,
                 player.inventoryItems[itemName].worldPrefab.transform.rotation);
-            worldGameObject.name = player.inventoryItems[itemName].name;
 
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
@@ -160,6 +159,7 @@ public partial class Player
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
+            worldGameObject.GetComponent<InventoryGroundItem>().ChangeNameClientRpc(inventoryItems[itemName].worldPrefab.name);
             
             player.DropItemClientRpc(slot, dropEverything);
         }
