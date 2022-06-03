@@ -126,14 +126,6 @@ public partial class Player
                         PlayToolSwing(invItem.itemTag.ToString());
                         
                         AnimatorUseSword();
-                        
-                        if (!lookingAt) return;
-                        
-                        if (lookingAt.TryGetComponent(out Animal animal))
-                        {
-                            animal.TakeDamageServerRpc(20, this);
-                            hotbars[currentSlot].slot.Durability -= 0.1f;
-                        }
                     }
                     break;
                 case ItemTag.Spear:
@@ -151,14 +143,6 @@ public partial class Player
                         PlayToolSwing(invItem.itemTag.ToString());
                         
                         AnimatorUseSpear();
-                        
-                        if (!lookingAt) return;
-                        
-                        if (lookingAt.TryGetComponent(out Animal animal))
-                        {
-                            animal.TakeDamageServerRpc(10, this);
-                            hotbars[currentSlot].slot.Durability -= 0.1f;
-                        }
                     }
                     break;
                 case ItemTag.Bow:
@@ -259,6 +243,25 @@ public partial class Player
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
                 fishingNet.TryFishingServerRpc(this);
+            }
+        }
+    }
+
+    public void TryAttack()
+    {
+        if (!lookingAt) return;
+        if (lookingAt.TryGetComponent(out Animal animal))
+        {
+            switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
+            {
+                case ItemTag.Spear:
+                    animal.TakeDamageServerRpc(10, this);
+                    hotbars[currentSlot].slot.Durability -= 0.05f;
+                    break;
+                case ItemTag.Sword:
+                    animal.TakeDamageServerRpc(20, this);
+                    hotbars[currentSlot].slot.Durability -= 0.025f;
+                    break;
             }
         }
     }

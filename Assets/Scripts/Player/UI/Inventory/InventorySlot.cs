@@ -54,11 +54,7 @@ public class InventorySlot : MonoBehaviour
             durabilityForeground.color = durabilityGradient.Evaluate((durability * -1) + 1);
         });
         
-        OnAmountChange.AddListener(
-            () => {
-                amountText.SetText(amount.ToString());
-                Debug.Log("Teste");
-            });
+        OnAmountChange.AddListener(() => amountText.SetText(amount.ToString()));
     }
 
     public void Fill(InventoryItem invItem, int newAmount, float newDurability)
