@@ -99,6 +99,31 @@ public partial class Player
 
             if (amountAdded >= amountToAdd) return;
         }
+
+        if (amountToAdd - amountAdded > 0)
+        {
+            DropItemServerRpc(transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(1f, 1.5f), Random.Range(-1f, 1f)), itemName, amountToAdd - amountAdded, durability);
+        }
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void DropItemServerRpc(Vector3 pos, string itemName, int dropAmount = 1, float durability = 0)
+    {
+        var inventoryItem = inventoryItems[itemName];
+        
+        for (int i = 0; i < dropAmount; i++)
+        {
+            var worldGameObject = Instantiate(inventoryItem.worldPrefab, pos, Quaternion.identity);
+
+            worldGameObject.name = inventoryItem.worldPrefab.name;
+
+            var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = inventoryItem;
+            worldGameObjectInvItem.amount.Value = 1;
+            worldGameObjectInvItem.durability = durability;
+
+            worldGameObject.GetComponent<NetworkObject>().Spawn();   
+        }
     }
 
     public void DropItem(InventorySlot inventorySlot, bool dropEverything = false)
@@ -130,7 +155,7 @@ public partial class Player
 
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
-            worldGameObjectInvItem.amount = dropEverything ? dropAmount : 1;
+            worldGameObjectInvItem.amount.Value = dropEverything ? dropAmount : 1;
             worldGameObjectInvItem.durability = durability;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();

@@ -67,7 +67,7 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
-                aimText.SetText(groundItem.name + "\n" + groundItem.amount + "x");
+                aimText.SetText(groundItem.name + "\n" + groundItem.amount.Value + "x");
                 lookingAt = hitInfo;
                 return;
             }
@@ -294,7 +294,7 @@ public partial class Player
             spear.AddComponent(typeof(InventoryGroundItem));
             var worldGameObjectInvItem = spear.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
-            worldGameObjectInvItem.amount = 1;
+            worldGameObjectInvItem.amount.Value = 1;
             worldGameObjectInvItem.durability = player.hotbars[player.currentSlot].slot.Durability;
 
             spear.GetComponent<NetworkObject>().Spawn();

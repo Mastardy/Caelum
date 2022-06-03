@@ -60,7 +60,7 @@ public class FishingNet : NetworkBehaviour
         
         fishesInNet.Value++;
         AnimatorCatchFishClientRpc(true);
-        nextFishTime += 1 / Random.Range(extraFishTimeRange.x, extraFishTimeRange.y);
+        nextFishTime += Random.Range(extraFishTimeRange.x, extraFishTimeRange.y);
     }
 
     [ClientRpc]

@@ -45,7 +45,7 @@ public partial class Player
 
                 var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
                 worldGameObjectInvItem.inventoryItem = invSlot.inventoryItem;
-                worldGameObjectInvItem.amount = invSlot.Amount;
+                worldGameObjectInvItem.amount.Value = invSlot.Amount;
 
                 worldGameObject.GetComponent<NetworkObject>().Spawn();
 

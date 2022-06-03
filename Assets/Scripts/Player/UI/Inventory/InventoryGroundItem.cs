@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventoryGroundItem : NetworkBehaviour
 {
     public InventoryItem inventoryItem;
-    [HideInInspector] public int amount = 1;
+    [HideInInspector] public NetworkVariable<int> amount = new(readPerm: NetworkVariableReadPermission.Everyone);
     [HideInInspector] public float durability;
     [HideInInspector] public Collider[] nearResources;
     [HideInInspector] public LayerMask groundItemLayerMask;
@@ -18,13 +18,13 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.GiveItemServerRpc(player, inventoryItem.itemName, amount, durability);
+            player.GiveItemServerRpc(player, inventoryItem.itemName, amount.Value, durability);
         }
     }
 
     private void Start()
     {
-        name = inventoryItem.itemName;
+        name = inventoryItem.worldPrefab.name;
         groundItemLayerMask = LayerMask.GetMask("GroundItem");
         InvokeRepeating(nameof(CheckForNearbyItems), Random.Range(0.1f, 1f), 2f);
     }
@@ -39,9 +39,9 @@ public class InventoryGroundItem : NetworkBehaviour
                 if (resource == this) continue;
                 
                 if (resource.inventoryItem.itemName == inventoryItem.itemName)
-                    if (resource.amount + amount <= inventoryItem.maxStack)
+                    if (resource.amount.Value + amount.Value <= inventoryItem.maxStack)
                     {
-                        amount += resource.amount;
+                        amount.Value += resource.amount.Value;
 
                         Destroy(resource.gameObject);
                     }
