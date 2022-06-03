@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class FishingNet : NetworkBehaviour
 {
-    public int fishesInNet;
+    public NetworkVariable<int> fishesInNet;
 
     [SerializeField] private Vector2 timeRange = new Vector2(5, 10);
     [SerializeField] private Vector2 extraFishTimeRange = new Vector2(1, 3);
@@ -31,7 +31,7 @@ public class FishingNet : NetworkBehaviour
             if (!netLaunched)
             {
                 netLaunched = true;
-                AnimatorRelease();
+                AnimatorReleaseClientRpc();
                 launchTime = Time.time;
                 fishingTime = Random.Range(timeRange.x, timeRange.y);
                 nextFishTime = fishingTime;
@@ -42,44 +42,47 @@ public class FishingNet : NetworkBehaviour
             if (Time.time - launchTime > fishingTime)
             {
                 netLaunched = false;
-                AnimatorRetrieve();
-                AnimatorCatchFish(false);
-                ply.GiveItemServerRpc(player, "raw_fish", fishesInNet);
-                fishesInNet = 0;
+                AnimatorRetrieveClientRpc();
+                AnimatorCatchFishClientRpc(false);
+                ply.GiveItemServerRpc(player, "raw_fish", fishesInNet.Value);
+                fishesInNet.Value = 0;
             }
         }
     }
 
     private void Update()
     {
-        //alterar localização da corda apenas se tiver tocando as animaçoes, e nao em idle
         if (wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_ReleaseKite") || wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_RetrieveKite") || wheelAnimator.GetCurrentAnimatorStateInfo(0).IsName("Wheel_KiteInAir"))
+        {
             ropeTip.transform.position = tipAnchor.position;
-            kiteRenderer.material.SetFloat("Strength", 0.5f);
+        }
 
         if (!netLaunched) return;
         if (Time.time - launchTime < fishingTime) return;
         if (Time.time - launchTime < nextFishTime) return;
         
-        fishesInNet++;
-        AnimatorCatchFish(true);
+        fishesInNet.Value++;
+        AnimatorCatchFishClientRpc(true);
         nextFishTime += 1 / Random.Range(extraFishTimeRange.x, extraFishTimeRange.y);
     }
 
-    private void AnimatorRelease()
+    [ClientRpc]
+    private void AnimatorReleaseClientRpc()
     {
         wheelAnimator.SetTrigger("Release");
 
-        kiteRenderer.material.SetFloat("_Strength", 0.5f);
+        kiteRenderer.sharedMaterial.SetFloat("_Strength", 0.5f);
     }
 
-    private void AnimatorRetrieve()
+    [ClientRpc]
+    private void AnimatorRetrieveClientRpc()
     {
         wheelAnimator.SetTrigger("Retrieve");
-        kiteRenderer.material.SetFloat("_Strength", 0);
+        kiteRenderer.sharedMaterial.SetFloat("_Strength", 0);
     }
 
-    private void AnimatorCatchFish(bool c)
+    [ClientRpc]
+    private void AnimatorCatchFishClientRpc(bool c)
     {
         kiteAnimator.SetBool("Catch", c);
     }
