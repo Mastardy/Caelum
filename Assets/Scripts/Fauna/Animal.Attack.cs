@@ -45,7 +45,6 @@ public partial class Animal
         if (Time.time - lastAttack > 1 / attackRate)
         {
             animator.SetTrigger(attackCache);
-            playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
             lastAttack = Time.time;
         }
     }
@@ -67,5 +66,20 @@ public partial class Animal
         }
 
         return null;
+    }
+
+    public void TryAttack()
+    {
+        var results = new Collider[10];
+
+        if (Physics.OverlapCapsuleNonAlloc(transform.position, transform.position + transform.forward * 2, 2, results) > 1)
+        {
+            foreach(var col in results)
+            {
+                if (!col) continue;
+                if(col.CompareTag("Player"))
+                    playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
+            }
+        }
     }
 }
