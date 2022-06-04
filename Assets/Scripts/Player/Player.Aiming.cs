@@ -163,12 +163,14 @@ public partial class Player
                 case ItemTag.Axe:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
+                        PlayToolSwing("sword");
                         AnimatorUseAxe();
                     }
                     break;
                 case ItemTag.Pickaxe:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
+                        PlayToolSwing("sword");
                         AnimatorUsePickaxe();
                     }
                     break;

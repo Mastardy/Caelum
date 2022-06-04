@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 449202421724136477}
   - component: {fileID: 5912041843002146645}
   - component: {fileID: 4942821409974482240}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3385528230643359127}
   - component: {fileID: 4531645689794852656}
   - component: {fileID: 8184408398907612199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv2Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5810179122484612782}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 2960783332405699063}
   - component: {fileID: 4470396950795302646}
   - component: {fileID: 651458450258153748}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv3Hanger02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,8 @@ GameObject:
   - component: {fileID: 3668964817143031901}
   - component: {fileID: 2443495968596491538}
   - component: {fileID: 8834074509162197679}
-  m_Layer: 0
+  - component: {fileID: 4100899636615324821}
+  m_Layer: 3
   m_Name: lv1Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,6 +381,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4100899636615324821
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481893429314136073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000012, y: 1.6, z: 4.0000024}
+  m_Center: {x: -0.0000076293945, y: 0.8, z: 0.000061035156}
 --- !u!1 &3319066467072954267
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +405,7 @@ GameObject:
   - component: {fileID: 6153829822597418117}
   - component: {fileID: 4337937557493198719}
   - component: {fileID: 5121361765446568695}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv2Holders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +487,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7784033765152668060}
   - component: {fileID: 27961854621765621}
-  m_Layer: 0
+  - component: {fileID: 6313065339050727738}
+  - component: {fileID: 8161224887586103568}
+  m_Layer: 10
   m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -520,6 +536,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.015355, y: 1.6254761, z: 1.9986672}
   m_Center: {x: 0.004667759, y: 0.80751765, z: 0.01882115}
+--- !u!114 &6313065339050727738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409727260177358204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce96fdb997dca2348bcf4e6121d28f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8161224887586103568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4409727260177358204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &4588527398900135512
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +575,7 @@ GameObject:
   - component: {fileID: 894909583828669464}
   - component: {fileID: 22368162952102221}
   - component: {fileID: 6947214848971338376}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv1Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +658,7 @@ GameObject:
   - component: {fileID: 688631633128687283}
   - component: {fileID: 6405554848440059086}
   - component: {fileID: 5242329053278790929}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv1Papers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5831578541427246725}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Workbench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,8 +755,8 @@ Transform:
   m_GameObject: {fileID: 6037060741611797405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7784033765152668060}
   - {fileID: 3706472323994130907}
@@ -731,7 +775,7 @@ GameObject:
   - component: {fileID: 3503763536061193937}
   - component: {fileID: 4029641246742319219}
   - component: {fileID: 4490256976354067904}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv2Hanger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +858,7 @@ GameObject:
   - component: {fileID: 2859835198661987550}
   - component: {fileID: 7568061712709953098}
   - component: {fileID: 7944055250237524940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +941,7 @@ GameObject:
   - component: {fileID: 936937507826601257}
   - component: {fileID: 5445042800665729443}
   - component: {fileID: 2931841872428790664}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv2Papers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +1023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3706472323994130907}
   - component: {fileID: 6412838388744138897}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1091,7 @@ GameObject:
   - component: {fileID: 7015896935160689690}
   - component: {fileID: 2544818637110914863}
   - component: {fileID: 2328109237506833206}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: lv3Hanger01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,6 +1230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4bc7f3b012530244996ea059dcd6bf72,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc7f3b012530244996ea059dcd6bf72, type: 3}
 --- !u!4 &457104041808940263 stripped
@@ -1276,6 +1325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &246413266664594141 stripped
@@ -1365,6 +1419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tweezers (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6785cfd14c1f9fd498054390e915a227,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6785cfd14c1f9fd498054390e915a227, type: 3}
@@ -1461,6 +1520,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &1669753961820204977 stripped
@@ -1555,6 +1619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jar (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
@@ -1651,6 +1720,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &1159123902751069783 stripped
@@ -1725,6 +1799,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scraper
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef52035afb5226b4798653a3f1ce281f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef52035afb5226b4798653a3f1ce281f, type: 3}
@@ -1821,6 +1900,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bucket
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d985bf5297da3914689f5e1a2ce89386,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d985bf5297da3914689f5e1a2ce89386, type: 3}
 --- !u!4 &1967969986733220730 stripped
@@ -1911,6 +1995,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wrench (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 47e260174c5b5c447af89f0d4ab44b40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e260174c5b5c447af89f0d4ab44b40, type: 3}
 --- !u!4 &1765013084273809974 stripped
@@ -1986,6 +2075,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scythe
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c47ebe302db40424fbe2dbf1c50d97c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c47ebe302db40424fbe2dbf1c50d97c0, type: 3}
 --- !u!4 &2845526214159782643 stripped
@@ -2060,6 +2154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pot01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1319c0994c52cb84a8f1cb01702671d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1319c0994c52cb84a8f1cb01702671d7, type: 3}
@@ -2156,6 +2255,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1319c0994c52cb84a8f1cb01702671d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1319c0994c52cb84a8f1cb01702671d7, type: 3}
 --- !u!4 &2437002243093900295 stripped
@@ -2230,6 +2334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scraper (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef52035afb5226b4798653a3f1ce281f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef52035afb5226b4798653a3f1ce281f, type: 3}
@@ -2321,6 +2430,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scissors
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1732716ed0b92424d8cb9d08ab0e6044,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1732716ed0b92424d8cb9d08ab0e6044, type: 3}
 --- !u!4 &3219300528672307144 stripped
@@ -2411,6 +2525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ruler02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7423be2f46085f748a97ad329fe5ea60,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7423be2f46085f748a97ad329fe5ea60, type: 3}
 --- !u!4 &2924241719714042513 stripped
@@ -2500,6 +2619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plant Vase
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a83b7dd429214a742b13c427a122ebdb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a83b7dd429214a742b13c427a122ebdb, type: 3}
@@ -2596,6 +2720,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f51323b7333606549b55ca23a172dd4f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f51323b7333606549b55ca23a172dd4f, type: 3}
 --- !u!4 &4587273449460897562 stripped
@@ -2670,6 +2799,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wrench
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 47e260174c5b5c447af89f0d4ab44b40,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47e260174c5b5c447af89f0d4ab44b40, type: 3}
@@ -2746,6 +2880,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1319c0994c52cb84a8f1cb01702671d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1319c0994c52cb84a8f1cb01702671d7, type: 3}
 --- !u!4 &4451721331500994929 stripped
@@ -2820,6 +2959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WoodenSpoon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd94e1ffe9b945a4d987dd0315871b89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd94e1ffe9b945a4d987dd0315871b89, type: 3}
@@ -2916,6 +3060,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bucket (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d985bf5297da3914689f5e1a2ce89386,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d985bf5297da3914689f5e1a2ce89386, type: 3}
 --- !u!4 &4614041236647538803 stripped
@@ -3011,6 +3160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &5507109322888190752 stripped
@@ -3100,6 +3254,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jar
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
@@ -3191,6 +3350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ruler03
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a50dba94599a4174cade5cf0376d1c82,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50dba94599a4174cade5cf0376d1c82, type: 3}
 --- !u!4 &5389948637563220107 stripped
@@ -3265,6 +3429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tweezers
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6785cfd14c1f9fd498054390e915a227,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6785cfd14c1f9fd498054390e915a227, type: 3}
@@ -3350,6 +3519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fork
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d7f46a0fa31a6e049af626f08aade22c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7f46a0fa31a6e049af626f08aade22c, type: 3}
@@ -3446,6 +3620,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &6782134222750505513 stripped
@@ -3541,6 +3720,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &6765214023128362521 stripped
@@ -3615,6 +3799,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hammer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c4131474d9a023343947f9858f86ecfa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4131474d9a023343947f9858f86ecfa, type: 3}
@@ -3711,6 +3900,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &7202172330274787615 stripped
@@ -3785,6 +3979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scraper (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef52035afb5226b4798653a3f1ce281f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef52035afb5226b4798653a3f1ce281f, type: 3}
@@ -3875,6 +4074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Jar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
@@ -3971,6 +4175,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1319c0994c52cb84a8f1cb01702671d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1319c0994c52cb84a8f1cb01702671d7, type: 3}
 --- !u!4 &7985978361135912054 stripped
@@ -4061,6 +4270,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hammer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4bc7f3b012530244996ea059dcd6bf72,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc7f3b012530244996ea059dcd6bf72, type: 3}
 --- !u!4 &7603846478022276087 stripped
@@ -4136,6 +4350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quill
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0c35d27481782643bee6ff48f6e6e6b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0c35d27481782643bee6ff48f6e6e6b, type: 3}
 --- !u!1001 &8443910742261347268
@@ -4204,6 +4423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Saw
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 30691b83a45cc64448fe26f560036bf7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30691b83a45cc64448fe26f560036bf7, type: 3}
@@ -4300,6 +4524,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jar (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 425f96b2a663d1d43ba087b3a67dc02a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425f96b2a663d1d43ba087b3a67dc02a, type: 3}
 --- !u!4 &8988431407949321295 stripped
@@ -4390,6 +4619,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InkBottle
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9222cb53d2743fe489ba3c9f9b139305,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9222cb53d2743fe489ba3c9f9b139305, type: 3}
 --- !u!4 &8811626569789550219 stripped
@@ -4479,6 +4713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ruler01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7c4a9252f71386343848382c3303bbb7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c4a9252f71386343848382c3303bbb7, type: 3}
