@@ -31,6 +31,10 @@ public partial class Animal
         CurrentState = idleState;
         stateText.SetText("Dead");
         animator.SetBool(deadCache, true);
+        foreach(var col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
     }
 
     private void FlashColor()

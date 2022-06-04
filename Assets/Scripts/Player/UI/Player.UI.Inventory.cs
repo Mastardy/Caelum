@@ -84,7 +84,7 @@ public partial class Player
 
             if (amountAdded >= amountToAdd) return;
         }
-
+        
         foreach (var slot in inventorySlots)
         {
             if (!slot.isEmpty) continue;

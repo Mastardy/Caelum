@@ -26,6 +26,7 @@ public class InventorySlot : MonoBehaviour
         set
         {
             amount = value;
+            amountText.SetText(value.ToString());
             OnAmountChange.Invoke();
         }
     }
@@ -38,24 +39,16 @@ public class InventorySlot : MonoBehaviour
         set
         {
             durability = value;
-            OnDurabilityChange.Invoke();            
+            durabilityForeground.fillAmount = 0.5f * durability;
+            durabilityForeground.color = durabilityGradient.Evaluate((durability * -1) + 1);
+            if(durability <= 0 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword) Clear();
+            OnDurabilityChange.Invoke();
         }
     }
     
     [HideInInspector] public InventoryItem inventoryItem;
     
     public Image image;
-
-    private void Start()
-    {
-        OnDurabilityChange.AddListener(() =>
-        {
-            durabilityForeground.fillAmount = 0.5f * durability;
-            durabilityForeground.color = durabilityGradient.Evaluate((durability * -1) + 1);
-        });
-        
-        OnAmountChange.AddListener(() => amountText.SetText(amount.ToString()));
-    }
 
     public void Fill(InventoryItem invItem, int newAmount, float newDurability)
     {
