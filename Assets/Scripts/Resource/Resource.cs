@@ -12,12 +12,19 @@ public class Resource : NetworkBehaviour
 
     //animator stuff
     public Animator resourceAnimator;
+    public ParticleSystem particles;
 
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(int resourceHP = 1)
     {
         curHP.Value -= resourceHP;
-        
+        if (particles)
+        {
+            particles.Stop();
+            particles.Play();
+        }
+
+
         if (curHP.Value <= 0)
         {
             if (item.itemName == "stone")
