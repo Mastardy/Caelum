@@ -29,8 +29,16 @@ public partial class Player
     private static readonly int parachuteCache = Animator.StringToHash("Parachute");
 
     //tps model variables
-    private static readonly int holdToolCache = Animator.StringToHash("HoldTool");
-    private static readonly int useToolCache = Animator.StringToHash("UseTool");
+    private bool holdTool;
+    private bool useTool;
+    private bool holdSword;
+    private bool useSword;
+    private bool holdSpear;
+    private bool useSpear;
+    private bool holdGrappling;
+    private bool useGrappling;
+    private bool holdBow;
+    private bool useBow;
 
     private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
     private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
@@ -95,21 +103,20 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc(float moveMag, float xInput, float yInput,
-        bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool, bool parachute)
+    private void NetworkAnimatorUpdateServerRpc()
     {
         if (!IsServer) return;
         
         isCrouchedNet.Value = isCrouched;
-        moveMagnitudeNet.Value = moveMag;
-        inputXNet.Value = xInput;
-        inputYNet.Value = yInput;
-        isGroundedNet.Value = grounded;
-        xRotationNet.Value = rotationX;
-        velocityYNet.Value = velocityY;
-        holdToolNet.Value = holdTool;
+        moveMagnitudeNet.Value = horizontalVelocity.magnitude;
+        inputXNet.Value = input.x;
+        inputYNet.Value = input.y;
+        isGroundedNet.Value = isGrounded;
+        xRotationNet.Value = xRotation;
+        velocityYNet.Value = verticalVelocity;
+        holdToolNet.Value = holdTool && !inParachute;
         useToolNet.Value = useTool;
-        parachuteNet.Value = parachute;
+        parachuteNet.Value = inParachute;
     }
 
     private void AnimatorUpdate()
@@ -128,12 +135,14 @@ public partial class Player
         if(isGrounded) firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
+        firstPersonAnimator.SetBool(parachuteCache, inParachute);
 
         //tools and weapons variables
-        thirdPersonAnimator.SetBool(holdToolCache, holdToolNet.Value);
-        thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
         firstPersonAnimator.SetBool(aimCache, animAim);
-        thirdPersonAnimator.SetBool(aimCache, animAim);
+        
+        thirdPersonAnimator.SetBool(toolCache, holdToolNet.Value && !parachuteNet.Value);
+        if (inParachute) SetTPSArmsWeight(2, 0);
+        //thirdPersonAnimator.SetBool(aimCache, animAim);
     }
 
     private void AnimatorEquipTool(bool equip)
@@ -144,6 +153,9 @@ public partial class Player
             SetRightArmWeight(0);
         }
         firstPersonAnimator.SetBool(toolCache, equip);
+
+        SetTPSArmsWeight(2, equip ? 1 : 0);
+        holdTool = equip;
     }
 
     private void AnimatorUseAxe()
@@ -262,9 +274,9 @@ public partial class Player
         firstPersonAnimator.SetLayerWeight(1, w);
     }
 
-    public void SetTPSArmsWeight(float w)
+    public void SetTPSArmsWeight(int l, float w)
     {
-        thirdPersonAnimator.SetLayerWeight(2, w);
+        thirdPersonAnimator.SetLayerWeight(l, w);
     }
 
     private static float Map(float value, float min, float max)
