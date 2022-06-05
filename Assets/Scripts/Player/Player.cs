@@ -99,25 +99,34 @@ public partial class Player : NetworkBehaviour
                 RespawnPlayer();
                 return;
             }
-            
-            if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
-            {
-                if (!isFishing) StartFishing();
-                else StopFishing();
-            }
 
-            if (InputHelper.GetKeyDown(KeyCode.R, 0.2f))
+            if (takeInput)
             {
-                BeginGrapple();
-            }
+                if (InputHelper.GetKeyDown(KeyCode.P, 0.1f))
+                {
+                    if (!isFishing) StartFishing();
+                    else StopFishing();
+                }
 
-            if (InputHelper.GetKeyDown(KeyCode.Q, 0.1f))
-            {
-                BeginGrapplePlus();
-            }
-            else if (Input.GetKeyUp(KeyCode.Q) && isTetheredPlus)
-            {
-                EndGrapplePlus();
+                if (!isTethered && !isTetheredPlus)
+                {
+                    if (InputHelper.GetKeyDown(KeyCode.R, 0.2f))
+                    {
+                        BeginGrapple();
+                    }
+
+                    if (InputHelper.GetKeyDown(KeyCode.Q, 0.1f))
+                    {
+                        BeginGrapplePlus();
+                    }
+                }
+                else if (isTetheredPlus)
+                {
+                    if (Input.GetKeyUp(KeyCode.Q))
+                    {
+                        EndGrapplePlus();
+                    }
+                }
             }
 
             if (!inInventory && !inCrafting && !inOven && !inPause)
