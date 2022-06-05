@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public partial class Player
@@ -75,10 +76,13 @@ public partial class Player
         IsGrounded();
 
         FallDamage();
-        
-        IsSprinting();
 
-        IsCrouching();
+        if (takeInput)
+        {
+            IsSprinting();
+
+            IsCrouching();
+        }
 
         Parachute();
         
@@ -148,7 +152,10 @@ public partial class Player
         }
 
         var playerTransform = transform;
-        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime));
+        
+        if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
+        
+        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime) + playerTransform.up * verticalVelocity);
     }
     
     private void EndDash()
