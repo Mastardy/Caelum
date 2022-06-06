@@ -22,6 +22,7 @@ public class GameOptionsScriptableObjects : ScriptableObject
     public float mouseSensitivity;
     public bool toggleSprint;
     public bool toggleDuck;
+    public bool toggleParachute;
     
     // KeyBinds - Movement
     public KeyCode forwardKey;

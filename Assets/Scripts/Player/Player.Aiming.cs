@@ -116,7 +116,7 @@ public partial class Player
     {
         var invItem = hotbars[currentSlot].slot.inventoryItem;
         
-        if (invItem && !handIsEmpty)
+        if (invItem)
         {
             switch (invItem.itemTag)
             {

@@ -96,7 +96,7 @@ public partial class Player
 
     [ServerRpc(RequireOwnership = false)]
     private void NetworkAnimatorUpdateServerRpc(float moveMag, float xInput, float yInput,
-        bool grounded, float rotationX, float velocityY, bool holdTool, bool useTool, bool parachute)
+        bool grounded, float rotationX, float velocityY, bool useTool, bool parachute)
     {
         if (!IsServer) return;
         
@@ -107,7 +107,6 @@ public partial class Player
         isGroundedNet.Value = grounded;
         xRotationNet.Value = rotationX;
         velocityYNet.Value = velocityY;
-        holdToolNet.Value = holdTool;
         useToolNet.Value = useTool;
         parachuteNet.Value = parachute;
     }

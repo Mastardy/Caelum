@@ -59,6 +59,7 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
+            CurrentSlot = 0;
             playerCanvas.gameObject.SetActive(true);
             SpawnPlayer();
             GiveItemServerRpc(this, "axe_stone", 1, 1);
@@ -192,25 +193,12 @@ public partial class Player : NetworkBehaviour
 
             AimUpdate();
 
-            EyeTraceInfo();
+            if(takeInput) EyeTraceInfo();
             
             StatusUpdate();
 
-            //ANDRE, REVER ESSE CODIGO QUE ATUALIZA A BOOL QUE INDICA QUE O WORLD MODEL TA SEGURNADO UMA TOOL
-            bool holdTool = false;
-            if (!handIsEmpty)
-            {
-                holdTool = hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe or ItemTag.Pickaxe or ItemTag.Sword;
-                thirdPersonAnimator.SetLayerWeight(2, holdTool? 0: 1);
-
-                if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Bow or ItemTag.Spear)
-                {
-                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
-                }
-            }
-
             NetworkAnimatorUpdateServerRpc(horizontalVelocity.magnitude, input.x, input.y, 
-                isGrounded, xRotation, verticalVelocity, holdTool, false, inParachute);
+                isGrounded, xRotation, verticalVelocity, false, inParachute);
         }
 
         PlayFootstepSounds();

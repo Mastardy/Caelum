@@ -21,6 +21,7 @@ public partial class MainUI
     [SerializeField] private Slider sensitivitySlider;
     [SerializeField] private ToggleButton sprintToggleButton;
     [SerializeField] private ToggleButton duckToggleButton;
+    [SerializeField] private ToggleButton parachuteToggleButton;
     
     // TODO: KEYBIND
 
@@ -64,6 +65,8 @@ public partial class MainUI
         gameOptionsScriptableObject.toggleSprint = gameOptions.toggleSprint;
         duckToggleButton.Value = gameOptions.toggleDuck;
         gameOptionsScriptableObject.toggleDuck = gameOptions.toggleDuck;
+        parachuteToggleButton.Value = gameOptions.toggleParachute;
+        gameOptionsScriptableObject.toggleParachute = gameOptions.toggleParachute;
 
         verticalSyncToggleButton.Value = gameOptions.verticalSync;
         gameOptionsScriptableObject.verticalSync = gameOptions.verticalSync;

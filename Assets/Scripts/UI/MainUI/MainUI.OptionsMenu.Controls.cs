@@ -19,6 +19,18 @@ public partial class MainUI
     }
     
     /// <summary>
+    /// Handles the way Parachute Input works
+    /// </summary>
+    /// <param name="toggleButton"></param>
+    public void ToggleParachuteHandle(ToggleButton toggleButton)
+    {
+        ToggleButton(toggleButton);
+        gameOptions.toggleParachute = toggleButton.Value;
+        gameOptionsScriptableObject.toggleParachute = toggleButton.Value;
+        SaveOptions();
+    }
+    
+    /// <summary>
     /// Handles the way Duck Input works
     /// </summary>
     /// <param name="toggleButton"></param>

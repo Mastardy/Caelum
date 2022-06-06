@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class Player
 {
-    private bool inInventory;
+    public bool inInventory;
     private Dictionary<string, InventoryItem> inventoryItems = new();
 
     [SerializeField] private CanvasGroup hotbarsGroup;

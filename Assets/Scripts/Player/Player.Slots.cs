@@ -14,82 +14,47 @@ public partial class Player
     public GameObject currentWeapon;
     private Bow bow;
     private float lastSlotChange;
-    private bool handIsEmpty = true;
     private int lastSlot;
     public int currentSlot;
     private int CurrentSlot
     {
-        get
-        {
-            return currentSlot;
-        }
+        get => currentSlot;
         set
         {
             if (inParachute) return;
-            
-            if (currentSlot == value)
-            {
-                if(handIsEmpty) EquipItem();
-                else UnequipItem();
-                return;
-            }
-
-            if (Time.time - lastSlotChange < 0.35f) return;
-            
+            if (Time.time - lastSlotChange < 0.1f) return;
             var val = value < 0 ? 5 : value > 5 ? 0 : value;
-
-            hotbars[currentSlot].slot.OnClear.RemoveAllListeners();
-            hotbars[currentSlot].slot.OnClear.AddListener(hotbars[currentSlot].OnClear);
+            
             lastSlot = currentSlot;
             currentSlot = val;
-            
-            if (hotbars[val].slot.isEmpty)
-            {
-                UnequipItem();
-                return;
-            }
-            
-            InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
-            hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem(currentItem));
 
-            EquipItem();
+            hotbars[lastSlot].Selected = false;
+            hotbars[currentSlot].Selected = true;
+            
+            hotbars[lastSlot].slot.OnClear.RemoveAllListeners();
+            hotbars[lastSlot].slot.OnFill.RemoveAllListeners();
+            
+            hotbars[lastSlot].slot.OnClear.AddListener(hotbars[lastSlot].OnClear);
+            hotbars[lastSlot].slot.OnFill.AddListener(hotbars[lastSlot].OnFill);
+            
+            hotbars[currentSlot].slot.OnFill.AddListener(() => EquipItem());
+            hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem());
+
+            if (hotbars[val].slot.isEmpty) UnequipItem();
+            else EquipItem();
+            
             lastSlotChange = Time.time;
         }
     }
     
     private void EquipItem()
     {
-        hotbars[currentSlot].Selected = true;
-        
-        if (!handIsEmpty)
-        {
-            UnequipItem(hotbars[lastSlot].slot.inventoryItem);
-            if (hotbars[currentSlot].slot.isEmpty) hotbars[currentSlot].Selected = false;
-            Invoke(nameof(EquipItem), 0.2f);
-            return;
-        }
-        
-        handIsEmpty = false;
+        DestroyWeapon();
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
-
-        if (!currentItem)
-        {
-            DestroyWeapon();
-            UnequipItem();
-            return;
-        }
         
-        hotbars[currentSlot].slot.OnClear.AddListener(UnequipItem);
-        DestroyWeapon();
         switch (currentItem.itemTag)
         {
-            case ItemTag.Other:
-                UnequipItem();
-                break;
-            case ItemTag.Food:
-                CurrentSlot = lastSlot;
-                break;
             case ItemTag.Axe:
             case ItemTag.Pickaxe:
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, toolBone);
@@ -112,77 +77,18 @@ public partial class Player
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
                 AnimatorEquipGrappling(true);
                 break;
-            default:
-                Debug.Log($"Item Tag Not Implemented {hotbars[currentSlot].slot.inventoryItem.itemTag}");
-                break;
-        }
-    }
-
-    private void UnequipItem(InventoryItem item)
-    {
-        hotbars[lastSlot].Selected = false;
-        
-        handIsEmpty = true;
-
-        switch (item.itemTag)
-        {
-            case ItemTag.Axe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Pickaxe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Sword:
-                AnimatorEquipSword(false);
-                break;
-            case ItemTag.Spear:
-                AnimatorEquipSpear(false);
-                break;
-            case ItemTag.Bow:
-                bow = null;
-                AnimatorEquipBow(false);
-                break;
-            case ItemTag.Grappling:
-                AnimatorEquipGrappling(false);
-                break;
         }
     }
 
     private void UnequipItem()
     {
         DestroyWeapon();
-
-        hotbars[currentSlot].Selected = false;
         
-        handIsEmpty = true;
-
-        InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
-        InventoryItem lastItem = hotbars[currentSlot].slot.inventoryItem;
-
-        if (!currentItem && !lastItem) return;
-
-        switch (currentItem ? currentItem.itemTag : lastItem.itemTag)
-        {
-            case ItemTag.Axe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Pickaxe:
-                AnimatorEquipTool(false);
-                break;
-            case ItemTag.Sword:
-                AnimatorEquipSword(false);
-                break;
-            case ItemTag.Spear:
-                AnimatorEquipSpear(false);
-                break;
-            case ItemTag.Bow:
-                bow = null;
-                AnimatorEquipBow(false);
-                break;
-            case ItemTag.Grappling:
-                AnimatorEquipGrappling(false);
-                break;
-        }
+        AnimatorEquipTool(false);
+        AnimatorEquipSword(false);
+        AnimatorEquipSpear(false);
+        AnimatorEquipBow(false);
+        AnimatorEquipGrappling(false);
     }
 
     public void DestroyWeapon()
