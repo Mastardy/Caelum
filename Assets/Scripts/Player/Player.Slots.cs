@@ -52,6 +52,8 @@ public partial class Player
     {
         DestroyWeapon();
 
+        if (hotbars[currentSlot].slot.isEmpty) return;
+
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         
         switch (currentItem.itemTag)
