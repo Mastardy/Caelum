@@ -90,6 +90,9 @@ public partial class Player
         AnimatorEquipSpear(false);
         AnimatorEquipBow(false);
         AnimatorEquipGrappling(false);
+
+        SetLeftArmWeight(0);
+        SetRightArmWeight(0);
     }
 
     public void DestroyWeapon()

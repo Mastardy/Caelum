@@ -129,8 +129,10 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Spear:
+                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                     if (InputHelper.GetKey(gameOptions.secondaryAttackKey))
                     {
+                        
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                         {
                             AnimatorThrowSpear();
@@ -146,6 +148,7 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Bow:
+                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                     if (!Input.GetKey(gameOptions.secondaryAttackKey)) break;
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
