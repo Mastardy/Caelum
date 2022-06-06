@@ -14,7 +14,7 @@ public partial class Animal
         if (!dead){
             animator.SetTrigger(hitCache);
             FlashColor();
-            Invoke(nameof(ResetColor), 0.1f);
+            Invoke(nameof(ResetColor), 0.25f);
         }
 
         if (currentHealth.Value <= 0)
@@ -31,6 +31,10 @@ public partial class Animal
         CurrentState = idleState;
         stateText.SetText("Dead");
         animator.SetBool(deadCache, true);
+        foreach(var col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
     }
 
     private void FlashColor()

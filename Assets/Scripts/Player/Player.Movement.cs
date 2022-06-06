@@ -75,10 +75,13 @@ public partial class Player
         IsGrounded();
 
         FallDamage();
-        
-        IsSprinting();
 
-        IsCrouching();
+        if (takeInput)
+        {
+            IsSprinting();
+
+            IsCrouching();
+        }
 
         Parachute();
         
@@ -148,7 +151,10 @@ public partial class Player
         }
 
         var playerTransform = transform;
-        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime));
+        
+        if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
+        
+        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime) + playerTransform.up * verticalVelocity * Time.deltaTime);
     }
     
     private void EndDash()
@@ -221,15 +227,32 @@ public partial class Player
         
         wasInParachute = inParachute;
 
-        inParachute = false;
-        
-        if (isGrounded) return;
-        
-        if (verticalVelocity > -20f && !wasInParachute) return;
+        if (isGrounded)
+        {
+            inParachute = false;
+            return;
+        }
 
-        if (Time.time - lastParachuteOpen < 1f) return;
-        
-        inParachute = Input.GetKey(gameOptions.jumpKey);
+        if (verticalVelocity > -20f && !wasInParachute)
+        {
+            inParachute = false;
+            return;
+        }
+
+        if (Time.time - lastParachuteOpen < 1f)
+        {
+            inParachute = false;
+            return;
+        }
+
+        if (gameOptions.toggleParachute)
+        {
+            inParachute = Input.GetKeyDown(gameOptions.jumpKey) ? !inParachute : inParachute;
+        }
+        else
+        {
+            inParachute = Input.GetKey(gameOptions.jumpKey);
+        }
 
         if (wasInParachute && !inParachute) lastParachuteOpen = Time.time;
         

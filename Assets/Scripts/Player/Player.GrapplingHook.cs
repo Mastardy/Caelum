@@ -141,7 +141,7 @@ public partial class Player
         
         Collider[] results = new Collider[10];
         var localScale = transform.localScale.x * 1.25f;
-        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results) > 1)
+        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results, Quaternion.identity, groundMask) > 1)
         {
             EndGrapplePlus();
         }

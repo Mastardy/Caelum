@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class Player
 {
-    private bool inInventory;
+    public bool inInventory;
     private Dictionary<string, InventoryItem> inventoryItems = new();
 
     [SerializeField] private CanvasGroup hotbarsGroup;
@@ -84,7 +84,7 @@ public partial class Player
 
             if (amountAdded >= amountToAdd) return;
         }
-
+        
         foreach (var slot in inventorySlots)
         {
             if (!slot.isEmpty) continue;

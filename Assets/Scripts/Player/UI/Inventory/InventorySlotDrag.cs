@@ -29,8 +29,6 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
     
     private void Update()
     {
-        // TODO: Verificar inventário if(GetComponentInParent<Player>().)
-        
         if (!hovering) return;
 
         if (Input.GetKeyDown(/*GameManager.Instance.gameOptions.dropKey*/KeyCode.G))
@@ -128,7 +126,6 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                     if (invSlot.inventoryItem.itemName != inventorySlot.inventoryItem.itemName)
                     {
                         var tempInvItem = inventorySlot.inventoryItem;
-                        var tempSprite = inventorySlot.image.sprite;
                         var tempAmount = inventorySlot.Amount;
                         var tempDurability = inventorySlot.Durability;
                         
