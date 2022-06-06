@@ -40,8 +40,9 @@ public partial class Player
             hotbars[currentSlot].slot.OnFill.AddListener(() => EquipItem());
             hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem());
 
-            if (hotbars[val].slot.isEmpty) UnequipItem();
-            else EquipItem();
+            UnequipItem();
+            Invoke("EquipItem", 0.1f);
+            
             
             lastSlotChange = Time.time;
         }
