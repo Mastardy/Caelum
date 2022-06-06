@@ -8,6 +8,7 @@ public partial class Player
     [Header("Aiming")]
     [SerializeField] private Transform headTransform;
     [SerializeField] private Vector3 parachuteCameraRotation = new Vector3(-25, 0, 0);
+    [SerializeField] private ParticleSystem impactParticle;
 
     private float xRotation;
 
@@ -262,9 +263,11 @@ public partial class Player
                 case ItemTag.Spear:
                     animal.TakeDamageServerRpc(10, this);
                     hotbars[currentSlot].slot.Durability -= 0.05f;
+                    impactParticle.Play();
                     break;
                 case ItemTag.Sword:
                     animal.TakeDamageServerRpc(20, this);
+                    impactParticle.Play();
                     hotbars[currentSlot].slot.Durability -= 0.025f;
                     break;
             }
@@ -285,12 +288,20 @@ public partial class Player
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
                     }
+                    else
+                    {
+                        impactParticle.Play();
+                    }
                     break;
                 case "stone":
                     if (invItem.itemTag == ItemTag.Pickaxe)
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
+                    }
+                    else
+                    {
+                        impactParticle.Play();
                     }
                     break;
             }

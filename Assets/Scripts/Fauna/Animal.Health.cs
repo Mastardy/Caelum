@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Unity.Netcode;
 
 public partial class Animal
@@ -14,7 +15,7 @@ public partial class Animal
         if (!dead){
             animator.SetTrigger(hitCache);
             FlashColor();
-            Invoke(nameof(ResetColor), 0.25f);
+            Invoke(nameof(FadeColor), 0.1f);
         }
 
         if (currentHealth.Value <= 0)
@@ -45,5 +46,17 @@ public partial class Animal
     private void ResetColor()
     {
         modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 0);
+    }
+
+    IEnumerator FadeColor()
+    {
+        float fade = 1;
+        do
+        {
+            modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", fade);
+            fade -= 0.01f;
+        } while (modelRenderer.sharedMaterial.GetFloat("_Damaged_Strength") > 0);
+
+        yield return null;
     }
 }

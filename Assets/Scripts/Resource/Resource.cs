@@ -20,7 +20,6 @@ public class Resource : NetworkBehaviour
         curHP.Value -= resourceHP;
         if (particles)
         {
-            particles.Stop();
             particles.Play();
         }
 
