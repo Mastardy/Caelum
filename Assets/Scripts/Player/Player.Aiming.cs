@@ -256,7 +256,20 @@ public partial class Player
     public void TryAttack()
     {
         if (!lookingAt) return;
-        if (lookingAt.TryGetComponent(out Animal animal))
+
+        if (lookingAt.TryGetComponent(out Resource resource))
+        {
+            switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
+            {
+                case ItemTag.Spear:
+                case ItemTag.Sword:
+                    impactParticle.Play();
+                    impactParticle.Play();
+                    break;
+            }
+        }
+
+            if (lookingAt.TryGetComponent(out Animal animal))
         {
             switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
