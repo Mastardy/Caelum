@@ -12,14 +12,27 @@ public class PlayerAnimationEvents : MonoBehaviour
     [Header("Player")]
     public Player player;
 
-    public void PlayShake(int amount)
+    public void Harvest(int amount)
     {
         shake.PlayShake(amount);
+        player.TryHarvest();
+    }
+
+    public void TryAttack()
+    {
+        player.TryAttack();
     }
 
     public void ThrowSpear()
     {
-        
+        HideWeapon();
+        EndRightArm();
+        player.ThrowSpearServerRpc(player, player.hotbars[player.currentSlot].slot.inventoryItem.itemName, player.currentSlot);
+    }
+
+    public void HideWeapon()
+    {
+        player.DestroyWeapon();
     }
 
     public void EndLeftArm()
@@ -27,8 +40,19 @@ public class PlayerAnimationEvents : MonoBehaviour
         player.SetLeftArmWeight(0);
     }
 
-    public void CanAim()
+    public void EndRightArm()
     {
-        player.CanAim = true;
+        player.SetRightArmWeight(0);
+    }
+
+    public void CanAim(int canAim)
+    {
+        switch (canAim)
+        {
+            case 0: player.CanAim = false; break;
+            case 1: player.CanAim = true; break;
+            default: player.CanAim = false; break;
+
+        }
     }
 }

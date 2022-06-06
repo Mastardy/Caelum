@@ -1,7 +1,5 @@
 public partial class Player
 {
-    private int currentSlot;
-    
     public int GetItemAmount(string itemName)
     {
         int itemAmount = 0;
@@ -34,7 +32,6 @@ public partial class Player
 
                 if (inventorySlot.inventoryItem.itemName == itemName)
                 {
-                    inventorySlot.Amount = 0;
                     inventorySlot.Clear();
                 }
             }

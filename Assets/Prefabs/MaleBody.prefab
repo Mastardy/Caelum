@@ -280,11 +280,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719941657440916247}
   m_LocalRotation: {x: 0.07591871, y: -0.7030195, z: -0.07591871, w: 0.7030195}
-  m_LocalPosition: {x: 2.3283064e-10, y: 2.8828707, z: -0.056616727}
-  m_LocalScale: {x: 1.0990822, y: 0.9999999, z: 1.0990822}
+  m_LocalPosition: {x: 0, y: 2.8828707, z: -0.056616727}
+  m_LocalScale: {x: 1.0990822, y: 1, z: 1.0990822}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &3944000379370863103
@@ -401,8 +401,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 462319711256027871}
   m_AABB:
-    m_Center: {x: -0.00032317638, y: 2.4086537, z: -0.09201777}
-    m_Extent: {x: 1.0099336, y: 0.5185724, z: 0.32900697}
+    m_Center: {x: 0.00066292286, y: 2.4150658, z: -0.14124924}
+    m_Extent: {x: 1.0035489, y: 0.51216024, z: 0.3782447}
   m_DirtyAABB: 0
 --- !u!183 &4033691195174189269
 Cloth:
@@ -415,17 +415,17 @@ Cloth:
   m_StretchingStiffness: 1
   m_BendingStiffness: 1
   m_UseTethers: 1
-  m_UseGravity: 1
-  m_Damping: 0.7
+  m_UseGravity: 0
+  m_Damping: 0
   m_ExternalAcceleration: {x: 0, y: 0, z: 0}
   m_RandomAcceleration: {x: 0, y: 0, z: 0}
   m_WorldVelocityScale: 1
-  m_WorldAccelerationScale: 1.5
+  m_WorldAccelerationScale: 1
   m_Friction: 0
   m_CollisionMassScale: 1
   m_UseContinuousCollision: 1
   m_UseVirtualParticles: 1
-  m_SolverFrequency: 300
+  m_SolverFrequency: 120
   m_SleepThreshold: 6.6
   m_Coefficients:
   - maxDistance: 0
@@ -454,21 +454,21 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
@@ -522,11 +522,11 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
@@ -538,7 +538,7 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
@@ -546,23 +546,23 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
@@ -648,9 +648,9 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
@@ -730,29 +730,29 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
@@ -836,13 +836,13 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
@@ -870,17 +870,17 @@ Cloth:
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 0
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
-  - maxDistance: 0
+  - maxDistance: 1
     collisionSphereDistance: 1
   - maxDistance: 1
     collisionSphereDistance: 1
@@ -1059,7 +1059,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2635906601485325095
@@ -1569,11 +1569,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3041790671878243304}
   m_LocalRotation: {x: 0.07591871, y: -0.7030195, z: -0.07591871, w: 0.7030195}
-  m_LocalPosition: {x: 2.3283064e-10, y: 2.8828707, z: -0.056616727}
-  m_LocalScale: {x: 1.0990822, y: 0.9999999, z: 1.0990822}
+  m_LocalPosition: {x: 0, y: 2.8828707, z: -0.056616727}
+  m_LocalScale: {x: 1.0990822, y: 1, z: 1.0990822}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &6289661316665776937
@@ -1799,10 +1799,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 0.49
+  m_Radius: 0.38499585
+  m_Height: 1.2652915
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.000000013833745, y: -0.04832016, z: -0.08431186}
 --- !u!1 &3240788323845488567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1846,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.18
+  m_Radius: 0.15
   m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.2, z: 0}
@@ -2069,10 +2069,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
-  m_Height: 0.49
+  m_Radius: 0.35697883
+  m_Height: 0.713958
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.12}
+  m_Center: {x: -0.052214615, y: -0.000000011910203, z: -0.118795484}
 --- !u!1 &3829369706928093340
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,7 +2112,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3490348777578752387}
+  - component: {fileID: 7468963247482891010}
   - component: {fileID: 4033691194759885025}
   m_Layer: 0
   m_Name: MaleBody
@@ -2121,17 +2121,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3490348777578752387
-Transform:
+--- !u!224 &7468963247482891010
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4268256949943710521}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8, y: 0, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5530667640242518301}
   - {fileID: 3681465241514895457}
@@ -2145,6 +2145,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -8, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &4033691194759885025
 Animator:
   serializedVersion: 4
@@ -2254,11 +2259,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4684095082090251769}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1339721951101671858
@@ -2498,11 +2503,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5029391081666766990}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7650741819129253312
@@ -2823,7 +2828,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.18
+  m_Radius: 0.15
   m_Height: 0.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.2, z: 0}
@@ -2914,12 +2919,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6223740180785820503}
   m_LocalRotation: {x: -0.7071068, y: 0.000000015454312, z: 0.000000015454312, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 462319711256027871}
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6343462588164819215
@@ -3233,11 +3238,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7661664240342798161}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1916523554962863012
@@ -3518,11 +3523,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8250377249920436005}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &8459020271540084565
@@ -3766,11 +3771,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8888613858590303593}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3490348777578752387}
+  m_Father: {fileID: 7468963247482891010}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7777835975411229159

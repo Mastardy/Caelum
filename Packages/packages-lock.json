@@ -9,6 +9,12 @@
       },
       "hash": "279640ad3e3d0c73e2cdcab6b640ec150d7846c8"
     },
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.6.4",
       "depth": 1,
@@ -104,6 +110,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.polybrush": {
+      "version": "1.1.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "2.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.probuilder": {
       "version": "5.0.4",
       "depth": 0,
@@ -151,7 +166,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.settings-manager": {
-      "version": "1.0.3",
+      "version": "2.0.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

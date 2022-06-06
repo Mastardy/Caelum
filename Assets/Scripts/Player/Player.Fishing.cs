@@ -30,7 +30,7 @@ public partial class Player
 
         if (Time.time - timeToCatchFish is < 0.5f and > 0f)
         {
-            GiveItemClientRpc(5);
+            GiveItemServerRpc(this, "raw_fish");
         }
     }
 }

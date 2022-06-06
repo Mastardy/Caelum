@@ -19,7 +19,7 @@ public partial class Animal
     }
     
     private void FleeStart()
-    {
+    {        
         agent.speed = fleeSpeed;
         
         var animalPosition = transform.position;
@@ -35,8 +35,11 @@ public partial class Animal
 
         FleeStart();
     }
-    
-    private void FleeEnd() { }
+
+    private void FleeEnd()
+    {
+        
+    }
 
     private Vector3 GetFleeDirection()
     {

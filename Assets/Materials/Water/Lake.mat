@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Lake
+  m_Shader: {fileID: -6465566751694194690, guid: 70928d2c7d92bb34b943b0ea8566e78a,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 2
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Normal_1:
+        m_Texture: {fileID: 2800000, guid: eda25174794c8da43a0e9630362ca0ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal_2:
+        m_Texture: {fileID: 2800000, guid: eda25174794c8da43a0e9630362ca0ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Waterfall_texture:
+        m_Texture: {fileID: 2800000, guid: 33b8e3620a75e1e4faf04345efb725a5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wfl_Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _Border_Power: 2.95
+    - _Border_Speed: 0.6
+    - _Depth: 4.26
+    - _Depth_Power: 0.405
+    - _FoamAmount: 0.9
+    - _FoamCutoff: 2.07
+    - _FoamScale: 172.73
+    - _FoamSpeed: 1.4
+    - _Foam_Amount: 1.7
+    - _Foam_Cutoff: 2.31
+    - _Foam_Scale: 125.3
+    - _Foam_Speed: 1.1
+    - _Metallic: 0
+    - _N_1_Scale: 2
+    - _N_1_Sine: 1
+    - _N_1_Speed: 0.02
+    - _N_2_Scale: 2
+    - _N_2_Sine: 1
+    - _N_2_Speed: 0.02
+    - _NormalStrength: 0.05
+    - _Normal_Strength: 1
+    - _Power: 18.82
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RECEIVE_SHADOWS_OFF: 1
+    - _Ref_Scale: 90.54
+    - _Ref_Speed: 1
+    - _Ref_Strength: 0.03
+    - _Refrac_Scale: 72.4
+    - _Refrac_Speed: 4.56
+    - _Refrac_Strength: 0.063
+    - _Scale: 5.66
+    - _Smoothness: 0.3
+    - _Speed: 0.009
+    - _Strength: 11.76
+    - _Tangent_Power: 1.65
+    - _WaterDepth: 1.6
+    - _Wf_Alpha: 0.72
+    - _Wf_Invert_Foam: 0
+    - _Wf_N_Speed: 1
+    - _Wf_Power: 6.38
+    - _Wf_Speed: 1.5
+    m_Colors:
+    - _Border_Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _Border_Tilling: {r: 32.81, g: 1, b: 0, a: 0}
+    - _DeepWater: {r: 0, g: 0.09630514, b: 0.3301887, a: 0.8235294}
+    - _Deep_Color: {r: 0.015680002, g: 0.12123998, b: 0.245, a: 1}
+    - _Direction: {r: 1, g: 1, b: 0, a: 0}
+    - _FoamColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+    - _Foam_Color: {r: 4.5947943, g: 4.5947943, b: 4.5947943, a: 1}
+    - _N_1_Direction: {r: 1, g: 1, b: 0, a: 0}
+    - _N_2_Direction: {r: -1, g: -1, b: 0, a: 0}
+    - _ShallowWater: {r: 0.094562106, g: 0.2896441, b: 0.8018868, a: 0.78039217}
+    - _Shallow_Color: {r: 0, g: 0.33019233, b: 1, a: 0.59607846}
+    - _Specular_Color: {r: 1, g: 0.4255889, b: 0, a: 1}
+    - _Wf_Color: {r: 0, g: 0.34191445, b: 0.5457247, a: 0.6862745}
+    - _Wf_Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _Wf_Foam_Color: {r: 0, g: 2.199275, b: 2.270603, a: 1}
+    - _Wf_N_Direction: {r: 0, g: 1, b: 0, a: 0}
+    - _Wf_N_Scale: {r: 1, g: 1, b: 0, a: 0}
+    - _Wf_tilling: {r: 4.69, g: 1.43, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &3667634598404483945
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5

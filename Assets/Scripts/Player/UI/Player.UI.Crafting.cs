@@ -38,7 +38,7 @@ public partial class Player
     public void OpenCraftingClientRpc(NetworkBehaviourReference craftTable)
     {
         craftTable.TryGet(out craftingTable);
-        if(craftingTable != null) OpenCrafting();
+        if(craftingTable) OpenCrafting();
     }
 
     [ClientRpc]
@@ -64,12 +64,12 @@ public partial class Player
                 {
                     RemoveItem("stone", 5);
                     RemoveItem("wood", 10);
-                    GiveItemClientRpc(4);
+                    GiveItemServerRpc(this, "pickaxe_stone");
                 }
                 break;
             case "wooden":
                 if (GetItemAmount("wood") >= 15) RemoveItem("wood", 15);
-                GiveItemClientRpc(3);
+                GiveItemServerRpc(this, "pickaxe_iron");
                 break;
             default:
                 Debug.Log("Unknown item - trying to craft something that doesn't exist?");

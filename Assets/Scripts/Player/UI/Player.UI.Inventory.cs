@@ -5,9 +5,11 @@ using UnityEngine;
 
 public partial class Player
 {
-    private bool inInventory;
-    private Dictionary<int, InventoryItem> inventoryItems = new();
-    
+    public bool inInventory;
+    private Dictionary<string, InventoryItem> inventoryItems = new();
+
+    [SerializeField] private CanvasGroup hotbarsGroup;
+
     /// <summary>
     /// Hides the Inventory
     /// </summary>
@@ -19,6 +21,7 @@ public partial class Player
         inventoryPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        hotbarsGroup.alpha = 1;
     }
 
     /// <summary>
@@ -32,17 +35,45 @@ public partial class Player
         inventoryPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        hotbarsGroup.alpha = 0;
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void GiveItemServerRpc(NetworkBehaviourReference player, string itemName, int amountToAdd = 1, float durability = 0)
+    {
+        if (player.TryGet(out Player ply))
+        {
+            ply.GiveItemClientRpc(player, itemName, amountToAdd, durability);
+        }
     }
     
     [ClientRpc]
-    public void GiveItemClientRpc(int id, int amountToAdd = 1)
+    public void GiveItemClientRpc(NetworkBehaviourReference player, string itemName, int amountToAdd = 1, float durability = 0)
     {
+        if (player.TryGet(out Player ply))
+        {
+            if (ply != this) return;
+        }
+        
         int amountAdded = 0;
+
+        if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword)
+        {
+            foreach (var hotbar in hotbars)
+            {
+                var slot = hotbar.slot;
+                if (!slot.isEmpty) continue;
+
+                slot.Fill(inventoryItems[itemName], 1, durability);
+
+                return;
+            }
+        }
         
         foreach (var slot in inventorySlots)
         {
             if (slot.isEmpty) continue;
-            if (slot.inventoryItem.id != id) continue;
+            if (slot.inventoryItem.itemName != itemName) continue;
             if (slot.Amount == slot.inventoryItem.maxStack) continue;
 
             do
@@ -53,16 +84,12 @@ public partial class Player
 
             if (amountAdded >= amountToAdd) return;
         }
-
+        
         foreach (var slot in inventorySlots)
         {
             if (!slot.isEmpty) continue;
 
-            slot.Amount = 0;
-            slot.isEmpty = false;
-            slot.inventoryItem = inventoryItems[id];
-            slot.image.sprite = slot.inventoryItem.sprite;
-            slot.image.enabled = true;
+            slot.Fill(inventoryItems[itemName], 0, durability);
             
             do
             {
@@ -72,21 +99,48 @@ public partial class Player
 
             if (amountAdded >= amountToAdd) return;
         }
+
+        if (amountToAdd - amountAdded > 0)
+        {
+            DropItemServerRpc(transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(1f, 1.5f), Random.Range(-1f, 1f)), itemName, amountToAdd - amountAdded, durability);
+        }
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void DropItemServerRpc(Vector3 pos, string itemName, int dropAmount = 1, float durability = 0)
+    {
+        var inventoryItem = inventoryItems[itemName];
+        
+        for (int i = 0; i < dropAmount; i++)
+        {
+            var worldGameObject = Instantiate(inventoryItem.worldPrefab, pos, Quaternion.identity);
+
+            worldGameObject.name = inventoryItem.worldPrefab.name;
+
+            var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = inventoryItem;
+            worldGameObjectInvItem.amount.Value = 1;
+            worldGameObjectInvItem.durability = durability;
+
+            worldGameObject.GetComponent<NetworkObject>().Spawn();   
+        }
     }
 
     public void DropItem(InventorySlot inventorySlot, bool dropEverything = false)
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
-            if (inventorySlots[i].GetInstanceID() == inventorySlot.GetInstanceID())
+            if (inventorySlot == inventorySlots[i])
             {
-                DropItemServerRpc(this, inventorySlot.inventoryItem.id, i, inventorySlots[i].Amount, dropEverything);
+                DropItemServerRpc(this, inventorySlot.inventoryItem.itemName, i, inventorySlots[i].Amount, 
+                    dropEverything, inventorySlots[i].Durability);
+                break;
             }
         }
     }
-    
+
     [ServerRpc(RequireOwnership = false)]
-    public void DropItemServerRpc(NetworkBehaviourReference ply, int item, int slot, int dropAmount, bool dropEverything)
+    public void DropItemServerRpc(NetworkBehaviourReference ply, string itemName, int slot, int dropAmount, bool dropEverything, float durability = 0)
     {
         if (!IsServer) return;
 
@@ -95,16 +149,17 @@ public partial class Player
             var playerTransform = player.playerCamera.transform;
             var playerTransformForward = playerTransform.forward;
             
-            var worldGameObject = Instantiate(player.inventoryItems[item].worldPrefab, playerTransform.position + playerTransformForward,
-                player.inventoryItems[item].worldPrefab.transform.rotation);
-            worldGameObject.name = player.inventoryItems[item].name;
+            var worldGameObject = Instantiate(player.inventoryItems[itemName].worldPrefab, playerTransform.position + playerTransformForward,
+                player.inventoryItems[itemName].worldPrefab.transform.rotation);
 
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
-            worldGameObjectInvItem.inventoryItem = player.inventoryItems[item];
-            worldGameObjectInvItem.amount = dropEverything ? dropAmount : 1;
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
+            worldGameObjectInvItem.amount.Value = dropEverything ? dropAmount : 1;
+            worldGameObjectInvItem.durability = durability;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
+            worldGameObject.GetComponent<InventoryGroundItem>().ChangeNameClientRpc(inventoryItems[itemName].worldPrefab.name);
             
             player.DropItemClientRpc(slot, dropEverything);
         }
@@ -129,22 +184,28 @@ public partial class Player
 
         return false;
     }
-    
+
     private void GetItemsAndRecipes()
     {
         InventoryItem[] invItems = Resources.LoadAll<InventoryItem>("InventoryItems");
         FoodItem[] allFoodItems = Resources.LoadAll<FoodItem>("FoodItems");
-        cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes").ToList();
+        WeaponItem[] allWeaponItems = Resources.LoadAll<WeaponItem>("Weapons");
+        cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes");
         CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
 
         foreach (var invItem in invItems)
         {
-            inventoryItems.Add(invItem.id, invItem);
+            inventoryItems.Add(invItem.itemName, invItem);
         }
 
         foreach (var foodItem in allFoodItems)
         {
-            foodItems.Add(foodItem.id, foodItem);
+            foodItems.Add(foodItem.itemName, foodItem);
+        }
+
+        foreach (var weaponItem in allWeaponItems)
+        {
+            weaponItems.Add(weaponItem.itemName, weaponItem);
         }
     }
 }

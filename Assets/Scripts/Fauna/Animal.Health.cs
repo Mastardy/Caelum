@@ -11,10 +11,15 @@ public partial class Animal
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
     {
         currentHealth.Value -= damageTaken;
+        if (!dead){
+            animator.SetTrigger(hitCache);
+            FlashColor();
+            Invoke(nameof(ResetColor), 0.25f);
+        }
 
         if (currentHealth.Value <= 0)
         {
-            if (player.TryGet(out Player ply)) ply.GiveItemClientRpc(7);
+            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, "raw_meat");
             currentHealth.Value = 0;
             Die();
         }
@@ -25,6 +30,20 @@ public partial class Animal
         dead = true;
         CurrentState = idleState;
         stateText.SetText("Dead");
-        Destroy(gameObject);
+        animator.SetBool(deadCache, true);
+        foreach(var col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
+    }
+
+    private void FlashColor()
+    {
+        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 1);
+    }
+
+    private void ResetColor()
+    {
+        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 0);
     }
 }

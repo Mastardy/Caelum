@@ -8,7 +8,9 @@ public partial class Player
 {
     private int itemId;
     private bool inOven;
+    private bool inOvenMinigame;
     private Oven cooker;
+    private CookingRecipe currentRecipe;
     
     [Header("Oven")]
     [SerializeField] private Transform recipesContent;
@@ -17,17 +19,21 @@ public partial class Player
     [SerializeField] private Transform ingredientsContent;
     [SerializeField] private GameObject ingredientPrefab;
 
+    [SerializeField] private GameObject recipeTitle;
+
     [SerializeField] private TextMeshProUGUI recipeDescription;
 
-    [SerializeField] private GameObject hungerAttribute;
-    [SerializeField] private GameObject thirstAttribute;
-    [SerializeField] private GameObject temperatureAttribute;
+    [SerializeField] private FoodAttributeUI hungerAttribute;
+    [SerializeField] private FoodAttributeUI thirstAttribute;
+    [SerializeField] private FoodAttributeUI temperatureAttribute;
 
     [SerializeField] private Button cookingMinigameButton;
-    
-    private List<CookingRecipe> cookingRecipes = new();
 
-    private Dictionary<int, FoodItem> foodItems = new ();
+    [SerializeField] private GameObject ovenMinigame;
+    
+    private CookingRecipe[] cookingRecipes;
+
+    private Dictionary<string, FoodItem> foodItems = new ();
     
     /// <summary>
     /// Opens Oven
@@ -41,6 +47,7 @@ public partial class Player
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
         
+        PrepareRecipe(currentRecipe ? currentRecipe : cookingRecipes[0]);
         PrepareOven();
     }
 
@@ -61,6 +68,7 @@ public partial class Player
     [ClientRpc]
     public void OpenOvenClientRpc(NetworkBehaviourReference cookerReference)
     {
+        if (cooker != null) return;
         cookerReference.TryGet(out cooker);
         if(cooker != null) OpenOven();
     }
@@ -75,6 +83,14 @@ public partial class Player
     
     private void PrepareOven()
     {
+        foreach (var child in recipesContent.GetComponentsInChildren<Transform>())
+        {
+            if (child != recipesContent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
         foreach (var cookingRecipe in cookingRecipes)
         {
             var recipe = Instantiate(recipePrefab, recipesContent);
@@ -83,51 +99,70 @@ public partial class Player
             recipeUI.title.SetText(cookingRecipe.cooked.name);
             recipe.GetComponent<Button>().onClick.AddListener(() => PrepareRecipe(cookingRecipe));
         }
-        // Lista 
     }
 
     private void PrepareRecipe(CookingRecipe cookingRecipe)
     {
+        currentRecipe = cookingRecipe;
+        
+        foreach (var child in ingredientsContent.GetComponentsInChildren<Transform>())
+        {
+            if (child != ingredientsContent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
         foreach (var ingredient in cookingRecipe.ingredients)
         {
             var ingr = Instantiate(ingredientPrefab, ingredientsContent);
             var ingrUI = ingr.GetComponent<IngredientUI>();
+            ingrUI.title.SetText(ingredient.inventoryItem.name);
             ingrUI.image.sprite = ingredient.inventoryItem.sprite;
-            ingrUI.title.SetText(GetItemAmount(ingredient.inventoryItem.itemName) + "/" + ingredient.quantity);
+            ingrUI.quantity.SetText(GetItemAmount(ingredient.inventoryItem.itemName) + "/" + ingredient.quantity);
         }
 
+        recipeTitle.gameObject.SetActive(true);
+        
+        recipeDescription.gameObject.SetActive(true);
         recipeDescription.SetText(cookingRecipe.cooked.description);
 
-        hungerAttribute.SetActive(false);
-        thirstAttribute.SetActive(false);
-        temperatureAttribute.SetActive(false);
+        hungerAttribute.gameObject.SetActive(false);
+        thirstAttribute.gameObject.SetActive(false);
+        temperatureAttribute.gameObject.SetActive(false);
         
-        if (foodItems[cookingRecipe.cooked.id].hunger != 0)
+        if (foodItems[cookingRecipe.cooked.itemName].hunger != 0)
         {
-            hungerAttribute.SetActive(true);
-            hungerAttribute.GetComponent<TextMeshProUGUI>()
-                .SetText(foodItems[cookingRecipe.cooked.id].hunger.ToString("F0"));
+            hungerAttribute.gameObject.SetActive(true);
+            hungerAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].hunger.ToString("F0") + "%");
         }
-        if (foodItems[cookingRecipe.cooked.id].thirst != 0)
+        if (foodItems[cookingRecipe.cooked.itemName].thirst != 0)
         {
-            thirstAttribute.SetActive(true);
-            thirstAttribute.GetComponent<TextMeshProUGUI>()
-                .SetText(foodItems[cookingRecipe.cooked.id].thirst.ToString("F0"));
+            thirstAttribute.gameObject.SetActive(true);
+            thirstAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].thirst.ToString("F0") + "%");
         }
-        if (foodItems[cookingRecipe.cooked.id].temperature != 0)
+        if (foodItems[cookingRecipe.cooked.itemName].temperature != 0)
         {
-            temperatureAttribute.SetActive(true);
-            temperatureAttribute.GetComponent<TextMeshProUGUI>()
-                .SetText(foodItems[cookingRecipe.cooked.id].temperature.ToString("F0"));
+            temperatureAttribute.gameObject.SetActive(true);
+            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "�");
         }
 
+        cookingMinigameButton.gameObject.SetActive(true);
         cookingMinigameButton.onClick.AddListener(PrepareOvenMinigame);
     }
-    
+
     private void PrepareOvenMinigame()
     {
+        foreach (var ingredient in currentRecipe.ingredients)
+        {
+            if(GetItemAmount(ingredient.inventoryItem.itemName) < ingredient.quantity) return;
+        }
+        
+        inOvenMinigame = true;
         currentTimer = 0.0f;
+        
         int randomValue = Random.Range(5, 95);
+        ovenMinigame.SetActive(true);
         ovenScaler.localScale = new Vector2(0, 1);
         ovenArrow.anchoredPosition = new Vector2(randomValue * 4, 0);
     }
@@ -145,8 +180,26 @@ public partial class Player
         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.1f))
         {
             var curValue = ovenArrow.anchoredPosition.x / 400f;
-            var curOffset = ovenArrow.rect.width / 800f; 
-            Debug.Log(curValue > (tempCurrentTimer - curOffset) && curValue < (tempCurrentTimer + curOffset) ? "Acertou" : "Errou");
+            var curOffset = ovenArrow.rect.width / 800f;
+
+            foreach (var ingredient in currentRecipe.ingredients)
+            {
+                RemoveItem(ingredient.inventoryItem.itemName, ingredient.quantity);
+            }
+            
+            if (curValue > (tempCurrentTimer - curOffset) && curValue < (tempCurrentTimer + curOffset))
+            {
+                GiveItemServerRpc(this, currentRecipe.cooked.itemName, 1);
+            }
+            else
+            {
+                GiveItemServerRpc(this, currentRecipe.burnt.itemName, 1);
+            }
+            
+            ovenMinigame.SetActive(false);
+            inOvenMinigame = false;
+            
+            PrepareRecipe(currentRecipe);
         }
     }
 }

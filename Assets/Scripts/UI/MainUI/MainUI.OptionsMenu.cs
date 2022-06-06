@@ -1,9 +1,11 @@
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 
 public partial class MainUI
 {
-    [Header("Options Menu")]
+    [Header("Options Menu")] 
+    [SerializeField] private Button firstSelection;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject audioPanel;
     [SerializeField] private GameObject controlsPanel;
@@ -17,24 +19,16 @@ public partial class MainUI
     /// <param name="panel"></param>
     public void ChangePanel(GameObject panel)
     {
-        if (currentPanel == null)
-        {
-            currentPanel = panel;
-            currentPanel.SetActive(true);
-            return;
-        }
-        
-        if (currentPanel == panel)
-        {
-            currentPanel.SetActive(false);
-            currentPanel = null;
-            return;
-        }
+        if (currentPanel == panel) return;
 
-        currentPanel.SetActive(false);
+        if(currentPanel) currentPanel.SetActive(false);
         currentPanel = panel;
         currentPanel.SetActive(true);
     }
+
+    public void SelectButton(TextMeshProUGUI textMeshProUGUI) => textMeshProUGUI.color = new Color(0.95f, 0.8f, 0.6f);
+    
+    public void UnselectButton(TextMeshProUGUI textMeshProUGUI) => textMeshProUGUI.color = new Color(0.9f, 0.9f, 0.9f);
     
     /// <summary>
     /// Utility responsible to toggle the ToggleButton value

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public partial class MainUI
 {
@@ -8,28 +8,29 @@ public partial class MainUI
     /// <summary>
     /// Toggles Options Menu
     /// </summary>
-    public void ToggleOptionsMenu()
+    public void OptionsMenu()
     {   
-        isOptionsMenu = !isOptionsMenu;
-
-        if (isOptionsMenu)
-        {
-            LoadOptions();
-            optionsMenu.SetActive(true);
-        }
-        else
-        {
-            optionsMenu.SetActive(false);
-        }
+        LoadOptions();
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+        firstSelection.OnSubmit(new BaseEventData(EventSystem.current));
+        ChangePanel(optionsPanel);
     }
 
     /// <summary>
     /// Play Game Menu
     /// </summary>
-    public void PlayGame()
+    public void PlayMenu()
     {
         LoadOptions();
-        SceneManager.LoadScene(1);
+        mainMenu.SetActive(false);
+        playMenu.SetActive(true);
+    }
+
+    public void CreditsMenu()
+    {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
     }
     
     /// <summary>
@@ -37,10 +38,6 @@ public partial class MainUI
     /// </summary>
     public void QuitGame()
     {
-#if UNITY_EDITOR
-        Debug.Log("Quit");
-#else
         Application.Quit();
-#endif
     }
 }

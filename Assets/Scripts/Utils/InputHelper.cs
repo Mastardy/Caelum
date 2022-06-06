@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class InputHelper 
 {
-    private static Dictionary<KeyCode, float> lastPress = new();
+    public static Dictionary<KeyCode, float> lastPress = new();
 
     public static bool GetKey(KeyCode key)
     {

@@ -42,6 +42,7 @@ public class GameOptions
     public float mouseSensitivity;
     public bool toggleSprint;
     public bool toggleDuck;
+    public bool toggleParachute;
     
     // KeyBinds - Movement
     public KeyCode forwardKey;
@@ -84,6 +85,7 @@ public class GameOptions
         mouseSensitivity = 10.0f;
         toggleSprint = false;
         toggleDuck = false;
+        toggleParachute = true;
 
         forwardKey = KeyCode.W;
         backwardKey = KeyCode.S;

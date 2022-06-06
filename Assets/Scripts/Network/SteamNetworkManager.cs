@@ -2,6 +2,7 @@ using Netcode.Transports.Facepunch;
 using Steamworks;
 using Steamworks.Data;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 public class SteamNetworkManager : MonoBehaviour
@@ -10,22 +11,7 @@ public class SteamNetworkManager : MonoBehaviour
     public Lobby? CurrentLobby { get; set; }
     
     public FacepunchTransport transport;
-
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(10, 100, 300, 300));
-        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
-        {
-            StartButtons();
-        }
-            
-        GUILayout.EndArea();
-    }
-
-    private static void StartButtons()
-    {
-        if (GUILayout.Button("Host")) Singleton.StartHost();
-    }
+    public UnityTransport unityTransport;
     
     private void Awake()
     {
@@ -42,6 +28,7 @@ public class SteamNetworkManager : MonoBehaviour
     private void Start()
     {
         transport = GetComponent<FacepunchTransport>();
+        unityTransport = GetComponent<UnityTransport>();
 
         SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
         SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
@@ -52,6 +39,12 @@ public class SteamNetworkManager : MonoBehaviour
         SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
     }
 
+    public void StartSingleplayer()
+    {
+        NetworkManager.Singleton.NetworkConfig.NetworkTransport = unityTransport;
+        NetworkManager.Singleton.StartHost();
+    }
+    
     public async void StartHost()
     {
         NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
@@ -75,11 +68,11 @@ public class SteamNetworkManager : MonoBehaviour
         if (NetworkManager.Singleton.StartClient()) Debug.Log("Client has joined!", this);
     }
 
-    private void Disconnect()
+    public void Disconnect()
     {
         CurrentLobby?.Leave();
         
-        if (NetworkManager.Singleton == null) return;
+        if (!NetworkManager.Singleton) return;
         
         NetworkManager.Singleton.Shutdown();
     }
