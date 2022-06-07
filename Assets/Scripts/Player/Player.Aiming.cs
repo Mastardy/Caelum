@@ -268,7 +268,7 @@ public partial class Player
             }
         }
 
-            if (lookingAt.TryGetComponent(out Animal animal))
+        if (lookingAt.TryGetComponent(out Animal animal))
         {
             switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
             {

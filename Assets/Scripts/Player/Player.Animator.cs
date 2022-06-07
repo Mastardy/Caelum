@@ -61,8 +61,8 @@ public partial class Player
     
     public bool CanAim
     {
-        get { return canAimAnim; }
-        set { canAimAnim = value; }
+        get => canAimAnim;
+        set => canAimAnim = value;
     }
 
     private void EnableFirstPerson()

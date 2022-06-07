@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,20 +27,39 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     private bool hovering;
     private bool busy;
+
+    [SerializeField] private GameObject itemDescriptionPrefab;
+    private GameObject itemDescription;
     
     private void Update()
     {
         if (!hovering) return;
 
+        if (!itemDescription)
+        {
+            itemDescription = Instantiate(itemDescriptionPrefab, transform.position, Quaternion.identity, parentTransform);
+            itemDescription.GetComponent<ItemDescription>().title.SetText(inventorySlot.inventoryItem.name);
+            itemDescription.GetComponent<ItemDescription>().description.SetText(inventorySlot.inventoryItem.description);
+        }
+
+        ((RectTransform)itemDescription.transform).position = Input.mousePosition + new Vector3(20, -20, 0);
+        
         if (Input.GetKeyDown(/*GameManager.Instance.gameOptions.dropKey*/KeyCode.G))
         {
             player.DropItem(inventorySlot, Input.GetKey(KeyCode.LeftShift));
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData) => hovering = true;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hovering = true;
+    }
 
-    public void OnPointerExit(PointerEventData eventData) => hovering = false;
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(itemDescription) Destroy(itemDescription);
+        hovering = false;
+    }
 
     public void OnPointerClick(PointerEventData eventData) => mouseOffset = rectTransform.position - Input.mousePosition;
         
