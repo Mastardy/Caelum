@@ -1,8 +1,6 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public partial class Animal : NetworkBehaviour

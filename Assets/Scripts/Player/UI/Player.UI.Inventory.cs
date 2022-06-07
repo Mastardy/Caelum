@@ -18,7 +18,9 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Locked;
         inInventory = false;
         takeInput = true;
-        inventoryPanel.SetActive(false);
+        inventoryPanel.GetComponent<CanvasGroup>().alpha = 0;
+        inventoryPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        inventoryPanel.GetComponent<CanvasGroup>().interactable = false;
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
         hotbarsGroup.alpha = 1;
@@ -32,7 +34,9 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Confined;
         inInventory = true;
         takeInput = false;
-        inventoryPanel.SetActive(true);
+        inventoryPanel.GetComponent<CanvasGroup>().alpha = 1;
+        inventoryPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        inventoryPanel.GetComponent<CanvasGroup>().interactable = true;
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
         hotbarsGroup.alpha = 0;
