@@ -38,7 +38,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
         if (!itemDescription)
         {
             itemDescription = Instantiate(itemDescriptionPrefab, transform.position, Quaternion.identity, parentTransform);
-            itemDescription.GetComponent<ItemDescription>().title.SetText(inventorySlot.inventoryItem.name);
+            itemDescription.GetComponent<ItemDescription>().title.SetText(inventorySlot.inventoryItem.name); 
             itemDescription.GetComponent<ItemDescription>().description.SetText(inventorySlot.inventoryItem.description);
         }
 

@@ -10,6 +10,9 @@ public partial class Player
 
     [SerializeField] private CanvasGroup hotbarsGroup;
 
+    [SerializeField] private GameObject itemPickUpPrefab;
+    [SerializeField] private Transform itemFeedBack;
+    
     /// <summary>
     /// Hides the Inventory
     /// </summary>
@@ -69,7 +72,11 @@ public partial class Player
                 if (!slot.isEmpty) continue;
 
                 slot.Fill(inventoryItems[itemName], 1, durability);
-
+                
+                var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(slot.inventoryItem.name);
+                itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
+                
                 return;
             }
         }
@@ -86,7 +93,13 @@ public partial class Player
                 amountAdded++;
             } while (slot.Amount < slot.inventoryItem.maxStack && amountAdded < amountToAdd);
 
-            if (amountAdded >= amountToAdd) return;
+            if (amountAdded >= amountToAdd)
+            {
+                var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+                itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
+                return;
+            }
         }
         
         foreach (var slot in inventorySlots)
@@ -101,11 +114,20 @@ public partial class Player
                 amountAdded++;
             } while (slot.Amount < slot.inventoryItem.maxStack && amountAdded < amountToAdd);
 
-            if (amountAdded >= amountToAdd) return;
+            if (amountAdded >= amountToAdd)
+            {
+                var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+                itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
+                return;
+            }
         }
 
         if (amountToAdd - amountAdded > 0)
         {
+            var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
+            itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+            itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountAdded}");
             DropItemServerRpc(transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(1f, 1.5f), Random.Range(-1f, 1f)), itemName, amountToAdd - amountAdded, durability);
         }
     }
