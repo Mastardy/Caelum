@@ -5,7 +5,7 @@ using System.Collections;
 public partial class Player
 {
     [Header("Animator")]
-    [SerializeField] private Animator thirdPersonAnimator;
+    [SerializeField] public Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
     
@@ -154,6 +154,7 @@ public partial class Player
         }
         firstPersonAnimator.SetBool(toolCache, equip);
 
+        //tps model
         SetTPSArmsWeight(2, equip ? 1 : 0);
         holdTool = equip;
     }
@@ -161,11 +162,17 @@ public partial class Player
     private void AnimatorUseAxe()
     {
         firstPersonAnimator.SetTrigger("UseAxe");
+
+        //tps model
+        thirdPersonAnimator.SetBool("UseAxe", true);
     }
 
     private void AnimatorUsePickaxe()
     {
         firstPersonAnimator.SetTrigger("UsePickaxe");
+
+        //tps model
+        thirdPersonAnimator.SetBool("UseAxe", true);
     }
 
     private void AnimatorEquipSpear(bool equip)
