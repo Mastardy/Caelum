@@ -163,7 +163,7 @@ public partial class Player
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);
-            worldGameObject.GetComponent<InventoryGroundItem>().ChangeNameClientRpc(inventoryItems[itemName].worldPrefab.name);
+            worldGameObject.GetComponent<InventoryGroundItem>().ChangeNameClientRpc(inventoryItems[itemName].name);
             
             player.DropItemClientRpc(slot, dropEverything);
         }
