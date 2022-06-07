@@ -70,6 +70,9 @@ public partial class Player : NetworkBehaviour
             GiveItemServerRpc(this, "spear_wood", 1, 1);
             GiveItemServerRpc(this, "spear_stone", 1, 1);
             GiveItemServerRpc(this, "spear_iron", 1, 1);
+            GiveItemServerRpc(this, "arrow_wood", 1);
+            GiveItemServerRpc(this, "arrow_stone", 1);
+            GiveItemServerRpc(this, "arrow_iron", 1);
             // GiveItemClientRpc("grappling_hook", 1, 1);
             Invoke(nameof(LateLateStart), 0.1f);
         }
@@ -157,6 +160,8 @@ public partial class Player : NetworkBehaviour
                 if(inChat) HideChat();
                 else if(inInventory) HideInventory();
                 else if(inPause) HidePauseMenu();
+                else if(inCrafting) HideCrafting();
+                else if(inOven) HideOven();
                 else OpenPauseMenu();
             }
             
@@ -185,14 +190,17 @@ public partial class Player : NetworkBehaviour
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) CurrentSlot = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
-            if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
-            if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
-            if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
+            if (takeInput)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;
+                if (Input.GetKeyDown(KeyCode.Alpha2)) CurrentSlot = 1;
+                if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
+                if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
+                if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
+                if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
 
-            if (Input.GetAxis("Mouse ScrollWheel") != 0) CurrentSlot += Input.GetAxis("Mouse ScrollWheel") < 0 ? 1 : -1;
+                if (Input.GetAxis("Mouse ScrollWheel") != 0) CurrentSlot += Input.GetAxis("Mouse ScrollWheel") < 0 ? 1 : -1;
+            }
 
             MovementUpdate();
 

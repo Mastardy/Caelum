@@ -150,6 +150,7 @@ public partial class Player
                 case ItemTag.Bow:
                     AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                     if (!Input.GetKey(gameOptions.secondaryAttackKey)) break;
+                    if (!currentArrow) SetBowArrow();
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
                         AnimatorShootBow();
@@ -332,8 +333,8 @@ public partial class Player
                 Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
             spear.name = player.inventoryItems[itemName].name;
 
-            spear.GetComponent<ThrowableSpear>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
-            spear.GetComponent<ThrowableSpear>().player = ply;
+            spear.GetComponent<Throwable>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
+            spear.GetComponent<Throwable>().player = ply;
             
             spear.AddComponent(typeof(InventoryGroundItem));
             var worldGameObjectInvItem = spear.GetComponent<InventoryGroundItem>();
@@ -345,6 +346,35 @@ public partial class Player
             spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
             
             player.hotbars[slot].slot.Clear();
+        }
+    }
+
+    [ServerRpc]
+    public void ThrowArrowServerRpc(NetworkBehaviourReference ply, string itemName)
+    {
+        if (!IsServer) return;
+
+        if (ply.TryGet(out Player player))
+        {
+            var playerCameraTransform = playerCamera.transform;
+            var arrow = Instantiate(weaponItems[itemName].throwablePrefab,
+                playerCameraTransform.position + playerCameraTransform.forward,
+                Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
+            arrow.name = player.inventoryItems[itemName].name;
+
+            arrow.GetComponent<Throwable>().damage = itemName == "arrow_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
+            arrow.GetComponent<Throwable>().player = ply;
+
+            arrow.AddComponent(typeof(InventoryGroundItem));
+            var worldGameObjectInvItem = arrow.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
+            worldGameObjectInvItem.amount.Value = 1;
+
+            arrow.GetComponent<NetworkObject>().Spawn();
+            arrow.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 40, ForceMode.Impulse);
+            
+            player.RemoveItem(itemName, 1);
+            player.SetBowArrow();
         }
     }
 }

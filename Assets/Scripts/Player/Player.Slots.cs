@@ -12,6 +12,7 @@ public partial class Player
     [SerializeField] private Transform grapplingBone;
 
     public GameObject currentWeapon;
+    public GameObject currentArrow;
     private Bow bow;
     private float lastSlotChange;
     private int lastSlot;
@@ -74,6 +75,8 @@ public partial class Player
                 break;
             case ItemTag.Bow:
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, bowBone);
+                currentWeapon.GetComponent<Bow>().player = this;
+                SetBowArrow();
                 AnimatorEquipBow(true);
                 Invoke(nameof(SetBowAnimator), 0.2f);
                 break;
@@ -117,8 +120,30 @@ public partial class Player
         }
     }
 
+    #region Bow
+
+    private void SetBowArrow()
+    {
+        DestroyChildren(currentWeapon.GetComponent<Bow>().arrowAnchor);
+        currentArrow = null;
+        var arrow = GetPriorityArrow();
+        currentWeapon.GetComponent<Bow>().currentArrow = arrow;
+        if (arrow == string.Empty) return;
+        currentArrow = Instantiate(weaponItems[arrow].weaponPrefab, currentWeapon.GetComponent<Bow>().arrowAnchor);
+    }
+    
+    private string GetPriorityArrow()
+    {
+        if (GetItemAmount("arrow_iron") > 0) return "arrow_iron";
+        if (GetItemAmount("arrow_stone") > 0) return "arrow_stone";
+        if (GetItemAmount("arrow_wood") > 0) return "arrow_wood";        
+        return string.Empty;
+    }
+    
     private void SetBowAnimator()
     {
         if(currentWeapon) currentWeapon.TryGetComponent(out bow);
     }
+    
+    #endregion Bow
 }
