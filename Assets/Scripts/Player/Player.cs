@@ -38,7 +38,7 @@ public partial class Player : NetworkBehaviour
 
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
-
+            
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
 
@@ -59,8 +59,7 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            CurrentSlot = 0;
-            playerCanvas.gameObject.SetActive(true);
+            CurrentSlot = 1;
             SpawnPlayer();
             GiveItemServerRpc(this, "axe_stone", 1, 1);
             GiveItemServerRpc(this, "axe_iron", 1, 1);
@@ -72,7 +71,13 @@ public partial class Player : NetworkBehaviour
             GiveItemServerRpc(this, "spear_stone", 1, 1);
             GiveItemServerRpc(this, "spear_iron", 1, 1);
             // GiveItemClientRpc("grappling_hook", 1, 1);
+            Invoke(nameof(LateLateStart), 0.1f);
         }
+    }
+
+    private void LateLateStart()
+    {
+        CurrentSlot = 0;
     }
 
     private void FixedUpdate()

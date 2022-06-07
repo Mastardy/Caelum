@@ -59,7 +59,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     //tps functions
     public void FinishUse()
     {
-        Debug.Log("finish use");
         player.thirdPersonAnimator.SetBool("UseAxe", false);
         //add mais set bool false aqui
     }
