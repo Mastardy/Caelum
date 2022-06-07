@@ -10,13 +10,22 @@ public partial class Animal
 
     private static readonly int damagedStrength = Shader.PropertyToID("_Damaged_Strength");
 
+    private MaterialPropertyBlock animalMpb;
+    private MaterialPropertyBlock AnimalMpb
+    {
+        get
+        {
+            if (animalMpb == null) animalMpb = new MaterialPropertyBlock();
+            return animalMpb;
+        }
+    }
+
     [ServerRpc]
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
     {
         currentHealth.Value -= damageTaken;
         if (!dead){
             animator.SetTrigger(hitCache);
-            FlashColor();
             StartCoroutine(FadeColor());
         }
 
@@ -40,20 +49,19 @@ public partial class Animal
         }
     }
 
-    private void FlashColor()
-    {
-        modelRenderer.sharedMaterial.SetFloat(damagedStrength, 1);
-    }
-
     private IEnumerator FadeColor()
     {
-        modelRenderer.sharedMaterial.SetFloat(damagedStrength, 1);
+        AnimalMpb.SetFloat(damagedStrength, 1);
+        modelRenderer.SetPropertyBlock(AnimalMpb);
 
         while (true) {
-            modelRenderer.sharedMaterial.SetFloat(damagedStrength, modelRenderer.sharedMaterial.GetFloat(damagedStrength) - Time.deltaTime * 2);
+            AnimalMpb.SetFloat(damagedStrength, AnimalMpb.GetFloat(damagedStrength) - Time.deltaTime * 3);
+            
+            if(AnimalMpb.GetFloat(damagedStrength) < 0) AnimalMpb.SetFloat(damagedStrength, 0);
 
-            if(modelRenderer.sharedMaterial.GetFloat(damagedStrength) < 0) modelRenderer.sharedMaterial.SetFloat(damagedStrength, 0);
-            yield return modelRenderer.sharedMaterial.GetFloat(damagedStrength) <= 0;
+            modelRenderer.SetPropertyBlock(AnimalMpb);
+            
+            yield return AnimalMpb.GetFloat(damagedStrength) <= 0;
         }
     }
 }

@@ -120,7 +120,7 @@ public partial class Player
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = inventoryItem;
             worldGameObjectInvItem.amount.Value = 1;
-            worldGameObjectInvItem.durability = durability;
+            worldGameObjectInvItem.Durability = durability;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();   
         }
@@ -155,7 +155,7 @@ public partial class Player
             var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
             worldGameObjectInvItem.amount.Value = dropEverything ? dropAmount : 1;
-            worldGameObjectInvItem.durability = durability;
+            worldGameObjectInvItem.Durability = durability;
 
             worldGameObject.GetComponent<NetworkObject>().Spawn();
             worldGameObject.GetComponent<Rigidbody>().AddForce(playerTransformForward * 2, ForceMode.Impulse);

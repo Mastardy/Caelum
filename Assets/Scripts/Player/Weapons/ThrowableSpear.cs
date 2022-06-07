@@ -36,7 +36,7 @@ public class ThrowableSpear : MonoBehaviour
             if (animal) transform.SetParent(animal.transform);
             transform.position = transform.position + (collision.transform.position - transform.position) * 0.1f;
             cringeFlag = true;
-            GetComponent<InventoryGroundItem>().durability -= 0.15f;
+            GetComponent<InventoryGroundItem>().Durability -= 0.2f;
             return;
         }
 

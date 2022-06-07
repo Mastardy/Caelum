@@ -137,7 +137,6 @@ public partial class Player
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                         {
                             AnimatorThrowSpear();
-                            hotbars[currentSlot].slot.Durability -= 0.25f;
                         }
                         break;
                     }
@@ -340,7 +339,7 @@ public partial class Player
             var worldGameObjectInvItem = spear.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
             worldGameObjectInvItem.amount.Value = 1;
-            worldGameObjectInvItem.durability = player.hotbars[player.currentSlot].slot.Durability;
+            worldGameObjectInvItem.Durability = player.hotbars[player.currentSlot].slot.Durability;
 
             spear.GetComponent<NetworkObject>().Spawn();
             spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
