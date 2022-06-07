@@ -304,6 +304,7 @@ public partial class Player
         if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
 
         var playerTransform = transform;
+        
         characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);
     }
 

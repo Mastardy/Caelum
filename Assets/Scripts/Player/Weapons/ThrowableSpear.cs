@@ -34,8 +34,9 @@ public class ThrowableSpear : MonoBehaviour
             GetComponent<Collider>().isTrigger = true;
             animal = collision.gameObject.GetComponent<Animal>();
             if (animal) transform.SetParent(animal.transform);
-            transform.localPosition = transform.localPosition + (collision.transform.position - transform.position) * 0.1f;
+            transform.position = transform.position + (collision.transform.position - transform.position) * 0.1f;
             cringeFlag = true;
+            GetComponent<InventoryGroundItem>().durability -= 0.15f;
             return;
         }
 

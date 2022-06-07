@@ -24,6 +24,7 @@ public partial class Player
             if (inParachute) return;
             if (Time.time - lastSlotChange < 0.1f) return;
             var val = value < 0 ? 5 : value > 5 ? 0 : value;
+            if (val == currentSlot) return;
             
             lastSlot = currentSlot;
             currentSlot = val;

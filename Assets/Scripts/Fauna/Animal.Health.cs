@@ -8,7 +8,7 @@ public partial class Animal
     public int maxHealth = 150;
     public NetworkVariable<int> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
 
-    private IEnumerator coroutine;
+    private static readonly int damagedStrength = Shader.PropertyToID("_Damaged_Strength");
 
     [ServerRpc]
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
@@ -36,24 +36,24 @@ public partial class Animal
         animator.SetBool(deadCache, true);
         foreach(var col in GetComponentsInChildren<Collider>())
         {
-            col.enabled = false;
+            if(!col.isTrigger) col.enabled = false;
         }
     }
 
     private void FlashColor()
     {
-        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 1);
+        modelRenderer.sharedMaterial.SetFloat(damagedStrength, 1);
     }
 
-    IEnumerator FadeColor()
+    private IEnumerator FadeColor()
     {
-        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 1);
+        modelRenderer.sharedMaterial.SetFloat(damagedStrength, 1);
 
         while (true) {
-            modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", modelRenderer.sharedMaterial.GetFloat("_Damaged_Strength") - Time.deltaTime * 2);
+            modelRenderer.sharedMaterial.SetFloat(damagedStrength, modelRenderer.sharedMaterial.GetFloat(damagedStrength) - Time.deltaTime * 2);
 
-            if(modelRenderer.sharedMaterial.GetFloat("_Damaged_Strength") < 0) modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 0);
-            yield return modelRenderer.sharedMaterial.GetFloat("_Damaged_Strength") <= 0;
+            if(modelRenderer.sharedMaterial.GetFloat(damagedStrength) < 0) modelRenderer.sharedMaterial.SetFloat(damagedStrength, 0);
+            yield return modelRenderer.sharedMaterial.GetFloat(damagedStrength) <= 0;
         }
     }
 }
