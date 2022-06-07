@@ -217,7 +217,7 @@ public partial class Player
         FoodItem[] allFoodItems = Resources.LoadAll<FoodItem>("FoodItems");
         WeaponItem[] allWeaponItems = Resources.LoadAll<WeaponItem>("Weapons");
         cookingRecipes = Resources.LoadAll<CookingRecipe>("CookingRecipes");
-        CraftingRecipe[] craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
+        craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
 
         foreach (var invItem in invItems)
         {

@@ -47,7 +47,7 @@ public partial class Player
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
         
-        PrepareRecipe(currentRecipe ? currentRecipe : cookingRecipes[0]);
+        PrepareOvenRecipe(currentRecipe ? currentRecipe : cookingRecipes[0]);
         PrepareOven();
     }
 
@@ -70,7 +70,7 @@ public partial class Player
     {
         if (cooker != null) return;
         cookerReference.TryGet(out cooker);
-        if(cooker != null) OpenOven();
+        if (cooker != null) OpenOven();
     }
 
     [ClientRpc]
@@ -97,11 +97,11 @@ public partial class Player
             var recipeUI = recipe.GetComponent<CookingRecipeUI>();
             recipeUI.image.sprite = cookingRecipe.cooked.sprite;
             recipeUI.title.SetText(cookingRecipe.cooked.name);
-            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareRecipe(cookingRecipe));
+            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareOvenRecipe(cookingRecipe));
         }
     }
 
-    private void PrepareRecipe(CookingRecipe cookingRecipe)
+    private void PrepareOvenRecipe(CookingRecipe cookingRecipe)
     {
         currentRecipe = cookingRecipe;
         
@@ -144,10 +144,11 @@ public partial class Player
         if (foodItems[cookingRecipe.cooked.itemName].temperature != 0)
         {
             temperatureAttribute.gameObject.SetActive(true);
-            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "�");
+            temperatureAttribute.quantity.SetText(foodItems[cookingRecipe.cooked.itemName].temperature.ToString("F0") + "ºC");
         }
 
         cookingMinigameButton.gameObject.SetActive(true);
+        cookingMinigameButton.onClick.RemoveAllListeners();
         cookingMinigameButton.onClick.AddListener(PrepareOvenMinigame);
     }
 
@@ -199,7 +200,7 @@ public partial class Player
             ovenMinigame.SetActive(false);
             inOvenMinigame = false;
             
-            PrepareRecipe(currentRecipe);
+            PrepareOvenRecipe(currentRecipe);
         }
     }
 }

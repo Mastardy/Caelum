@@ -1,11 +1,26 @@
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Unity.Netcode;
 
 public partial class Player
 {
     private bool inCrafting;
     private CraftingTable craftingTable;
+
+    [Header("Crafting Menu")]
+    [SerializeField] private GameObject craftingRecipePrefab;
+    [SerializeField] private Transform craftingRecipesContent;
+
+    [SerializeField] private Image craftingRecipeImage;
+    [SerializeField] private TextMeshProUGUI craftingRecipeTitle;
+
+    [SerializeField] private Transform craftingIngredientsContent;
+
+    [SerializeField] private Button craftButton;
+    
+    private CraftingRecipe[] craftingRecipes;
+    private CraftingRecipe currentCraftingRecipe;
     
     /// <summary>
     /// Hides Crafting
@@ -32,6 +47,9 @@ public partial class Player
         craftingPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        
+        PrepareCraftingRecipe(currentCraftingRecipe ? currentCraftingRecipe : craftingRecipes[0]);
+        PrepareCrafting();
     }
 
     [ClientRpc]
@@ -47,33 +65,65 @@ public partial class Player
         HideCrafting();
     }
 
-    // public void CraftItem(string itemName)
-    // {
-    //     switch (itemName)
-    //     {
-    //         
-    //     }
-    // }
-    
-    public void CraftPickaxe(string pickaxe)
+    private void PrepareCrafting()
     {
-        switch (pickaxe)
+        foreach (var child in craftingRecipesContent.GetComponentsInChildren<Transform>())
         {
-            case "stone":
-                if (GetItemAmount("stone") >= 5 && GetItemAmount("wood") >= 10)
-                {
-                    RemoveItem("stone", 5);
-                    RemoveItem("wood", 10);
-                    GiveItemServerRpc(this, "pickaxe_stone");
-                }
-                break;
-            case "wooden":
-                if (GetItemAmount("wood") >= 15) RemoveItem("wood", 15);
-                GiveItemServerRpc(this, "pickaxe_iron");
-                break;
-            default:
-                Debug.Log("Unknown item - trying to craft something that doesn't exist?");
-                break;
+            if (child != craftingRecipesContent)
+            {
+                Destroy(child.gameObject);
+            }
         }
+
+        foreach (var craftingRecipe in craftingRecipes)
+        {
+            var recipe = Instantiate(craftingRecipePrefab, craftingRecipesContent);
+            recipe.GetComponent<CraftingRecipeUI>().image.sprite = craftingRecipe.result.sprite;
+            recipe.GetComponent<Button>().onClick.AddListener(() => PrepareCraftingRecipe(craftingRecipe));
+        }
+    }
+
+    private void PrepareCraftingRecipe(CraftingRecipe craftingRecipe)
+    {
+        currentCraftingRecipe = craftingRecipe;
+
+        foreach (var child in craftingIngredientsContent.GetComponentsInChildren<Transform>())
+        {
+            if (child != craftingIngredientsContent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
+        foreach (var ingredient in craftingRecipe.requirements)
+        {
+            var ingr = Instantiate(ingredientPrefab, craftingIngredientsContent);
+            var ingrUI = ingr.GetComponent<IngredientUI>();
+            ingrUI.title.SetText(ingredient.item.name);
+            ingrUI.image.sprite = ingredient.item.sprite;
+            ingrUI.quantity.SetText(GetItemAmount(ingredient.item.itemName) + "/" + ingredient.amount);
+        }
+        
+        craftingRecipeTitle.SetText(craftingRecipe.result.name);
+
+        craftingRecipeImage.sprite = craftingRecipe.result.sprite;
+        
+        craftButton.onClick.RemoveAllListeners();
+        craftButton.onClick.AddListener(CraftItem);
+    }
+    
+    public void CraftItem()
+    {
+        foreach(var ingredient in currentCraftingRecipe.requirements)
+        {
+            if (GetItemAmount(ingredient.item.itemName) < ingredient.amount) return;
+        }
+
+        foreach (var ingredient in currentCraftingRecipe.requirements)
+        {
+            RemoveItem(ingredient.item.itemName, ingredient.amount);
+        }
+
+        GiveItemServerRpc(this, currentCraftingRecipe.result.itemName);
     }
 }
