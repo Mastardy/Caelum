@@ -6,7 +6,7 @@ public partial class Player : NetworkBehaviour
 {
     public static List<Player> allPlayers = new();
     
-    private GameOptionsScriptableObjects gameOptions;
+    private GameOptionsScriptableObject gameOptions;
     
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
@@ -38,7 +38,8 @@ public partial class Player : NetworkBehaviour
 
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
-            
+            playerCamera.GetComponent<Camera>().fieldOfView = 60 + (gameOptions.fieldOfView - 90f) * 0.875f;
+                
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
 

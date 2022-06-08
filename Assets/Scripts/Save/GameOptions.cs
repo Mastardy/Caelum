@@ -70,7 +70,7 @@ public class GameOptions
     
     public GameOptions()
     {
-        fieldOfView = 80.0f;
+        fieldOfView = 90.0f;
         compassVisibility = true;
 
         showChat = true;

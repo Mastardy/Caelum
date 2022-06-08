@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameOptions", menuName = "ScriptableObjects/Save", order = 1)]
-public class GameOptionsScriptableObjects : ScriptableObject
+public class GameOptionsScriptableObject : ScriptableObject
 {
     // Gameplay
     public float fieldOfView;

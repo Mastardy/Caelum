@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public partial class MainUI
 {
     private GameOptions gameOptions;
-    [SerializeField] private GameOptionsScriptableObjects gameOptionsScriptableObject;
+    [SerializeField] private GameOptionsScriptableObject gameOptionsScriptableObject;
 
     [SerializeField] private Slider fieldOfViewSlider;
     [SerializeField] private ToggleButton compassVisibilityToggleButton;

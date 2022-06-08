@@ -1,4 +1,4 @@
 public class GameManager : Singleton<GameManager>
 {
-    public GameOptionsScriptableObjects gameOptions;
+    public GameOptionsScriptableObject gameOptions;
 }
