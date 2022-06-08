@@ -343,7 +343,7 @@ public partial class Player
             worldGameObjectInvItem.Durability = player.hotbars[player.currentSlot].slot.Durability;
 
             spear.GetComponent<NetworkObject>().Spawn();
-            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
+            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 30, ForceMode.Impulse);
             
             player.hotbars[slot].slot.Clear();
         }

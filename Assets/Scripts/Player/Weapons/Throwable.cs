@@ -18,7 +18,11 @@ public class Throwable : MonoBehaviour
 
     private void Update()
     {
-        if (rb.velocity.magnitude < 5) return;
+        if (rb.velocity.magnitude < 5)
+        {
+            GetComponentsInChildren<ParticleSystem>()[0].gameObject.SetActive(false);
+            return;
+        }
         transform.LookAt((transform.position - rb.velocity), transform.up);
         transform.Rotate(new Vector3(-90, 0, 0));
     }

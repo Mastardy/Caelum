@@ -157,6 +157,7 @@ public partial class Player
         //tps model
         SetTPSArmsWeight(2, equip ? 1 : 0);
         holdTool = equip;
+        useTool = false;
     }
 
     private void AnimatorUseAxe()
@@ -164,7 +165,8 @@ public partial class Player
         firstPersonAnimator.SetTrigger("UseAxe");
 
         //tps model
-        thirdPersonAnimator.SetBool("UseAxe", true);
+        useTool = true;
+        thirdPersonAnimator.SetBool("UseAxe", useTool);
     }
 
     private void AnimatorUsePickaxe()
@@ -172,7 +174,8 @@ public partial class Player
         firstPersonAnimator.SetTrigger("UsePickaxe");
 
         //tps model
-        thirdPersonAnimator.SetBool("UseAxe", true);
+        useTool = true;
+        thirdPersonAnimator.SetBool("UseAxe", useTool);
     }
 
     private void AnimatorEquipSpear(bool equip)
