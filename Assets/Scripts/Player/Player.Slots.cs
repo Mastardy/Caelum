@@ -89,6 +89,7 @@ public partial class Player
         if (currentWeapon)
         {
             currentWeapon.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            currentWeapon.layer = LayerMask.NameToLayer("Weapon");
         }
     }
 
@@ -135,6 +136,7 @@ public partial class Player
         currentWeapon.GetComponent<Bow>().currentArrow = arrow;
         if (arrow == string.Empty) return;
         currentArrow = Instantiate(weaponItems[arrow].weaponPrefab, currentWeapon.GetComponent<Bow>().arrowAnchor);
+        currentArrow.layer = LayerMask.NameToLayer("Weapon");
     }
     
     private string GetPriorityArrow()

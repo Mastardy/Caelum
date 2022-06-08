@@ -10,7 +10,8 @@ public partial class Player : NetworkBehaviour
     
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
-    
+    [SerializeField] private Transform weaponCamera;
+
     private void Start()
     {
         allPlayers.Add(this);
@@ -21,6 +22,7 @@ public partial class Player : NetworkBehaviour
         {
             firstPersonAnimator.enabled = false;
             playerCamera.gameObject.SetActive(false);
+            weaponCamera.gameObject.SetActive(false);
         }
         else
         {
@@ -39,7 +41,10 @@ public partial class Player : NetworkBehaviour
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
             playerCamera.GetComponent<Camera>().fieldOfView = 60 + (gameOptions.fieldOfView - 90f) * 0.875f;
-                
+
+            weaponCamera.gameObject.SetActive(true);
+            weaponCamera.GetComponent<Camera>().fieldOfView = playerCamera.GetComponent<Camera>().fieldOfView;
+
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
 

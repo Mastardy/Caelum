@@ -254,6 +254,7 @@ public partial class Player
         gameOptions.fieldOfView = newValue;
         SaveOptions();
         playerCamera.GetComponent<Camera>().fieldOfView = 60 + (gameOptions.fieldOfView - 90f) * 0.875f;
+        weaponCamera.GetComponent<Camera>().fieldOfView = 60 + (gameOptions.fieldOfView - 90f) * 0.875f;
     }
 
     /// <summary>
