@@ -214,34 +214,47 @@ public partial class Player
     
     private void Parachute()
     {
-        if (inParachute && !wasInParachute)
-        {
-            DisableFirstPerson();
-            parachuteObject.SetActive(true);
-        }
-        else if(!inParachute && wasInParachute)
-        {
-            EnableFirstPerson();
-            parachuteObject.SetActive(false);
-        }
-        
         wasInParachute = inParachute;
 
         if (isGrounded)
         {
             inParachute = false;
+            if (wasInParachute && !inParachute)
+            {
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+            }
             return;
         }
 
         if (verticalVelocity > -20f && !wasInParachute)
         {
             inParachute = false;
+            if (wasInParachute && !inParachute)
+            {
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+            }
             return;
         }
 
         if (Time.time - lastParachuteOpen < 1f)
         {
             inParachute = false;
+            if (wasInParachute && !inParachute)
+            {
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+            }
             return;
         }
 
@@ -254,12 +267,26 @@ public partial class Player
             inParachute = Input.GetKey(gameOptions.jumpKey);
         }
 
-        if (wasInParachute && !inParachute) lastParachuteOpen = Time.time;
-        
+        if (wasInParachute && !inParachute)
+        {
+            lastParachuteOpen = Time.time;
+            EnableFirstPerson();
+            parachuteObject.SetActive(false);
+            if (currentWeapon)
+                currentWeapon.SetActive(true);
+        }
+
         if (inParachute)
         {
             verticalVelocity += parachuteAcceleration * Time.deltaTime;
             if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
+            if(!wasInParachute)
+            {
+                DisableFirstPerson();
+                parachuteObject.SetActive(true);
+                if (currentWeapon)
+                    currentWeapon.SetActive(false);
+            }
         }
     }
 

@@ -85,6 +85,11 @@ public partial class Player
                 AnimatorEquipGrappling(true);
                 break;
         }
+
+        if (currentWeapon)
+        {
+            currentWeapon.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
     }
 
     private void UnequipItem()
