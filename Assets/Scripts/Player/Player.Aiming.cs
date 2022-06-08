@@ -153,6 +153,7 @@ public partial class Player
                     if (!currentArrow) SetBowArrow();
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
+                        if (!currentArrow) return;
                         AnimatorShootBow();
                         
                         if (!lookingAt) return;
