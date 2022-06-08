@@ -24,6 +24,7 @@ public partial class MainUI
         if(currentPanel) currentPanel.SetActive(false);
         currentPanel = panel;
         currentPanel.SetActive(true);
+        AudioManager.Instance.PlaySound(sounds.uiIn);
     }
 
     public void SelectButton(TextMeshProUGUI textMeshProUGUI) => textMeshProUGUI.color = new Color(0.95f, 0.8f, 0.6f);

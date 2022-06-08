@@ -23,6 +23,7 @@ public partial class Player : NetworkBehaviour
             firstPersonAnimator.enabled = false;
             playerCamera.gameObject.SetActive(false);
             weaponCamera.gameObject.SetActive(false);
+            playerCanvas.gameObject.SetActive(false);
         }
         else
         {
@@ -31,9 +32,9 @@ public partial class Player : NetworkBehaviour
             currentHunger = maxHunger;
             currentThirst = maxThirst;
 
-            for (int i = 0; i < hotbars.Count; i++)
+            foreach (var hotbar in hotbars)
             {
-                hotbars[i].Selected = false;
+                hotbar.Selected = false;
             }
 
             gameOptions = GameManager.Instance.gameOptions;
@@ -65,7 +66,6 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            CurrentSlot = 1;
             SpawnPlayer();
             GiveItemServerRpc(this, "axe_stone", 1, 1);
             GiveItemServerRpc(this, "axe_iron", 1, 1);
