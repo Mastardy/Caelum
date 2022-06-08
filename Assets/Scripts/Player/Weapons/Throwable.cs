@@ -20,7 +20,6 @@ public class Throwable : MonoBehaviour
     {
         if (rb.velocity.magnitude < 5)
         {
-            GetComponentsInChildren<ParticleSystem>()[0].gameObject.SetActive(false);
             return;
         }
         transform.LookAt((transform.position - rb.velocity), transform.up);
@@ -29,6 +28,8 @@ public class Throwable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        GetComponentsInChildren<ParticleSystem>()[0].Stop();
+
         if (cringeFlag) return;
 
         if (GetComponent<InventoryGroundItem>().inventoryItem.itemTag == ItemTag.Spear)
