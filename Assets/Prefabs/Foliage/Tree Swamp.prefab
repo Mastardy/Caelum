@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8184646069278410366}
   - component: {fileID: 584550955108854238}
-  - component: {fileID: 7655329516827918147}
+  - component: {fileID: 1967179356467715666}
   m_Layer: 0
   m_Name: Tree Swamp
   m_TagString: Untagged
@@ -315,8 +315,8 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8805959667203551746}
   m_Enabled: 1
---- !u!64 &7655329516827918147
-MeshCollider:
+--- !u!136 &1967179356467715666
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -325,7 +325,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2480079167276693886, guid: 8f38e33738095ca47a7cabb0624016b9, type: 3}
+  m_Radius: 1.8955054
+  m_Height: 26.546148
+  m_Direction: 1
+  m_Center: {x: 0, y: 11.173074, z: -0.00000023841858}

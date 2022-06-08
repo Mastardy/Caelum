@@ -28,6 +28,7 @@ public partial class Player
 
     [SerializeField] private Vector3 parachuteCameraLocation = new(0,5,-3);
     [SerializeField] private GameObject parachuteObject;
+    [SerializeField] private ParticleSystem speedLines;
     
     private Vector3 playerCameraPosition = new(0, 3, 0);
     
@@ -226,6 +227,7 @@ public partial class Player
                 parachuteObject.SetActive(false);
                 if (currentWeapon)
                     currentWeapon.SetActive(true);
+                speedLines.Stop();
             }
             return;
         }
@@ -240,6 +242,7 @@ public partial class Player
                 parachuteObject.SetActive(false);
                 if (currentWeapon)
                     currentWeapon.SetActive(true);
+                speedLines.Stop();
             }
             return;
         }
@@ -254,6 +257,7 @@ public partial class Player
                 parachuteObject.SetActive(false);
                 if (currentWeapon)
                     currentWeapon.SetActive(true);
+                speedLines.Stop();
             }
             return;
         }
@@ -274,6 +278,7 @@ public partial class Player
             parachuteObject.SetActive(false);
             if (currentWeapon)
                 currentWeapon.SetActive(true);
+            speedLines.Stop();
         }
 
         if (inParachute)
@@ -286,6 +291,7 @@ public partial class Player
                 parachuteObject.SetActive(true);
                 if (currentWeapon)
                     currentWeapon.SetActive(false);
+                speedLines.Play();
             }
         }
     }
