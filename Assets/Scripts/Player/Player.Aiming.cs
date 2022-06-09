@@ -164,14 +164,6 @@ public partial class Player
                         if (!currentArrow) return;
                         AnimatorShootBow();
                         AudioManager.Instance.PlaySound(sounds.bowShoot);
-                        
-                        if (!lookingAt) return;
-                        
-                        if (lookingAt.TryGetComponent(out Animal animal))
-                        {
-                            animal.TakeDamageServerRpc(50, this);
-                            hotbars[currentSlot].slot.Durability -= 0.01f;
-                        }
                     }
                     break;
                 case ItemTag.Axe:
