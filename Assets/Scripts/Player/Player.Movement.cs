@@ -217,7 +217,6 @@ public partial class Player
     {
         if (!inParachute)
         {
-            Debug.Log("A");
             if(!AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource].clip == sounds.parachuteClose)
             {
                 AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
@@ -231,6 +230,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute)
             {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
@@ -247,6 +247,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute)
             {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
@@ -263,6 +264,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute)
             {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
@@ -285,6 +287,7 @@ public partial class Player
 
         if (wasInParachute && !inParachute)
         {
+            AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
             AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
             lastParachuteOpen = Time.time;
             EnableFirstPerson();
@@ -314,7 +317,6 @@ public partial class Player
             else
             {
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource);
-                Debug.Log(AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource]);
             }
             
             verticalVelocity += parachuteAcceleration * Time.deltaTime;
