@@ -30,7 +30,7 @@ public partial class Animal : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out RaycastHit hit, -LayerMask.NameToLayer("Ground")))
+        if(Physics.Linecast(transform.position - new Vector3(0, 2, 0), transform.position - new Vector3(0, 10, 0), out RaycastHit hit, -LayerMask.NameToLayer("Ground")))
         {
             model.transform.position = hit.point;
         }
