@@ -6,6 +6,7 @@ public class Throwable : MonoBehaviour
 {
     [HideInInspector] public int damage;
     public NetworkBehaviourReference player;
+    public ParticleSystem ps;
     private bool cringeFlag;
     private Animal animal;
 
@@ -28,7 +29,7 @@ public class Throwable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GetComponentsInChildren<ParticleSystem>()[0].Stop();
+        ps.Stop();
 
         if (cringeFlag) return;
 

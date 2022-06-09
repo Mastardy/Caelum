@@ -9,6 +9,7 @@ public partial class Animal : NetworkBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject model;
     [SerializeField] private SkinnedMeshRenderer modelRenderer;
+    [SerializeField] private bool agressive = true;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");
@@ -24,7 +25,7 @@ public partial class Animal : NetworkBehaviour
         animalStates.Add(idleState, IdleState());
         animalStates.Add(roamState, RoamState());
         animalStates.Add(fleeState, FleeState());
-        animalStates.Add(attackState, AttackState());
+        if(agressive) animalStates.Add(attackState, AttackState());
     }
 
     private void FixedUpdate()
