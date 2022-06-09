@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6485742600948507369}
   - component: {fileID: -4623375903802532837}
   m_Layer: 8
-  m_Name: Iron Pickaxe
+  m_Name: Wood Pickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8989129131315078201}
-  m_Mesh: {fileID: -7821125196395701751, guid: 0cd37c84cdc25b44aa50fc3d70c901c9, type: 3}
+  m_Mesh: {fileID: -6325928740472532256, guid: e4d1e255e6ad9064c9635cb50d5a0e1a, type: 3}
 --- !u!23 &8989129131315078207
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 8ec4e1f69a55cf643b414051702018c9, type: 2}
   - {fileID: 2100000, guid: abcd932a44748d341ba3c99f6b8f023b, type: 2}
-  - {fileID: 2100000, guid: cc5a153df3d0894489938494635dc0f8, type: 2}
+  - {fileID: 2100000, guid: ff457389e0275eb4fbfe9093b61105ed, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5fc62ddb8393946a6830451b945870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 11400000, guid: a1aa35d71d1ba3342ada7e6c2fe0ff2f, type: 2}
+  inventoryItem: {fileID: 11400000, guid: 2a1f955f545308341a79fe58b1d3b6f1, type: 2}
   amount:
     m_InternalValue: 0
   nearResources: []
@@ -154,7 +154,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -7821125196395701751, guid: 0cd37c84cdc25b44aa50fc3d70c901c9, type: 3}
+  m_Mesh: {fileID: -6325928740472532256, guid: e4d1e255e6ad9064c9635cb50d5a0e1a, type: 3}
 --- !u!114 &-4623375903802532837
 MonoBehaviour:
   m_ObjectHideFlags: 0
