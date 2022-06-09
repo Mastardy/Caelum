@@ -11,15 +11,14 @@ public class SpoikyPlant : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    //checar se ainda ta dentro do collider e fechar dnovo
+    //checar se ainda ta dentro do collider e fechar dnovovo
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             player = other.gameObject.GetComponent<Player>();
-            Invoke("Close", Random.Range(1f, 3f));
-            Debug.Log("entrou");
+            Close();
         }
     }
 
