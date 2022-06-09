@@ -125,5 +125,7 @@ public partial class Player
         }
         
         GiveItemServerRpc(this, currentCraftingRecipe.result.itemName, durability: currentCraftingRecipe.result.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Grappling or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword ? 1 : 0);
+        
+        PrepareCraftingRecipe(currentCraftingRecipe);
     }
 }
