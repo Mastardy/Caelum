@@ -112,6 +112,8 @@ public partial class Player
         lookingAt = null;
         aimText.SetText(string.Empty);
     }
+
+    private bool lastBowState;
     
     private void EyeTraceInfo()
     {
@@ -149,12 +151,19 @@ public partial class Player
                     break;
                 case ItemTag.Bow:
                     AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
-                    if (!Input.GetKey(gameOptions.secondaryAttackKey)) break;
+                    if (!Input.GetKey(gameOptions.secondaryAttackKey))
+                    {
+                        lastBowState = false;
+                        break;
+                    }
                     if (!currentArrow) SetBowArrow();
+                    if(!lastBowState) AudioManager.Instance.PlaySound(sounds.bowPull);
+                    lastBowState = true;
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
                         if (!currentArrow) return;
                         AnimatorShootBow();
+                        AudioManager.Instance.PlaySound(sounds.bowShoot);
                         
                         if (!lookingAt) return;
                         
@@ -301,6 +310,7 @@ public partial class Player
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
+                        AudioManager.Instance.PlaySound(sounds.axeHit);
                     }
                     else
                     {
@@ -312,6 +322,7 @@ public partial class Player
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
+                        AudioManager.Instance.PlaySound(sounds.pickaxeHit);
                     }
                     else
                     {

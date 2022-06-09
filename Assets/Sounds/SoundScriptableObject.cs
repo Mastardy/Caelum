@@ -24,5 +24,13 @@ public class SoundScriptableObject : ScriptableObject
     public AudioClip uiOut;
     public AudioClip uiScrollWheel;
 
+    [Foldout("Axe", true)]
+    public AudioClip axeHit;
 
+    [Foldout("Pickaxe", true)]
+    public AudioClip pickaxeHit;
+
+    [Foldout("Bow", true)]
+    public AudioClip bowPull;
+    public AudioClip bowShoot;
 }
