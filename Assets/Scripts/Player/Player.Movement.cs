@@ -215,7 +215,7 @@ public partial class Player
     
     private void Parachute()
     {
-        if(parachuteAudioSource == -1) parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+        //if(parachuteAudioSource == -1) parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
         
         wasInParachute = inParachute;
 
