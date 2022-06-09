@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6813a314686c55a4dafed682b3d01401, type: 3}
+  m_Name: Iron Axe
+  m_EditorClassIdentifier: Assembly-CSharp::CraftingRecipe
+  requirements:
+  - item: {fileID: 11400000, guid: db06d445b83c1f24d8bffcfcc6e1b5aa, type: 2}
+    amount: 5
+  result: {fileID: 11400000, guid: ecdca935afdc7724c872033e8e3b3dac, type: 2}
