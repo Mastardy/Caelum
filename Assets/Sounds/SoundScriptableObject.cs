@@ -1,9 +1,14 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
 public class SoundScriptableObject : ScriptableObject
 {
+    [Foldout("Music", true)] 
+    public AudioClip mainMenuTheme;
+
+    [Foldout("SoundScape", true)]
+    public AudioClip daySoundScape;
+    
     [Foldout("Player Parachute", true)]
     public AudioClip parachuteDeploy;
     public AudioClip parachuteClose;

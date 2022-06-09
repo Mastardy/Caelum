@@ -15,11 +15,14 @@ public partial class MainUI
     /// <param name="newValue"></param>
     public void MasterVolumeHandle(float newValue)
     {
-        AudioManager.Instance.PlaySoundUnsafe(sounds.uiScrollWheel, unsafeScrollWheelAudioSource, 0.2f);
-        masterVolume.text = newValue.ToString("F1").Replace(",", ".");
+        newValue /= 20f;
+        AudioManager.Instance.PlaySoundUnsafe(sounds.uiScrollWheel, unsafeScrollWheelAudioSource, 0.1f);
+        masterVolume.text = newValue.ToString("F2").Replace(",", ".");
+        newValue /= 2f;
         gameOptions.masterVolume = newValue;
         gameOptionsScriptableObject.masterVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
     
     /// <summary>
@@ -28,11 +31,13 @@ public partial class MainUI
     /// <param name="newValue"></param>
     public void MusicVolumeHandle(float newValue)
     {
+        newValue /= 20f;
         AudioManager.Instance.PlaySoundUnsafe(sounds.uiScrollWheel, unsafeScrollWheelAudioSource, 0.2f);
-        musicVolume.text = newValue.ToString("F1").Replace(",", ".");
+        musicVolume.text = newValue.ToString("F2").Replace(",", ".");
         gameOptions.musicVolume = newValue;
         gameOptionsScriptableObject.musicVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
     
     /// <summary>
@@ -46,6 +51,7 @@ public partial class MainUI
         gameOptions.gameSoundsVolume = newValue;
         gameOptionsScriptableObject.gameSoundsVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
     
     /// <summary>
@@ -59,5 +65,6 @@ public partial class MainUI
         gameOptions.voiceVolume = newValue;
         gameOptionsScriptableObject.voiceVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
 }

@@ -50,9 +50,9 @@ public partial class MainUI
         showGameTipsToggleButton.Value = gameOptions.showGameTips;
         gameOptionsScriptableObject.showGameTips = gameOptions.showGameTips;
         
-        masterVolumeSlider.value = gameOptions.masterVolume;
+        masterVolumeSlider.value = gameOptions.masterVolume * 40;
         gameOptionsScriptableObject.masterVolume = gameOptions.masterVolume;
-        musicVolumeSlider.value = gameOptions.musicVolume;
+        musicVolumeSlider.value = gameOptions.musicVolume * 20;
         gameOptionsScriptableObject.musicVolume = gameOptions.musicVolume;
         gameSoundsVolumeSlider.value = gameOptions.gameSoundsVolume;
         gameOptionsScriptableObject.gameSoundsVolume = gameOptions.gameSoundsVolume;
@@ -72,6 +72,8 @@ public partial class MainUI
         gameOptionsScriptableObject.verticalSync = gameOptions.verticalSync;
         fpsLimitSlider.value = gameOptions.fpsLimit;
         gameOptionsScriptableObject.fpsLimit = gameOptions.fpsLimit;
+        
+        AudioManager.Instance.UpdateVolume();
     }
 
     /// <summary>

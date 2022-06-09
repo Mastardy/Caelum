@@ -2,7 +2,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SaveManager
+public static class SaveManager
 {
     public static void SaveData<T>(T data)
     {
@@ -29,7 +29,7 @@ public class SaveManager
 
         var data = (T)formatter.Deserialize(stream);
         stream.Close();
-
+        
         return data;
     }
 }

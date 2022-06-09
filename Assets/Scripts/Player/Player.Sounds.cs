@@ -4,11 +4,13 @@ public partial class Player
 {
     [SerializeField] private GameObject audioSource;
     private float lastFootStep;
-    private GameObject audioSrc;
+    private int audioSrc;
 
     private void Awake()
     {
-        audioSrc = Instantiate(audioSource, transform);
+        audioSrc = AudioManager.Instance.CreateUnsafeAudioSource();
+        AudioManager.Instance.DestroyUnsafeAudioSource(audioSrc);
+        AudioManager.Instance.UnsafeAudioSources[audioSrc] = Instantiate(audioSource, transform).GetComponent<AudioSource>();
     }
 
     private int lastIndex;
@@ -25,6 +27,8 @@ public partial class Player
 
         Physics.OverlapSphereNonAlloc(transform.position, 2, results, groundMask);
 
+        if(results.Length == 0) return;
+        
         if (horizontalVelocity.magnitude <= speed)
         {
             var lightWalking = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Steps/Light");
@@ -38,8 +42,8 @@ public partial class Player
                 } while (lastIndex == index);
             }
             else index = 0;
-                
-            audioSrc.GetComponent<AudioSource>().PlayOneShot(lightWalking[index]);
+
+            AudioManager.Instance.PlaySoundUnsafe(lightWalking[index], audioSrc);
 
             lastIndex = index;
 
@@ -54,7 +58,7 @@ public partial class Player
         
         do { index = Random.Range(0, lightRunning.Length); } while (lastIndex == index);
         
-        audioSrc.GetComponent<AudioSource>().PlayOneShot(lightRunning[index]);
+        AudioManager.Instance.PlaySoundUnsafe(lightRunning[index], audioSrc, lightRunning[index].length / 2f);
         
         lastFootStep = Time.time - 0.2f;
     }
@@ -67,6 +71,6 @@ public partial class Player
             Debug.LogWarning(itemTag + " doesn't have Swing Sounds!");
             return;
         }
-        audioSrc.GetComponent<AudioSource>().PlayOneShot(toolSwing[Random.Range(0, toolSwing.Length)]);
+        AudioManager.Instance.PlaySoundUnsafe(toolSwing[Random.Range(0, toolSwing.Length)], audioSrc);
     }
 }
