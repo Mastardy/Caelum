@@ -3,14 +3,35 @@ using UnityEngine;
 public class AudioManager : Singleton<AudioManager>
 {
     private AudioSource[] audioSources = new AudioSource[128];
-    public AudioSource[] unsafeAudioSources { get; } = new AudioSource[32];
-    public float[] unsafeAudioSourcesTimer { get; } = new float[32];
+    public AudioSource[] UnsafeAudioSources { get; } = new AudioSource[32];
+    public float[] UnsafeAudioSourcesTimer { get; } = new float[32];
+    private AudioSource ambienceAudioSource;
+    private AudioSource musicAudioSource;
 
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
         InvokeRepeating(nameof(DestroyAudioSources), 5.0f, 5.0f);
+        
+    }
+
+    public void PlayMusic(AudioClip music, bool loop = true)
+    {
+        if (!musicAudioSource) musicAudioSource = gameObject.AddComponent<AudioSource>();
+        if(musicAudioSource.isPlaying) musicAudioSource.Stop();
+        musicAudioSource.clip = music;
+        musicAudioSource.loop = loop;
+        musicAudioSource.Play();
+    }
+    
+    public void PlaySoundScape(AudioClip soundScape)
+    {
+        if (!ambienceAudioSource) ambienceAudioSource = gameObject.AddComponent<AudioSource>();
+        if(ambienceAudioSource.isPlaying) ambienceAudioSource.Stop();
+        ambienceAudioSource.clip = soundScape;
+        ambienceAudioSource.loop = true;
+        ambienceAudioSource.Play();
     }
 
     public void UpdateVolume(float volume)
@@ -54,30 +75,30 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySoundUnsafe(AudioClip audioClip, int index, bool forcePlay = false)
     {
-        if (unsafeAudioSources[index] == null) return;
-        if (unsafeAudioSources[index].isPlaying && !forcePlay) return;
+        if (UnsafeAudioSources[index] == null) return;
+        if (UnsafeAudioSources[index].isPlaying && !forcePlay) return;
         
-        unsafeAudioSources[index].PlayOneShot(audioClip, GameManager.Instance.gameOptions.masterVolume);
-        unsafeAudioSourcesTimer[index] = Time.time;
+        UnsafeAudioSources[index].PlayOneShot(audioClip, GameManager.Instance.gameOptions.masterVolume);
+        UnsafeAudioSourcesTimer[index] = Time.time;
     }
 
     public void PlaySoundUnsafe(AudioClip audioClip, int index, float delay)
     {
-        if (unsafeAudioSources[index] == null) return;
-        if (unsafeAudioSources[index].isPlaying && Time.time - unsafeAudioSourcesTimer[index] < delay) return;
+        if (UnsafeAudioSources[index] == null) return;
+        if (UnsafeAudioSources[index].isPlaying && Time.time - UnsafeAudioSourcesTimer[index] < delay) return;
         
-        unsafeAudioSources[index].PlayOneShot(audioClip, GameManager.Instance.gameOptions.masterVolume);
-        unsafeAudioSourcesTimer[index] = Time.time;
+        UnsafeAudioSources[index].PlayOneShot(audioClip, GameManager.Instance.gameOptions.masterVolume);
+        UnsafeAudioSourcesTimer[index] = Time.time;
     }
     
     public int CreateUnsafeAudioSource()
     {
-        for (int i = 0; i < unsafeAudioSources.Length; i++)
+        for (int i = 0; i < UnsafeAudioSources.Length; i++)
         {
-            if (unsafeAudioSources[i] == null)
+            if (UnsafeAudioSources[i] == null)
             {
-                unsafeAudioSources[i] = gameObject.AddComponent<AudioSource>();
-                unsafeAudioSourcesTimer[i] = Time.time;
+                UnsafeAudioSources[i] = gameObject.AddComponent<AudioSource>();
+                UnsafeAudioSourcesTimer[i] = Time.time;
                 return i;
             }
         }
@@ -87,6 +108,6 @@ public class AudioManager : Singleton<AudioManager>
     
     public void DestroyUnsafeAudioSource(int index)
     {
-        Destroy(unsafeAudioSources[index]);
+        Destroy(UnsafeAudioSources[index]);
     }
 }
