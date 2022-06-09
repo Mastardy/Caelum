@@ -25,7 +25,7 @@ public partial class Animal : NetworkBehaviour
         animalStates.Add(idleState, IdleState());
         animalStates.Add(roamState, RoamState());
         animalStates.Add(fleeState, FleeState());
-        if(agressive) animalStates.Add(attackState, AttackState());
+        animalStates.Add(attackState, AttackState());
     }
 
     private void FixedUpdate()
