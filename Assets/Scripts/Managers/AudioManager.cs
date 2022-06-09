@@ -78,7 +78,9 @@ public class AudioManager : Singleton<AudioManager>
         if (UnsafeAudioSources[index] == null) return;
         if (UnsafeAudioSources[index].isPlaying && !forcePlay) return;
         
-        UnsafeAudioSources[index].PlayOneShot(audioClip, GameManager.Instance.gameOptions.masterVolume);
+        UnsafeAudioSources[index].clip = audioClip;
+        UnsafeAudioSources[index].volume = GameManager.Instance.gameOptions.masterVolume;
+        UnsafeAudioSources[index].Play();
         UnsafeAudioSourcesTimer[index] = Time.time;
     }
 

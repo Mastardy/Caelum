@@ -215,6 +215,8 @@ public partial class Player
     
     private void Parachute()
     {
+        if(parachuteAudioSource == -1) parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+        
         wasInParachute = inParachute;
 
         if (isGrounded)
@@ -222,6 +224,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute && !inParachute)
             {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
                 parachuteObject.SetActive(false);
@@ -237,6 +240,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute && !inParachute)
             {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
                 parachuteObject.SetActive(false);
@@ -252,6 +256,7 @@ public partial class Player
             inParachute = false;
             if (wasInParachute && !inParachute)
             {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
                 EnableFirstPerson();
                 parachuteObject.SetActive(false);
@@ -273,6 +278,7 @@ public partial class Player
 
         if (wasInParachute && !inParachute)
         {
+            AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
             lastParachuteOpen = Time.time;
             EnableFirstPerson();
             parachuteObject.SetActive(false);
@@ -283,10 +289,12 @@ public partial class Player
 
         if (inParachute)
         {
+            AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource);
             verticalVelocity += parachuteAcceleration * Time.deltaTime;
             if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
             if(!wasInParachute)
             {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteDeploy, parachuteAudioSource);
                 DisableFirstPerson();
                 parachuteObject.SetActive(true);
                 if (currentWeapon)
@@ -296,6 +304,8 @@ public partial class Player
         }
     }
 
+    private int parachuteAudioSource = -1;
+    
     private void Move()
     {
         var maxSpeed = inParachute ? parachuteSpeed : isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;

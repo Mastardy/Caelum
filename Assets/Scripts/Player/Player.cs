@@ -7,6 +7,7 @@ public partial class Player : NetworkBehaviour
     public static List<Player> allPlayers = new();
     
     private GameOptionsScriptableObject gameOptions;
+    [SerializeField] private SoundScriptableObject sounds;
     
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
