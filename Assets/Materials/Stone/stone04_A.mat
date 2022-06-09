@@ -105,8 +105,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpeedTree8ColorAlpha_5736d0f969f84bb8bf5d49c8d5b87fc0_BaseMap_2957833126:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: a8ee79b491da63f46b12cd22d0b7a36f, type: 3}
+        m_Texture: {fileID: 2800000, guid: f50657bbc8477274b943fbfa0c3468f3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _White_Normal:
@@ -132,6 +136,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _Ambient_Occlusion: 0
     - _Black_Metalness: 0
     - _Black_Normal_Str: 1
     - _Black_Smoothness: 0
@@ -142,6 +147,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Damaged_Power: 5
+    - _Damaged_Strength: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -182,7 +189,7 @@ Material:
     - _ToonRampSmoothness: 0
     - _Toon_Strength: 0.3
     - _Use_Color: 0
-    - _Use_Normal: 1
+    - _Use_Normal: 0
     - _White_Metalness: 0
     - _White_Normal_Str: 1
     - _White_Smoothness: 0
@@ -195,14 +202,16 @@ Material:
     - _Black_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 0.6886792, g: 0.31407243, b: 0.10720005, a: 1}
     - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
-    - _ColorMultiply: {r: 0.500623, g: 0.6516109, b: 0.8490566, a: 0}
+    - _ColorMultiply: {r: 0.6839622, g: 0.8329023, b: 1, a: 0}
+    - _Color_Variation: {r: 0, g: 0, b: 0, a: 0}
+    - _Damaged_Color: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Green_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Green_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _Red_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Red_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Tiling: {r: 2, g: 2, b: 0, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 0}
     - _ToonRampTinting: {r: 0.8431373, g: 0.8431373, b: 0.8431373, a: 0}
     - _White_Color: {r: 0.5660378, g: 0.2672834, b: 0.15752938, a: 0}
