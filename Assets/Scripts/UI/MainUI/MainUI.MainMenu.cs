@@ -24,7 +24,6 @@ public partial class MainUI
     public void PlayMenu()
     {
         AudioManager.Instance.PlaySound(sounds.uiIn);
-        LoadOptions();
         mainMenu.SetActive(false);
         playMenu.SetActive(true);
     }

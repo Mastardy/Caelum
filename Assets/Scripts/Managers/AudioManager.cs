@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -20,26 +21,59 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (!musicAudioSource) musicAudioSource = gameObject.AddComponent<AudioSource>();
         if(musicAudioSource.isPlaying) musicAudioSource.Stop();
+        musicAudioSource.volume = GameManager.Instance.gameOptions.masterVolume * GameManager.Instance.gameOptions.musicVolume;
         musicAudioSource.clip = music;
         musicAudioSource.loop = loop;
         musicAudioSource.Play();
     }
-    
+
+    public void StopMusic()
+    {
+        if (!musicAudioSource) return;
+        if (!musicAudioSource.isPlaying) return;
+        StartCoroutine(nameof(FadeMusic));
+    }
+
+    private IEnumerator FadeMusic()
+    {
+        for (float vol = GameManager.Instance.gameOptions.masterVolume; vol >= -1f; vol -= Time.deltaTime / 4)
+        {
+            musicAudioSource.volume = vol * GameManager.Instance.gameOptions.musicVolume;
+            if (vol <= 0) break;
+            yield return null;
+        }
+        
+        musicAudioSource.Stop();
+    }
+
     public void PlaySoundScape(AudioClip soundScape)
     {
         if (!ambienceAudioSource) ambienceAudioSource = gameObject.AddComponent<AudioSource>();
         if(ambienceAudioSource.isPlaying) ambienceAudioSource.Stop();
+        ambienceAudioSource.volume = GameManager.Instance.gameOptions.masterVolume;
         ambienceAudioSource.clip = soundScape;
         ambienceAudioSource.loop = true;
         ambienceAudioSource.Play();
     }
 
-    public void UpdateVolume(float volume)
+    public void UpdateVolume()
     {
+        var volume = GameManager.Instance.gameOptions.masterVolume;
+        
         foreach (var audioSource in audioSources)
         {
+            if (!audioSource) continue;
             audioSource.volume = volume;
         }
+
+        foreach (var audioSource in UnsafeAudioSources)
+        {
+            if (!audioSource) continue;
+            audioSource.volume = volume;
+        }
+
+        if(musicAudioSource) musicAudioSource.volume = volume * GameManager.Instance.gameOptions.musicVolume;
+        if(ambienceAudioSource) ambienceAudioSource.volume = volume;
     }
     
     public void PlaySound(AudioClip audioClip)
@@ -82,6 +116,14 @@ public class AudioManager : Singleton<AudioManager>
         UnsafeAudioSources[index].volume = GameManager.Instance.gameOptions.masterVolume;
         UnsafeAudioSources[index].Play();
         UnsafeAudioSourcesTimer[index] = Time.time;
+    }
+
+    public void StopSoundUnsafe(int index)
+    {
+        if (UnsafeAudioSources[index] == null) return;
+        if (!UnsafeAudioSources[index].isPlaying) return;
+
+        UnsafeAudioSources[index].Stop();
     }
 
     public void PlaySoundUnsafe(AudioClip audioClip, int index, float delay)

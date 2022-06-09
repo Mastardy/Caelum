@@ -52,6 +52,8 @@ public partial class Player : NetworkBehaviour
 
             AnimatorStart();
 
+            parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+            
             Invoke(nameof(LateStart), 0.1f);
         }
     }

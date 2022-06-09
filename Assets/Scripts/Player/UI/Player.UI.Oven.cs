@@ -188,7 +188,7 @@ public partial class Player
                 RemoveItem(ingredient.inventoryItem.itemName, ingredient.quantity);
             }
             
-            if (curValue > (tempCurrentTimer - curOffset) && curValue < (tempCurrentTimer + curOffset))
+            if (curValue > (tempCurrentTimer - curOffset * 2) && curValue < (tempCurrentTimer + curOffset * 2))
             {
                 GiveItemServerRpc(this, currentRecipe.cooked.itemName, 1);
             }

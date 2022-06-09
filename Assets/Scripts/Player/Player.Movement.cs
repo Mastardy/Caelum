@@ -215,14 +215,21 @@ public partial class Player
     
     private void Parachute()
     {
-        //if(parachuteAudioSource == -1) parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+        if (!inParachute)
+        {
+            Debug.Log("A");
+            if(!AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource].clip == sounds.parachuteClose)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+            }   
+        }
         
         wasInParachute = inParachute;
 
         if (isGrounded)
         {
             inParachute = false;
-            if (wasInParachute && !inParachute)
+            if (wasInParachute)
             {
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
@@ -238,7 +245,7 @@ public partial class Player
         if (verticalVelocity > -20f && !wasInParachute)
         {
             inParachute = false;
-            if (wasInParachute && !inParachute)
+            if (wasInParachute)
             {
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
@@ -254,7 +261,7 @@ public partial class Player
         if (Time.time - lastParachuteOpen < 1f)
         {
             inParachute = false;
-            if (wasInParachute && !inParachute)
+            if (wasInParachute)
             {
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
                 lastParachuteOpen = Time.time;
@@ -289,11 +296,9 @@ public partial class Player
 
         if (inParachute)
         {
-            AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource);
-            verticalVelocity += parachuteAcceleration * Time.deltaTime;
-            if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
             if(!wasInParachute)
             {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
                 AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteDeploy, parachuteAudioSource);
                 DisableFirstPerson();
                 parachuteObject.SetActive(true);
@@ -301,6 +306,19 @@ public partial class Player
                     currentWeapon.SetActive(false);
                 speedLines.Play();
             }
+            
+            if (AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource].clip == sounds.parachuteDeploy)
+            {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource, 0.8f); 
+            }
+            else
+            {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource);
+                Debug.Log(AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource]);
+            }
+            
+            verticalVelocity += parachuteAcceleration * Time.deltaTime;
+            if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
         }
     }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public partial class Player
 {
@@ -72,40 +73,42 @@ public partial class Player
         gameOptionsSave = SaveManager.LoadData<GameOptions>();
         gameOptionsSave.SetHighestResolution();
 
-        fieldOfViewSlider.value = gameOptionsSave.fieldOfView;
-        gameOptions.fieldOfView = gameOptionsSave.fieldOfView;
-        compassVisibilityToggleButton.Value = gameOptionsSave.compassVisibility;
-        gameOptions.compassVisibility = gameOptionsSave.compassVisibility;
+        fieldOfViewSlider.value = gameOptions.fieldOfView;
+        gameOptionsSave.fieldOfView = gameOptions.fieldOfView;
+        compassVisibilityToggleButton.Value = gameOptions.compassVisibility;
+        gameOptionsSave.compassVisibility = gameOptions.compassVisibility;
 
-        showChatToggleButton.Value = gameOptionsSave.showChat;
-        gameOptions.showChat = gameOptionsSave.showChat;
-        showNameTagsToggleButton.Value = gameOptionsSave.showNameTags;
-        gameOptions.showNameTags = gameOptionsSave.showNameTags;
-        showGameTipsToggleButton.Value = gameOptionsSave.showGameTips;
-        gameOptions.showGameTips = gameOptionsSave.showGameTips;
+        showChatToggleButton.Value = gameOptions.showChat;
+        gameOptionsSave.showChat = gameOptions.showChat;
+        showNameTagsToggleButton.Value = gameOptions.showNameTags;
+        gameOptionsSave.showNameTags = gameOptions.showNameTags;
+        showGameTipsToggleButton.Value = gameOptions.showGameTips;
+        gameOptionsSave.showGameTips = gameOptions.showGameTips;
         
-        masterVolumeSlider.value = gameOptionsSave.masterVolume;
-        gameOptions.masterVolume = gameOptionsSave.masterVolume;
-        musicVolumeSlider.value = gameOptionsSave.musicVolume;
-        gameOptions.musicVolume = gameOptionsSave.musicVolume;
-        gameSoundsVolumeSlider.value = gameOptionsSave.gameSoundsVolume;
-        gameOptions.gameSoundsVolume = gameOptionsSave.gameSoundsVolume;
-        voiceVolumeSlider.value = gameOptionsSave.voiceVolume;
-        gameOptions.voiceVolume = gameOptionsSave.voiceVolume;
+        masterVolumeSlider.value = gameOptions.masterVolume * 40;
+        gameOptionsSave.masterVolume = gameOptions.masterVolume;
+        musicVolumeSlider.value = gameOptions.musicVolume * 20;
+        gameOptionsSave.musicVolume = gameOptions.musicVolume;
+        gameSoundsVolumeSlider.value = gameOptions.gameSoundsVolume;
+        gameOptionsSave.gameSoundsVolume = gameOptions.gameSoundsVolume;
+        voiceVolumeSlider.value = gameOptions.voiceVolume;
+        gameOptionsSave.voiceVolume = gameOptions.voiceVolume;
 
-        sensitivitySlider.value = gameOptionsSave.mouseSensitivity;
-        gameOptions.mouseSensitivity = gameOptionsSave.mouseSensitivity;
-        sprintToggleButton.Value = gameOptionsSave.toggleSprint;
-        gameOptions.toggleSprint = gameOptionsSave.toggleSprint;
-        duckToggleButton.Value = gameOptionsSave.toggleDuck;
-        gameOptions.toggleDuck = gameOptionsSave.toggleDuck;
-        parachuteToggleButton.Value = gameOptionsSave.toggleParachute;
-        gameOptions.toggleParachute = gameOptionsSave.toggleParachute;
+        sensitivitySlider.value = gameOptions.mouseSensitivity;
+        gameOptionsSave.mouseSensitivity = gameOptions.mouseSensitivity;
+        sprintToggleButton.Value = gameOptions.toggleSprint;
+        gameOptionsSave.toggleSprint = gameOptions.toggleSprint;
+        duckToggleButton.Value = gameOptions.toggleDuck;
+        gameOptionsSave.toggleDuck = gameOptions.toggleDuck;
+        parachuteToggleButton.Value = gameOptions.toggleParachute;
+        gameOptionsSave.toggleParachute = gameOptions.toggleParachute;
 
-        verticalSyncToggleButton.Value = gameOptionsSave.verticalSync;
-        gameOptions.verticalSync = gameOptionsSave.verticalSync;
-        fpsLimitSlider.value = gameOptionsSave.fpsLimit;
-        gameOptions.fpsLimit = gameOptionsSave.fpsLimit;
+        verticalSyncToggleButton.Value = gameOptions.verticalSync;
+        gameOptionsSave.verticalSync = gameOptions.verticalSync;
+        fpsLimitSlider.value = gameOptions.fpsLimit;
+        gameOptionsSave.fpsLimit = gameOptions.fpsLimit;
+        
+        AudioManager.Instance.UpdateVolume();
     }
 
     /// <summary>
@@ -122,10 +125,13 @@ public partial class Player
     /// <param name="newValue"></param>
     public void MasterVolumeHandle(float newValue)
     {
-        masterVolume.text = newValue.ToString("F1").Replace(",", ".");
-        gameOptionsSave.masterVolume = newValue;
+        newValue /= 20f;
+        masterVolume.text = newValue.ToString("F2").Replace(",", ".");
+        newValue /= 2f;
+        gameOptionsSave.gameSoundsVolume = newValue;
         gameOptions.masterVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
     
     /// <summary>
@@ -134,10 +140,12 @@ public partial class Player
     /// <param name="newValue"></param>
     public void MusicVolumeHandle(float newValue)
     {
-        musicVolume.text = newValue.ToString("F1").Replace(",", ".");
-        gameOptionsSave.musicVolume = newValue;
+        newValue /= 20f;
+        musicVolume.text = newValue.ToString("F2").Replace(",", ".");
+        gameOptionsSave.gameSoundsVolume = newValue;
         gameOptions.musicVolume = newValue;
         SaveOptions();
+        AudioManager.Instance.UpdateVolume();
     }
     
     /// <summary>

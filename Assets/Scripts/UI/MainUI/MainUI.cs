@@ -13,7 +13,9 @@ public partial class MainUI : MonoBehaviour
     private void Awake()
     {
         unsafeScrollWheelAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
-        
+
+        AudioManager.Instance.PlayMusic(sounds.mainMenuTheme);
+
         optionsPanel.SetActive(false);
         audioPanel.SetActive(false);
         controlsPanel.SetActive(false);
@@ -23,10 +25,13 @@ public partial class MainUI : MonoBehaviour
         optionsMenu.SetActive(false);
         creditsMenu.SetActive(false);
         mainMenu.SetActive(true);
-        
-        LoadOptions();
     }
 
+    private void Start()
+    {
+        LoadOptions();
+    }
+    
     public void MainMenu()
     {
         AudioManager.Instance.PlaySound(sounds.uiOut);
