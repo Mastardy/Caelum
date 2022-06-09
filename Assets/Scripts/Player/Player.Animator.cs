@@ -40,16 +40,16 @@ public partial class Player
     private bool holdBow;
     private bool useBow;
 
-    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> parachuteNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> parachuteNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
 
     private float layerWeight;
     private bool canAimAnim;
