@@ -4,6 +4,7 @@ using UnityEngine;
 public partial class Player
 {
     [Header("Status")] 
+    //mudei no prefab os valores dos tickrates para playtest porpuse
     [SerializeField] private float hungerTickRate = 0.5f;  
     [SerializeField] private int maxHunger = 250;
     private float lastHungerTick;

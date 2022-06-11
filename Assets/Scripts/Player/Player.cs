@@ -70,20 +70,20 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             SpawnPlayer();
-            GiveItemServerRpc(this, "axe_stone", 1, 1);
-            GiveItemServerRpc(this, "axe_iron", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
-            GiveItemClientRpc(this, "bow", 1, 1);
-            GiveItemServerRpc(this, "sword", 1, 1);
-            GiveItemServerRpc(this, "spear_wood", 1, 1);
-            GiveItemServerRpc(this, "spear_stone", 1, 1);
-            GiveItemServerRpc(this, "spear_iron", 1, 1);
-            GiveItemServerRpc(this, "arrow_wood", 1);
-            GiveItemServerRpc(this, "arrow_stone", 1);
-            GiveItemServerRpc(this, "arrow_iron", 1);
-            GiveItemClientRpc(this, "grappling_hook");
+            //GiveItemServerRpc(this, "axe_stone", 1, 1);
+            //GiveItemServerRpc(this, "axe_iron", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
+            //GiveItemClientRpc(this, "bow", 1, 1);
+            //GiveItemServerRpc(this, "sword", 1, 1);
+            //GiveItemServerRpc(this, "spear_wood", 1, 1);
+            //GiveItemServerRpc(this, "spear_stone", 1, 1);
+            //GiveItemServerRpc(this, "spear_iron", 1, 1);
+            //GiveItemServerRpc(this, "arrow_wood", 1);
+            //GiveItemServerRpc(this, "arrow_stone", 1);
+            //GiveItemServerRpc(this, "arrow_iron", 1);
+            //GiveItemClientRpc(this, "grappling_hook");
             Invoke(nameof(LateLateStart), 0.1f);
         }
     }
