@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wheat
+  m_Name: WheatCrop
   m_Shader: {fileID: -6465566751694194690, guid: 09e6399f216965847937a8258a4db15e,
     type: 3}
   m_ShaderKeywords: 
@@ -49,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grass_Texture:
-        m_Texture: {fileID: 2800000, guid: 260bef03b3d7b4d4299e93cc1bb46005, type: 3}
+        m_Texture: {fileID: 2800000, guid: c3d49582859822a4db143c8b3ac11fd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -90,7 +90,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Texture_Power: 1
+    - Texture_Power: 0.85
     - _AlphaClip: 0
     - _Ambient_Occlusion: 1
     - _Blend: 0
@@ -98,7 +98,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Clip: 0.607
+    - _Clip: 0.93
     - _Cull: 2
     - _Custom_Normal: 1
     - _Cutoff: 0.5
@@ -112,7 +112,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
-    - _Power: 1
+    - _Power: 2
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -130,8 +130,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Grass_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0}
-    - _Hue_Variation: {r: 1, g: 0.5, b: 0, a: 0.5019608}
+    - _Grass_Color: {r: 0.94509804, g: 0.8575304, b: 0.4479765, a: 0}
+    - _Hue_Variation: {r: 0, g: 0, b: 0, a: 0.5019608}
     - _Normal: {r: 0, g: 1, b: 0, a: 0}
     - _Secondary_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
