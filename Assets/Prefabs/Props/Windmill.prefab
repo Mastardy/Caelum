@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blades: {fileID: 3830824956279704436}
-  speed: -0.2
+  speed: -0.5
   perlinScale: 40
+  defaultRotation: {x: 0, y: -90, z: 0}
+  rotationMultiplier: {x: 1, y: 0, z: 0}
 --- !u!208 &4105450158973520077
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -347,7 +349,11 @@ Transform:
   m_LocalPosition: {x: -0, y: 11.946952, z: -3.6867623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5795035041044820010}
+  - {fileID: 7182457219461067308}
+  - {fileID: 6129045276123463357}
+  - {fileID: 7357614342555919099}
   m_Father: {fileID: 818433458595273018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -488,3 +494,303 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5463886894644051046
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1802400149895424465}
+    m_Modifications:
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.693
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740629, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_Name
+      value: Wind Trail  WindMill (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b430cf0fcfa2394e80c903a6c3d1d90, type: 3}
+--- !u!4 &7182457219461067308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 5463886894644051046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5649178201513815217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1802400149895424465}
+    m_Modifications:
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.680001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5300004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740629, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_Name
+      value: Wind Trail  WindMill (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b430cf0fcfa2394e80c903a6c3d1d90, type: 3}
+--- !u!4 &7357614342555919099 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 5649178201513815217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8652135397124210272
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1802400149895424465}
+    m_Modifications:
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.583047
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.730001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740629, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_Name
+      value: Wind Trail  WindMill
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b430cf0fcfa2394e80c903a6c3d1d90, type: 3}
+--- !u!4 &5795035041044820010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 8652135397124210272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9038769340914004215
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1802400149895424465}
+    m_Modifications:
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2917935531293740629, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+        type: 3}
+      propertyPath: m_Name
+      value: Wind Trail  WindMill (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b430cf0fcfa2394e80c903a6c3d1d90, type: 3}
+--- !u!4 &6129045276123463357 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2917935531293740618, guid: 6b430cf0fcfa2394e80c903a6c3d1d90,
+    type: 3}
+  m_PrefabInstance: {fileID: 9038769340914004215}
+  m_PrefabAsset: {fileID: 0}
