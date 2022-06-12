@@ -4,6 +4,8 @@ using UnityEngine;
 public partial class Player
 {
     [Header("Status")] 
+    [SerializeField] private bool godmode;
+    
     //mudei no prefab os valores dos tickrates para playtest porpuse
     [SerializeField] private float hungerTickRate = 0.5f;  
     [SerializeField] private int maxHunger = 250;
@@ -33,6 +35,7 @@ public partial class Player
     public void TakeDamageServerRpc(int value)
     {
         if (!IsServer) return;
+        if (godmode) return;
         int lastHealth = currentHealth.Value;
         currentHealth.Value -= value;
         if (lastHealth > currentHealth.Value)
