@@ -106,7 +106,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 15e2d1069e6e54d4392be68ab3d5c7b6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ac22a8dbc653b141a6d2a4ba9ad14c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _White_Normal:
@@ -132,6 +132,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _Ambient_Occlusion: 0
     - _Black_Metalness: 0
     - _Black_Normal_Str: 1
     - _Black_Smoothness: 0
@@ -142,6 +143,8 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Damaged_Power: 5
+    - _Damaged_Strength: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -182,7 +185,7 @@ Material:
     - _ToonRampSmoothness: 0
     - _Toon_Strength: 0.3
     - _Use_Color: 0
-    - _Use_Normal: 1
+    - _Use_Normal: 0
     - _White_Metalness: 0
     - _White_Normal_Str: 1
     - _White_Smoothness: 0
@@ -195,7 +198,8 @@ Material:
     - _Black_Tilling: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 0.6886792, g: 0.31407243, b: 0.10720005, a: 1}
     - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
-    - _ColorMultiply: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 0}
+    - _ColorMultiply: {r: 1, g: 1, b: 1, a: 1}
+    - _Damaged_Color: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Green_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Green_Tilling: {r: 1, g: 1, b: 0, a: 0}
