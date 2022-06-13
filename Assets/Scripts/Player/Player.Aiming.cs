@@ -180,6 +180,12 @@ public partial class Player
                         AnimatorUsePickaxe();
                     }
                     break;
+                case ItemTag.Food:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
+                    {
+                        EatOrDrink(hotbars[currentSlot].slot);
+                    }
+                    break;
             }
         }
         

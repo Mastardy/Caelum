@@ -333,7 +333,6 @@ GameObject:
   - component: {fileID: 7475474967059428375}
   - component: {fileID: 262051555627543051}
   - component: {fileID: 166370031685227200}
-  - component: {fileID: 3476790965704817388}
   m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
@@ -383,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -399,26 +398,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3476790965704817388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4730846237849843001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971dc26f7dd7f8d4e83720d178ac3556, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  parentTransform: {fileID: 0}
-  rectTransform: {fileID: 7475474967059428375}
-  textRectTransform: {fileID: 5281415863932602261}
-  durabilityRectTransform: {fileID: 2653112380902440632}
-  inventorySlot: {fileID: 7931659897832043031}
-  itemDescriptionPrefab: {fileID: 8189009842274325891, guid: dc4e6598a63f73a4b9169f5e6a8552b9,
-    type: 3}
 --- !u!1 &6416356281790700583
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +487,7 @@ GameObject:
   - component: {fileID: 6271930623712063138}
   - component: {fileID: 7257846987177708057}
   - component: {fileID: 7931659897832043031}
+  - component: {fileID: 8226998819891892940}
   m_Layer: 9
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -680,3 +660,23 @@ MonoBehaviour:
   durabilityForeground: {fileID: 6438707141450164036}
   inventoryItem: {fileID: 0}
   image: {fileID: 166370031685227200}
+--- !u!114 &8226998819891892940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552567173069536981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971dc26f7dd7f8d4e83720d178ac3556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  parentTransform: {fileID: 0}
+  rectTransform: {fileID: 7475474967059428375}
+  textRectTransform: {fileID: 5281415863932602261}
+  durabilityRectTransform: {fileID: 2653112380902440632}
+  inventorySlot: {fileID: 7931659897832043031}
+  itemDescriptionPrefab: {fileID: 8189009842274325891, guid: dc4e6598a63f73a4b9169f5e6a8552b9,
+    type: 3}

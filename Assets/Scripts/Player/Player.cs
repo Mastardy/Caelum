@@ -70,6 +70,8 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             SpawnPlayer();
+            GiveItemServerRpc(this, "fruit_pear", 1);
+            GiveItemServerRpc(this, "wood", 2);
             //GiveItemServerRpc(this, "axe_stone", 1, 1);
             //GiveItemServerRpc(this, "axe_iron", 1, 1);
             //GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
