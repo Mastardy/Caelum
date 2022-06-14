@@ -267,7 +267,7 @@ public partial class Player
         firstPersonAnimator.SetTrigger("Collect");
     }
 
-    private void AnimatorEat() //not done
+    private void AnimatorEat()
     {
         SetLeftArmWeight(1);
         firstPersonAnimator.SetTrigger("Eat");
