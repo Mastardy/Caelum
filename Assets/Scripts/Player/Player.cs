@@ -12,6 +12,7 @@ public partial class Player : NetworkBehaviour
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
     [SerializeField] private Transform weaponCamera;
+    public CameraShake cameraShake;
 
     private void Start()
     {
