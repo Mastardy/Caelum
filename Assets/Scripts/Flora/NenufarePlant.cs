@@ -7,6 +7,7 @@ public class NenufarePlant : MonoBehaviour
     private Animator animator;
     private Player player;
     public int cameraShakeAmount = 10;
+    public int damage = 25;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -17,7 +18,6 @@ public class NenufarePlant : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.gameObject.GetComponent<Player>();
-            player.cameraShake.StartShake(1f, cameraShakeAmount);
             animator.SetBool("Close",true);
         }
     }
@@ -32,11 +32,16 @@ public class NenufarePlant : MonoBehaviour
         }
     }
 
+    public void StartShake()
+    {
+        player.cameraShake.StartShake(1f, cameraShakeAmount);
+    }
+
     public void Attack()
     {
         if (player)
         {
-            player.TakeDamageServerRpc(50);
+            player.TakeDamageServerRpc(damage);
             player.cameraShake.StopShake();
         }
     }

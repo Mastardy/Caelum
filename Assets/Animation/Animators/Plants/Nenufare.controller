@@ -194,7 +194,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Nenufare|Close
-  m_Speed: 0.85
+  m_Speed: 0.7
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -897439356838223782}
@@ -246,10 +246,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Close
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2075398656145144519}
   m_Solo: 0
@@ -258,7 +255,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0
+  m_ExitTime: 25
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

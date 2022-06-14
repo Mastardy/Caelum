@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3313428254065321921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.4219, y: 3.4219, z: 3.4219}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6485373195545603557}
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b9caa8c1e966543a6fd251ed2aee23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraShakeAmount: 15
 --- !u!95 &5514425049783799631
 Animator:
   serializedVersion: 4
