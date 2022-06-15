@@ -107,6 +107,13 @@ public partial class Player
                 lookingAt = hitInfo;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out Saw saw))
+            {
+                aimText.SetText("Saw");
+                lookingAt = hitInfo;
+                return;
+            }
         }
         
         lookingAt = null;
@@ -257,6 +264,14 @@ public partial class Player
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
                 fishingNet.TryFishingServerRpc(this);
+            }
+        }
+        
+        if(lookingAt.TryGetComponent(out saw))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                OpenSaw();
             }
         }
     }

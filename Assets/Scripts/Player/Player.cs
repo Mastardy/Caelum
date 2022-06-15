@@ -151,7 +151,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inInventory && !inCrafting && !inOven && !inPause)
+            if (!inInventory && !inCrafting && !inOven && !inPause && !inSaw)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
                 {
@@ -159,7 +159,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inChat && !inCrafting && !inOven && !inPause)
+            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
@@ -175,6 +175,7 @@ public partial class Player : NetworkBehaviour
                 else if(inPause) HidePauseMenu();
                 else if(inCrafting) HideCrafting();
                 else if(inOven) HideOven();
+                else if(inSaw) HideSaw();
                 else OpenPauseMenu();
             }
             
@@ -193,6 +194,14 @@ public partial class Player : NetworkBehaviour
                 if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f)) 
                 {
                     cooker.CloseOvenServerRpc(this);
+                }
+            }
+
+            if (inSaw)
+            {
+                if(InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    HideSaw();
                 }
             }
             
