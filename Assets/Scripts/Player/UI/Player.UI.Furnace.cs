@@ -27,7 +27,7 @@ public partial class Player
 
         playerCamera.GetComponent<Camera>().enabled = true;
     }
-
+    
     /// <summary>
     /// Opens the Saw
     /// </summary>
@@ -36,6 +36,7 @@ public partial class Player
         Cursor.lockState = CursorLockMode.Confined;
         inFurnace = true;
         takeInput = false;
+        
         
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);

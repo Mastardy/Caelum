@@ -199,6 +199,8 @@ public partial class Player : NetworkBehaviour
 
             if (inSaw)
             {
+                SawUpdate();
+                
                 if(InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
                 {
                     HideSaw();

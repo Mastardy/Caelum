@@ -36,6 +36,8 @@ public partial class Player
         sawCamera.gameObject.SetActive(false);
         sawCamera.position = sawCameraPosition;
         sawCamera.rotation = Quaternion.Euler(sawCameraRotation);
+
+        PrepareSaw();
     }
 
     /// <summary>
@@ -65,7 +67,7 @@ public partial class Player
 
     public void TrySaw()
     {
-        if (GetItemAmount("wood") < 2) return;
+        saw.SawStartServerRpc();
         
         // TODO: Como funciona a SAW?
     }
@@ -76,7 +78,7 @@ public partial class Player
         
         if (!saw.isSawing) return;
 
-        sawTimerText.SetText(5 - (Time.time - saw.sawTimer) + "sec");
+        sawTimerText.SetText(Mathf.CeilToInt(5 - (Time.time - saw.sawTimer)) + "sec");
         sawTimerForeground.fillAmount = (Time.time - saw.sawTimer) / 5;
     }
 }
