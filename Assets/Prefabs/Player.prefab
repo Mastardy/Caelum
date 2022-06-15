@@ -4974,6 +4974,10 @@ MonoBehaviour:
   ovenSpeed: 2
   ovenArrow: {fileID: 8036363138916365157}
   ovenScaler: {fileID: 4671196403524406613}
+  furnacePanel: {fileID: 0}
+  furnaceCamera: {fileID: 0}
+  furnaceCameraPosition: {x: 0, y: 0, z: 0}
+  furnaceCameraRotation: {x: 0, y: 0, z: 0}
   healthBackgroundImage: {fileID: 8075507775372933506}
   healthForegroundImage: {fileID: 7686358750803794854}
   hungerBackgroundImage: {fileID: 2486835611663119558}
@@ -19990,7 +19994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &22245029565295810
 RectTransform:
   m_ObjectHideFlags: 0
