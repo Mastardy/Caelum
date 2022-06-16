@@ -67,6 +67,7 @@ public partial class Player
 
     private void EnableFirstPerson()
     {
+        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = true;
@@ -82,6 +83,7 @@ public partial class Player
     
     private void DisableFirstPerson()
     {
+        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = false;
@@ -128,6 +130,10 @@ public partial class Player
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
         thirdPersonAnimator.SetBool(parachuteCache, parachuteNet.Value);
+        thirdPersonAnimator.SetBool(toolCache, holdToolNet.Value && !parachuteNet.Value);
+        if (inParachute) SetTPSArmsWeight(2, 0);
+        thirdPersonAnimator.SetBool("Tool", holdToolNet.Value);
+        //thirdPersonAnimator.SetBool(aimCache, animAim);
 
         //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0);
@@ -139,10 +145,6 @@ public partial class Player
 
         //tools and weapons variables
         firstPersonAnimator.SetBool(aimCache, animAim);
-        
-        thirdPersonAnimator.SetBool(toolCache, holdToolNet.Value && !parachuteNet.Value);
-        if (inParachute) SetTPSArmsWeight(2, 0);
-        //thirdPersonAnimator.SetBool(aimCache, animAim);
     }
 
     private void AnimatorEquipTool(bool equip)
