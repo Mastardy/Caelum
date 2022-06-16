@@ -13,4 +13,16 @@ public class Bow : MonoBehaviour
         if (currentArrow == string.Empty) return;
         player.ThrowArrowServerRpc(player, currentArrow);
     }
+
+    public void DrawBow()
+    {
+        if (player.currentArrow != null)
+            player.currentArrow.SetActive(true);
+    }
+
+    public void UndrawBow()
+    {
+        if (player.currentArrow != null)
+            player.currentArrow.SetActive(false);
+    }
 }

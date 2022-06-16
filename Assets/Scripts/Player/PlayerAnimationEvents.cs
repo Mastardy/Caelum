@@ -61,5 +61,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         player.thirdPersonAnimator.SetBool("UseAxe", false);
         //add mais set bool false aqui
+        //fuck eu nao lembro oq era isso
     }
 }

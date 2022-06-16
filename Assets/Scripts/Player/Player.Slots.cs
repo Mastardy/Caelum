@@ -86,9 +86,10 @@ public partial class Player
                 break;
         }
 
-        if (currentWeapon)
+        if (currentWeapon != null)
         {
-            currentWeapon.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            if(currentWeapon.GetComponentInChildren<MeshRenderer>() != null)
+                currentWeapon.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             currentWeapon.layer = LayerMask.NameToLayer("Weapon");
         }
     }
@@ -136,6 +137,7 @@ public partial class Player
         currentWeapon.GetComponent<Bow>().currentArrow = arrow;
         if (arrow == string.Empty) return;
         currentArrow = Instantiate(weaponItems[arrow].weaponPrefab, currentWeapon.GetComponent<Bow>().arrowAnchor);
+        currentArrow.SetActive(false);
         currentArrow.layer = LayerMask.NameToLayer("Weapon");
     }
     
