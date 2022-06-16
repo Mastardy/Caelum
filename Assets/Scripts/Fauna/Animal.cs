@@ -1,8 +1,6 @@
-using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public partial class Animal : NetworkBehaviour
@@ -11,6 +9,7 @@ public partial class Animal : NetworkBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject model;
     [SerializeField] private SkinnedMeshRenderer modelRenderer;
+    [SerializeField] private bool agressive = true;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");

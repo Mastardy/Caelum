@@ -55,4 +55,12 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         }
     }
+
+    //tps functions
+    public void FinishUse()
+    {
+        player.thirdPersonAnimator.SetBool("UseAxe", false);
+        //add mais set bool false aqui
+        //fuck eu nao lembro oq era isso
+    }
 }

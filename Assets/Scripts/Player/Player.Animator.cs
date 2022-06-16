@@ -5,7 +5,7 @@ using System.Collections;
 public partial class Player
 {
     [Header("Animator")]
-    [SerializeField] private Animator thirdPersonAnimator;
+    [SerializeField] public Animator thirdPersonAnimator;
     [SerializeField] private GameObject thirdPersonModel;
     [SerializeField] private Animator firstPersonAnimator;
     
@@ -29,19 +29,27 @@ public partial class Player
     private static readonly int parachuteCache = Animator.StringToHash("Parachute");
 
     //tps model variables
-    private static readonly int holdToolCache = Animator.StringToHash("HoldTool");
-    private static readonly int useToolCache = Animator.StringToHash("UseTool");
+    private bool holdTool;
+    private bool useTool;
+    private bool holdSword;
+    private bool useSword;
+    private bool holdSpear;
+    private bool useSpear;
+    private bool holdGrappling;
+    private bool useGrappling;
+    private bool holdBow;
+    private bool useBow;
 
-    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone);
-    private NetworkVariable<bool> parachuteNet = new(readPerm: NetworkVariableReadPermission.Everyone);
+    private NetworkVariable<bool> isCrouchedNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> moveMagnitudeNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> inputXNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> inputYNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> isGroundedNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> xRotationNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<float> velocityYNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> holdToolNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> useToolNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
+    private NetworkVariable<bool> parachuteNet = new(readPerm: NetworkVariableReadPermission.Everyone, writePerm: NetworkVariableWritePermission.Owner);
 
     private float layerWeight;
     private bool canAimAnim;
@@ -53,12 +61,13 @@ public partial class Player
     
     public bool CanAim
     {
-        get { return canAimAnim; }
-        set { canAimAnim = value; }
+        get => canAimAnim;
+        set => canAimAnim = value;
     }
 
     private void EnableFirstPerson()
     {
+        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = true;
@@ -74,6 +83,7 @@ public partial class Player
     
     private void DisableFirstPerson()
     {
+        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = false;
@@ -95,20 +105,20 @@ public partial class Player
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void NetworkAnimatorUpdateServerRpc(float moveMag, float xInput, float yInput,
-        bool grounded, float rotationX, float velocityY, bool useTool, bool parachute)
+    private void NetworkAnimatorUpdateServerRpc()
     {
         if (!IsServer) return;
         
         isCrouchedNet.Value = isCrouched;
-        moveMagnitudeNet.Value = moveMag;
-        inputXNet.Value = xInput;
-        inputYNet.Value = yInput;
-        isGroundedNet.Value = grounded;
-        xRotationNet.Value = rotationX;
-        velocityYNet.Value = velocityY;
+        moveMagnitudeNet.Value = horizontalVelocity.magnitude;
+        inputXNet.Value = input.x;
+        inputYNet.Value = input.y;
+        isGroundedNet.Value = isGrounded;
+        xRotationNet.Value = xRotation;
+        velocityYNet.Value = verticalVelocity;
+        holdToolNet.Value = holdTool && !inParachute;
         useToolNet.Value = useTool;
-        parachuteNet.Value = parachute;
+        parachuteNet.Value = inParachute;
     }
 
     private void AnimatorUpdate()
@@ -120,6 +130,10 @@ public partial class Player
         thirdPersonAnimator.SetFloat(pitchCache, Map(Mathf.Clamp(-xRotationNet.Value, -50, 50), -90, 90));
         thirdPersonAnimator.SetFloat(yvelCache, Map(velocityYNet.Value, -4, 7));
         thirdPersonAnimator.SetBool(parachuteCache, parachuteNet.Value);
+        thirdPersonAnimator.SetBool(toolCache, holdToolNet.Value && !parachuteNet.Value);
+        if (inParachute) SetTPSArmsWeight(2, 0);
+        thirdPersonAnimator.SetBool("Tool", holdToolNet.Value);
+        //thirdPersonAnimator.SetBool(aimCache, animAim);
 
         //View Model animator variables
         firstPersonAnimator.SetBool(sprintCache, isSprinting && input.y > 0);
@@ -127,12 +141,10 @@ public partial class Player
         if(isGrounded) firstPersonAnimator.SetFloat(speedCache, horizontalVelocity.magnitude);
         firstPersonAnimator.SetBool(jumpCache, !isGrounded);
         firstPersonAnimator.SetFloat(yvelCache, verticalVelocity);
+        firstPersonAnimator.SetBool(parachuteCache, inParachute);
 
         //tools and weapons variables
-        thirdPersonAnimator.SetBool(holdToolCache, holdToolNet.Value);
-        thirdPersonAnimator.SetBool(useToolCache, useToolNet.Value);
         firstPersonAnimator.SetBool(aimCache, animAim);
-        thirdPersonAnimator.SetBool(aimCache, animAim);
     }
 
     private void AnimatorEquipTool(bool equip)
@@ -143,16 +155,29 @@ public partial class Player
             SetRightArmWeight(0);
         }
         firstPersonAnimator.SetBool(toolCache, equip);
+
+        //tps model
+        SetTPSArmsWeight(2, equip ? 1 : 0);
+        holdTool = equip;
+        useTool = false;
     }
 
     private void AnimatorUseAxe()
     {
         firstPersonAnimator.SetTrigger("UseAxe");
+
+        //tps model
+        useTool = true;
+        thirdPersonAnimator.SetBool("UseAxe", useTool);
     }
 
     private void AnimatorUsePickaxe()
     {
         firstPersonAnimator.SetTrigger("UsePickaxe");
+
+        //tps model
+        useTool = true;
+        thirdPersonAnimator.SetBool("UseAxe", useTool);
     }
 
     private void AnimatorEquipSpear(bool equip)
@@ -244,7 +269,7 @@ public partial class Player
         firstPersonAnimator.SetTrigger("Collect");
     }
 
-    private void AnimatorEat() //not done
+    private void AnimatorEat()
     {
         SetLeftArmWeight(1);
         firstPersonAnimator.SetTrigger("Eat");
@@ -261,9 +286,9 @@ public partial class Player
         firstPersonAnimator.SetLayerWeight(1, w);
     }
 
-    public void SetTPSArmsWeight(float w)
+    public void SetTPSArmsWeight(int l, float w)
     {
-        thirdPersonAnimator.SetLayerWeight(2, w);
+        thirdPersonAnimator.SetLayerWeight(l, w);
     }
 
     private static float Map(float value, float min, float max)

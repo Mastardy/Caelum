@@ -57,7 +57,7 @@ public class ResourceRenderer : MonoBehaviour
 
         for (int i = 0; i < points.Count; i++)
         {
-            int rand = Random.Range(0, resourcePrefab.Length);
+            //int rand = Random.Range(0, resourcePrefab.Length);
             //GameObject tree = PrefabUtility.InstantiatePrefab(resourcePrefab[rand], transform) as GameObject;
             //tree.transform.position = points[i];
             //tree.transform.Rotate(0, Random.Range(0, 359), 0);

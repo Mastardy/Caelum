@@ -10,6 +10,7 @@ public partial class MainUI
     /// </summary>
     public void OptionsMenu()
     {   
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         LoadOptions();
         mainMenu.SetActive(false);
         optionsMenu.SetActive(true);
@@ -22,13 +23,14 @@ public partial class MainUI
     /// </summary>
     public void PlayMenu()
     {
-        LoadOptions();
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         mainMenu.SetActive(false);
         playMenu.SetActive(true);
     }
 
     public void CreditsMenu()
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         mainMenu.SetActive(false);
         creditsMenu.SetActive(true);
     }
@@ -38,6 +40,7 @@ public partial class MainUI
     /// </summary>
     public void QuitGame()
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         Application.Quit();
     }
 }

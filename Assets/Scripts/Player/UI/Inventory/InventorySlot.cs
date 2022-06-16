@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -70,7 +71,7 @@ public class InventorySlot : MonoBehaviour
             amountObject.SetActive(true);
             amountText.SetText(Amount.ToString());
         }
-        
+
         OnFill.Invoke();
     }
     
@@ -85,7 +86,7 @@ public class InventorySlot : MonoBehaviour
         image.sprite = null;
         image.enabled = false;
         durability = 0;
-
+        
         OnClear.Invoke();
     }
 }

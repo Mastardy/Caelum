@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
+using UnityEngine.EventSystems;
 
 public partial class Player
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
     private bool inPause;
     
     public void OpenPauseMenu()
@@ -23,6 +25,7 @@ public partial class Player
         inPause = false;
         takeInput = true;
         pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
     }
@@ -31,6 +34,21 @@ public partial class Player
     {
         RespawnPlayer(false);
         HidePauseMenu();
+    }
+
+    public void OptionsMenu()
+    {
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
+        LoadOptions();
+        firstSelection.OnSubmit(new BaseEventData(EventSystem.current));
+        ChangePanel(optionsPanel);
+    }
+
+    public void BackPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
     }
     
     public void MainMenu()

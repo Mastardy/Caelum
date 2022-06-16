@@ -20,7 +20,6 @@ public class Resource : NetworkBehaviour
         curHP.Value -= resourceHP;
         if (particles)
         {
-            particles.Stop();
             particles.Play();
         }
 
@@ -60,7 +59,7 @@ public class Resource : NetworkBehaviour
         var worldGameObjectInvItem = worldGameObject.GetComponent<InventoryGroundItem>();
         worldGameObjectInvItem.inventoryItem = item;
         worldGameObjectInvItem.amount.Value = 1;
-        worldGameObjectInvItem.durability = 0;
+        worldGameObjectInvItem.Durability = 0;
 
         worldGameObject.GetComponent<NetworkObject>().Spawn();
         worldGameObject.GetComponent<Rigidbody>().AddForce(worldGameObject.transform.up + new Vector3(Random.Range(-0.1f, 0.1f), 0.5f, Random.Range(-0.1f, 0.1f)), ForceMode.Impulse);

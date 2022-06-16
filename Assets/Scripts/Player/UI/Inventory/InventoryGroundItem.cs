@@ -5,7 +5,16 @@ public class InventoryGroundItem : NetworkBehaviour
 {
     public InventoryItem inventoryItem;
     [HideInInspector] public NetworkVariable<int> amount = new(readPerm: NetworkVariableReadPermission.Everyone);
-    [HideInInspector] public float durability;
+    private float durability;
+    public float Durability
+    {
+        get => durability;
+        set
+        {
+            durability = value;
+            if(durability <= 0.01 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword) Destroy(gameObject);
+        }
+    }
     [HideInInspector] public Collider[] nearResources;
     [HideInInspector] public LayerMask groundItemLayerMask;
     
@@ -18,7 +27,7 @@ public class InventoryGroundItem : NetworkBehaviour
             if (!player.CanPickUpItem()) return;
             
             Destroy(gameObject);
-            player.GiveItemServerRpc(player, inventoryItem.itemName, amount.Value, durability);
+            player.GiveItemServerRpc(player, inventoryItem.itemName, amount.Value, Durability);
         }
     }
 

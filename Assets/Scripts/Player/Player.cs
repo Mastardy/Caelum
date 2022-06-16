@@ -6,11 +6,14 @@ public partial class Player : NetworkBehaviour
 {
     public static List<Player> allPlayers = new();
     
-    private GameOptionsScriptableObjects gameOptions;
+    private GameOptionsScriptableObject gameOptions;
+    [SerializeField] private SoundScriptableObject sounds;
     
     [Header("Player")]
     [SerializeField] private Transform playerCamera;
-    
+    [SerializeField] private Transform weaponCamera;
+    public CameraShake cameraShake;
+
     private void Start()
     {
         allPlayers.Add(this);
@@ -21,6 +24,8 @@ public partial class Player : NetworkBehaviour
         {
             firstPersonAnimator.enabled = false;
             playerCamera.gameObject.SetActive(false);
+            weaponCamera.gameObject.SetActive(false);
+            playerCanvas.gameObject.SetActive(false);
         }
         else
         {
@@ -29,21 +34,27 @@ public partial class Player : NetworkBehaviour
             currentHunger = maxHunger;
             currentThirst = maxThirst;
 
-            for (int i = 0; i < hotbars.Count; i++)
+            foreach (var hotbar in hotbars)
             {
-                hotbars[i].Selected = false;
+                hotbar.Selected = false;
             }
 
             gameOptions = GameManager.Instance.gameOptions;
 
             playerCanvas.gameObject.SetActive(true);
             playerCamera.gameObject.SetActive(true);
+            playerCamera.GetComponent<Camera>().fieldOfView = 60 + (gameOptions.fieldOfView - 90f) * 0.875f;
+
+            weaponCamera.gameObject.SetActive(true);
+            weaponCamera.GetComponent<Camera>().fieldOfView = playerCamera.GetComponent<Camera>().fieldOfView;
 
             characterController = GetComponent<CharacterController>();
             Cursor.lockState = CursorLockMode.Locked;
 
             AnimatorStart();
 
+            parachuteAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+            
             Invoke(nameof(LateStart), 0.1f);
         }
     }
@@ -59,20 +70,30 @@ public partial class Player : NetworkBehaviour
     {
         if (IsLocalPlayer)
         {
-            CurrentSlot = 0;
-            playerCanvas.gameObject.SetActive(true);
             SpawnPlayer();
+            GiveItemServerRpc(this, "fruit_pear", 1);
+            GiveItemServerRpc(this, "wood", 2);
             GiveItemServerRpc(this, "axe_stone", 1, 1);
             GiveItemServerRpc(this, "axe_iron", 1, 1);
             GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
             GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
-            // GiveItemClientRpc("bow", 1, 1);
+            GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
+            GiveItemClientRpc(this, "bow", 1, 1);
             GiveItemServerRpc(this, "sword", 1, 1);
             GiveItemServerRpc(this, "spear_wood", 1, 1);
             GiveItemServerRpc(this, "spear_stone", 1, 1);
             GiveItemServerRpc(this, "spear_iron", 1, 1);
-            // GiveItemClientRpc("grappling_hook", 1, 1);
+            GiveItemServerRpc(this, "arrow_wood", 10);
+            GiveItemServerRpc(this, "arrow_stone", 10);
+            GiveItemServerRpc(this, "arrow_iron", 10);
+            GiveItemClientRpc(this, "grappling_hook");
+            Invoke(nameof(LateLateStart), 0.1f);
         }
+    }
+
+    private void LateLateStart()
+    {
+        CurrentSlot = 0;
     }
 
     private void FixedUpdate()
@@ -130,7 +151,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inInventory && !inCrafting && !inOven && !inPause)
+            if (!inInventory && !inCrafting && !inOven && !inPause && !inSaw)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
                 {
@@ -138,7 +159,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inChat && !inCrafting && !inOven && !inPause)
+            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
@@ -152,6 +173,9 @@ public partial class Player : NetworkBehaviour
                 if(inChat) HideChat();
                 else if(inInventory) HideInventory();
                 else if(inPause) HidePauseMenu();
+                else if(inCrafting) HideCrafting();
+                else if(inOven) HideOven();
+                else if(inSaw) HideSaw();
                 else OpenPauseMenu();
             }
             
@@ -172,6 +196,16 @@ public partial class Player : NetworkBehaviour
                     cooker.CloseOvenServerRpc(this);
                 }
             }
+
+            if (inSaw)
+            {
+                SawUpdate();
+                
+                if(InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                {
+                    HideSaw();
+                }
+            }
             
             if (car)
             {
@@ -180,14 +214,17 @@ public partial class Player : NetworkBehaviour
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;
-            if (Input.GetKeyDown(KeyCode.Alpha2)) CurrentSlot = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
-            if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
-            if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
-            if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
+            if (takeInput)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;
+                if (Input.GetKeyDown(KeyCode.Alpha2)) CurrentSlot = 1;
+                if (Input.GetKeyDown(KeyCode.Alpha3)) CurrentSlot = 2;
+                if (Input.GetKeyDown(KeyCode.Alpha4)) CurrentSlot = 3;
+                if (Input.GetKeyDown(KeyCode.Alpha5)) CurrentSlot = 4;
+                if (Input.GetKeyDown(KeyCode.Alpha6)) CurrentSlot = 5;
 
-            if (Input.GetAxis("Mouse ScrollWheel") != 0) CurrentSlot += Input.GetAxis("Mouse ScrollWheel") < 0 ? 1 : -1;
+                if (Input.GetAxis("Mouse ScrollWheel") != 0) CurrentSlot += Input.GetAxis("Mouse ScrollWheel") < 0 ? 1 : -1;
+            }
 
             MovementUpdate();
 
@@ -197,8 +234,7 @@ public partial class Player : NetworkBehaviour
             
             StatusUpdate();
 
-            NetworkAnimatorUpdateServerRpc(horizontalVelocity.magnitude, input.x, input.y, 
-                isGrounded, xRotation, verticalVelocity, false, inParachute);
+            NetworkAnimatorUpdateServerRpc();
         }
 
         PlayFootstepSounds();

@@ -2,6 +2,7 @@ using System;
 using Steamworks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class StartPoint : MonoBehaviour
@@ -25,13 +26,17 @@ public class StartPoint : MonoBehaviour
 
     public void PlaySingleplayer()
     {
-        SteamNetworkManager.Singleton.StartSingleplayer();
+        GetComponentInChildren<EventSystem>().enabled = false;
+        GetComponentInChildren<AudioListener>().enabled = false;
         Destroy(gameObject);
+        SteamNetworkManager.Singleton.StartSingleplayer();
     }
 
     public void PlayMultiplayer()
     {
-        SteamNetworkManager.Singleton.StartHost();
+        GetComponentInChildren<EventSystem>().enabled = false;
+        GetComponentInChildren<AudioListener>().enabled = false;
         Destroy(gameObject);
+        SteamNetworkManager.Singleton.StartHost();
     }
 }

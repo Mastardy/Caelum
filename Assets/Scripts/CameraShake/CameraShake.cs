@@ -33,6 +33,22 @@ public class CameraShake : MonoBehaviour
         instance.StartCoroutine(instance.cShake(0.1f, amount));
     }
 
+    public void StartShake(float dur, int am)
+    {
+        if (!instance.enabled) return;
+
+        instance._originalPos = instance.gameObject.transform.localPosition;
+        instance.StopAllCoroutines();
+        instance.StartCoroutine(instance.cShake(dur, am));
+    }
+
+    public void StopShake()
+    {
+        if (!instance.enabled) return;
+        instance.StopAllCoroutines();
+        instance.gameObject.transform.localPosition = instance._originalPos;
+    }
+
     public IEnumerator cShake(float duration, int amount)
     {
         float endTime = Time.time + duration;

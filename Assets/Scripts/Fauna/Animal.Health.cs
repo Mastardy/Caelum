@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using Unity.Netcode;
 
 public partial class Animal
@@ -7,14 +8,25 @@ public partial class Animal
     public int maxHealth = 150;
     public NetworkVariable<int> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
 
+    private static readonly int damagedStrength = Shader.PropertyToID("_Damaged_Strength");
+
+    private MaterialPropertyBlock animalMpb;
+    private MaterialPropertyBlock AnimalMpb
+    {
+        get
+        {
+            if (animalMpb == null) animalMpb = new MaterialPropertyBlock();
+            return animalMpb;
+        }
+    }
+
     [ServerRpc]
     public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
     {
         currentHealth.Value -= damageTaken;
         if (!dead){
             animator.SetTrigger(hitCache);
-            FlashColor();
-            Invoke(nameof(ResetColor), 0.25f);
+            StartCoroutine(FadeColor());
         }
 
         if (currentHealth.Value <= 0)
@@ -33,17 +45,23 @@ public partial class Animal
         animator.SetBool(deadCache, true);
         foreach(var col in GetComponentsInChildren<Collider>())
         {
-            col.enabled = false;
+            if(!col.isTrigger) col.enabled = false;
         }
     }
 
-    private void FlashColor()
+    private IEnumerator FadeColor()
     {
-        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 1);
-    }
+        AnimalMpb.SetFloat(damagedStrength, 1);
+        modelRenderer.SetPropertyBlock(AnimalMpb);
 
-    private void ResetColor()
-    {
-        modelRenderer.sharedMaterial.SetFloat("_Damaged_Strength", 0);
+        while (true) {
+            AnimalMpb.SetFloat(damagedStrength, AnimalMpb.GetFloat(damagedStrength) - Time.deltaTime * 3);
+            
+            if(AnimalMpb.GetFloat(damagedStrength) < 0) AnimalMpb.SetFloat(damagedStrength, 0);
+
+            modelRenderer.SetPropertyBlock(AnimalMpb);
+            
+            yield return AnimalMpb.GetFloat(damagedStrength) <= 0;
+        }
     }
 }

@@ -8,6 +8,7 @@ public partial class Player
     [Header("Aiming")]
     [SerializeField] private Transform headTransform;
     [SerializeField] private Vector3 parachuteCameraRotation = new Vector3(-25, 0, 0);
+    [SerializeField] private ParticleSystem impactParticle;
 
     private float xRotation;
 
@@ -106,11 +107,20 @@ public partial class Player
                 lookingAt = hitInfo;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out Saw saw))
+            {
+                aimText.SetText("Saw");
+                lookingAt = hitInfo;
+                return;
+            }
         }
         
         lookingAt = null;
         aimText.SetText(string.Empty);
     }
+
+    private bool lastBowState;
     
     private void EyeTraceInfo()
     {
@@ -129,12 +139,13 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Spear:
+                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                     if (InputHelper.GetKey(gameOptions.secondaryAttackKey))
                     {
+                        
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                         {
                             AnimatorThrowSpear();
-                            hotbars[currentSlot].slot.Durability -= 0.25f;
                         }
                         break;
                     }
@@ -146,18 +157,20 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Bow:
-                    if (!Input.GetKey(gameOptions.secondaryAttackKey)) break;
+                    AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
+                    if (!Input.GetKey(gameOptions.secondaryAttackKey))
+                    {
+                        lastBowState = false;
+                        break;
+                    }
+                    if (!currentArrow) SetBowArrow();
+                    if(!lastBowState) AudioManager.Instance.PlaySound(sounds.bowPull);
+                    lastBowState = true;
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
+                        if (!currentArrow) return;
                         AnimatorShootBow();
-                        
-                        if (!lookingAt) return;
-                        
-                        if (lookingAt.TryGetComponent(out Animal animal))
-                        {
-                            animal.TakeDamageServerRpc(50, this);
-                            hotbars[currentSlot].slot.Durability -= 0.01f;
-                        }
+                        AudioManager.Instance.PlaySound(sounds.bowShoot);
                     }
                     break;
                 case ItemTag.Axe:
@@ -172,6 +185,12 @@ public partial class Player
                     {
                         PlayToolSwing("sword");
                         AnimatorUsePickaxe();
+                    }
+                    break;
+                case ItemTag.Food:
+                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
+                    {
+                        EatOrDrink(hotbars[currentSlot].slot);
                     }
                     break;
             }
@@ -247,11 +266,32 @@ public partial class Player
                 fishingNet.TryFishingServerRpc(this);
             }
         }
+        
+        if(lookingAt.TryGetComponent(out saw))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                OpenSaw();
+            }
+        }
     }
 
     public void TryAttack()
     {
         if (!lookingAt) return;
+
+        if (lookingAt.TryGetComponent(out Resource resource))
+        {
+            switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
+            {
+                case ItemTag.Spear:
+                case ItemTag.Sword:
+                    impactParticle.Play();
+                    impactParticle.Play();
+                    break;
+            }
+        }
+
         if (lookingAt.TryGetComponent(out Animal animal))
         {
             switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
@@ -259,9 +299,11 @@ public partial class Player
                 case ItemTag.Spear:
                     animal.TakeDamageServerRpc(10, this);
                     hotbars[currentSlot].slot.Durability -= 0.05f;
+                    impactParticle.Play();
                     break;
                 case ItemTag.Sword:
                     animal.TakeDamageServerRpc(20, this);
+                    impactParticle.Play();
                     hotbars[currentSlot].slot.Durability -= 0.025f;
                     break;
             }
@@ -281,6 +323,11 @@ public partial class Player
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
+                        AudioManager.Instance.PlaySound(sounds.axeHit);
+                    }
+                    else
+                    {
+                        impactParticle.Play();
                     }
                     break;
                 case "stone":
@@ -288,6 +335,11 @@ public partial class Player
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
                         resource.HitResourceServerRpc(1);
+                        AudioManager.Instance.PlaySound(sounds.pickaxeHit);
+                    }
+                    else
+                    {
+                        impactParticle.Play();
                     }
                     break;
             }
@@ -306,19 +358,48 @@ public partial class Player
                 Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
             spear.name = player.inventoryItems[itemName].name;
 
-            spear.GetComponent<ThrowableSpear>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
-            spear.GetComponent<ThrowableSpear>().player = ply;
+            spear.GetComponent<Throwable>().damage = itemName == "spear_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
+            spear.GetComponent<Throwable>().player = ply;
             
             spear.AddComponent(typeof(InventoryGroundItem));
             var worldGameObjectInvItem = spear.GetComponent<InventoryGroundItem>();
             worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
             worldGameObjectInvItem.amount.Value = 1;
-            worldGameObjectInvItem.durability = player.hotbars[player.currentSlot].slot.Durability;
+            worldGameObjectInvItem.Durability = player.hotbars[player.currentSlot].slot.Durability;
 
             spear.GetComponent<NetworkObject>().Spawn();
-            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 20, ForceMode.Impulse);
+            spear.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 30, ForceMode.Impulse);
             
             player.hotbars[slot].slot.Clear();
+        }
+    }
+
+    [ServerRpc]
+    public void ThrowArrowServerRpc(NetworkBehaviourReference ply, string itemName)
+    {
+        if (!IsServer) return;
+
+        if (ply.TryGet(out Player player))
+        {
+            var playerCameraTransform = playerCamera.transform;
+            var arrow = Instantiate(weaponItems[itemName].throwablePrefab,
+                playerCameraTransform.position + playerCameraTransform.forward,
+                Quaternion.Euler(playerCameraTransform.rotation.eulerAngles + new Vector3(90, 0, 0)));
+            arrow.name = player.inventoryItems[itemName].name;
+
+            arrow.GetComponent<Throwable>().damage = itemName == "arrow_iron" ? 30 : itemName == "spear_stone" ? 20 : 10;
+            arrow.GetComponent<Throwable>().player = ply;
+
+            arrow.AddComponent(typeof(InventoryGroundItem));
+            var worldGameObjectInvItem = arrow.GetComponent<InventoryGroundItem>();
+            worldGameObjectInvItem.inventoryItem = player.inventoryItems[itemName];
+            worldGameObjectInvItem.amount.Value = 1;
+
+            arrow.GetComponent<NetworkObject>().Spawn();
+            arrow.GetComponent<Rigidbody>().AddForce(playerCameraTransform.forward * 40, ForceMode.Impulse);
+            
+            player.RemoveItem(itemName, 1);
+            player.SetBowArrow();
         }
     }
 }

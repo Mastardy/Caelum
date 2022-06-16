@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blades: {fileID: 3830824956279704436}
-  speed: -0.2
+  speed: -0.5
   perlinScale: 40
+  defaultRotation: {x: 0, y: -90, z: 0}
+  rotationMultiplier: {x: 1, y: 0, z: 0}
 --- !u!208 &4105450158973520077
 NavMeshObstacle:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public partial class Player
     [SerializeField] private Transform grapplingBone;
 
     public GameObject currentWeapon;
+    public GameObject currentArrow;
     private Bow bow;
     private float lastSlotChange;
     private int lastSlot;
@@ -24,6 +25,7 @@ public partial class Player
             if (inParachute) return;
             if (Time.time - lastSlotChange < 0.1f) return;
             var val = value < 0 ? 5 : value > 5 ? 0 : value;
+            if (val == currentSlot) return;
             
             lastSlot = currentSlot;
             currentSlot = val;
@@ -40,8 +42,9 @@ public partial class Player
             hotbars[currentSlot].slot.OnFill.AddListener(() => EquipItem());
             hotbars[currentSlot].slot.OnClear.AddListener(() => UnequipItem());
 
-            if (hotbars[val].slot.isEmpty) UnequipItem();
-            else EquipItem();
+            UnequipItem();
+            Invoke("EquipItem", 0.1f);
+            
             
             lastSlotChange = Time.time;
         }
@@ -50,6 +53,8 @@ public partial class Player
     private void EquipItem()
     {
         DestroyWeapon();
+
+        if (hotbars[currentSlot].slot.isEmpty) return;
 
         InventoryItem currentItem = hotbars[currentSlot].slot.inventoryItem;
         
@@ -70,6 +75,8 @@ public partial class Player
                 break;
             case ItemTag.Bow:
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, bowBone);
+                currentWeapon.GetComponent<Bow>().player = this;
+                SetBowArrow();
                 AnimatorEquipBow(true);
                 Invoke(nameof(SetBowAnimator), 0.2f);
                 break;
@@ -77,6 +84,13 @@ public partial class Player
                 currentWeapon = Instantiate(weaponItems[currentItem.itemName].weaponPrefab, grapplingBone);
                 AnimatorEquipGrappling(true);
                 break;
+        }
+
+        if (currentWeapon != null)
+        {
+            if(currentWeapon.GetComponentInChildren<MeshRenderer>() != null)
+                currentWeapon.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            currentWeapon.layer = LayerMask.NameToLayer("Weapon");
         }
     }
 
@@ -89,6 +103,9 @@ public partial class Player
         AnimatorEquipSpear(false);
         AnimatorEquipBow(false);
         AnimatorEquipGrappling(false);
+
+        SetLeftArmWeight(0);
+        SetRightArmWeight(0);
     }
 
     public void DestroyWeapon()
@@ -110,8 +127,32 @@ public partial class Player
         }
     }
 
+    #region Bow
+
+    private void SetBowArrow()
+    {
+        DestroyChildren(currentWeapon.GetComponent<Bow>().arrowAnchor);
+        currentArrow = null;
+        var arrow = GetPriorityArrow();
+        currentWeapon.GetComponent<Bow>().currentArrow = arrow;
+        if (arrow == string.Empty) return;
+        currentArrow = Instantiate(weaponItems[arrow].weaponPrefab, currentWeapon.GetComponent<Bow>().arrowAnchor);
+        currentArrow.SetActive(false);
+        currentArrow.layer = LayerMask.NameToLayer("Weapon");
+    }
+    
+    private string GetPriorityArrow()
+    {
+        if (GetItemAmount("arrow_iron") > 0) return "arrow_iron";
+        if (GetItemAmount("arrow_stone") > 0) return "arrow_stone";
+        if (GetItemAmount("arrow_wood") > 0) return "arrow_wood";        
+        return string.Empty;
+    }
+    
     private void SetBowAnimator()
     {
         if(currentWeapon) currentWeapon.TryGetComponent(out bow);
     }
+    
+    #endregion Bow
 }

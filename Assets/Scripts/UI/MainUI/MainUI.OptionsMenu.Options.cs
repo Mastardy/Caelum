@@ -12,6 +12,7 @@ public partial class MainUI
     /// <param name="newValue"></param>
     public void FieldOfViewHandle(float newValue)
     {
+        AudioManager.Instance.PlaySoundUnsafe(sounds.uiScrollWheel, unsafeScrollWheelAudioSource, 0.2f);
         fieldOfViewLabel.text = newValue.ToString("F1").Replace(",", ".");
         gameOptions.fieldOfView = newValue;
         gameOptionsScriptableObject.fieldOfView = newValue;
@@ -24,6 +25,7 @@ public partial class MainUI
     /// <param name="toggleButton"></param>
     public void CompassVisibilityHandle(ToggleButton toggleButton)
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         ToggleButton(toggleButton);
         gameOptions.compassVisibility = toggleButton.Value;
         gameOptionsScriptableObject.compassVisibility = toggleButton.Value;
@@ -36,6 +38,7 @@ public partial class MainUI
     /// <param name="toggleButton"></param>
     public void ShowChatHandle(ToggleButton toggleButton)
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         ToggleButton(toggleButton);
         gameOptions.showChat = toggleButton.Value;
         gameOptionsScriptableObject.showChat = toggleButton.Value;
@@ -48,6 +51,7 @@ public partial class MainUI
     /// <param name="toggleButton"></param>
     public void ShowNameTagsHandle(ToggleButton toggleButton)
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         ToggleButton(toggleButton);
         gameOptions.showNameTags = toggleButton.Value;
         gameOptionsScriptableObject.showNameTags = toggleButton.Value;
@@ -60,6 +64,7 @@ public partial class MainUI
     /// <param name="toggleButton"></param>
     public void ShowGameTipsHandle(ToggleButton toggleButton)
     {
+        AudioManager.Instance.PlaySound(sounds.uiIn);
         ToggleButton(toggleButton);
         gameOptions.showGameTips = toggleButton.Value;
         gameOptionsScriptableObject.showGameTips = toggleButton.Value;

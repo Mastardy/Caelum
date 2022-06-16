@@ -28,6 +28,7 @@ public partial class Player
 
     [SerializeField] private Vector3 parachuteCameraLocation = new(0,5,-3);
     [SerializeField] private GameObject parachuteObject;
+    [SerializeField] private ParticleSystem speedLines;
     
     private Vector3 playerCameraPosition = new(0, 3, 0);
     
@@ -214,15 +215,12 @@ public partial class Player
     
     private void Parachute()
     {
-        if (inParachute && !wasInParachute)
+        if (!inParachute)
         {
-            DisableFirstPerson();
-            parachuteObject.SetActive(true);
-        }
-        else if(!inParachute && wasInParachute)
-        {
-            EnableFirstPerson();
-            parachuteObject.SetActive(false);
+            if(!AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource].clip == sounds.parachuteClose)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+            }   
         }
         
         wasInParachute = inParachute;
@@ -230,18 +228,51 @@ public partial class Player
         if (isGrounded)
         {
             inParachute = false;
+            if (wasInParachute)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+                speedLines.Stop();
+            }
             return;
         }
 
         if (verticalVelocity > -20f && !wasInParachute)
         {
             inParachute = false;
+            if (wasInParachute)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+                speedLines.Stop();
+            }
             return;
         }
 
         if (Time.time - lastParachuteOpen < 1f)
         {
             inParachute = false;
+            if (wasInParachute)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
+                lastParachuteOpen = Time.time;
+                EnableFirstPerson();
+                parachuteObject.SetActive(false);
+                if (currentWeapon)
+                    currentWeapon.SetActive(true);
+                speedLines.Stop();
+            }
             return;
         }
 
@@ -254,15 +285,47 @@ public partial class Player
             inParachute = Input.GetKey(gameOptions.jumpKey);
         }
 
-        if (wasInParachute && !inParachute) lastParachuteOpen = Time.time;
-        
+        if (wasInParachute && !inParachute)
+        {
+            AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+            AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteClose, parachuteAudioSource, true);
+            lastParachuteOpen = Time.time;
+            EnableFirstPerson();
+            parachuteObject.SetActive(false);
+            if (currentWeapon)
+                currentWeapon.SetActive(true);
+            speedLines.Stop();
+        }
+
         if (inParachute)
         {
+            if(!wasInParachute)
+            {
+                AudioManager.Instance.StopSoundUnsafe(parachuteAudioSource);
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteDeploy, parachuteAudioSource);
+                DisableFirstPerson();
+                parachuteObject.SetActive(true);
+                if (currentWeapon)
+                    currentWeapon.SetActive(false);
+                speedLines.Play();
+            }
+            
+            if (AudioManager.Instance.UnsafeAudioSources[parachuteAudioSource].clip == sounds.parachuteDeploy)
+            {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource, 0.8f); 
+            }
+            else
+            {
+                AudioManager.Instance.PlaySoundUnsafe(sounds.parachuteGliding, parachuteAudioSource);
+            }
+            
             verticalVelocity += parachuteAcceleration * Time.deltaTime;
             if (verticalVelocity > -12.6f) verticalVelocity = -12.5f;
         }
     }
 
+    private int parachuteAudioSource = -1;
+    
     private void Move()
     {
         var maxSpeed = inParachute ? parachuteSpeed : isCrouched ? crouchSpeed : isSprinting ? sprintSpeed : speed;
@@ -304,6 +367,7 @@ public partial class Player
         if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
 
         var playerTransform = transform;
+        
         characterController.Move((playerTransform.up * verticalVelocity + playerTransform.right * horizontalVelocity.x + playerTransform.forward * horizontalVelocity.y) * Time.deltaTime);
     }
 

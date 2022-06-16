@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,25 +28,55 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     private bool hovering;
     private bool busy;
-    
+
+    [SerializeField] private GameObject itemDescriptionPrefab;
+    private GameObject itemDescription;
+
+    private InventorySlot selfInvSlot;
+
+    private void Awake()
+    {
+        selfInvSlot = GetComponent<InventorySlot>();
+    }
+
     private void Update()
     {
+        if (!selfInvSlot.inventoryItem) return;   
+        
         if (!hovering) return;
 
+        if (!itemDescription)
+        {
+            itemDescription = Instantiate(itemDescriptionPrefab, transform.position, Quaternion.identity, parentTransform);
+            itemDescription.GetComponent<ItemDescription>().title.SetText(inventorySlot.inventoryItem.name); 
+            itemDescription.GetComponent<ItemDescription>().description.SetText(inventorySlot.inventoryItem.description);
+        }
+
+        ((RectTransform)itemDescription.transform).position = Input.mousePosition + new Vector3(25, -25, 0);
+        
         if (Input.GetKeyDown(/*GameManager.Instance.gameOptions.dropKey*/KeyCode.G))
         {
             player.DropItem(inventorySlot, Input.GetKey(KeyCode.LeftShift));
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData) => hovering = true;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hovering = true;
+    }
 
-    public void OnPointerExit(PointerEventData eventData) => hovering = false;
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if(itemDescription) Destroy(itemDescription);
+        hovering = false;
+    }
 
     public void OnPointerClick(PointerEventData eventData) => mouseOffset = rectTransform.position - Input.mousePosition;
         
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!selfInvSlot.inventoryItem) return;
+        
         if (busy) return;
         
         busy = true;
@@ -73,6 +105,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
     
     public void OnDrag(PointerEventData eventData)
     {
+        if (!selfInvSlot.inventoryItem) return;
         rectTransform.position = new Vector3(eventData.position.x, eventData.position.y, 0) + mouseOffset;
         var pos = rectTransform.position;
         textRectTransform.position = pos + textOffset;
@@ -81,6 +114,7 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!selfInvSlot.inventoryItem) return;
         busy = false;
         
         Destroy(tempGameObjects[0]);
@@ -99,6 +133,12 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
         var raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
 
+        if (raycastResults.Count == 0)
+        {
+            player.DropItem(inventorySlot, true);
+            return;
+        }
+        
         foreach (var raycastResult in raycastResults)
         {
             inventorySlot.Amount = inventorySlot.Amount;

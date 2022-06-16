@@ -4,15 +4,17 @@ using UnityEngine;
 public partial class Player
 {
     [Header("Status")] 
+    [SerializeField] private bool godmode;
+    
     [SerializeField] private float hungerTickRate = 0.5f;  
     [SerializeField] private int maxHunger = 250;
     private float lastHungerTick;
-    private int currentHunger;
+    private float currentHunger;
     
     [SerializeField] private float thirstTickRate = 0.2f;
     [SerializeField] private int maxThirst = 100;
     private float lastThirstTick;
-    private int currentThirst;
+    private float currentThirst;
 
     [SerializeField] private float starvingTickRate = 0.2f;
     private float lastStarvingTick;
@@ -32,6 +34,7 @@ public partial class Player
     public void TakeDamageServerRpc(int value)
     {
         if (!IsServer) return;
+        if (godmode) return;
         int lastHealth = currentHealth.Value;
         currentHealth.Value -= value;
         if (lastHealth > currentHealth.Value)
@@ -75,5 +78,28 @@ public partial class Player
                 lastStarvingTick = Time.time;
             }
         }
+    }
+
+    public void EatOrDrink(int slot)
+    {
+        EatOrDrink(inventorySlots[slot]);
+    }
+
+    public void EatOrDrink(InventorySlot invSlot)
+    {
+        var item = invSlot.inventoryItem;
+
+        if (!item) return;
+        if (item.itemTag != ItemTag.Food) return;
+        
+        if (maxHunger * 0.95f < currentHunger && maxThirst * 0.95f < currentThirst) return;
+        
+        currentHunger += foodItems[item.itemName].hunger;
+        if (currentHunger > maxHunger) currentHunger = maxHunger;
+        currentThirst += foodItems[item.itemName].thirst;
+        if (currentThirst > maxThirst) currentHunger = maxHunger;
+
+        if(invSlot.Amount > 1) invSlot.Amount--;
+        else invSlot.Clear();
     }
 }

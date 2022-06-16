@@ -19,7 +19,19 @@ public class FishingNet : NetworkBehaviour
     private float launchTime;
     private float fishingTime;
     private float nextFishTime;
-    
+
+    private static readonly int windStrength = Shader.PropertyToID("_Strength");
+
+    private MaterialPropertyBlock kiteMpb;
+    private MaterialPropertyBlock KiteMpb
+    {
+        get
+        {
+            if (kiteMpb == null) kiteMpb = new MaterialPropertyBlock();
+            return kiteMpb;
+        }
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void TryFishingServerRpc(NetworkBehaviourReference player)
     {
@@ -68,14 +80,17 @@ public class FishingNet : NetworkBehaviour
     {
         wheelAnimator.SetTrigger("Release");
 
-        kiteRenderer.sharedMaterial.SetFloat("_Strength", 0.5f);
+        KiteMpb.SetFloat(windStrength, 0.5f);
+        kiteRenderer.SetPropertyBlock(KiteMpb);
     }
 
     [ClientRpc]
     private void AnimatorRetrieveClientRpc()
     {
         wheelAnimator.SetTrigger("Retrieve");
-        kiteRenderer.sharedMaterial.SetFloat("_Strength", 0);
+
+        KiteMpb.SetFloat(windStrength, 0);
+        kiteRenderer.SetPropertyBlock(KiteMpb);
     }
 
     [ClientRpc]
