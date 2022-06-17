@@ -135,7 +135,7 @@
                 "invertFalloff": false,
                 "selectedBrushTab": "All",
                 "selectedBrushId": "73f0185efb84025498f560d45340df93",
-                "brushSize": 10.0,
+                "brushSize": 20.0,
                 "brushSpeed": 54.5,
                 "brushRoundness": 1.0,
                 "brushAngle": -50.0,
