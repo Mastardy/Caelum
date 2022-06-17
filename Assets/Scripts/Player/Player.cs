@@ -71,21 +71,21 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             SpawnPlayer();
-            GiveItemServerRpc(this, "fruit_pear", 1);
-            GiveItemServerRpc(this, "wood", 2);
-            GiveItemServerRpc(this, "axe_stone", 1, 1);
-            GiveItemServerRpc(this, "axe_iron", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
-            GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
-            GiveItemClientRpc(this, "bow", 1, 1);
-            GiveItemServerRpc(this, "sword", 1, 1);
-            GiveItemServerRpc(this, "spear_wood", 1, 1);
-            GiveItemServerRpc(this, "spear_stone", 1, 1);
-            GiveItemServerRpc(this, "spear_iron", 1, 1);
-            GiveItemServerRpc(this, "arrow_wood", 10);
-            GiveItemServerRpc(this, "arrow_stone", 10);
-            GiveItemServerRpc(this, "arrow_iron", 10);
+            //GiveItemServerRpc(this, "fruit_pear", 1);
+            //GiveItemServerRpc(this, "wood", 2);
+            //GiveItemServerRpc(this, "axe_stone", 1, 1);
+            //GiveItemServerRpc(this, "axe_iron", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
+            //GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
+            //GiveItemClientRpc(this, "bow", 1, 1);
+            //GiveItemServerRpc(this, "sword", 1, 1);
+            //GiveItemServerRpc(this, "spear_wood", 1, 1);
+            //GiveItemServerRpc(this, "spear_stone", 1, 1);
+            //GiveItemServerRpc(this, "spear_iron", 1, 1);
+            //GiveItemServerRpc(this, "arrow_wood", 10);
+            //GiveItemServerRpc(this, "arrow_stone", 10);
+            //GiveItemServerRpc(this, "arrow_iron", 10);
             GiveItemClientRpc(this, "grappling_hook");
             Invoke(nameof(LateLateStart), 0.1f);
         }
@@ -130,25 +130,25 @@ public partial class Player : NetworkBehaviour
                     else StopFishing();
                 }
 
-                if (!isTethered && !isTetheredPlus)
-                {
-                    if (InputHelper.GetKeyDown(KeyCode.R, 0.2f))
-                    {
-                        BeginGrapple();
-                    }
+                //if (!isTethered && !isTetheredPlus)
+                //{
+                //    if (InputHelper.GetKeyDown(KeyCode.R, 0.2f))
+                //    {
+                //        BeginGrapple();
+                //    }
 
-                    if (InputHelper.GetKeyDown(KeyCode.Q, 0.1f))
-                    {
-                        BeginGrapplePlus();
-                    }
-                }
-                else if (isTetheredPlus)
-                {
-                    if (Input.GetKeyUp(KeyCode.Q))
-                    {
-                        EndGrapplePlus();
-                    }
-                }
+                //    if (InputHelper.GetKeyDown(KeyCode.Q, 0.1f))
+                //    {
+                //        BeginGrapplePlus();
+                //    }
+                //}
+                //else if (isTetheredPlus)
+                //{
+                //    if (Input.GetKeyUp(KeyCode.Q))
+                //    {
+                //        EndGrapplePlus();
+                //    }
+                //}
             }
 
             if (!inInventory && !inCrafting && !inOven && !inPause && !inSaw)

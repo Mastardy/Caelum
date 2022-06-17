@@ -2,11 +2,11 @@ using UnityEngine;
 
 public partial class Player
 {
-    [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private float grappleMaxLength = 30;
     [SerializeField] private float grappleEasing;
     [SerializeField] private float grapplePlusEasing;
+    [SerializeField] private float hookSpeed = 1f;
     private Vector3 grapplePoint;
     private float grappleTimer;
     private float grappleLength;
@@ -24,16 +24,34 @@ public partial class Player
         return true;
     }
 
+    private void ShootHook(bool plus)
+    {
+        if (Vector3.Distance(currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position, grapplePoint) > 1f)
+        {
+            currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position = Vector3.Lerp(
+                currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position,
+                grapplePoint,
+                Time.fixedDeltaTime * hookSpeed);
+            return;
+        }
+        
+        if (speedLines.isStopped) speedLines.Play();
+
+        AnimatorPullGrappling(true);
+
+        if (plus) BeginGrapplePlus();
+        else BeginGrapple();
+    }
+
     private void BeginGrapple()
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, grappleMaxLength, grappleLayer))
         {
-            lineRenderer.enabled = true;
             isTethered = true;
             grapplePoint = hit.point;
             grappleTimer = Time.time;
             currentGrappleVelocity = 0;
-            
+
             PlayToolSwing(ItemTag.Grappling.ToString());
         }
     }
@@ -42,7 +60,6 @@ public partial class Player
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, grappleMaxLength))
         {
-            lineRenderer.enabled = true;
             isTetheredPlus = true;
             grapplePoint = hit.point;
             grappleLength = hit.distance;
@@ -50,38 +67,43 @@ public partial class Player
             
             horizontalVelocity = Vector2.zero;
             verticalVelocity = 0;
-            
+
             PlayToolSwing(ItemTag.Grappling.ToString());
         }
     }
 
     private void EndGrapple()
     {
-        lineRenderer.enabled = false;
         isTethered = false;
 
         horizontalVelocity = Vector2.zero;
         verticalVelocity = 0;
+
+        currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.localPosition = new Vector3(-0.675f, 0, 0);
+        AnimatorPullGrappling(false);
+        speedLines.Stop();
     }
 
     private void EndGrapplePlus()
     {
         var grappleDirection = grapplePoint - playerCamera.transform.position;
 
-        lineRenderer.enabled = false;
         isTetheredPlus = false;
 
         verticalVelocity += grappleDirection.y * currentGrappleVelocity * Time.deltaTime;
 
         horizontalVelocity.x += grappleDirection.x * currentGrappleVelocity * Time.deltaTime;
         horizontalVelocity.y += grappleDirection.z * currentGrappleVelocity * Time.deltaTime;
+
+        currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.localPosition = new Vector3(-0.675f, 0, 0);
+        AnimatorPullGrappling(false);
+        speedLines.Stop();
     }
     
     private void ApplyGrapplePhysics()
     {
-        lineRenderer.SetPosition(0, playerCamera.transform.position + new Vector3(0, -0.2f, 0));
-        lineRenderer.SetPosition(1, grapplePoint);
-        
+        currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position = grapplePoint;
+
         currentGrappleVelocity = currentGrappleVelocity > grappleVelocity ? grappleVelocity : currentGrappleVelocity + grappleVelocity * grappleEasing * Time.deltaTime;
         var grappleDirection = grapplePoint - playerCamera.transform.position;
         characterController.Move(Vector3.Normalize(grappleDirection) * (currentGrappleVelocity * Time.deltaTime));
@@ -98,9 +120,8 @@ public partial class Player
 
     private void ApplyGrapplePlusPhysics()
     {
-        lineRenderer.SetPosition(0, playerCamera.transform.position + new Vector3(0, -0.2f, 0));
-        lineRenderer.SetPosition(1, grapplePoint);
-        
+        currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position = grapplePoint;
+
         currentGrappleVelocity = currentGrappleVelocity > grappleVelocity ? grappleVelocity : currentGrappleVelocity + grappleVelocity * grapplePlusEasing * Time.deltaTime;
         var grappleDirection = grapplePoint - playerCamera.transform.position;
         

@@ -67,7 +67,6 @@ public partial class Player
 
     private void EnableFirstPerson()
     {
-        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = true;
@@ -83,7 +82,6 @@ public partial class Player
     
     private void DisableFirstPerson()
     {
-        return;
         foreach (var smr in playerViewModelSkinnedMeshRenderers)
         {
             smr.enabled = false;
@@ -255,11 +253,13 @@ public partial class Player
 
     private void AnimatorShootGrappling()
     {
+        firstPersonAnimator.ResetTrigger(shootCache);
         firstPersonAnimator.SetTrigger(shootCache);
     }
 
     private void AnimatorPullGrappling(bool pull)
     {
+        firstPersonAnimator.ResetTrigger(shootCache);
         firstPersonAnimator.SetBool(grapplingPullCache, pull);
     }
 

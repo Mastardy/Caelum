@@ -193,6 +193,16 @@ public partial class Player
                         EatOrDrink(hotbars[currentSlot].slot);
                     }
                     break;
+                case ItemTag.Grappling:
+                    if(InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 0.6f))
+                    {
+                        if(!isTethered && !isTetheredPlus)
+                        {
+                            AnimatorShootGrappling();
+                            BeginGrapple();
+                        }
+                    }
+                    break;
             }
         }
         
