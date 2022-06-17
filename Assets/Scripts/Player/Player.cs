@@ -175,7 +175,7 @@ public partial class Player : NetworkBehaviour
                 else if(inPause) HidePauseMenu();
                 else if(inCrafting) HideCrafting();
                 else if(inOven) HideOven();
-                else if(inSaw) HideSaw();
+                else if(inSaw && !saw.isSawing) HideSaw();
                 else OpenPauseMenu();
             }
             
@@ -201,7 +201,7 @@ public partial class Player : NetworkBehaviour
             {
                 SawUpdate();
                 
-                if(InputHelper.GetKeyDown(gameOptions.useKey, 0.1f))
+                if(InputHelper.GetKeyDown(gameOptions.useKey, 0.1f) && !saw.isSawing)
                 {
                     HideSaw();
                 }

@@ -6,7 +6,7 @@ public partial class Player
         
         foreach (var inventorySlot in inventorySlots)
         {
-            if (inventorySlot.inventoryItem == null) continue;
+            if (!inventorySlot.inventoryItem) continue;
             
             if (inventorySlot.inventoryItem.itemName == itemName)
             {

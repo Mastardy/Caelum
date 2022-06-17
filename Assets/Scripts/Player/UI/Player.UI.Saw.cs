@@ -15,6 +15,15 @@ public partial class Player
     [SerializeField] private TextMeshProUGUI sawAmount;
 
     private Saw saw;
+
+    private InventoryItem currentOutcome;
+    private InventoryItem CurrentOutcome
+    {
+        get => currentOutcome == null ? inventoryItems["wood_plank"] : currentOutcome;
+        set => currentOutcome = value;
+    }
+
+    private int outcomePrice = 2;
     
     private bool inSaw;
     
@@ -36,8 +45,6 @@ public partial class Player
         sawCamera.gameObject.SetActive(false);
         sawCamera.position = sawCameraPosition;
         sawCamera.rotation = Quaternion.Euler(sawCameraRotation);
-
-        PrepareSaw();
     }
 
     /// <summary>
@@ -58,20 +65,49 @@ public partial class Player
         sawCamera.gameObject.SetActive(true);
         sawCamera.position = sawCameraPosition;
         sawCamera.rotation = Quaternion.Euler(sawCameraRotation);
+        
+        PrepareSaw();
+    }
+
+    public void ChangeOutcome(int outcome)
+    {
+        switch (outcome)
+        {
+            case 0:
+                CurrentOutcome = inventoryItems["wood_plank"];
+                outcomePrice = 2;
+                break;
+            case 1:
+                CurrentOutcome = inventoryItems["handle_one"];
+                outcomePrice = 5;
+                break;
+            case 2:
+                CurrentOutcome = inventoryItems["handle_two"];
+                outcomePrice = 7;
+                break;
+        }
+
+        PrepareSaw();
     }
 
     private void PrepareSaw()
     {
-        sawAmount.SetText(GetItemAmount("wood").ToString("F0"));
+        sawAmount.SetText(GetItemAmount("wood") + "/" + outcomePrice);
     }
 
     public void TrySaw()
     {
+        if (saw.isSawing) return;
+        if(outcomePrice > GetItemAmount("wood")) return;
         saw.SawStartServerRpc();
-        
-        // TODO: Como funciona a SAW?
+        if (!saw.isSawing) return;
+        RemoveItem("wood", outcomePrice);
+        GiveItemServerRpc(this, CurrentOutcome.itemName);
+        PrepareSaw();
     }
 
+    private bool wasSawing;
+    
     private void SawUpdate()
     {
         sawTimer.SetActive(saw.isSawing);
