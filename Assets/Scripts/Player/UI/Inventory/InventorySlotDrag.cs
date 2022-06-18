@@ -149,6 +149,8 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
 
                 if (invSlot.isEmpty)
                 {
+                    if (invSlot.name == "Armor" && inventorySlot.inventoryItem.itemTag != ItemTag.Armor) return;
+                    
                     if (mode == PointerEventData.InputButton.Left || inventorySlot.Amount == 1)
                     {
                         invSlot.Fill(inventorySlot.inventoryItem, inventorySlot.Amount, inventorySlot.Durability);
@@ -165,6 +167,8 @@ public class InventorySlotDrag : MonoBehaviour, IPointerClickHandler, IPointerEn
                     if (invSlot.inventoryItem == null) return;
                     if (invSlot.inventoryItem.itemName != inventorySlot.inventoryItem.itemName)
                     {
+                        if (invSlot.name == "Armor" && inventorySlot.inventoryItem.itemTag != ItemTag.Armor) return;
+                        
                         var tempInvItem = inventorySlot.inventoryItem;
                         var tempAmount = inventorySlot.Amount;
                         var tempDurability = inventorySlot.Durability;

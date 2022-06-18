@@ -42,7 +42,7 @@ public class InventorySlot : MonoBehaviour
             durability = value;
             durabilityForeground.fillAmount = 0.5f * durability;
             durabilityForeground.color = durabilityGradient.Evaluate((durability * -1) + 1);
-            if(durability <= 0 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword) Clear();
+            if(durability <= 0 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Armor or ItemTag.Grappling) Clear();
             OnDurabilityChange.Invoke();
         }
     }
@@ -60,7 +60,7 @@ public class InventorySlot : MonoBehaviour
         Amount = newAmount;
         durability = newDurability;
 
-        if (inventoryItem.itemTag is not ItemTag.Food and not ItemTag.Grappling and not ItemTag.Other)
+        if (inventoryItem.itemTag is not ItemTag.Food and not ItemTag.Other)
         {
             durabilityObject.SetActive(true);
             durabilityForeground.fillAmount = 0.5f * durability;

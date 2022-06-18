@@ -12,7 +12,7 @@ public class InventoryGroundItem : NetworkBehaviour
         set
         {
             durability = value;
-            if(durability <= 0.01 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword) Destroy(gameObject);
+            if(durability <= 0.01 && inventoryItem.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Armor or ItemTag.Grappling) Destroy(gameObject);
         }
     }
     [HideInInspector] public Collider[] nearResources;

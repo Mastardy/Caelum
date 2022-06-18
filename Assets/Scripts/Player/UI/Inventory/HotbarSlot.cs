@@ -78,7 +78,7 @@ public class HotbarSlot : MonoBehaviour
     {
         image.enabled = true;
         image.sprite = slot.image.sprite;
-        if (slot.inventoryItem.itemTag is not ItemTag.Food and not ItemTag.Grappling and not ItemTag.Other)
+        if (slot.inventoryItem.itemTag is not ItemTag.Food and not ItemTag.Other)
         {
             durability.SetActive(true);
             durabilityForeground.fillAmount = 0.5f * slot.Durability;

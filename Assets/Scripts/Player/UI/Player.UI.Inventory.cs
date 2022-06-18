@@ -64,7 +64,7 @@ public partial class Player
         
         int amountAdded = 0;
 
-        if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword)
+        if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Grappling)
         {
             foreach (var hotbar in hotbars)
             {

@@ -3,6 +3,7 @@ using UnityEngine;
 public enum ItemTag
 {
     Other,
+    Armor,
     Food,
     Axe,
     Pickaxe,

@@ -86,7 +86,8 @@ public partial class Player : NetworkBehaviour
             //GiveItemServerRpc(this, "arrow_wood", 10);
             //GiveItemServerRpc(this, "arrow_stone", 10);
             //GiveItemServerRpc(this, "arrow_iron", 10);
-            GiveItemClientRpc(this, "grappling_hook");
+            GiveItemServerRpc(this, "grappling_hook", 1, 1);
+            GiveItemServerRpc(this, "helmet", 1, 1);
             Invoke(nameof(LateLateStart), 0.1f);
         }
     }
