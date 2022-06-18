@@ -54,6 +54,8 @@ public partial class Player
     
     private void MovementUpdate()
     {
+        if (InWater()) return;
+        
         input.x = 0;
         input.y = 0;
 
@@ -90,6 +92,19 @@ public partial class Player
         Move();
     }
 
+    private bool InWater()
+    {
+        var sideSize = characterController.radius * transform.localScale.x;
+        
+        if (Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), transform.rotation, waterMask))
+        {
+            RespawnPlayer(safePosition, false);
+            return true;
+        }
+
+        return false;
+    }
+    
     private void CameraUpdate()
     {
         if (inParachute)
@@ -179,15 +194,6 @@ public partial class Player
         isGrounded = Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), playerTransform.rotation, groundMask);
 
         if (isGrounded && verticalVelocity < 0) verticalVelocity = -1f;
-
-        //check if collided with water teleporter
-        if (isGrounded) return;
-        Debug.Log("no ar");
-        if (Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), playerTransform.rotation, waterMask))
-        {
-            Debug.Log("aguinha");
-            RespawnPlayer(safePosition, false);
-        }
     }
 
     private void FallDamage()

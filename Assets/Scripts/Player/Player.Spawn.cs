@@ -16,7 +16,11 @@ public partial class Player
 
     private void CalculateSafePosition()
     {
-        if (isGrounded) safePosition = groundCheck.position;
+        var sideSize = characterController.radius * transform.localScale.x;
+        
+        if (Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), transform.rotation, waterMask)) return;
+        
+        if (isGrounded) safePosition = groundCheck.position + Vector3.up * 0.2f;
 
         lastSafePosition = Time.time;
     }
@@ -75,9 +79,11 @@ public partial class Player
             currentHunger = maxHunger;
             currentThirst = maxThirst;
         }
+        
         respawnTime = Time.time;
-        Debug.Log("teleportando!!!!");
+        Debug.Log(transform.position);
         transform.position = position;
+        Debug.Log(transform.position);
     }
 
     private void OnDrawGizmos()
