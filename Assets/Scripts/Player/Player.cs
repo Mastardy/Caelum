@@ -118,7 +118,7 @@ public partial class Player : NetworkBehaviour
 
             if (currentHealth.Value < 1)
             {
-                RespawnPlayer();
+                RespawnPlayer(spawnPosition);
                 return;
             }
 

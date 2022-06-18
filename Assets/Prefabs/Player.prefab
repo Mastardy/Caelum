@@ -4751,13 +4751,13 @@ MonoBehaviour:
   playerCamera: {fileID: 3176719483760028903}
   weaponCamera: {fileID: 833577467365583936}
   cameraShake: {fileID: 1877113068841464700}
-  lineRenderer: {fileID: 0}
   grappleLayer:
     serializedVersion: 2
     m_Bits: 8
   grappleMaxLength: 50
   grappleEasing: 2.5
   grapplePlusEasing: 20
+  hookSpeed: 1
   grappleVelocity: 20
   grapplePlusVelocity: 150
   crouchSpeed: 3
@@ -4780,6 +4780,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4040
+  waterMask:
+    serializedVersion: 2
+    m_Bits: 16
   parachuteCameraLocation: {x: 0, y: 9, z: -6}
   parachuteObject: {fileID: 31794221764030195}
   speedLines: {fileID: 7492740226623360341}

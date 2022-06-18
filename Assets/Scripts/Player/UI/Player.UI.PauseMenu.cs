@@ -32,7 +32,7 @@ public partial class Player
 
     public void Restart()
     {
-        RespawnPlayer(false);
+        RespawnPlayer(spawnPosition, false);
         HidePauseMenu();
     }
 

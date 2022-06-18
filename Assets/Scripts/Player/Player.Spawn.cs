@@ -55,7 +55,7 @@ public partial class Player
         }
     }
     
-    private void RespawnPlayer(bool dropItems = true)
+    private void RespawnPlayer(Vector3 position, bool dropItems = true)
     {
         if(dropItems) DropAllItemsServerRpc(this);
 
@@ -67,15 +67,17 @@ public partial class Player
         // Basic Movement
         horizontalVelocity = Vector2.zero;
         verticalVelocity = -1f;
-        
+
         // Status
-        currentHealth.Value = maxHealth;
-        currentHunger = maxHunger;
-        currentThirst = maxThirst;
-
-        transform.position = spawnPosition;
-
+        if (dropItems)
+        {
+            currentHealth.Value = maxHealth;
+            currentHunger = maxHunger;
+            currentThirst = maxThirst;
+        }
         respawnTime = Time.time;
+        Debug.Log("teleportando!!!!");
+        transform.position = position;
     }
 
     private void OnDrawGizmos()
