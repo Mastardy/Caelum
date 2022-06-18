@@ -201,15 +201,13 @@ MonoBehaviour:
   animator: {fileID: 7886798919765814481}
   model: {fileID: 3574637384886472467}
   modelRenderer: {fileID: 3169266890053168912}
-  onDestroy:
-    m_PersistentCalls:
-      m_Calls: []
-  fleeSpeed: 6
+  agressive: 1
+  fleeSpeed: 5
   dead: 0
-  maxHealth: 150
+  maxHealth: 75
   currentHealth:
     m_InternalValue: 0
-  roamSpeed: 3
+  roamSpeed: 2
 --- !u!114 &5435786505675563168
 MonoBehaviour:
   m_ObjectHideFlags: 0

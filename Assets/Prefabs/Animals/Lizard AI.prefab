@@ -160,7 +160,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.73
-  m_BaseOffset: 0.75
+  m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &4030761780268593794
@@ -198,12 +198,12 @@ MonoBehaviour:
   model: {fileID: 8097057256291741566}
   modelRenderer: {fileID: 7655644508062699389}
   agressive: 0
-  fleeSpeed: 6
+  fleeSpeed: 5
   dead: 0
-  maxHealth: 150
+  maxHealth: 30
   currentHealth:
     m_InternalValue: 0
-  roamSpeed: 3
+  roamSpeed: 2
 --- !u!114 &4030761780268593792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,11 +267,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 4030761780268593796}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.27
+  m_Enabled: 1
+  m_Radius: 0.15
   m_Height: 1.26
   m_Direction: 2
-  m_Center: {x: 0, y: -0.42, z: -0.12}
+  m_Center: {x: 0, y: 0.15, z: -0.12}
 --- !u!1 &4030761780295927177
 GameObject:
   m_ObjectHideFlags: 0
