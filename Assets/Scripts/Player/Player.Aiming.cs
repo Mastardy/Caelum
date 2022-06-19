@@ -147,7 +147,7 @@ public partial class Player
                     AnimatorAim(InputHelper.GetKey(gameOptions.secondaryAttackKey));
                     if (InputHelper.GetKey(gameOptions.secondaryAttackKey))
                     {
-                        
+                        if (Physics.Raycast(playerCamera.position, playerCamera.forward, 2, groundMask)) break;
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.3f))
                         {
                             AnimatorThrowSpear();
@@ -171,6 +171,7 @@ public partial class Player
                     if (!currentArrow) SetBowArrow();
                     if(!lastBowState) AudioManager.Instance.PlaySound(sounds.bowPull);
                     lastBowState = true;
+                    if (Physics.Raycast(playerCamera.position, playerCamera.forward, 2, groundMask)) break;
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                     {
                         if (!currentArrow) return;
@@ -224,11 +225,12 @@ public partial class Player
         
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            if(InputHelper.GetKeyDown(gameOptions.useKey, 0.3f)) {
+            if(InputHelper.GetKeyDown(gameOptions.useKey, 0.8f)) {
                 if (resource.item.itemName == "wood")
                 {
                     GiveItemServerRpc(this, "stick");
                     AnimatorCollect();
+                    return;
                 }
             }
         }
