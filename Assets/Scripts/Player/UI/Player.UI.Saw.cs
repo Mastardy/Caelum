@@ -110,8 +110,6 @@ public partial class Player
         PrepareSaw();
     }
 
-    private bool wasSawing;
-    
     private void SawUpdate()
     {
         sawTimer.SetActive(saw.isSawing);

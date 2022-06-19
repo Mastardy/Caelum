@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public partial class Player
 {
@@ -12,6 +12,10 @@ public partial class Player
     [FormerlySerializedAs("furnaceCameraPosition")] [SerializeField] private Vector3 smelteryCameraPosition;
     [FormerlySerializedAs("furnaceCameraRotation")] [SerializeField] private Vector3 smelteryCameraRotation;
 
+    [SerializeField] private GameObject smelteryTimer;
+    [SerializeField] private TextMeshProUGUI smelteryTimerText;
+    [SerializeField] private Image smelteryTimerForeground;
+    
     private Smeltery smeltery;
 
     private string currentMineral;
@@ -103,15 +107,28 @@ public partial class Player
         }
     }
 
-    public void Smelt()
+    public void TrySmelt()
     {
+        if (smeltery.isSmelting) return;
         if(currentMineral == string.Empty) return;
+        smeltery.SmeltStartServerRpc();
+        if(!smeltery.isSmelting) return;
+
+        RemoveItem(currentMineral, 1);
+        GiveItemServerRpc(this, currentMineral + "_ingot", 1);
+
+        if (GetItemAmount(currentMineral) > 0) return;
         
-        
+        PrepareSmeltery();
     }
     
     private void SmelteryUpdate()
     {
+        smelteryTimer.SetActive(smeltery.isSmelting);
         
+        if (!smeltery.isSmelting) return;
+
+        smelteryTimerText.SetText(Mathf.CeilToInt(3 - (Time.time - smeltery.smelteryTimer)) + "sec");
+        smelteryTimerForeground.fillAmount = (Time.time - smeltery.smelteryTimer) / 3;
     }
 }
