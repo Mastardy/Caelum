@@ -101,5 +101,7 @@ public partial class Player
 
         if(invSlot.Amount > 1) invSlot.Amount--;
         else invSlot.Clear();
+
+        AnimatorEat(item.subTag);
     }
 }

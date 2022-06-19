@@ -269,10 +269,11 @@ public partial class Player
         firstPersonAnimator.SetTrigger("Collect");
     }
 
-    private void AnimatorEat()
+    private void AnimatorEat(SubTag subtag)
     {
         SetLeftArmWeight(1);
-        firstPersonAnimator.SetTrigger("Eat");
+        if (subtag == SubTag.Food) firstPersonAnimator.SetTrigger("Eat");
+        else if (subtag == SubTag.Drink) firstPersonAnimator.SetTrigger("Drink");
     }
 
     #region support_functions
