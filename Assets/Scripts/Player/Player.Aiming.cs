@@ -203,7 +203,6 @@ public partial class Player
                     {
                         if(!isTethered && !isTetheredPlus)
                         {
-                            AnimatorPullGrappling(true);
                             BeginGrapple();
                         }
                     }

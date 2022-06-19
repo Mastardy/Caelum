@@ -34,6 +34,7 @@ public partial class Player
             currentGrappleVelocity = 0;
 
             PlayToolSwing(ItemTag.Grappling.ToString());
+            AnimatorPullGrappling(true);
         }
     }
 
@@ -50,6 +51,7 @@ public partial class Player
             verticalVelocity = 0;
 
             PlayToolSwing(ItemTag.Grappling.ToString());
+            AnimatorPullGrappling(true);
         }
     }
 
