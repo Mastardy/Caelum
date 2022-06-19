@@ -172,7 +172,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (InputHelper.GetKeyDown(KeyCode.Escape, 0.1f))
+            if (InputHelper.GetKeyDown(KeyCode.Escape, 0.1f) || InputHelper.GetKeyDown(KeyCode.Tab, 0.1f))
             {
                 if(inChat) HideChat();
                 else if(inInventory) HideInventory();
