@@ -152,7 +152,7 @@ public partial class Player : NetworkBehaviour
                 //}
             }
 
-            if (!inInventory && !inCrafting && !inOven && !inPause && !inSaw && !inFurnace)
+            if (!inInventory && !inCrafting && !inOven && !inPause && !inSaw && !inSmeltery)
             {
                 if (InputHelper.GetKeyDown(gameOptions.chatKey, 0.1f))
                 {
@@ -160,7 +160,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw && !inFurnace)
+            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw && !inSmeltery)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
@@ -177,7 +177,7 @@ public partial class Player : NetworkBehaviour
                 else if(inCrafting) HideCrafting();
                 else if(inOven) HideOven();
                 else if(inSaw && !saw.isSawing) HideSaw();
-                else if(inFurnace && !furnace.isSmelting) HideFurnace();
+                else if(inSmeltery && !smeltery.isSmelting) HideSmeltery();
                 else OpenPauseMenu();
             }
             
@@ -209,13 +209,13 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (inFurnace)
+            if (inSmeltery)
             {
-                FurnaceUpdate();
+                SmelteryUpdate();
 
-                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f) && !furnace.isSmelting)
+                if (InputHelper.GetKeyDown(gameOptions.useKey, 0.1f) && !smeltery.isSmelting)
                 {
-                    HideFurnace();
+                    HideSmeltery();
                 }
             }
             

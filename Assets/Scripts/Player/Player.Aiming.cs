@@ -1,5 +1,3 @@
-using System;
-using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -73,14 +71,14 @@ public partial class Player
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out CraftingTable craftTable))
+            if (hitInfo.transform.TryGetComponent(out CraftingTable _))
             {
                 aimText.SetText("Crafting Table");
                 lookingAt = hitInfo;
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out Oven oven))
+            if (hitInfo.transform.TryGetComponent(out Oven _))
             {
                 aimText.SetText("Oven");
                 lookingAt = hitInfo;
@@ -108,9 +106,16 @@ public partial class Player
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out Saw saw))
+            if (hitInfo.transform.TryGetComponent(out Saw _))
             {
                 aimText.SetText("Saw");
+                lookingAt = hitInfo;
+                return;
+            }
+
+            if (hitInfo.transform.TryGetComponent(out Smeltery _))
+            {
+                aimText.SetText("Smeltery");
                 lookingAt = hitInfo;
                 return;
             }
@@ -277,7 +282,7 @@ public partial class Player
             }
         }
         
-        if(lookingAt.TryGetComponent(out Saw tempSaw))
+        if(lookingAt.TryGetComponent(out Saw _))
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
@@ -285,11 +290,11 @@ public partial class Player
             }
         }
 
-        if (lookingAt.TryGetComponent(out Furnace tempFurnace))
+        if (lookingAt.TryGetComponent(out Smeltery _))
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
-                OpenFurnace();
+                OpenSmeltery();
             }
         }
     }
@@ -298,7 +303,7 @@ public partial class Player
     {
         if (!lookingAt) return;
 
-        if (lookingAt.TryGetComponent(out Resource resource))
+        if (lookingAt.TryGetComponent(out Resource _))
         {
             switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
@@ -340,7 +345,7 @@ public partial class Player
                     if(invItem.itemTag == ItemTag.Axe)
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
-                        resource.HitResourceServerRpc(1);
+                        resource.HitResourceServerRpc();
                         AudioManager.Instance.PlaySound(sounds.axeHit);
                     }
                     else
@@ -352,7 +357,7 @@ public partial class Player
                     if (invItem.itemTag == ItemTag.Pickaxe)
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
-                        resource.HitResourceServerRpc(1);
+                        resource.HitResourceServerRpc();
                         AudioManager.Instance.PlaySound(sounds.pickaxeHit);
                     }
                     else
