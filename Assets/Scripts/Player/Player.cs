@@ -91,7 +91,8 @@ public partial class Player : NetworkBehaviour
             GiveItemServerRpc(this, "copper", 5);
             GiveItemServerRpc(this, "iron", 5);
             GiveItemServerRpc(this, "gold", 5);
-            Invoke(nameof(LateLateStart), 0.1f);
+            CurrentSlot = 1;
+            Invoke(nameof(LateLateStart), 1f);
         }
     }
 
