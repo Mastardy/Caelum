@@ -24,25 +24,6 @@ public partial class Player
         return true;
     }
 
-    private void ShootHook(bool plus)
-    {
-        if (Vector3.Distance(currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position, grapplePoint) > 1f)
-        {
-            currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position = Vector3.Lerp(
-                currentWeapon.GetComponent<GrapplingHook>().HookAnchor.transform.position,
-                grapplePoint,
-                Time.fixedDeltaTime * hookSpeed);
-            return;
-        }
-        
-        if (speedLines.isStopped) speedLines.Play();
-
-        AnimatorPullGrappling(true);
-
-        if (plus) BeginGrapplePlus();
-        else BeginGrapple();
-    }
-
     private void BeginGrapple()
     {
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, grappleMaxLength, grappleLayer))
