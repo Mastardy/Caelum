@@ -277,11 +277,19 @@ public partial class Player
             }
         }
         
-        if(lookingAt.TryGetComponent(out saw))
+        if(lookingAt.TryGetComponent(out Saw tempSaw))
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
                 OpenSaw();
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out Furnace tempFurnace))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                OpenFurnace();
             }
         }
     }

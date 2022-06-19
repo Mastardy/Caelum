@@ -32,6 +32,8 @@ public partial class Player
     /// </summary>
     private void HideSaw()
     {
+        saw = null;
+        
         Cursor.lockState = CursorLockMode.Locked;
         inSaw = false;
         takeInput = true;
@@ -52,6 +54,8 @@ public partial class Player
     /// </summary>
     private void OpenSaw()
     {
+        lookingAt.TryGetComponent(out saw);
+        
         Cursor.lockState = CursorLockMode.Confined;
         inSaw = true;
         takeInput = false;
