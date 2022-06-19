@@ -131,7 +131,7 @@ public partial class Player
     {
         var invItem = hotbars[currentSlot].slot.inventoryItem;
         
-        if (invItem)
+        if (invItem && !inParachute)
         {
             switch (invItem.itemTag)
             {

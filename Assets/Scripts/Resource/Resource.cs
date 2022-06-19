@@ -13,6 +13,7 @@ public class Resource : NetworkBehaviour
     //animator stuff
     public Animator resourceAnimator;
     public ParticleSystem particles;
+    public GameObject deathParticle;
 
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(int resourceHP = 1)
@@ -39,6 +40,8 @@ public class Resource : NetworkBehaviour
         {
             DropResourceServerRpc(transform.position + new Vector3(Random.Range(-2f, 2f), 2, Random.Range(-2f, 2f)));
         }
+        if(deathParticle)
+            GameObject.Instantiate(deathParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
