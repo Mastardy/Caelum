@@ -49,9 +49,10 @@ public class CropField : NetworkBehaviour
 
             seeds.Add(Instantiate(cropItems[crop].cropPrefab, seedLocations[randomNumber].position + new Vector3(0.1f, 0, 0.1f), seedLocations[randomNumber].rotation, seedLocations[randomNumber]));
             seeds[i].transform.Rotate(Vector3.up, Random.Range(0, 360));
-
-            if(i == 0) Invoke(nameof(Harvest), seeds[i].GetComponent<Crop>().timeToGrow);
+            seeds[i].GetComponent<Crop>().timeToGrow = cropItems[crop].timeToGrow;
         }
+
+        Invoke(nameof(Harvest), cropItems[crop].timeToGrow);
 
         if (player.TryGet(out Player ply))
         {
@@ -86,10 +87,10 @@ public class CropField : NetworkBehaviour
         if(player.TryGet(out Player ply))
         {
             //give seeds
-            ply.GiveItemServerRpc(player, currentCrop, 6);
+            ply.GiveItemServerRpc(player, currentCrop, cropItems[currentCrop].resultCropAmount);
 
             //give the veggie
-            ply.GiveItemServerRpc(player, cropItems[currentCrop].cropResult, 18);
+            ply.GiveItemServerRpc(player, cropItems[currentCrop].cropResult, cropItems[currentCrop].resultSeedAmount);
         }
     }
 }

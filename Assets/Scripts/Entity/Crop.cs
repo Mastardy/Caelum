@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    public float timeToGrow;
+    [HideInInspector] public float timeToGrow;
     private Vector3 baseScale;
 
     public void Awake()
