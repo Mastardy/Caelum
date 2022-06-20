@@ -17,7 +17,8 @@ public enum SubTag
 {
     None,
     Food,
-    Drink
+    Drink,
+    Seed
 }
 
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/InventoryItem", order = 1)]

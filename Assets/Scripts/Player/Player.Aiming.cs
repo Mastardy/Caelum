@@ -119,6 +119,13 @@ public partial class Player
                 lookingAt = hitInfo;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out CropField _))
+            {
+                aimText.SetText("Crop Field");
+                lookingAt = hitInfo;
+                return;
+            }
         }
         
         lookingAt = null;
@@ -194,10 +201,27 @@ public partial class Player
                     }
                     break;
                 case ItemTag.Food:
-                    if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
+                    if (invItem.subTag is SubTag.Drink or SubTag.Food)
                     {
-                        EatOrDrink(hotbars[currentSlot].slot);
+
+                        if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.15f))
+                        {
+                            EatOrDrink(hotbars[currentSlot].slot);
+                        }
                     }
+                    else
+                    {
+                        if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
+                        {
+                            if (!lookingAt) return;
+                            if (lookingAt.TryGetComponent(out CropField cropField))
+                            {
+                                cropField.PlantSeedsServerRpc(invItem.itemName);
+                                Debug.Log("Tried to plant seed");
+                            }
+                        }
+                    }
+
                     break;
                 case ItemTag.Grappling:
                     if(InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 0.6f))
