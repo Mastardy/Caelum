@@ -216,8 +216,7 @@ public partial class Player
                             if (!lookingAt) return;
                             if (lookingAt.TryGetComponent(out CropField cropField))
                             {
-                                cropField.PlantSeedsServerRpc(invItem.itemName);
-                                Debug.Log("Tried to plant seed");
+                                cropField.PlantSeedsServerRpc(this, invItem.itemName);
                             }
                         }
                     }

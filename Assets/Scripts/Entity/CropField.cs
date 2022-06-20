@@ -29,12 +29,10 @@ public class CropField : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void PlantSeedsServerRpc(string crop)
+    public void PlantSeedsServerRpc(NetworkBehaviourReference player, string crop)
     {
         if(!IsServer) return;
         if (hasSeed) return;
-
-        Debug.Log("Tried to plant seed Server");
         
         currentCrop = crop;
         var usedNumbers = new List<int>();
@@ -54,6 +52,11 @@ public class CropField : NetworkBehaviour
             seeds[i].transform.Rotate(Vector3.up, Random.Range(0, 360));
 
             seeds[i].GetComponent<Crop>().timeToGrow = timeToGrow;
+        }
+
+        if (player.TryGet(out Player ply))
+        {
+            ply.RemoveItem(crop, 1);
         }
         
         hasSeed = true;
