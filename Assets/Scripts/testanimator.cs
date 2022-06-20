@@ -5,7 +5,7 @@ using UnityEngine;
 public class testanimator : MonoBehaviour
 {
     private Animator animator;
-    [Range(0, 1)] public float speed = 0.5f;
+    [Range(0, 8)] public float speed = 0;
     [Range(0, 1)] public float direction = 0.5f;
     [Range(0, 1)]public float pitch = 0.5f;
     public bool crouch;
