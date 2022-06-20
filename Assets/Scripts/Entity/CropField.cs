@@ -8,7 +8,6 @@ using Random = UnityEngine.Random;
 public class CropField : NetworkBehaviour
 {
     [SerializeField] private Transform[] seedLocations;
-    [SerializeField] private float timeToGrow = 180f;
     
     public NetworkVariable<bool> harvestable;
     
@@ -51,7 +50,7 @@ public class CropField : NetworkBehaviour
             seeds.Add(Instantiate(cropItems[crop].cropPrefab, seedLocations[randomNumber].position + new Vector3(0.1f, 0, 0.1f), seedLocations[randomNumber].rotation, seedLocations[randomNumber]));
             seeds[i].transform.Rotate(Vector3.up, Random.Range(0, 360));
 
-            seeds[i].GetComponent<Crop>().timeToGrow = timeToGrow;
+            if(i == 0) Invoke(nameof(Harvest), seeds[i].GetComponent<Crop>().timeToGrow);
         }
 
         if (player.TryGet(out Player ply))
@@ -60,7 +59,6 @@ public class CropField : NetworkBehaviour
         }
         
         hasSeed = true;
-        Invoke(nameof(Harvest), timeToGrow);
     }
 
     private void Harvest()
@@ -87,7 +85,11 @@ public class CropField : NetworkBehaviour
         
         if(player.TryGet(out Player ply))
         {
+            //give seeds
             ply.GiveItemServerRpc(player, currentCrop, 6);
+
+            //give the veggie
+            ply.GiveItemServerRpc(player, cropItems[currentCrop].cropResult, 18);
         }
     }
 }

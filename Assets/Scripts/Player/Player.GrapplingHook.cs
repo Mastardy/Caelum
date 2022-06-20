@@ -6,7 +6,6 @@ public partial class Player
     [SerializeField] private float grappleMaxLength = 30;
     [SerializeField] private float grappleEasing;
     [SerializeField] private float grapplePlusEasing;
-    [SerializeField] private float hookSpeed = 1f;
     private Vector3 grapplePoint;
     private float grappleTimer;
     private float grappleLength;

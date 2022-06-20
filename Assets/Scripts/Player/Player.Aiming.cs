@@ -209,7 +209,7 @@ public partial class Player
                             EatOrDrink(hotbars[currentSlot].slot);
                         }
                     }
-                    else
+                    else if(invItem.subTag is SubTag.Seed)
                     {
                         if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
                         {
@@ -319,6 +319,18 @@ public partial class Player
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
                 OpenSmeltery();
+            }
+        }
+
+        if (lookingAt.TryGetComponent(out CropField cropfield))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
+            {
+                if(cropfield.harvestable.Value)
+                {
+                    cropfield.HarvestServerRpc(this);
+                    AnimatorCollect();
+                }
             }
         }
     }
