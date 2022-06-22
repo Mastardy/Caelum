@@ -7,9 +7,6 @@
             "m_Id": "14da302cd82f49338cf3928ee5d06d0e"
         },
         {
-            "m_Id": "8cfbb915d83c481c816d5a357bb52c51"
-        },
-        {
             "m_Id": "c9656e9bbc0143c18399e0e032671524"
         },
         {
@@ -106,9 +103,6 @@
             "m_Id": "271e40f7db5140babc1821b14ec6bef0"
         },
         {
-            "m_Id": "18295d225faa4b12a824c95dab3bc3c9"
-        },
-        {
             "m_Id": "28bdc8dfde3c45b8b7b6078a79a81d51"
         },
         {
@@ -161,6 +155,9 @@
         },
         {
             "m_Id": "ef6087ca02ed4b109dcc2cf74ff4ffdc"
+        },
+        {
+            "m_Id": "757933321b5d48eca4993e3bc82db9a1"
         }
     ],
     "m_GroupDatas": [],
@@ -192,20 +189,6 @@
                     "m_Id": "302bf390f7af429c972d553968e5c390"
                 },
                 "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "18295d225faa4b12a824c95dab3bc3c9"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "42c4c6a8c550450186c403094ccf5cee"
-                },
-                "m_SlotId": 670399791
             }
         },
         {
@@ -416,6 +399,20 @@
                     "m_Id": "1c1bc34575ca43ae887acf0364157d16"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "757933321b5d48eca4993e3bc82db9a1"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "42c4c6a8c550450186c403094ccf5cee"
+                },
+                "m_SlotId": 670399791
             }
         },
         {
@@ -896,41 +893,6 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
-    }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
-    "m_ObjectId": "18295d225faa4b12a824c95dab3bc3c9",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Property",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -657.0000610351563,
-            "y": -801.0,
-            "width": 146.99990844726563,
-            "height": 33.99993896484375
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "74cccac8e4154a32871f775de485da62"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_Property": {
-        "m_Id": "8cfbb915d83c481c816d5a357bb52c51"
     }
 }
 
@@ -1616,9 +1578,6 @@
             "m_Id": "cdc4471d6b8f443cb133357fd52a11c1"
         },
         {
-            "m_Id": "8cfbb915d83c481c816d5a357bb52c51"
-        },
-        {
             "m_Id": "b6ca8f4c7fba4d90be669b5c06269a21"
         }
     ]
@@ -2123,21 +2082,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "74cccac8e4154a32871f775de485da62",
-    "m_Id": 0,
-    "m_DisplayName": "Wiggle Speed",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "752fdb9b742b41e28dc8e5189accf15e",
     "m_Id": 1,
@@ -2157,6 +2101,43 @@
         "y": 0.0,
         "z": 0.0,
         "w": 0.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.SliderNode",
+    "m_ObjectId": "757933321b5d48eca4993e3bc82db9a1",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Slider",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -657.0000610351563,
+            "y": -801.0,
+            "width": 146.99990844726563,
+            "height": 33.99993896484375
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "c5c61529e3544556b569abfadbca7ae5"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Value": {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 1.0
     }
 }
 
@@ -2500,33 +2481,6 @@
         "e31": 0.0,
         "e32": 0.0,
         "e33": 1.0
-    }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "8cfbb915d83c481c816d5a357bb52c51",
-    "m_Guid": {
-        "m_GuidSerialized": "6ff166eb-2117-447c-80be-8cf972338abc"
-    },
-    "m_Name": "Wiggle Speed",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Wiggle Speed",
-    "m_DefaultReferenceName": "_Wiggle_Speed",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 1.0,
-    "m_FloatType": 1,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
     }
 }
 
@@ -2957,6 +2911,21 @@
     },
     "isMainColor": false,
     "m_ColorMode": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "c5c61529e3544556b569abfadbca7ae5",
+    "m_Id": 0,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
