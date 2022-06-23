@@ -22,7 +22,7 @@ public partial class Player
         get => currentSlot;
         set
         {
-            if (inParachute) return;
+            if (inParachute || IsTethered() || animAim) return;
             if (Time.time - lastSlotChange < 0.1f) return;
             var val = value < 0 ? 5 : value > 5 ? 0 : value;
             if (val == currentSlot) return;

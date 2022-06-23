@@ -10,11 +10,13 @@ public partial class Animal : NetworkBehaviour
     [SerializeField] private GameObject model;
     [SerializeField] private SkinnedMeshRenderer modelRenderer;
     [SerializeField] private bool agressive = true;
+    [SerializeField] private LayerMask groundMask;
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");
     private static readonly int deadCache = Animator.StringToHash("Dead");
-    
+    private static readonly int playerCache = Animator.StringToHash("Player");
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -29,9 +31,9 @@ public partial class Animal : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out RaycastHit hit, -LayerMask.NameToLayer("Ground")))
+        if(Physics.Linecast(transform.position, transform.position - new Vector3(0, 10, 0), out RaycastHit hit, groundMask))
         {
-            model.transform.position = hit.point;
+            model.transform.position = Vector3.Lerp(model.transform.position, hit.point, Time.fixedDeltaTime * 2);
         }
     }
 
