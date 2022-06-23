@@ -9,9 +9,7 @@ public class ResourcePickableSpawner : NetworkBehaviour
 
     private void Start()
     {
-        Debug.Log("1");
         if (locations.Length == 0) return;
-        Debug.Log("2");
         SpawnFruitServerRpc();
     }
 

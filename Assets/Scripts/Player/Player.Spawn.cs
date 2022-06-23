@@ -81,9 +81,7 @@ public partial class Player
         }
         
         respawnTime = Time.time;
-        Debug.Log(transform.position);
         transform.position = position;
-        Debug.Log(transform.position);
     }
 
     private void OnDrawGizmos()
