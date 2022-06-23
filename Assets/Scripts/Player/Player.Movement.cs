@@ -98,6 +98,7 @@ public partial class Player
         
         if (Physics.CheckBox(groundCheck.position, new Vector3(sideSize, groundDistance, sideSize), transform.rotation, waterMask))
         {
+            TakeDamageServerRpc(5);
             RespawnPlayer(safePosition, false);
             return true;
         }
