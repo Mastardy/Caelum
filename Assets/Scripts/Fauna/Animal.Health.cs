@@ -7,6 +7,7 @@ public partial class Animal
     [HideInInspector] public bool dead;
     public int maxHealth = 150;
     public NetworkVariable<int> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<bool> carved = new(readPerm: NetworkVariableReadPermission.Everyone);
 
     private static readonly int damagedStrength = Shader.PropertyToID("_Damaged_Strength");
 
@@ -21,7 +22,7 @@ public partial class Animal
     }
 
     [ServerRpc]
-    public void TakeDamageServerRpc(int damageTaken, NetworkBehaviourReference player)
+    public void TakeDamageServerRpc(int damageTaken)
     {
         currentHealth.Value -= damageTaken;
         if (!dead){
@@ -31,7 +32,6 @@ public partial class Animal
 
         if (currentHealth.Value <= 0)
         {
-            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, "raw_meat");
             currentHealth.Value = 0;
             Die();
         }
@@ -43,10 +43,37 @@ public partial class Animal
         CurrentState = idleState;
         stateText.SetText("Dead");
         animator.SetBool(deadCache, true);
-        foreach(var col in GetComponentsInChildren<Collider>())
+
+        foreach (var col in GetComponentsInChildren<Collider>())
         {
-            if(!col.isTrigger) col.enabled = false;
+            if (!col.isTrigger) col.isTrigger = true;
         }
+
+        if (drops.Length == 0)
+        {
+            Invoke("DestroyAnimal", 3f);
+        }
+    }
+
+    [ServerRpc]
+    public void CarveServerRpc(NetworkBehaviourReference player)
+    {
+        if (drops.Length == 0) return;
+
+        if (carved.Value) return;
+
+        carved.Value = true;
+
+        for (int i = 0; i < drops.Length; i++)
+        {
+            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, drops[i].item.itemName, drops[i].amount);
+        }
+        Invoke("DestroyAnimal", 3f);
+    }
+
+    private void DestroyAnimal()
+    {
+        Destroy(gameObject);
     }
 
     private IEnumerator FadeColor()

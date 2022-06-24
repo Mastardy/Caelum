@@ -1,7 +1,14 @@
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
+using System.Collections.Generic;
+
+[System.Serializable]
+public struct Drop
+{
+    public InventoryItem item;
+    public int amount;
+}
 
 public partial class Animal : NetworkBehaviour
 {
@@ -11,11 +18,12 @@ public partial class Animal : NetworkBehaviour
     [SerializeField] private SkinnedMeshRenderer modelRenderer;
     [SerializeField] private bool agressive = true;
     [SerializeField] private LayerMask groundMask;
+    public Drop[] drops;
+
     private static readonly int attackCache = Animator.StringToHash("Attack");
     private static readonly int speedCache = Animator.StringToHash("Speed");
     private static readonly int hitCache = Animator.StringToHash("Hit");
     private static readonly int deadCache = Animator.StringToHash("Dead");
-    private static readonly int playerCache = Animator.StringToHash("Player");
 
     private void Start()
     {

@@ -7,8 +7,9 @@ public partial class Player
     [SerializeField] private Transform headTransform;
     [SerializeField] private Vector3 parachuteCameraRotation = new Vector3(-25, 0, 0);
     [SerializeField] private ParticleSystem impactParticle;
+    [SerializeField] private GameObject stoneKnife;
 
-    private float xRotation;
+private float xRotation;
 
     private void AimUpdate()
     {
@@ -66,7 +67,7 @@ public partial class Player
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
-                aimText.SetText(groundItem.name + "\n" + groundItem.amount.Value + "x");
+                aimText.SetText(groundItem.inventoryItem.displayName + "\n" + groundItem.amount.Value + "x");
                 lookingAt = hitInfo;
                 return;
             }
@@ -85,9 +86,10 @@ public partial class Player
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out Animal animal))
+            if (hitInfo.transform.TryGetComponent(out AnimalBone animalbone))
             {
-                aimText.SetText(animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
+                Animal animal = animalbone.animalOwner;
+                aimText.SetText(animal.dead? animal.carved.Value? "" : "Carve" : animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
                 lookingAt = hitInfo;
                 return;
             }
@@ -304,6 +306,8 @@ public partial class Player
             {
                 fishingNet.TryFishingServerRpc(this);
             }
+
+            return;
         }
         
         if(lookingAt.TryGetComponent(out Saw _))
@@ -312,6 +316,8 @@ public partial class Player
             {
                 OpenSaw();
             }
+
+            return;
         }
 
         if (lookingAt.TryGetComponent(out Smeltery _))
@@ -320,6 +326,8 @@ public partial class Player
             {
                 OpenSmeltery();
             }
+
+            return;
         }
 
         if (lookingAt.TryGetComponent(out CropField cropfield))
@@ -332,6 +340,19 @@ public partial class Player
                     AnimatorCollect();
                 }
             }
+
+            return;
+        }
+
+        if (lookingAt.TryGetComponent(out AnimalBone animalbone))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
+            {              
+                if(animalbone.animalOwner.carved.Value == false) AnimatorCarve();
+                animalbone.animalOwner.CarveServerRpc(this);
+            }
+
+            return;
         }
     }
 
@@ -351,17 +372,18 @@ public partial class Player
             }
         }
 
-        if (lookingAt.TryGetComponent(out Animal animal))
+        if (lookingAt.TryGetComponent(out AnimalBone animalbone))
         {
+            Animal animal = animalbone.animalOwner;
             switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
                 case ItemTag.Spear:
-                    animal.TakeDamageServerRpc(10, this);
+                    animal.TakeDamageServerRpc(10);
                     hotbars[currentSlot].slot.Durability -= 0.05f;
                     impactParticle.Play();
                     break;
                 case ItemTag.Sword:
-                    animal.TakeDamageServerRpc(20, this);
+                    animal.TakeDamageServerRpc(20);
                     impactParticle.Play();
                     hotbars[currentSlot].slot.Durability -= 0.025f;
                     break;
@@ -403,6 +425,11 @@ public partial class Player
                     break;
             }
         }
+    }
+
+    public void ShowStoneKnife(bool show)
+    {
+        stoneKnife.SetActive(show);
     }
     
     [ServerRpc]

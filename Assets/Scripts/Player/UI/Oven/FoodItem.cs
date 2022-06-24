@@ -9,4 +9,5 @@ public class FoodItem : ScriptableObject
     public float thirst;
     public float temperature;
     public float poison;
+    public int health;
 }

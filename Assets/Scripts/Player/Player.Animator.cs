@@ -276,6 +276,13 @@ public partial class Player
         else if (subtag == SubTag.Drink) firstPersonAnimator.SetTrigger("Drink");
     }
 
+    private void AnimatorCarve()
+    {
+        firstPersonAnimator.SetTrigger("Carving");
+        UnequipItem();
+        Invoke("EquipItem", 3.3f);
+    }
+
     #region support_functions
     public void SetLeftArmWeight(float w)
     {

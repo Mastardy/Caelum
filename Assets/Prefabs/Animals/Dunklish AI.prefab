@@ -200,6 +200,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  drops:
+  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+    amount: 1
+  canMove: 0
   fleeSpeed: 5
   dead: 0
   maxHealth: 150
@@ -457,10 +461,60 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7573448426859155647, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4785738352419238574, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4354119064681889364, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1089270402851521736, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1089270402851521736, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 652960338580862424, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 652960338580862424, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4ec97f9e301603c4a9ec45af9274d128,
         type: 3}
       propertyPath: m_Name
       value: RexFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943896048705384357, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726287102711118123, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726287102711118123, guid: 4ec97f9e301603c4a9ec45af9274d128,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec97f9e301603c4a9ec45af9274d128, type: 3}
@@ -484,6 +538,19 @@ CapsuleCollider:
   m_Height: 0.53
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: -0.06}
+--- !u!114 &4208398126744199486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815695672208535460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
 --- !u!137 &2491906562674070289 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 4ec97f9e301603c4a9ec45af9274d128,
@@ -510,6 +577,19 @@ CapsuleCollider:
   m_Height: 0.53
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: -0.06}
+--- !u!114 &1940530391939051993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785296088972340663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
 --- !u!4 &5895149388953973092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ec97f9e301603c4a9ec45af9274d128,
@@ -555,6 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 7352434512135037946}
+  type: 4
 --- !u!114 &6216513810711910036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,3 +669,16 @@ CapsuleCollider:
   m_Height: 1.547053
   m_Direction: 1
   m_Center: {x: -1.3472827e-13, y: 0.2170205, z: -0.04423194}
+--- !u!114 &8157402816746796002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6866504714113835863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}

@@ -98,8 +98,10 @@ public partial class Player
         if (currentHunger > maxHunger) currentHunger = maxHunger;
         currentThirst += foodItems[item.itemName].thirst;
         if (currentThirst > maxThirst) currentHunger = maxHunger;
+        currentHealth.Value += foodItems[item.itemName].health;
+        if (currentHealth.Value > maxHealth) currentHealth.Value = maxHealth;
 
-        if(invSlot.Amount > 1) invSlot.Amount--;
+        if (invSlot.Amount > 1) invSlot.Amount--;
         else invSlot.Clear();
 
         AnimatorEat(item.subTag);

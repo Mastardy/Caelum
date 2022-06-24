@@ -24,6 +24,7 @@ public enum SubTag
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "ScriptableObjects/InventoryItem", order = 1)]
 public class InventoryItem : ScriptableObject
 {
+    public string displayName;
     public string itemName;
     public ItemTag itemTag;
     public SubTag subTag;

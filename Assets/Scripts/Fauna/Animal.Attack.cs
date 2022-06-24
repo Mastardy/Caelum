@@ -29,8 +29,6 @@ public partial class Animal
         playerTarget = GetNearPlayer(10);
         
         agent.SetDestination(playerTarget.transform.position);
-
-        animator.SetBool(playerCache, true);
     }
     
     private void AttackUpdate()
@@ -55,7 +53,6 @@ public partial class Animal
     {
         agent.isStopped = false;
         agent.stoppingDistance = 0.1f;
-        animator.SetBool(playerCache, false);
     }
     
     private Player GetNearPlayer(float distance)

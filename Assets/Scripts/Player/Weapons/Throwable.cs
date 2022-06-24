@@ -37,7 +37,7 @@ public class Throwable : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Animal"))
             {
-                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage, player);
+                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage);
                 GetComponent<Rigidbody>().isKinematic = true;
                 GetComponent<Collider>().isTrigger = true;
                 animal = collision.gameObject.GetComponent<Animal>();
@@ -52,7 +52,7 @@ public class Throwable : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Animal"))
             {
-                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage, player);
+                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage);
                 transform.position = transform.position + (collision.transform.position - transform.position) * 0.1f;
                 return;
             }

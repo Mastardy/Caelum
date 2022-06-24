@@ -234,6 +234,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  drops:
+  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+    amount: 1
+  canMove: 0
   fleeSpeed: 5
   dead: 0
   maxHealth: 65
@@ -577,6 +581,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 4190356544868668962, guid: 32d6cded08457984da2339c2f235fee0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 4451086315846252676, guid: 32d6cded08457984da2339c2f235fee0,
         type: 3}
       propertyPath: m_Layer
@@ -640,6 +649,19 @@ CapsuleCollider:
   m_Height: 0.9629815
   m_Direction: 1
   m_Center: {x: 5.971927e-14, y: 0.35653722, z: 0.1399085}
+--- !u!114 &8798321780508896134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862127213459461583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
 --- !u!4 &3916863165827048454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 32d6cded08457984da2339c2f235fee0,
@@ -685,6 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 116426552071067516}
+  type: 3
 --- !u!114 &3589869393377723369
 MonoBehaviour:
   m_ObjectHideFlags: 0

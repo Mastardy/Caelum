@@ -56,6 +56,16 @@ public class PlayerAnimationEvents : MonoBehaviour
         }
     }
 
+    public void ShowKnife()
+    {
+        player.ShowStoneKnife(true);
+    }
+
+    public void HideKnife()
+    {
+        player.ShowStoneKnife(false);
+    }
+
     //tps functions
     public void FinishUse()
     {

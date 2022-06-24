@@ -99,6 +99,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  drops:
+  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+    amount: 1
+  canMove: 0
   fleeSpeed: 5
   dead: 0
   maxHealth: 30
@@ -472,10 +476,75 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7699398756591280099, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -6211391026229632956, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3685670632053804176, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -1053632586177021096, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 842267117818327109, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 842267117818327109, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 664ff4bf895c6944fae843fd5a733f50,
         type: 3}
       propertyPath: m_Name
       value: Salamander
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218997647719359194, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218997647719359194, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772834968222091576, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825930958858701575, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5988214055651836794, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8506403102089992586, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846101917668527816, guid: 664ff4bf895c6944fae843fd5a733f50,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 664ff4bf895c6944fae843fd5a733f50, type: 3}
@@ -531,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 510826510673883269}
+  type: 2
 --- !u!1 &5172749746290883773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 842267117818327109, guid: 664ff4bf895c6944fae843fd5a733f50,
@@ -551,6 +621,19 @@ CapsuleCollider:
   m_Height: 2.0288887
   m_Direction: 1
   m_Center: {x: 2.586518e-14, y: 0.5144423, z: 0.036751103}
+--- !u!114 &1914610989588294019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172749746290883773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
 --- !u!4 &5472894421095164691 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 664ff4bf895c6944fae843fd5a733f50,
@@ -583,3 +666,16 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6371681080014330637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8572035668729933346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}

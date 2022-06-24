@@ -234,6 +234,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  drops:
+  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+    amount: 1
+  canMove: 0
   fleeSpeed: 5
   dead: 0
   maxHealth: 150
@@ -472,6 +476,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8019930215199246957, guid: e3cff75608d1aca47a0346b74e46dab1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8019930215199246957, guid: e3cff75608d1aca47a0346b74e46dab1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -3189448650947246795, guid: e3cff75608d1aca47a0346b74e46dab1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3189448650947246795, guid: e3cff75608d1aca47a0346b74e46dab1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e3cff75608d1aca47a0346b74e46dab1,
         type: 3}
       propertyPath: m_Name
@@ -499,6 +523,19 @@ CapsuleCollider:
   m_Height: 0.2996584
   m_Direction: 1
   m_Center: {x: -0.0000150415535, y: 0.009403909, z: 0.041808426}
+--- !u!114 &8832316366492289836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2575047522891586083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
 --- !u!4 &3784618651562199131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e3cff75608d1aca47a0346b74e46dab1,
@@ -557,6 +594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 365182016941401076}
+  type: 6
 --- !u!137 &5178975120995101230 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: e3cff75608d1aca47a0346b74e46dab1,
@@ -583,3 +621,16 @@ CapsuleCollider:
   m_Height: 0.20818327
   m_Direction: 1
   m_Center: {x: 0.00006245175, y: -0.018679138, z: -0.05896641}
+--- !u!114 &7607788324924060007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968157932154481285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 0}
