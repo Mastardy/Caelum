@@ -375,6 +375,9 @@ private float xRotation;
         if (lookingAt.TryGetComponent(out AnimalBone animalbone))
         {
             Animal animal = animalbone.animalOwner;
+
+            if (animal.dead) return;
+
             switch(hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
                 case ItemTag.Spear:
