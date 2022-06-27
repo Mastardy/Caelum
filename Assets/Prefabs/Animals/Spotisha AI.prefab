@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510826510673883264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.244513, y: 161.24, z: -699.0038}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -102,11 +102,12 @@ MonoBehaviour:
   drops:
   - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
     amount: 1
-  canMove: 0
   fleeSpeed: 5
   dead: 0
   maxHealth: 30
   currentHealth:
+    m_InternalValue: 0
+  carved:
     m_InternalValue: 0
   roamSpeed: 2
 --- !u!114 &510826510673883268
@@ -600,7 +601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 510826510673883269}
-  type: 2
 --- !u!1 &5172749746290883773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 842267117818327109, guid: 664ff4bf895c6944fae843fd5a733f50,
