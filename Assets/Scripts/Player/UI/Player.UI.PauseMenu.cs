@@ -17,6 +17,7 @@ public partial class Player
         pauseMenu.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
     }
 
     public void HidePauseMenu()
@@ -28,6 +29,7 @@ public partial class Player
         optionsMenu.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
     }
 
     public void Restart()

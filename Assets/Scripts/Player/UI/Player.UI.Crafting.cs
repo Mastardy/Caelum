@@ -34,6 +34,7 @@ public partial class Player
         craftingPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -47,6 +48,7 @@ public partial class Player
         craftingPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
         
         PrepareCraftingRecipe(currentCraftingRecipe ? currentCraftingRecipe : craftingRecipes[0]);
         PrepareCrafting();

@@ -28,6 +28,7 @@ public partial class Player
         chatScrollBar.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
 
         foreach (var chatEntry in chatEntries.GetComponentsInChildren<ChatEntry>(true))
         {
@@ -49,6 +50,7 @@ public partial class Player
         chatScrollBar.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
         EventSystem.current.SetSelectedGameObject(chatBox);
 
         foreach (var chatEntry in chatEntries.GetComponentsInChildren<ChatEntry>(true))

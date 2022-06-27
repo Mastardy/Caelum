@@ -26,6 +26,7 @@ public partial class Player
         inventoryPanel.GetComponent<CanvasGroup>().interactable = false;
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
         hotbarsGroup.alpha = 1;
     }
 
@@ -42,6 +43,7 @@ public partial class Player
         inventoryPanel.GetComponent<CanvasGroup>().interactable = true;
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
         hotbarsGroup.alpha = 0;
     }
     

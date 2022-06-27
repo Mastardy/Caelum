@@ -38,6 +38,7 @@ public partial class Player
         smelteryPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
         hotbarsGroup.alpha = 1;
 
         playerCamera.GetComponent<Camera>().enabled = true;
@@ -61,6 +62,7 @@ public partial class Player
         smelteryPanel.SetActive(true);        
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
         hotbarsGroup.alpha = 0;
         
         playerCamera.GetComponent<Camera>().enabled = false;

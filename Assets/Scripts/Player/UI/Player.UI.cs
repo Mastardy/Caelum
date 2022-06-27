@@ -17,6 +17,7 @@ public partial class Player
 
     [SerializeField] private GameObject crosshair;
     [SerializeField] private TextMeshProUGUI aimText;
+    [SerializeField] private TextMeshProUGUI tipsText;
     [SerializeField] private LayerMask hitMask;
 
     [SerializeField] private GameObject chatBox;

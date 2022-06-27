@@ -13,9 +13,11 @@ public class CropField : NetworkBehaviour
     
     private Dictionary<string, CropItem> cropItems = new();
     
-    private bool hasSeed;
-    private List<GameObject> seeds = new();
+    public bool hasSeed;
+    public List<GameObject> seeds = new();
     private string currentCrop;
+
+    public string cropName;
 
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class CropField : NetworkBehaviour
         }
         
         hasSeed = true;
+        cropName = cropItems[currentCrop].displayName;
     }
 
     private void Harvest()

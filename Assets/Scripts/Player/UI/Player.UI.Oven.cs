@@ -46,6 +46,7 @@ public partial class Player
         ovenPanel.SetActive(true);
         crosshair.SetActive(false);
         aimText.gameObject.SetActive(false);
+        tipsText.gameObject.SetActive(false);
         
         PrepareOvenRecipe(currentRecipe ? currentRecipe : cookingRecipes[0]);
         PrepareOven();
@@ -63,6 +64,7 @@ public partial class Player
         ovenPanel.SetActive(false);
         crosshair.SetActive(true);
         aimText.gameObject.SetActive(true);
+        tipsText.gameObject.SetActive(true);
     }
 
     [ClientRpc]

@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MossTexture:
-        m_Texture: {fileID: 2800000, guid: 5fc272bb4fa310140b6a56fbdf1178db, type: 3}
+        m_Texture: {fileID: 2800000, guid: e5b8d63c9b68e8447aabad5fe2b8aadd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Moss_Normal_Map:
@@ -52,13 +52,13 @@ Material:
     m_Floats:
     - _Displace_Up_Node: 0.02
     - _Fade: 0
-    - _MossContrast: 0.33
+    - _MossContrast: -0.08
     - _MossLevel: 1
     - _Moss_Brightness: 1
-    - _Moss_Noise_Itensity: 0.32
+    - _Moss_Noise_Itensity: 0.06
     - _Moss_Noise_Scale: 500
     - _Moss_Normal_Strength: 0
-    - _Moss_Tilling: 86.04
+    - _Moss_Tilling: 3.84
     - _Noise_Power: 1.08
     - _Noise_Scale: 0
     - _Normal_Strength: 0.76
@@ -73,14 +73,16 @@ Material:
     - _ToonRampSmoothness: 0
     - _UpNode: 1.51
     - _Up_Node: 1
+    - _Use_Moss_Normal: 1
+    - _Use_Normal: 1
     - _Use_Vertex_Color: 0
     m_Colors:
     - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
     - _ColorMultiply: {r: 0.50259876, g: 0.57590824, b: 0.735849, a: 1}
     - _Displace_Offset: {r: 0, g: 1, b: 0, a: 0}
-    - _MossColor: {r: 0.36087573, g: 0.5568049, b: 0.5849056, a: 1}
+    - _MossColor: {r: 0.52950335, g: 0.5769164, b: 0.6886792, a: 1}
     - _MossOffset: {r: 0, g: 1, b: 0, a: 0}
-    - _Moss_Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Moss_Offset: {r: 0, g: 1, b: 0, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
     - _ToonRampTinting: {r: 0.8431373, g: 0.8431373, b: 0.8431373, a: 0}
     - _Vector3: {r: 0, g: 1, b: 0, a: 0}

@@ -54,6 +54,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out Car vehicle))
             {
                 aimText.SetText(vehicle.name);
+                tipsText.SetText("[E] Enter vechicle");
                 lookingAt = hitInfo;
                 return;
             }
@@ -62,12 +63,35 @@ private float xRotation;
             {
                 aimText.SetText(resource.name);
                 lookingAt = hitInfo;
+
+                if (resource.item.itemName == "wood")
+                {
+                    if (!hotbars[currentSlot].slot.isEmpty)
+                    {
+                        if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe) tipsText.SetText("[E] Chop\n[LMB] Collect stick");
+                        else tipsText.SetText("[E] Collect stick");
+                    }
+                    else tipsText.SetText("[E] Collect stick");
+                }
+                else if(resource.item.itemName == "stone")
+                {
+                    if (!hotbars[currentSlot].slot.isEmpty)
+                    {
+                        if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Pickaxe) tipsText.SetText("[LMB] Mine");
+                        else tipsText.SetText(string.Empty);
+                    }
+                    else tipsText.SetText(string.Empty);
+                }
+                    
+                
                 return;
             }
 
             if (hitInfo.transform.TryGetComponent(out InventoryGroundItem groundItem))
             {
                 aimText.SetText(groundItem.inventoryItem.displayName + "\n" + groundItem.amount.Value + "x");
+                tipsText.SetText("[E] Collect");
+
                 lookingAt = hitInfo;
                 return;
             }
@@ -75,6 +99,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out CraftingTable _))
             {
                 aimText.SetText("Crafting Table");
+                tipsText.SetText("[E] Open menu");
                 lookingAt = hitInfo;
                 return;
             }
@@ -82,6 +107,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out Oven _))
             {
                 aimText.SetText("Oven");
+                tipsText.SetText("[E] Open menu");
                 lookingAt = hitInfo;
                 return;
             }
@@ -89,7 +115,8 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out AnimalBone animalbone))
             {
                 Animal animal = animalbone.animalOwner;
-                aimText.SetText(animal.dead? animal.carved.Value? "" : "Carve" : animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
+                aimText.SetText(animal.dead? string.Empty : animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
+                if(animal.dead) tipsText.SetText("[E] Carve");
                 lookingAt = hitInfo;
                 return;
             }
@@ -97,6 +124,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out FishingNet fishingNet))
             {
                 aimText.SetText("Fishing Net" + (fishingNet.fishesInNet.Value > 0 ? $"\n{fishingNet.fishesInNet.Value}" : string.Empty));
+                tipsText.SetText("[E] Use");
                 lookingAt = hitInfo;
                 return;
             }
@@ -104,6 +132,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out ResourcePickable pickable))
             {
                 aimText.SetText(pickable.gameObject.name);
+                tipsText.SetText("[E] Collect");
                 lookingAt = hitInfo;
                 return;
             }
@@ -111,6 +140,7 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out Saw _))
             {
                 aimText.SetText("Saw");
+                tipsText.SetText("[E] Open menu");
                 lookingAt = hitInfo;
                 return;
             }
@@ -118,13 +148,25 @@ private float xRotation;
             if (hitInfo.transform.TryGetComponent(out Smeltery _))
             {
                 aimText.SetText("Smeltery");
+                tipsText.SetText("[E] Open menu");
                 lookingAt = hitInfo;
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out CropField _))
+            if (hitInfo.transform.TryGetComponent(out CropField cf))
             {
-                aimText.SetText("Crop Field");
+                aimText.SetText(cf.hasSeed ? cf.cropName + "\n" + ((int)(cf.seeds[0].GetComponent<Crop>().percentage * 100)).ToString() + "%" : "Crop Field");
+                if(cf.harvestable.Value) tipsText.SetText("[E] Collect");
+                else
+                {
+                    if (!hotbars[CurrentSlot].slot.isEmpty)
+                    {
+                        if(hotbars[CurrentSlot].slot.inventoryItem.subTag == SubTag.Seed) tipsText.SetText("[E] Plant seed");
+                        else tipsText.SetText(string.Empty);
+                    }
+                    else tipsText.SetText(string.Empty);
+                }
+
                 lookingAt = hitInfo;
                 return;
             }
@@ -132,6 +174,33 @@ private float xRotation;
         
         lookingAt = null;
         aimText.SetText(string.Empty);
+
+        if (!hotbars[CurrentSlot].slot.isEmpty)
+        {
+            switch (hotbars[CurrentSlot].slot.inventoryItem.itemTag)
+            {
+                case ItemTag.Bow:
+                    if(animAim) tipsText.SetText("[LMB] Shoot");
+                    else tipsText.SetText("[RMB] Aim (hold)");
+                    break;
+                case ItemTag.Sword:
+                    tipsText.SetText("[LMB] Attack");
+                    break;
+                case ItemTag.Food:
+                    tipsText.SetText("[LMB] Eat");
+                    break;
+                case ItemTag.Grappling:
+                    tipsText.SetText("[RMB] Shoot");
+                    break;
+                case ItemTag.Spear:
+                    if(animAim) tipsText.SetText("[LMB] Throw");
+                    else tipsText.SetText("[RMB] Aim (hold)\n[LMB] Attack");
+                    break;
+            }
+            return;
+        }
+        
+        tipsText.SetText(string.Empty);
     }
 
     private bool lastBowState;
@@ -211,9 +280,11 @@ private float xRotation;
                             EatOrDrink(hotbars[currentSlot].slot);
                         }
                     }
-                    else if(invItem.subTag is SubTag.Seed)
+                    break;
+                case ItemTag.Other:
+                    if(invItem.subTag is SubTag.Seed)
                     {
-                        if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.5f))
+                        if (InputHelper.GetKeyDown(gameOptions.useKey, 0.5f))
                         {
                             if (!lookingAt) return;
                             if (lookingAt.TryGetComponent(out CropField cropField))
@@ -222,7 +293,6 @@ private float xRotation;
                             }
                         }
                     }
-
                     break;
                 case ItemTag.Grappling:
                     if(InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 0.6f))
@@ -340,7 +410,6 @@ private float xRotation;
                     AnimatorCollect();
                 }
             }
-
             return;
         }
 
