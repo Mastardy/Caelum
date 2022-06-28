@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5116dbb663a51e14f90de47f2f0d83c7, type: 3}
+  m_Name: Ringed Apple Pie
+  m_EditorClassIdentifier: 
+  ingredients:
+  - inventoryItem: {fileID: 11400000, guid: 94d70b9f0c36b5e4ea79b7635109cc96, type: 2}
+    quantity: 1
+  - inventoryItem: {fileID: 11400000, guid: 0a107ec7c2d8fcf4d9ae1f961faec50b, type: 2}
+    quantity: 3
+  - inventoryItem: {fileID: 11400000, guid: 9252ee104ad8e3748916eff23f183859, type: 2}
+    quantity: 3
+  cooked: {fileID: 11400000, guid: 1cbea719f57124248bf299844c5bb5b9, type: 2}
+  burnt: {fileID: 11400000, guid: 41802a716007bbb4ab611843de218fea, type: 2}

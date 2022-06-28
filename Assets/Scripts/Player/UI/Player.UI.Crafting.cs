@@ -106,7 +106,7 @@ public partial class Player
             ingrUI.quantity.SetText(GetItemAmount(ingredient.item.itemName) + "/" + ingredient.amount);
         }
         
-        craftingRecipeTitle.SetText(craftingRecipe.result.name);
+        craftingRecipeTitle.SetText(craftingRecipe.result.name + (currentCraftingRecipe.amount > 1 ? " " + currentCraftingRecipe.amount + "x" : string.Empty));
 
         craftingRecipeImage.sprite = craftingRecipe.result.sprite;
         
@@ -126,7 +126,7 @@ public partial class Player
             RemoveItem(ingredient.item.itemName, ingredient.amount);
         }
         
-        GiveItemServerRpc(this, currentCraftingRecipe.result.itemName, durability: currentCraftingRecipe.result.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Grappling or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Armor ? 1 : 0);
+        GiveItemServerRpc(this, currentCraftingRecipe.result.itemName, currentCraftingRecipe.amount, durability: currentCraftingRecipe.result.itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Grappling or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Armor ? 1 : 0);
         
         PrepareCraftingRecipe(currentCraftingRecipe);
     }

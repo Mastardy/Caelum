@@ -13,4 +13,5 @@ public class CraftingRecipe : ScriptableObject
 {
     public List<RecipeRequirements> requirements;
     public InventoryItem result;
+    public int amount = 1;
 }
