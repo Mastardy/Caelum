@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bit Tree
+  m_Name: Big Tree
   m_Shader: {fileID: -6465566751694194690, guid: d0b414f044138914a8f36afb7fe4db87,
     type: 3}
   m_ShaderKeywords: 
@@ -89,10 +89,10 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
-    - _Cel_Desity: 10
+    - _Cel_Desity: 8
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Color_Power: 2.2
+    - _Color_Power: 3.26
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -104,8 +104,10 @@ Material:
     - _GlossyReflections: 0
     - _Invert_Detail: 1
     - _Metallic: 0
+    - _Noise_Scale: 43.5
+    - _Noise_Strength: 1
     - _Normal: 0.022
-    - _Normal_Strength: 0.8
+    - _Normal_Strength: -0.1
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -123,9 +125,11 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.6509804, g: 0.42352942, b: 0.24705882, a: 1}
     - _Color_2: {r: 0.5566038, g: 0.29518002, b: 0.24417052, a: 0}
-    - _Color_Tilling: {r: 8, g: 2, b: 0, a: 0}
+    - _Color_3: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+    - _Color_Tilling: {r: 15, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Hue_Variation: {r: 0, g: 0, b: 0, a: 0}
+    - _Noise_Tilling: {r: 10, g: 10, b: 0, a: 0}
     - _Normal_Tilling: {r: 200, g: 100, b: 0, a: 0}
     - _Same_Color_Adjust: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
