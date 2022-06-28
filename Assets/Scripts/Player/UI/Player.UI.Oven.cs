@@ -11,10 +11,16 @@ public partial class Player
     private bool inOvenMinigame;
     private Oven cooker;
     private CookingRecipe currentRecipe;
-    
+
     [Header("Oven")]
     [SerializeField] private Transform recipesContent;
+    [SerializeField] private Transform recipesContentVegan;
+    [SerializeField] private Transform recipesContentFish;
+    [SerializeField] private Transform recipesContentMeat;
     [SerializeField] private GameObject recipePrefab;
+
+    [SerializeField] private RectTransform[] tabs;
+    [SerializeField] private GameObject[] scrolls;
 
     [SerializeField] private Transform ingredientsContent;
     [SerializeField] private GameObject ingredientPrefab;
@@ -32,6 +38,9 @@ public partial class Player
     [SerializeField] private GameObject ovenMinigame;
     
     private CookingRecipe[] cookingRecipes;
+    private CookingRecipe[] cookingRecipesVegan;
+    private CookingRecipe[] cookingRecipesFish;
+    private CookingRecipe[] cookingRecipesMeat;
 
     private Dictionary<string, FoodItem> foodItems = new ();
     
@@ -49,7 +58,10 @@ public partial class Player
         tipsText.gameObject.SetActive(false);
         
         PrepareOvenRecipe(currentRecipe ? currentRecipe : cookingRecipes[0]);
-        PrepareOven();
+        PrepareOven(recipesContent, cookingRecipes);
+        PrepareOven(recipesContentVegan, cookingRecipesVegan);
+        PrepareOven(recipesContentFish, cookingRecipesFish);
+        PrepareOven(recipesContentMeat, cookingRecipesMeat);
     }
 
     /// <summary>
@@ -83,19 +95,19 @@ public partial class Player
 
     private float currentTimer;
     
-    private void PrepareOven()
+    private void PrepareOven(Transform content, CookingRecipe[] recipes)
     {
-        foreach (var child in recipesContent.GetComponentsInChildren<Transform>())
+        foreach (var child in content.GetComponentsInChildren<Transform>())
         {
-            if (child != recipesContent)
+            if (child != content)
             {
                 Destroy(child.gameObject);
             }
         }
         
-        foreach (var cookingRecipe in cookingRecipes)
+        foreach (var cookingRecipe in recipes)
         {
-            var recipe = Instantiate(recipePrefab, recipesContent);
+            var recipe = Instantiate(recipePrefab, content);
             var recipeUI = recipe.GetComponent<CookingRecipeUI>();
             recipeUI.image.sprite = cookingRecipe.cooked.sprite;
             recipeUI.title.SetText(cookingRecipe.cooked.name);
@@ -125,6 +137,7 @@ public partial class Player
         }
 
         recipeTitle.gameObject.SetActive(true);
+        recipeTitle.GetComponent<TextMeshProUGUI>().text = cookingRecipe.cooked.displayName;
         
         recipeDescription.gameObject.SetActive(true);
         recipeDescription.SetText(cookingRecipe.cooked.description);
@@ -203,6 +216,15 @@ public partial class Player
             inOvenMinigame = false;
             
             PrepareOvenRecipe(currentRecipe);
+        }
+    }
+
+    public void SwitchOvenTab(int tab)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            tabs[i].sizeDelta = new Vector2(86, i == tab ? 140 : 115);
+            scrolls[i].SetActive(i == tab ? true : false);
         }
     }
 }
