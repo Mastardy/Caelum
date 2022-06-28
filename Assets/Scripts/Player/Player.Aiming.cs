@@ -68,7 +68,7 @@ private float xRotation;
                 {
                     if (!hotbars[currentSlot].slot.isEmpty)
                     {
-                        if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe) tipsText.SetText("[E] Chop\n[LMB] Collect stick");
+                        if (hotbars[currentSlot].slot.inventoryItem.itemTag is ItemTag.Axe) tipsText.SetText("[LMB] Chop\n[E] Collect stick");
                         else tipsText.SetText("[E] Collect stick");
                     }
                     else tipsText.SetText("[E] Collect stick");
@@ -116,7 +116,7 @@ private float xRotation;
             {
                 Animal animal = animalbone.animalOwner;
                 aimText.SetText(animal.dead? string.Empty : animal.currentHealth.Value.ToString("F0") + "/" + animal.maxHealth.ToString("F0"));
-                if(animal.dead) tipsText.SetText("[E] Carve");
+                if(animal.dead && animal.drops.Length > 0) tipsText.SetText("[E] Carve");
                 lookingAt = hitInfo;
                 return;
             }
@@ -196,6 +196,7 @@ private float xRotation;
                     if(animAim) tipsText.SetText("[LMB] Throw");
                     else tipsText.SetText("[RMB] Aim (hold)\n[LMB] Attack");
                     break;
+                default: tipsText.SetText(string.Empty); break;
             }
             return;
         }
@@ -417,7 +418,7 @@ private float xRotation;
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
             {              
-                if(animalbone.animalOwner.carved.Value == false) AnimatorCarve();
+                if(animalbone.animalOwner.carved.Value == false && animalbone.animalOwner.dead) AnimatorCarve();
                 animalbone.animalOwner.CarveServerRpc(this);
             }
 

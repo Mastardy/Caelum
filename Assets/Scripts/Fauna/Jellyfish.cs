@@ -17,7 +17,7 @@ public class Jellyfish : MonoBehaviour
     {
         if (animal.dead)
         {
-            GameObject.Instantiate(deathParticle, anchor);
+            GameObject.Instantiate(deathParticle, anchor.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

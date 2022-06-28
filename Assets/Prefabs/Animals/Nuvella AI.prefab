@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3562415332493460345}
   m_Layer: 11
   m_Name: Text (TMP)
-  m_TagString: Animal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
-  drops: []
+  drops:
+  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+    amount: 2
   fleeSpeed: 5
   dead: 0
   maxHealth: 45
@@ -311,7 +313,7 @@ GameObject:
   - component: {fileID: 3562415332848717616}
   m_Layer: 11
   m_Name: Canvas
-  m_TagString: Animal
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,7 +415,7 @@ PrefabInstance:
     - target: {fileID: -9056466254490658074, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -478,7 +480,7 @@ PrefabInstance:
     - target: {fileID: -8108085122129792975, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -7091422874622413822, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -488,7 +490,7 @@ PrefabInstance:
     - target: {fileID: -7091422874622413822, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -6993712090847097525, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -498,7 +500,7 @@ PrefabInstance:
     - target: {fileID: -6993712090847097525, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -6522695966643703301, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -508,7 +510,7 @@ PrefabInstance:
     - target: {fileID: -6522695966643703301, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -5782588811254750997, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -518,7 +520,7 @@ PrefabInstance:
     - target: {fileID: -5782588811254750997, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -5294270026432214785, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -528,7 +530,7 @@ PrefabInstance:
     - target: {fileID: -5294270026432214785, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -4904297062944263199, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -538,7 +540,7 @@ PrefabInstance:
     - target: {fileID: -4904297062944263199, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -4819223349682164798, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -548,7 +550,7 @@ PrefabInstance:
     - target: {fileID: -4819223349682164798, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -4799342111627348280, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -558,7 +560,7 @@ PrefabInstance:
     - target: {fileID: -4799342111627348280, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -4166266729171555582, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -578,7 +580,7 @@ PrefabInstance:
     - target: {fileID: -2642983922326768537, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -2557075771972218249, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -588,7 +590,7 @@ PrefabInstance:
     - target: {fileID: -2557075771972218249, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -2439617325735171385, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -598,7 +600,7 @@ PrefabInstance:
     - target: {fileID: -2439617325735171385, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -2336273726972835622, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -608,7 +610,7 @@ PrefabInstance:
     - target: {fileID: -2336273726972835622, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -2333877407079138710, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -618,7 +620,7 @@ PrefabInstance:
     - target: {fileID: -2333877407079138710, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -1939926859696433821, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -628,7 +630,7 @@ PrefabInstance:
     - target: {fileID: -1939926859696433821, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -1710591084336410869, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -638,7 +640,7 @@ PrefabInstance:
     - target: {fileID: -1710591084336410869, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -1650991168199944198, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -648,7 +650,7 @@ PrefabInstance:
     - target: {fileID: -1650991168199944198, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 433443456041680335, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -668,7 +670,7 @@ PrefabInstance:
     - target: {fileID: 783462564003880542, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -683,7 +685,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 982293298994644424, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -693,7 +695,7 @@ PrefabInstance:
     - target: {fileID: 982293298994644424, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1790183945725220954, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -703,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 1790183945725220954, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1888792813806264462, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -713,7 +715,7 @@ PrefabInstance:
     - target: {fileID: 1888792813806264462, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2046677427153393378, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -733,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 2168958152983122580, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2407389051953916222, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -743,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 2407389051953916222, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4525532373157143094, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -753,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 4525532373157143094, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4819001077394492298, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -773,7 +775,7 @@ PrefabInstance:
     - target: {fileID: 5395552011461267082, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5418153468092644311, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -783,7 +785,7 @@ PrefabInstance:
     - target: {fileID: 5418153468092644311, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5666833199002567145, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -803,7 +805,7 @@ PrefabInstance:
     - target: {fileID: 5667850358142351699, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6139522100099042756, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -813,7 +815,7 @@ PrefabInstance:
     - target: {fileID: 6139522100099042756, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6506103275211774481, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -823,7 +825,7 @@ PrefabInstance:
     - target: {fileID: 6506103275211774481, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6905609870639353253, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -843,7 +845,7 @@ PrefabInstance:
     - target: {fileID: 7036213049465896255, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7580281845011134594, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -853,7 +855,7 @@ PrefabInstance:
     - target: {fileID: 7580281845011134594, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7714246653192170979, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -863,7 +865,7 @@ PrefabInstance:
     - target: {fileID: 7714246653192170979, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7772046265933340292, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -873,7 +875,7 @@ PrefabInstance:
     - target: {fileID: 7772046265933340292, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7987965065826198484, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -883,7 +885,7 @@ PrefabInstance:
     - target: {fileID: 7987965065826198484, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8371953007828822807, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
@@ -893,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 8371953007828822807, guid: c3f69aad7808f274d806a990da42acf7,
         type: 3}
       propertyPath: m_TagString
-      value: Animal
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f69aad7808f274d806a990da42acf7, type: 3}
@@ -935,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!1 &3799723196225470677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5666833199002567145, guid: c3f69aad7808f274d806a990da42acf7,
@@ -968,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!1 &4107125813985823414 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4819001077394492298, guid: c3f69aad7808f274d806a990da42acf7,
@@ -1001,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!1 &4337393754300738110 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4166266729171555582, guid: c3f69aad7808f274d806a990da42acf7,
@@ -1034,7 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!1 &7383850184057116638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2046677427153393378, guid: c3f69aad7808f274d806a990da42acf7,
@@ -1067,7 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!1 &8565458405197200493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c3f69aad7808f274d806a990da42acf7,
@@ -1152,7 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3562415332638225522}
 --- !u!4 &9049226597275133655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c3f69aad7808f274d806a990da42acf7,

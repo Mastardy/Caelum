@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5221105988263750793}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: particle anchor
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 5066571769685381663}
   m_Layer: 11
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 5066571770564880728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5066571769685381662}
@@ -235,7 +235,7 @@ MonoBehaviour:
   drops: []
   fleeSpeed: 5
   dead: 0
-  maxHealth: 65
+  maxHealth: 10
   currentHealth:
     m_InternalValue: 0
   carved:
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 5066571770646584918}
   m_Layer: 11
   m_Name: Text (TMP)
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,6 +453,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5066571770564880704}
     m_Modifications:
+    - target: {fileID: -9060292840313497484, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -9060292840313497484, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 236e2c695337b7543a8efe203492cc85,
         type: 3}
       propertyPath: m_RootOrder
@@ -523,13 +533,285 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8475177493370213883, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8475177493370213883, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -8382135313192671448, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8382135313192671448, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -7203956131189489730, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -7203956131189489730, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -3930507386639678641, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3930507386639678641, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -3792700265665992883, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -3792700265665992883, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -2232437762757386559, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -2232437762757386559, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -353811820088170110, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -353811820088170110, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -151536793061223936, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -151536793061223936, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -145744478793804186, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -145744478793804186, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: -119659168884901939, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -119659168884901939, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 635547659545568360, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 741808593568725213, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 741808593568725213, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 236e2c695337b7543a8efe203492cc85,
         type: 3}
       propertyPath: m_Name
       value: Jellyfish
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190453772107800404, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1190453772107800404, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521451174567901799, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521451174567901799, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802025062639669243, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802025062639669243, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277981895486224791, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277981895486224791, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758267865522277817, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758267865522277817, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722338084285027708, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722338084285027708, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765423025217155534, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765423025217155534, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787129386924616951, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787129386924616951, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668442019513218910, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668442019513218910, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773627641124828303, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773627641124828303, guid: 236e2c695337b7543a8efe203492cc85,
+        type: 3}
+      propertyPath: m_TagString
+      value: Animal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 236e2c695337b7543a8efe203492cc85, type: 3}
+--- !u!1 &2900458709203189285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4765423025217155534, guid: 236e2c695337b7543a8efe203492cc85,
+    type: 3}
+  m_PrefabInstance: {fileID: 7665778756991537131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &5072502214025512490
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900458709203189285}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.63
+  m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &3198429509633608324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900458709203189285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 5066571770564880733}
 --- !u!1 &7395817668008899258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 236e2c695337b7543a8efe203492cc85,
@@ -556,6 +838,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2383811886352847665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395817668008899258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b5d732184cc0d46bc284fb45772e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animal: {fileID: 5066571770564880733}
 --- !u!114 &5261382568447138020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
+  m_Animator: {fileID: 7665778756991537126}
 --- !u!4 &7919835406827923456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 236e2c695337b7543a8efe203492cc85,

@@ -18,6 +18,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         player.TryHarvest();
     }
 
+    public void ShakeCamera(int amount)
+    {
+        shake.PlayShake(amount);
+    }
+
     public void TryAttack()
     {
         player.TryAttack();

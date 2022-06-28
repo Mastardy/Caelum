@@ -37,7 +37,7 @@ public class Throwable : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Animal"))
             {
-                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage);
+                collision.gameObject.GetComponentInChildren<AnimalBone>().animalOwner.TakeDamageServerRpc(damage);
                 GetComponent<Rigidbody>().isKinematic = true;
                 GetComponent<Collider>().isTrigger = true;
                 animal = collision.gameObject.GetComponent<Animal>();
@@ -50,18 +50,21 @@ public class Throwable : MonoBehaviour
         }
         else
         {
+            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Animal"))
             {
-                collision.gameObject.GetComponent<Animal>().TakeDamageServerRpc(damage);
+                Debug.Log(1);
+                collision.gameObject.GetComponentInChildren<AnimalBone>().animalOwner.TakeDamageServerRpc(damage);
                 transform.position = transform.position + (collision.transform.position - transform.position) * 0.1f;
+
+                //if(collision.gameObject.TryGetComponent(out NetworkObject _)) transform.SetParent(collision.transform);
+                transform.SetParent(collision.transform);
+                GetComponent<Rigidbody>().isKinematic = true;
+                GetComponent<Collider>().isTrigger = true;
+            
+                cringeFlag = true;
                 return;
             }
-            
-            if(collision.gameObject.TryGetComponent(out NetworkObject _)) transform.SetParent(collision.transform);
-            GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<Collider>().isTrigger = true;
-            
-            cringeFlag = true;
         }
         
         Destroy(this);

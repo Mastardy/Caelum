@@ -48,6 +48,11 @@ public class Resource : NetworkBehaviour
     [ClientRpc]
     public void DestroyResourceAnimationClientRpc()
     {
+        foreach (var col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
+
         resourceAnimator.SetBool("Fall", true);
     }
 
