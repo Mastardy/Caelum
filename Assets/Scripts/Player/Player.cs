@@ -183,13 +183,21 @@ public partial class Player : NetworkBehaviour
 
             if (InputHelper.GetKeyDown(KeyCode.Escape, 0.1f) || InputHelper.GetKeyDown(KeyCode.Tab, 0.1f))
             {
-                if(inChat) HideChat();
-                else if(inInventory) HideInventory();
-                else if(inPause) HidePauseMenu();
-                else if(inCrafting) HideCrafting();
-                else if(inOven) HideOven();
-                else if(inSaw && !saw.isSawing) HideSaw();
-                else if(inSmeltery && !smeltery.isSmelting) HideSmeltery();
+                if (inChat) HideChat();
+                else if (inInventory) HideInventory();
+                else if (inPause) HidePauseMenu();
+                else if (inCrafting) HideCrafting();
+                else if (inOven) HideOven();
+                else if(inSaw)
+                {
+                    if (saw.isSawing) return;
+                    HideSaw();
+                }
+                else if(inSmeltery) 
+                {
+                    if (smeltery.isSmelting) return;
+                    HideSmeltery();
+                }
                 else OpenPauseMenu();
             }
             

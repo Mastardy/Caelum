@@ -76,7 +76,7 @@ public partial class Player
                 slot.Fill(inventoryItems[itemName], 1, durability);
                 
                 var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
-                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(slot.inventoryItem.name);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(slot.inventoryItem.displayName);
                 itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
                 
                 return;
@@ -98,7 +98,7 @@ public partial class Player
             if (amountAdded >= amountToAdd)
             {
                 var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
-                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].displayName);
                 itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
                 return;
             }
@@ -119,7 +119,7 @@ public partial class Player
             if (amountAdded >= amountToAdd)
             {
                 var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
-                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+                itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].displayName);
                 itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountToAdd}");
                 return;
             }
@@ -128,7 +128,7 @@ public partial class Player
         if (amountToAdd - amountAdded > 0)
         {
             var itemPickUp = Instantiate(itemPickUpPrefab, itemFeedBack);
-            itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].name);
+            itemPickUp.GetComponent<ItemPickUp>().itemName.SetText(inventoryItems[itemName].displayName);
             itemPickUp.GetComponent<ItemPickUp>().itemQuantity.SetText($"+{amountAdded}");
             DropItemServerRpc(transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(1f, 1.5f), Random.Range(-1f, 1f)), itemName, amountToAdd - amountAdded, durability);
         }
@@ -222,6 +222,7 @@ public partial class Player
         cookingRecipesVegan = Resources.LoadAll<CookingRecipe>("CookingRecipes/1Vegan");
         cookingRecipesFish = Resources.LoadAll<CookingRecipe>("CookingRecipes/2Fish");
         cookingRecipesMeat = Resources.LoadAll<CookingRecipe>("CookingRecipes/3Meat");
+        cookingRecipesMix = Resources.LoadAll<CookingRecipe>("CookingRecipes/4Mix");
         craftingRecipes = Resources.LoadAll<CraftingRecipe>("CraftingRecipes");
 
         foreach (var invItem in invItems)

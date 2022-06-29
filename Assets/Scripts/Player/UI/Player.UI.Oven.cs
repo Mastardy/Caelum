@@ -17,6 +17,7 @@ public partial class Player
     [SerializeField] private Transform recipesContentVegan;
     [SerializeField] private Transform recipesContentFish;
     [SerializeField] private Transform recipesContentMeat;
+    [SerializeField] private Transform recipesContentMix;
     [SerializeField] private GameObject recipePrefab;
 
     [SerializeField] private RectTransform[] tabs;
@@ -41,6 +42,7 @@ public partial class Player
     private CookingRecipe[] cookingRecipesVegan;
     private CookingRecipe[] cookingRecipesFish;
     private CookingRecipe[] cookingRecipesMeat;
+    private CookingRecipe[] cookingRecipesMix;
 
     private Dictionary<string, FoodItem> foodItems = new ();
     
@@ -62,6 +64,7 @@ public partial class Player
         PrepareOven(recipesContentVegan, cookingRecipesVegan);
         PrepareOven(recipesContentFish, cookingRecipesFish);
         PrepareOven(recipesContentMeat, cookingRecipesMeat);
+        PrepareOven(recipesContentMix, cookingRecipesMix);
     }
 
     /// <summary>
@@ -221,7 +224,7 @@ public partial class Player
 
     public void SwitchOvenTab(int tab)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             tabs[i].sizeDelta = new Vector2(86, i == tab ? 140 : 115);
             scrolls[i].SetActive(i == tab ? true : false);
