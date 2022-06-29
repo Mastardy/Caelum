@@ -40,11 +40,20 @@ public class Resource : NetworkBehaviour
         {
             DropResourceServerRpc(transform.position + new Vector3(Random.Range(-2f, 2f), 2, Random.Range(-2f, 2f)));
         }
-        if(deathParticle)
-            GameObject.Instantiate(deathParticle, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if(deathParticle) Instantiate(deathParticle, transform.position, Quaternion.identity);
+
+        Invoke(nameof(RespawnResource), 5f);
+        
+        gameObject.SetActive(false);
     }
 
+    private void RespawnResource()
+    {
+        gameObject.SetActive(true);
+       
+        // Reset 
+    }
+    
     [ClientRpc]
     public void DestroyResourceAnimationClientRpc()
     {
