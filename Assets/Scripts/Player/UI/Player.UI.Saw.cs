@@ -13,6 +13,8 @@ public partial class Player
     [SerializeField] private TextMeshProUGUI sawTimerText;
     [SerializeField] private Image sawTimerForeground;
     [SerializeField] private TextMeshProUGUI sawAmount;
+    [SerializeField] private Image sawCostSprite;
+    private string sawCostMaterial;
 
     private Saw saw;
 
@@ -23,7 +25,7 @@ public partial class Player
         set => currentOutcome = value;
     }
 
-    private int outcomePrice = 2;
+    private int sawOutcomePrice = 2;
     
     private bool inSaw;
     
@@ -73,6 +75,7 @@ public partial class Player
         sawCamera.rotation = Quaternion.Euler(sawCameraRotation);
         
         PrepareSaw();
+        ChangeOutcome(0);
     }
 
     public void ChangeOutcome(int outcome)
@@ -80,16 +83,28 @@ public partial class Player
         switch (outcome)
         {
             case 0:
-                CurrentOutcome = inventoryItems["wood_plank"];
-                outcomePrice = 2;
+                CurrentOutcome = inventoryItems["wood"];
+                sawOutcomePrice = 4;
+                sawCostMaterial = "stick";
+                sawCostSprite.sprite = inventoryItems["stick"].sprite;
                 break;
             case 1:
-                CurrentOutcome = inventoryItems["handle_one"];
-                outcomePrice = 5;
+                CurrentOutcome = inventoryItems["wood_plank"];
+                sawOutcomePrice = 2;
+                sawCostMaterial = "wood";
+                sawCostSprite.sprite = inventoryItems["wood"].sprite;
                 break;
             case 2:
                 CurrentOutcome = inventoryItems["handle_two"];
-                outcomePrice = 7;
+                sawOutcomePrice = 2;
+                sawCostMaterial = "wood";
+                sawCostSprite.sprite = inventoryItems["wood"].sprite;
+                break;
+            case 3:
+                CurrentOutcome = inventoryItems["handle_one"];
+                sawOutcomePrice = 1;
+                sawCostMaterial = "wood";
+                sawCostSprite.sprite = inventoryItems["wood"].sprite;
                 break;
         }
 
@@ -98,16 +113,16 @@ public partial class Player
 
     private void PrepareSaw()
     {
-        sawAmount.SetText(GetItemAmount("wood") + "/" + outcomePrice);
+        sawAmount.SetText(GetItemAmount(sawCostMaterial) + "/" + sawOutcomePrice);
     }
 
     public void TrySaw()
     {
         if (saw.isSawing) return;
-        if(outcomePrice > GetItemAmount("wood")) return;
+        if(sawOutcomePrice > GetItemAmount(sawCostMaterial)) return;
         saw.SawStartServerRpc();
         if (!saw.isSawing) return;
-        RemoveItem("wood", outcomePrice);
+        RemoveItem(sawCostMaterial, sawOutcomePrice);
         GiveItemServerRpc(this, CurrentOutcome.itemName);
         PrepareSaw();
     }

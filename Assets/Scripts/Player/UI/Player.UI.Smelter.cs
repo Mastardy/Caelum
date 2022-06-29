@@ -15,18 +15,20 @@ public partial class Player
     [SerializeField] private GameObject smelteryTimer;
     [SerializeField] private TextMeshProUGUI smelteryTimerText;
     [SerializeField] private Image smelteryTimerForeground;
-    
+    [SerializeField] private Image smelteryCostSprite;
+    [SerializeField] private TextMeshProUGUI smelteryAmount;
+
     private Smeltery smeltery;
 
     private string currentMineral;
-    
+    private string currentMold;
+    private int smelteryOutcomePrice;
+
+
     private bool inSmeltery;
 
     [SerializeField] private TMP_Dropdown mineralsDropdown;
     
-    /// <summary>
-    /// Hides the Furnace UI.
-    /// </summary>
     private void HideSmeltery()
     {
         smeltery = null;
@@ -48,9 +50,6 @@ public partial class Player
         smelteryCamera.rotation = Quaternion.Euler(sawCameraRotation);
     }
     
-    /// <summary>
-    /// Opens the Saw
-    /// </summary>
     private void OpenSmeltery()
     {
         lookingAt.TryGetComponent(out smeltery);
@@ -79,32 +78,47 @@ public partial class Player
         mineralsDropdown.ClearOptions();
         
         var mineralOptions = new List<TMP_Dropdown.OptionData>();
-        
-        if(GetItemAmount("copper") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Copper", inventoryItems["copper"].sprite));
-        if(GetItemAmount("iron") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Iron", inventoryItems["iron"].sprite));
-        if(GetItemAmount("gold") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Gold", inventoryItems["gold"].sprite));
-        
+
+        if (GetItemAmount("pickaxe_mold") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Pickaxe Mold", inventoryItems["pickaxe_mold"].sprite));
+        if (GetItemAmount("axe_mold") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Axe Mold", inventoryItems["axe_mold"].sprite));
+        if (GetItemAmount("sword_mold") > 0) mineralOptions.Add(new TMP_Dropdown.OptionData("Sword Mold", inventoryItems["sword_mold"].sprite));
+
         mineralsDropdown.AddOptions(mineralOptions);
+
+        ChangeMineral(0);
     }
 
     public void ChangeMineral(int mineral)
     {
         switch (mineralsDropdown.options[mineral].text)
         {
-            case "Copper":
-                currentMineral = "copper";
-                break;
-            
-            case "Iron":
+            case "Pickaxe Mold":
+                currentMold = "pickaxe";
                 currentMineral = "iron";
+                smelteryOutcomePrice = 1;
+                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
+                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
                 break;
-            
-            case "Gold":
-                currentMineral = "gold";
+
+            case "Axe Mold":
+                currentMold = "axe";
+                currentMineral = "iron";
+                smelteryOutcomePrice = 1;
+                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
+                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
                 break;
-            
+
+            case "Sword Mold":
+                currentMold = "sword";
+                currentMineral = "iron";
+                smelteryOutcomePrice = 1;
+                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
+                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
+                break;
+
             default:
                 currentMineral = string.Empty;
+                currentMold = string.Empty;
                 break;
         }
     }
@@ -112,15 +126,19 @@ public partial class Player
     public void TrySmelt()
     {
         if (smeltery.isSmelting) return;
-        if(currentMineral == string.Empty) return;
+        if(currentMineral == string.Empty && currentMold == string.Empty) return;
+        if (smelteryOutcomePrice > GetItemAmount(currentMineral)) return;
         smeltery.SmeltStartServerRpc();
         if(!smeltery.isSmelting) return;
 
-        RemoveItem(currentMineral, 1);
-        GiveItemServerRpc(this, currentMineral + "_ingot", 1);
+        RemoveItem(currentMineral, smelteryOutcomePrice);
+        GiveItemServerRpc(this, currentMold + "_blade", 1);
+
+        smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
+        smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
 
         if (GetItemAmount(currentMineral) > 0) return;
-        
+
         PrepareSmeltery();
     }
     
