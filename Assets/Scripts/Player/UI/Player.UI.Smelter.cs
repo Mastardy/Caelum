@@ -23,6 +23,7 @@ public partial class Player
     private string currentMineral;
     private string currentMold;
     private int smelteryOutcomePrice;
+    private string lastCurrentSmelterOutcome;
 
 
     private bool inSmeltery;
@@ -129,7 +130,8 @@ public partial class Player
         if(!smeltery.isSmelting) return;
 
         RemoveItem(currentMineral, smelteryOutcomePrice);
-        GiveItemServerRpc(this, currentMold + "_blade", 1);
+        lastCurrentSmelterOutcome = currentMold + "_blade";
+        Invoke("GiveSmelterOutcome", 3f);
 
         smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
         smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
@@ -147,5 +149,10 @@ public partial class Player
 
         smelteryTimerText.SetText(Mathf.CeilToInt(3 - (Time.time - smeltery.smelteryTimer)) + "sec");
         smelteryTimerForeground.fillAmount = (Time.time - smeltery.smelteryTimer) / 3;
+    }
+
+    private void GiveSmelterOutcome()
+    {
+        GiveItemServerRpc(this, lastCurrentSmelterOutcome, 1);
     }
 }

@@ -15,6 +15,7 @@ public partial class Player
     [SerializeField] private TextMeshProUGUI sawAmount;
     [SerializeField] private Image sawCostSprite;
     private string sawCostMaterial;
+    private string lastCurrentSawOutcome;
 
     private Saw saw;
 
@@ -120,7 +121,8 @@ public partial class Player
         saw.SawStartServerRpc();
         if (!saw.isSawing) return;
         RemoveItem(sawCostMaterial, sawOutcomePrice);
-        GiveItemServerRpc(this, CurrentOutcome.itemName);
+        lastCurrentSawOutcome = CurrentOutcome.itemName;
+        Invoke("GiveSawOutcome", 5f);
         PrepareSaw();
     }
 
@@ -132,5 +134,10 @@ public partial class Player
 
         sawTimerText.SetText(Mathf.CeilToInt(5 - (Time.time - saw.sawTimer)) + "sec");
         sawTimerForeground.fillAmount = (Time.time - saw.sawTimer) / 5;
+    }
+
+    private void GiveSawOutcome()
+    {
+        GiveItemServerRpc(this, lastCurrentSawOutcome);
     }
 }
