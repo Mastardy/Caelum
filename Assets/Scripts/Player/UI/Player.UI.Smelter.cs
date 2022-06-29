@@ -96,24 +96,18 @@ public partial class Player
                 currentMold = "pickaxe";
                 currentMineral = "iron";
                 smelteryOutcomePrice = 1;
-                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
-                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
                 break;
 
             case "Axe Mold":
                 currentMold = "axe";
                 currentMineral = "iron";
                 smelteryOutcomePrice = 1;
-                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
-                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
                 break;
 
             case "Sword Mold":
                 currentMold = "sword";
                 currentMineral = "iron";
                 smelteryOutcomePrice = 1;
-                smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
-                smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
                 break;
 
             default:
@@ -121,6 +115,9 @@ public partial class Player
                 currentMold = string.Empty;
                 break;
         }
+
+        smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);
+        smelteryCostSprite.sprite = inventoryItems[currentMineral].sprite;
     }
 
     public void TrySmelt()

@@ -27,7 +27,7 @@ public class Resource : NetworkBehaviour
 
         if (curHP.Value <= 0)
         {
-            if (item.itemName == "stone")
+            if (item.itemName != "tree")
                 DestroyResource();
             else
                 DestroyResourceAnimationClientRpc();

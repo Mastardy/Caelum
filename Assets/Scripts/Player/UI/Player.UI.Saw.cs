@@ -86,27 +86,24 @@ public partial class Player
                 CurrentOutcome = inventoryItems["wood"];
                 sawOutcomePrice = 4;
                 sawCostMaterial = "stick";
-                sawCostSprite.sprite = inventoryItems["stick"].sprite;
                 break;
             case 1:
                 CurrentOutcome = inventoryItems["wood_plank"];
                 sawOutcomePrice = 2;
                 sawCostMaterial = "wood";
-                sawCostSprite.sprite = inventoryItems["wood"].sprite;
                 break;
             case 2:
                 CurrentOutcome = inventoryItems["handle_two"];
                 sawOutcomePrice = 2;
                 sawCostMaterial = "wood";
-                sawCostSprite.sprite = inventoryItems["wood"].sprite;
                 break;
             case 3:
                 CurrentOutcome = inventoryItems["handle_one"];
                 sawOutcomePrice = 1;
                 sawCostMaterial = "wood";
-                sawCostSprite.sprite = inventoryItems["wood"].sprite;
                 break;
         }
+        sawCostSprite.sprite = inventoryItems[sawCostMaterial].sprite;
 
         PrepareSaw();
     }

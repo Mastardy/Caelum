@@ -73,7 +73,7 @@ private float xRotation;
                     }
                     else tipsText.SetText("[E] Collect stick");
                 }
-                else if(resource.item.itemName == "stone")
+                else if(resource.item.itemName == "stone" || resource.item.itemName == "iron" || resource.item.itemName == "coal")
                 {
                     if (!hotbars[currentSlot].slot.isEmpty)
                     {
@@ -485,6 +485,8 @@ private float xRotation;
                     }
                     break;
                 case "stone":
+                case "iron":
+                case "coal":
                     if (invItem.itemTag == ItemTag.Pickaxe)
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
