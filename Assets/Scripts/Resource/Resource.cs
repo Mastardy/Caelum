@@ -7,6 +7,7 @@ public class Resource : NetworkBehaviour
     [SerializeField] public InventoryItem item;
     public int resourcesQuantity;
     public NetworkVariable<int> curHP = new();
+    private int maxHp;
 
     public UnityEvent onGather;
 
@@ -14,6 +15,11 @@ public class Resource : NetworkBehaviour
     public Animator resourceAnimator;
     public ParticleSystem particles;
     public GameObject deathParticle;
+
+    private void Start()
+    {
+        maxHp = curHP.Value;
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void HitResourceServerRpc(int resourceHP = 1)
@@ -27,10 +33,19 @@ public class Resource : NetworkBehaviour
 
         if (curHP.Value <= 0)
         {
-            if (item.itemName != "tree")
+            if (item.itemName != "wood")
+            {
+                foreach (var col in GetComponentsInChildren<Collider>())
+                {
+                    col.enabled = false;
+                }
+
                 DestroyResource();
+            }
             else
                 DestroyResourceAnimationClientRpc();
+
+            curHP.Value = maxHp;
         }
     }
 
@@ -50,19 +65,40 @@ public class Resource : NetworkBehaviour
     private void RespawnResource()
     {
         gameObject.SetActive(true);
-       
-        // Reset 
+
+        if(resourceAnimator)
+            RespawnResourceAnimationClientRpc();
+        else
+        {
+            foreach (var col in GetComponentsInChildren<Collider>())
+            {
+                col.enabled = true;
+            }
+        }
+
     }
     
     [ClientRpc]
     public void DestroyResourceAnimationClientRpc()
     {
+        Debug.Log("TEste");
         foreach (var col in GetComponentsInChildren<Collider>())
         {
             col.enabled = false;
         }
 
         resourceAnimator.SetBool("Fall", true);
+    }
+
+    [ClientRpc]
+    public void RespawnResourceAnimationClientRpc()
+    {
+        foreach (var col in GetComponentsInChildren<Collider>())
+        {
+            col.enabled = true;
+        }
+
+        resourceAnimator.SetBool("Fall", false);
     }
 
 

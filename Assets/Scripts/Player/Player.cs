@@ -73,8 +73,8 @@ public partial class Player : NetworkBehaviour
             SpawnPlayer();
             //GiveItemServerRpc(this, "fruit_pear", 1);
             ////GiveItemServerRpc(this, "wood", 2);
-            //GiveItemServerRpc(this, "axe_stone", 1, 1);
-            //GiveItemServerRpc(this, "axe_iron", 1, 1);
+            GiveItemServerRpc(this, "axe_stone", 1, 1);
+            GiveItemServerRpc(this, "axe_iron", 1, 1);
             GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
             GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
             GiveItemServerRpc(this, "pickaxe_wood", 1, 1);

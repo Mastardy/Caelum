@@ -12,6 +12,7 @@ public class ResourcePickableSpawner : NetworkBehaviour
     public Transform[] locations;
     public GameObject fruit;
     [Range(1, 10)] public int chance = 1;
+    public Vector2 scale = new Vector2(0.2f, 0.3f);
 
     private void Awake()
     {
@@ -39,14 +40,14 @@ public class ResourcePickableSpawner : NetworkBehaviour
         {
             if (spawner.locations.Length == 0) continue;
             
-            for (int i = 0; i < locations.Length; i++)
+            for (int i = 0; i < spawner.locations.Length; i++)
             {
                 int rand = Random.Range(0, 10);
                 if (rand <= spawner.chance)
                 {
                     var fruitinst = Instantiate(spawner.fruit, spawner.locations[i]);
                     fruitinst.transform.Rotate(Vector3.up, Random.Range(0, 360));
-                    float randScale = Random.Range(0.2f, 0.3f);
+                    float randScale = Random.Range(scale.x, scale.y);
                     fruitinst.transform.localScale = new Vector3(randScale, randScale, randScale);
 
                     fruitinst.name = spawner.fruit.name;
