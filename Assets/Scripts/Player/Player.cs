@@ -172,7 +172,7 @@ public partial class Player : NetworkBehaviour
                 }
             }
 
-            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw && !inSmeltery)
+            if (!inChat && !inCrafting && !inOven && !inPause && !inSaw && !inSmeltery && !IsTethered() && !inParachute)
             {
                 if (InputHelper.GetKeyDown(gameOptions.inventoryKey, 0.1f))
                 {
