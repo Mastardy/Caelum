@@ -217,8 +217,6 @@ private float xRotation;
                 case ItemTag.Sword:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
-                        PlayToolSwing(invItem.itemTag.ToString());
-                        
                         AnimatorUseSword();
                     }
                     break;
@@ -235,8 +233,6 @@ private float xRotation;
                     }
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
-                        PlayToolSwing(invItem.itemTag.ToString());
-                        
                         AnimatorUseSpear();
                     }
                     break;
@@ -261,14 +257,12 @@ private float xRotation;
                 case ItemTag.Axe:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
-                        PlayToolSwing("sword");
                         AnimatorUseAxe();
                     }
                     break;
                 case ItemTag.Pickaxe:
                     if (InputHelper.GetKeyDown(gameOptions.primaryAttackKey, 0.6f))
                     {
-                        PlayToolSwing("sword");
                         AnimatorUsePickaxe();
                     }
                     break;
@@ -428,16 +422,23 @@ private float xRotation;
 
     public void TryAttack()
     {
-        if (!lookingAt) return;
+        if (!lookingAt)
+        {
+            AudioManager.Instance.PlaySound(sounds.swordSwing);
+            return;
+        }
 
         if (lookingAt.TryGetComponent(out Resource _))
         {
             switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
                 case ItemTag.Spear:
+                    impactParticle.Play();
+                    AudioManager.Instance.PlaySound(sounds.spearHit);
+                    break;
                 case ItemTag.Sword:
                     impactParticle.Play();
-                    impactParticle.Play();
+                    AudioManager.Instance.PlaySound(sounds.swordHit);
                     break;
             }
         }
@@ -454,11 +455,13 @@ private float xRotation;
                     animal.TakeDamageServerRpc(10);
                     hotbars[currentSlot].slot.Durability -= 0.05f;
                     impactParticle.Play();
+                    AudioManager.Instance.PlaySound(sounds.spearSwing);
                     break;
                 case ItemTag.Sword:
                     animal.TakeDamageServerRpc(20);
                     impactParticle.Play();
                     hotbars[currentSlot].slot.Durability -= 0.025f;
+                    AudioManager.Instance.PlaySound(sounds.swordSwing);
                     break;
             }
         }
@@ -466,10 +469,23 @@ private float xRotation;
 
     public void TryHarvest()
     {
-        if (!lookingAt) return;
+        var invItem = hotbars[currentSlot].slot.inventoryItem;
+        
+        if (!lookingAt)
+        {
+            switch (invItem.itemTag)
+            {
+                case ItemTag.Axe:
+                    AudioManager.Instance.PlaySound(sounds.axeSwing);
+                    break;
+                case ItemTag.Pickaxe:
+                    AudioManager.Instance.PlaySound(sounds.pickaxeSwing);
+                    break;
+            }
+            return;
+        }
         if (lookingAt.TryGetComponent(out Resource resource))
         {
-            var invItem = hotbars[currentSlot].slot.inventoryItem;
             switch (resource.item.itemName)
             {
                 case "wood":
@@ -482,11 +498,10 @@ private float xRotation;
                     else
                     {
                         impactParticle.Play();
+                        AudioManager.Instance.PlaySound(sounds.axeHit);
                     }
                     break;
-                case "stone":
-                case "iron":
-                case "coal":
+                case "stone" or "iron" or "coal":
                     if (invItem.itemTag == ItemTag.Pickaxe)
                     {
                         hotbars[currentSlot].slot.Durability -= 0.1f;
@@ -496,6 +511,7 @@ private float xRotation;
                     else
                     {
                         impactParticle.Play();
+                        AudioManager.Instance.PlaySound(sounds.pickaxeHit);
                     }
                     break;
             }

@@ -31,7 +31,7 @@ public partial class Player
         
         if (horizontalVelocity.magnitude <= speed)
         {
-            var lightWalking = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Steps/Light");
+            var lightWalking = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Steps");
 
             if (lightWalking.Length == 0) return;
             if (lightWalking.Length > 1)
@@ -52,7 +52,7 @@ public partial class Player
             return;
         }
         
-        var lightRunning = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Run/Light");
+        var lightRunning = Resources.LoadAll<AudioClip>($"Sounds/Player/{results[0].tag}/Run");
         
         if (lightRunning.Length == 0) return;
         
@@ -61,16 +61,5 @@ public partial class Player
         AudioManager.Instance.PlaySoundUnsafe(lightRunning[index], audioSrc, lightRunning[index].length / 2f);
         
         lastFootStep = Time.time - 0.2f;
-    }
-
-    private void PlayToolSwing(string itemTag)
-    {
-        var toolSwing = Resources.LoadAll<AudioClip>($"Sounds/Player/Tools/{itemTag}/Swing/");
-        if (toolSwing.Length == 0)
-        {
-            Debug.LogWarning(itemTag + " doesn't have Swing Sounds!");
-            return;
-        }
-        AudioManager.Instance.PlaySoundUnsafe(toolSwing[Random.Range(0, toolSwing.Length)], audioSrc);
     }
 }

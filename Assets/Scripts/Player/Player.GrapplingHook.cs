@@ -32,7 +32,7 @@ public partial class Player
             grappleTimer = Time.time;
             currentGrappleVelocity = 0;
 
-            PlayToolSwing(ItemTag.Grappling.ToString());
+            AudioManager.Instance.PlaySound(sounds.grappleSwing);
             AnimatorPullGrappling(true);
         }
     }
@@ -49,7 +49,7 @@ public partial class Player
             horizontalVelocity = Vector2.zero;
             verticalVelocity = 0;
 
-            PlayToolSwing(ItemTag.Grappling.ToString());
+            AudioManager.Instance.PlaySound(sounds.grappleSwing);
             AnimatorPullGrappling(true);
         }
     }

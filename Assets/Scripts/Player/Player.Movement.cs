@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public partial class Player
 {
@@ -37,7 +39,7 @@ public partial class Player
     private float verticalVelocity;
 
     private bool dashing;
-    private float dashed;
+    private float lastDash;
     private Vector2 dashVelocity;
     
     private bool wasGrounded;
@@ -137,18 +139,44 @@ public partial class Player
         playerCamera.localPosition = playerCameraPosition;
     }
 
+    private int[] dashInput = new int[4];
+    private float[] dashInputTimer = new float[4];
+    private float maxDashDelay = 0.2f;
+
     private void MovementInput()
     {
-        if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded) verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * -gravity);
+        if (Input.GetKeyDown(gameOptions.jumpKey) && isGrounded)
+        {
+            verticalVelocity = Mathf.Sqrt(jumpHeight * 2f * -gravity);
+            AudioManager.Instance.PlaySound(sounds.jumps[Random.Range(0, sounds.jumps.Length)]);
+        }
 
         input.x = InputHelper.GetKey(gameOptions.leftKey) ? -1 : InputHelper.GetKey(gameOptions.rightKey) ? 1 : 0;
         input.y = InputHelper.GetKey(gameOptions.backwardKey) ? -1 : InputHelper.GetKey(gameOptions.forwardKey) ? 1 : 0;
 
         if (input.x == 0 && input.y == 0) isSprinting = gameOptions.toggleSprint ? false : isSprinting;
 
-        if (InputHelper.GetKeyDown(KeyCode.B, 0.5f))
+        if (Time.time - lastDash < 1.0f) return;
+        
+        for (int i = 0; i < 4; i++)
         {
-            BeginDash();
+            if (Time.time - dashInputTimer[i] > maxDashDelay)
+            {
+                dashInput[i] = 0;
+            }
+            
+            if (Input.GetKeyDown(i switch { 0 => gameOptions.forwardKey, 1 => gameOptions.backwardKey, 
+                    2 => gameOptions.leftKey, 3 => gameOptions.rightKey, _ => throw new NullReferenceException()}))
+            {
+                dashInput[i]++;
+                dashInputTimer[i] = Time.time;
+            }
+
+            if (dashInput[i] >= 2)
+            {
+                BeginDash();
+                for (int j = 0; j < 4; j++) dashInput[j] = 0;
+            }
         }
     }
 
@@ -157,12 +185,13 @@ public partial class Player
         dashing = true;
         dashVelocity = new Vector2(input.x, input.y);
         dashVelocity = dashVelocity == Vector2.zero ? Vector2.up : dashVelocity;
-        dashed = Time.time;
+        AudioManager.Instance.PlaySound(sounds.dashes[Random.Range(0, sounds.dashes.Length)]);
+        lastDash = Time.time;
     }
 
     private void ApplyDashPhysics()
     {
-        if (Time.time - dashed > dashTime)
+        if (Time.time - lastDash > dashTime)
         {
             EndDash();
             return;
@@ -172,12 +201,13 @@ public partial class Player
         
         if(!inParachute) verticalVelocity += gravity * Time.deltaTime;
         
-        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime) + playerTransform.up * verticalVelocity * Time.deltaTime);
+        characterController.Move((playerTransform.forward * dashVelocity.y + playerTransform.right * dashVelocity.x).normalized * (dashSpeed * Time.deltaTime) + playerTransform.up * (verticalVelocity * Time.deltaTime));
     }
     
     private void EndDash()
     {
         dashing = false;
+        horizontalVelocity = dashVelocity;
     }
     
     private void PreFallDamage()
@@ -215,8 +245,11 @@ public partial class Player
         isSprinting = Input.GetKey(gameOptions.sprintKey);
     }
 
+    private int crouchSound = -1;
+
     private void IsCrouching()
     {
+        bool wasCrouched = isCrouched;
         if (gameOptions.toggleDuck)
         {
             if (Input.GetKeyDown(gameOptions.duckKey)) isCrouched = !isCrouched;
@@ -224,6 +257,10 @@ public partial class Player
         }
         
         isCrouched = Input.GetKey(gameOptions.duckKey);
+
+        if (crouchSound == -1) crouchSound = AudioManager.Instance.CreateUnsafeAudioSource();
+
+        if(isCrouched != wasCrouched) AudioManager.Instance.PlaySoundUnsafe(sounds.crouches[Random.Range(0, sounds.crouches.Length)], crouchSound, 0.25f);
     }
 
     private bool wasInParachute;

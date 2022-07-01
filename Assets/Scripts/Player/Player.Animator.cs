@@ -226,6 +226,7 @@ public partial class Player
 
     private void AnimatorThrowSpear()
     {
+        AudioManager.Instance.PlaySound(sounds.spearThrow);
         firstPersonAnimator.SetTrigger("ThrowSpear");
     }
 
