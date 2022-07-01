@@ -19,6 +19,7 @@ public partial class Player
     private void PlayFootstepSounds()
     {
         if (!isGrounded) return;
+        if (IsTethered()) return;
         if (horizontalVelocity.magnitude < 1) return;
 
         if (Time.time - lastFootStep < 0.5f) return;
