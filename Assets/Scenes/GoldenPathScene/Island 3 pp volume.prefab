@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072750591649647839}
   - component: {fileID: 5125328451813746779}
-  - component: {fileID: 6688670731850818854}
-  - component: {fileID: 7997490820260526963}
-  - component: {fileID: 576040947198213116}
+  - component: {fileID: 2019958151003806879}
   m_Layer: 0
   m_Name: Island 3 pp volume
   m_TagString: Untagged
@@ -29,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 8677193690689608953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 805.0692, y: 162.04895, z: 704.4132}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 488.1, y: 488.1, z: 488.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,8 +50,8 @@ MonoBehaviour:
   blendDistance: 34.9
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 0edb70ca4758eb54f86b6323c67046bd, type: 2}
---- !u!65 &6688670731850818854
-BoxCollider:
+--- !u!64 &2019958151003806879
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -62,32 +60,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 410.4239, y: 371.55884, z: 314.49213}
-  m_Center: {x: -578.14197, y: 17.710358, z: 307.9634}
---- !u!65 &7997490820260526963
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677193690689608953}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 182.6484, y: 367.62317, z: 619.5038}
-  m_Center: {x: -221.11327, y: 19.678162, z: 169.2323}
---- !u!65 &576040947198213116
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8677193690689608953}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 442.40033, y: 369.59106, z: 983.54987}
-  m_Center: {x: 145.4982, y: 18.694267, z: -22.629852}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 830f525f52fdeb94f96e2a81f598e27e, type: 3}

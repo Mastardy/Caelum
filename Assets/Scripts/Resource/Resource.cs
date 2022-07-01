@@ -8,6 +8,8 @@ public class Resource : NetworkBehaviour
     public int resourcesQuantity;
     public NetworkVariable<int> curHP = new();
     private int maxHp;
+    [Tooltip("Respawn timer in seconds")]
+    public float respawnTimer = 300;
 
     public UnityEvent onGather;
 
@@ -55,9 +57,10 @@ public class Resource : NetworkBehaviour
         {
             DropResourceServerRpc(transform.position + new Vector3(Random.Range(-2f, 2f), 2, Random.Range(-2f, 2f)));
         }
+        
         if(deathParticle) Instantiate(deathParticle, transform.position, Quaternion.identity);
 
-        Invoke(nameof(RespawnResource), 5f);
+        Invoke(nameof(RespawnResource), respawnTimer);
         
         gameObject.SetActive(false);
     }
@@ -81,7 +84,6 @@ public class Resource : NetworkBehaviour
     [ClientRpc]
     public void DestroyResourceAnimationClientRpc()
     {
-        Debug.Log("TEste");
         foreach (var col in GetComponentsInChildren<Collider>())
         {
             col.enabled = false;

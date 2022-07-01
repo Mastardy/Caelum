@@ -112,6 +112,8 @@ Material:
     - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _Damaged_Power: 5
+    - _Damaged_Strength: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistortionBlend: 0.5
@@ -148,7 +150,7 @@ Material:
     - _Surface: 0
     - _ToonRampOffset: 0.473
     - _ToonRampSmoothness: 0.022
-    - _Toon_Strength: 1
+    - _Toon_Strength: 0.5
     - _UVSec: 0
     - _Use_Color: 0
     - _Use_Normal: 0
@@ -161,7 +163,9 @@ Material:
     - _Color: {r: 0.5, g: 0.33726415, b: 0.33726415, a: 1}
     - _ColorAdd: {r: 0, g: 0, b: 0, a: 0}
     - _ColorMultiply: {r: 0.6886792, g: 0.5488032, b: 0.49052152, a: 0}
+    - _Damaged_Color: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}

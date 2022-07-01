@@ -8,6 +8,8 @@ public partial class Animal
     public int maxHealth = 150;
     public NetworkVariable<int> currentHealth = new(readPerm: NetworkVariableReadPermission.Everyone);
     public NetworkVariable<bool> carved = new(readPerm: NetworkVariableReadPermission.Everyone);
+    [Tooltip("Respawn timer in seconds")]
+    public float respawnTimer = 600;
 
     private static readonly int damagedStrength = Shader.PropertyToID("_Damaged_Strength");
 
@@ -73,7 +75,17 @@ public partial class Animal
 
     private void DestroyAnimal()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        Invoke("ReviveAnimal", respawnTimer);
+    }
+
+    private void ReviveAnimal()
+    {
+        gameObject.SetActive(true);
+        dead = false;
+        carved.Value = false;
+        currentHealth.Value = maxHealth;
+        animator.SetBool(deadCache, false);
     }
 
     private IEnumerator FadeColor()

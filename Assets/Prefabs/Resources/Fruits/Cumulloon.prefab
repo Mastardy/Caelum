@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4156570045823873221}
   - component: {fileID: 8928552757129250519}
   - component: {fileID: 3655747564979587980}
+  - component: {fileID: 5873926206708558884}
   m_Layer: 10
   m_Name: Cumulloon
   m_TagString: Untagged
@@ -97,7 +98,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.561658
+  m_Radius: 1.77
   m_Center: {x: 0.00028195983, y: 1.402553, z: -0.00073677313}
 --- !u!114 &8928552757129250519
 MonoBehaviour:
@@ -128,3 +129,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceName: mushroom
+--- !u!205 &5873926206708558884
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221940045312042999}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 3
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2420584099933423138}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2420584099933423138}
+  - screenRelativeHeight: 0.05
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 2420584099933423138}
+  m_Enabled: 1
