@@ -4,6 +4,7 @@ using UnityEngine;
 public class ResourcePickable : NetworkBehaviour
 {
     [SerializeField] private string resourceName;
+    public float respawnTimer = 600;
     
     [ServerRpc]
     public void GatherResourceServerRpc(NetworkBehaviourReference player)
@@ -11,7 +12,13 @@ public class ResourcePickable : NetworkBehaviour
         if (player.TryGet(out Player ply))
         {
             ply.GiveItemServerRpc(player, resourceName);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            Invoke("Respawn", respawnTimer);
         }
+    }
+
+    private void Respawn()
+    {
+        gameObject.SetActive(true);
     }
 }
