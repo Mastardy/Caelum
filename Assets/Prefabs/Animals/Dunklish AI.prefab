@@ -201,7 +201,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   drops:
-  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
+  - item: {fileID: 11400000, guid: 958bd2f511e739d44ae57011dd86f4eb, type: 2}
+    amount: 3
+  - item: {fileID: 11400000, guid: 79be4588e34635f46b0d38a85a1b0f08, type: 2}
     amount: 1
   fleeSpeed: 5
   dead: 0
@@ -210,6 +212,7 @@ MonoBehaviour:
     m_InternalValue: 0
   carved:
     m_InternalValue: 0
+  respawnTimer: 600
   roamSpeed: 2
 --- !u!114 &7352434512135037947
 MonoBehaviour:

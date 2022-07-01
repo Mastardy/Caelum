@@ -237,12 +237,16 @@ MonoBehaviour:
   drops:
   - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
     amount: 1
-  canMove: 0
+  - item: {fileID: 11400000, guid: e6c6d692f05a5a941ba1fc7d68d5684f, type: 2}
+    amount: 1
   fleeSpeed: 5
   dead: 0
   maxHealth: 150
   currentHealth:
     m_InternalValue: 0
+  carved:
+    m_InternalValue: 0
+  respawnTimer: 600
   roamSpeed: 2
 --- !u!114 &365182016941401077
 MonoBehaviour:
@@ -594,7 +598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animal: {fileID: 365182016941401076}
-  type: 6
 --- !u!137 &5178975120995101230 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: e3cff75608d1aca47a0346b74e46dab1,

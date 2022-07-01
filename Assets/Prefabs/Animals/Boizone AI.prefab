@@ -337,9 +337,9 @@ MonoBehaviour:
     m_Bits: 8
   drops:
   - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
-    amount: 5
-  - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
-    amount: 5
+    amount: 3
+  - item: {fileID: 11400000, guid: e6c6d692f05a5a941ba1fc7d68d5684f, type: 2}
+    amount: 1
   fleeSpeed: 5
   dead: 0
   maxHealth: 150
@@ -347,6 +347,7 @@ MonoBehaviour:
     m_InternalValue: 0
   carved:
     m_InternalValue: 0
+  respawnTimer: 600
   roamSpeed: 1
 --- !u!114 &3480269192480894888
 MonoBehaviour:

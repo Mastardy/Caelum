@@ -237,6 +237,8 @@ MonoBehaviour:
   drops:
   - item: {fileID: 11400000, guid: 4c8796a1a8a58e846ab446e202f3560b, type: 2}
     amount: 2
+  - item: {fileID: 11400000, guid: c89aa69f937c98e4385126ee84253723, type: 2}
+    amount: 2
   fleeSpeed: 5
   dead: 0
   maxHealth: 45
@@ -244,6 +246,7 @@ MonoBehaviour:
     m_InternalValue: 0
   carved:
     m_InternalValue: 0
+  respawnTimer: 600
   roamSpeed: 2
 --- !u!114 &3562415332638225523
 MonoBehaviour:
