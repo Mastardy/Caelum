@@ -47,7 +47,7 @@ public class ResourcePickableSpawner : NetworkBehaviour
                 {
                     var fruitinst = Instantiate(spawner.fruit, spawner.locations[i]);
                     fruitinst.transform.Rotate(Vector3.up, Random.Range(0, 360));
-                    float randScale = Random.Range(scale.x, scale.y);
+                    float randScale = Random.Range(spawner.scale.x, spawner.scale.y);
                     fruitinst.transform.localScale = new Vector3(randScale, randScale, randScale);
 
                     fruitinst.name = spawner.fruit.name;
