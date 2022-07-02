@@ -10,6 +10,7 @@ public class BatucaPlant : MonoBehaviour
     public Transform headAnchor;
     public float speed = 1;
     private Transform player;
+    private Player ps;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class BatucaPlant : MonoBehaviour
             trackPlayer = true;
             animator.SetBool("Attack", true);
             player = other.transform;
+            ps = other.GetComponent<Player>();
         }
     }
 
@@ -48,6 +50,7 @@ public class BatucaPlant : MonoBehaviour
             trackPlayer = false;
             animator.SetBool("Attack", false);
             player = null;
+            ps = null;
         }
     }
 
@@ -58,5 +61,10 @@ public class BatucaPlant : MonoBehaviour
     public void FinishAttack()
     {
         attacking = false;
+    }
+
+    public void TryAttack()
+    {
+        if (ps) ps.TakeDamageServerRpc(5);
     }
 }
