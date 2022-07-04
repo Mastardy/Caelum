@@ -419,9 +419,12 @@ private float xRotation;
         if (lookingAt.TryGetComponent(out AnimalBone animalbone))
         {
             if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
-            {              
-                if(animalbone.animalOwner.carved.Value == false && animalbone.animalOwner.dead) AnimatorCarve();
-                animalbone.animalOwner.CarveServerRpc(this);
+            {
+                if (animalbone.animalOwner.carved.Value == false && animalbone.animalOwner.dead)
+                {
+                    AnimatorCarve();
+                    animalbone.animalOwner.CarveServerRpc(this);
+                }
             }
 
             return;
