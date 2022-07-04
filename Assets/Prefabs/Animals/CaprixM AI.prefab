@@ -566,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
+  m_Animator: {fileID: 1957481666585141286}
 --- !u!4 &2062901831534478026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1efaac4b4a034744488bb3ee9474671c,
@@ -746,19 +746,6 @@ CapsuleCollider:
   m_Height: 0.55
   m_Direction: 1
   m_Center: {x: 0, y: 0.15, z: 0}
---- !u!114 &1957481666010681301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3853137906789442634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 3051860456924668173}
 --- !u!114 &410920554819170755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,6 +762,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1957481666010681301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3853137906789442634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 3051860456924668173}
 --- !u!1 &6617210306673040043 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4683552858487668618, guid: 1efaac4b4a034744488bb3ee9474671c,

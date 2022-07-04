@@ -47,7 +47,6 @@ public partial class Animal : NetworkBehaviour
 
     private void Update()
     {
-        if (!agent.enabled) return;
         if (!dead) ChangeState();
         animalStates[CurrentState].onUpdate.Invoke();
         animator.SetFloat(speedCache, agent.velocity.magnitude);

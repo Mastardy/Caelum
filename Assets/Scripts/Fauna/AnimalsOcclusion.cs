@@ -10,7 +10,7 @@ public class AnimalsOcclusion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             foreach (var animal in animals)
-                animal.GetComponent<NavMeshAgent>().enabled = false;
+                animal.GetComponent<Animal>().enabled = false;
         }
     }
 
@@ -20,8 +20,7 @@ public class AnimalsOcclusion : MonoBehaviour
         {
             foreach (var animal in animals)
             {
-                if(!animal.GetComponent<Animal>().dead)
-                    animal.GetComponent<NavMeshAgent>().enabled = true;
+                animal.GetComponent<Animal>().enabled = true;
             }
         }
     }
