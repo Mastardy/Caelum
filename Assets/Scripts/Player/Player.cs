@@ -94,11 +94,11 @@ public partial class Player : NetworkBehaviour
             GiveItemServerRpc(this, "pickaxe_mold", 1);
             GiveItemServerRpc(this, "axe_mold", 1);
             GiveItemServerRpc(this, "sword_mold", 1);
-            //GiveItemServerRpc(this, "seed_wheat", 1);
-            //GiveItemServerRpc(this, "seed_tomato", 1);
-            //GiveItemServerRpc(this, "seed_corn", 1);
-            //GiveItemServerRpc(this, "seed_potato", 1);
-            //GiveItemServerRpc(this, "seed_carrot", 1);
+            GiveItemServerRpc(this, "seed_wheat", 3);
+            GiveItemServerRpc(this, "seed_tomato", 3);
+            GiveItemServerRpc(this, "seed_corn", 3);
+            GiveItemServerRpc(this, "seed_potato", 3);
+            GiveItemServerRpc(this, "seed_carrot", 3);
             CurrentSlot = 1;
             Invoke(nameof(LateLateStart), 0.5f);
         }

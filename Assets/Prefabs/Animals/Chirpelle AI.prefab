@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 3184683770633792698}
   - component: {fileID: 3184683770633792701}
   - component: {fileID: 3184683770633792700}
+  - component: {fileID: 2563314882762412779}
   m_Layer: 11
   m_Name: Chirpelle AI
   m_TagString: Animal
@@ -210,6 +211,7 @@ MonoBehaviour:
     m_InternalValue: 0
   carved:
     m_InternalValue: 0
+  respawnTimer: 600
   roamSpeed: 2
 --- !u!114 &3184683770633792698
 MonoBehaviour:
@@ -265,6 +267,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!205 &2563314882762412779
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3184683770633792702}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0, y: 0, z: 0}
+  m_Size: 2.2
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.6
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4255438968541581758}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4255438968541581758}
+  - screenRelativeHeight: 0.1
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4255438968541581758}
+  m_Enabled: 1
 --- !u!1 &3184683770682268595
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,4 +624,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalOwner: {fileID: 0}
+  animalOwner: {fileID: 3184683770633792699}
+--- !u!114 &1723091929730761061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8038303762948390178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

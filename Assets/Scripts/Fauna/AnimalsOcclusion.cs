@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class AnimalsOcclusion : MonoBehaviour
@@ -11,7 +10,7 @@ public class AnimalsOcclusion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             foreach (var animal in animals)
-                animal.SetActive(false);
+                animal.GetComponent<NavMeshAgent>().enabled = false;
         }
     }
 
@@ -22,7 +21,7 @@ public class AnimalsOcclusion : MonoBehaviour
             foreach (var animal in animals)
             {
                 if(!animal.GetComponent<Animal>().dead)
-                    animal.SetActive(true);
+                    animal.GetComponent<NavMeshAgent>().enabled = true;
             }
         }
     }

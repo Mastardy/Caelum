@@ -430,6 +430,7 @@ MonoBehaviour:
   resourcesQuantity: 3
   curHP:
     m_InternalValue: 5
+  respawnTimer: 300
   onGather:
     m_PersistentCalls:
       m_Calls: []
@@ -533,7 +534,8 @@ MonoBehaviour:
   - {fileID: 5087172193048545129}
   - {fileID: 138138469126440815}
   fruit: {fileID: 109339888316928836, guid: d66ba5013b92b844b849c983ca18a816, type: 3}
-  chance: 5
+  chance: 1
+  scale: {x: 0.2, y: 0.25}
 --- !u!1 &7707957198208611381
 GameObject:
   m_ObjectHideFlags: 0

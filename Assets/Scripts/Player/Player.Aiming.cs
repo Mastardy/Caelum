@@ -170,6 +170,14 @@ private float xRotation;
                 lookingAt = hitInfo;
                 return;
             }
+
+            if (hitInfo.transform.TryGetComponent(out Chest _))
+            {
+                aimText.SetText("Chest");
+                tipsText.SetText("[E] Collect");
+                lookingAt = hitInfo;
+                return;
+            }
         }
         
         lookingAt = null;
@@ -414,6 +422,16 @@ private float xRotation;
             {              
                 if(animalbone.animalOwner.carved.Value == false && animalbone.animalOwner.dead) AnimatorCarve();
                 animalbone.animalOwner.CarveServerRpc(this);
+            }
+
+            return;
+        }
+
+        if(lookingAt.TryGetComponent(out Chest chest))
+        {
+            if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
+            {
+                chest.GiveItemsServerRpc(this);
             }
 
             return;

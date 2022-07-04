@@ -50,10 +50,8 @@ public class Throwable : MonoBehaviour
         }
         else
         {
-            Debug.Log(collision.gameObject.tag);
             if (collision.gameObject.CompareTag("Animal"))
             {
-                Debug.Log(1);
                 collision.gameObject.GetComponentInChildren<AnimalBone>().animalOwner.TakeDamageServerRpc(damage);
                 transform.position = transform.position + (collision.transform.position - transform.position) * 0.1f;
 

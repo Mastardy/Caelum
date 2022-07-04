@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.Netcode;
 
-public class AnimalBone : MonoBehaviour
+public class AnimalBone : NetworkBehaviour
 {
     public Animal animalOwner;
 }
