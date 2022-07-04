@@ -171,9 +171,10 @@ private float xRotation;
                 return;
             }
 
-            if (hitInfo.transform.TryGetComponent(out Chest _))
+            if (hitInfo.transform.TryGetComponent(out Chest c))
             {
-                aimText.SetText("Chest");
+                if (c.opened.Value) return;
+                aimText.SetText(c.displayName);
                 tipsText.SetText("[E] Collect");
                 lookingAt = hitInfo;
                 return;

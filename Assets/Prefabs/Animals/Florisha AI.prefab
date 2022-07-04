@@ -186,7 +186,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4030761780268593796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1394a1f102d555b459d82a201155356f, type: 3}
   m_Name: 
@@ -728,19 +728,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7860638019192274781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049392237365752053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 4030761780268593793}
 --- !u!114 &5075728417041021297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +744,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &7860638019192274781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5049392237365752053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 4030761780268593793}
 --- !u!137 &7655644508062699389 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1630794972795428178, guid: bb9ca8e6e2c9efb4d8f96b8556eb1ba8,
@@ -835,19 +835,6 @@ CapsuleCollider:
   m_Height: 2.0288887
   m_Direction: 1
   m_Center: {x: 2.586518e-14, y: 0.5144423, z: 0.036751103}
---- !u!114 &8549063420206517876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8588287550974861930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 4030761780268593793}
 --- !u!114 &79568408387349691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,6 +851,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &8549063420206517876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588287550974861930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 4030761780268593793}
 --- !u!4 &8869089600081294788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb9ca8e6e2c9efb4d8f96b8556eb1ba8,

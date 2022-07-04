@@ -218,7 +218,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5066571770564880728}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1394a1f102d555b459d82a201155356f, type: 3}
   m_Name: 
@@ -828,19 +828,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.63
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &3198429509633608324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2900458709203189285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 5066571770564880733}
 --- !u!114 &2096952314728609342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,6 +844,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &3198429509633608324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2900458709203189285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 5066571770564880733}
 --- !u!1 &7395817668008899258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 236e2c695337b7543a8efe203492cc85,

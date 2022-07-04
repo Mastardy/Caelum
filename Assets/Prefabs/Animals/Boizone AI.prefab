@@ -321,7 +321,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3480269192480894892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1394a1f102d555b459d82a201155356f, type: 3}
   m_Name: 
@@ -799,19 +799,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7420219489144620127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5821482150330596485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 3480269192480894889}
 --- !u!114 &7226834586310881912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,6 +815,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &7420219489144620127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821482150330596485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 3480269192480894889}
 --- !u!1 &5946565611221961058 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3831330212992399461, guid: e184f2de77cc306489ad05d5a798501c,
@@ -903,19 +903,6 @@ CapsuleCollider:
   m_Height: 0.8928656
   m_Direction: 1
   m_Center: {x: 6.130207e-14, y: 0.28152415, z: 0.15760659}
---- !u!114 &2431201397276897883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406216825833518450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animalOwner: {fileID: 3480269192480894889}
 --- !u!114 &585795928059438160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,6 +919,19 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &2431201397276897883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406216825833518450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c97a43428f04c474482913f6169a9ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalOwner: {fileID: 3480269192480894889}
 --- !u!1 &7740710004321111126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e184f2de77cc306489ad05d5a798501c,

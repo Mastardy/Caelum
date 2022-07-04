@@ -13,7 +13,8 @@ public class Chest : NetworkBehaviour
 {
     public ChestItems[] items;
     private Animator animator;
-    private NetworkVariable<bool> opened = new(readPerm: NetworkVariableReadPermission.Everyone);
+    public NetworkVariable<bool> opened = new(readPerm: NetworkVariableReadPermission.Everyone);
+    public string displayName = "Chest";
 
     private void Start()
     {
