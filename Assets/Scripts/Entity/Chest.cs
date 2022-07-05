@@ -32,7 +32,7 @@ public class Chest : NetworkBehaviour
         animator.SetBool("Open", true);
         for (int i = 0; i < items.Length; i++)
         {
-            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, items[i].item.itemName, items[i].amount);
+            if (player.TryGet(out Player ply)) ply.GiveItemServerRpc(player, items[i].item.itemName, items[i].amount, 1);
         }
     }
 }
