@@ -11,6 +11,7 @@ public class BatucaPlant : MonoBehaviour
     public float speed = 1;
     private Transform player;
     private Player ps;
+    public ParticleSystem smoke;
 
     void Start()
     {
@@ -66,5 +67,6 @@ public class BatucaPlant : MonoBehaviour
     public void TryAttack()
     {
         if (ps) ps.TakeDamageServerRpc(5);
+        smoke.Play();
     }
 }
