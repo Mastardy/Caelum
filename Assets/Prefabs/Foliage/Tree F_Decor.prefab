@@ -42,6 +42,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 894415160264526198, guid: 296b991202c695f43989350207230ee5,
         type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 894415160264526198, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4ca6e65bbcbdae84a93ca7700519b079, type: 2}
@@ -135,6 +140,11 @@ PrefabInstance:
     - target: {fileID: 7111237696219415252, guid: 296b991202c695f43989350207230ee5,
         type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7201044162495950466, guid: 296b991202c695f43989350207230ee5,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7201044162495950466, guid: 296b991202c695f43989350207230ee5,
@@ -286,3 +296,19 @@ CapsuleCollider:
   m_Height: 2.8751879
   m_Direction: 1
   m_Center: {x: 0.0037511194, y: 1.1110787, z: 0.2947252}
+--- !u!114 &-807898695737435987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044789618439701053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

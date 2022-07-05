@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  opened:
+    m_InternalValue: 0
+  displayName: Chest
 --- !u!95 &3865626841383271827
 Animator:
   serializedVersion: 4
@@ -179,6 +182,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -6167654281777033503, guid: b5ec080bd0ab41c4cb61130a882a6696,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wood
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b5ec080bd0ab41c4cb61130a882a6696,
         type: 3}
       propertyPath: m_Name
@@ -193,6 +201,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974970487886010656, guid: b5ec080bd0ab41c4cb61130a882a6696,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wood
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5ec080bd0ab41c4cb61130a882a6696, type: 3}
