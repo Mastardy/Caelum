@@ -20,21 +20,27 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayMusic(AudioClip music, bool loop = true)
     {
         if (!musicAudioSource) musicAudioSource = gameObject.AddComponent<AudioSource>();
-        if(musicAudioSource.isPlaying) musicAudioSource.Stop();
-        musicAudioSource.volume = GameManager.Instance.gameOptions.masterVolume * GameManager.Instance.gameOptions.musicVolume;
-        musicAudioSource.clip = music;
-        musicAudioSource.loop = loop;
-        musicAudioSource.Play();
+        if (musicAudioSource.isPlaying)
+        {
+            StartCoroutine(FadeMusic(true, music, loop));
+        }
+        else
+        {
+            musicAudioSource.volume = GameManager.Instance.gameOptions.masterVolume * GameManager.Instance.gameOptions.musicVolume;
+            musicAudioSource.clip = music;
+            musicAudioSource.loop = loop;
+            musicAudioSource.Play();
+        }
     }
 
     public void StopMusic()
     {
         if (!musicAudioSource) return;
         if (!musicAudioSource.isPlaying) return;
-        StartCoroutine(nameof(FadeMusic));
+        StartCoroutine(FadeMusic());
     }
 
-    private IEnumerator FadeMusic()
+    private IEnumerator FadeMusic(bool playNextMusic = false, AudioClip music = null, bool loop = false)
     {
         for (float vol = GameManager.Instance.gameOptions.masterVolume; vol >= -1f; vol -= Time.deltaTime / 4)
         {
@@ -44,6 +50,21 @@ public class AudioManager : Singleton<AudioManager>
         }
         
         musicAudioSource.Stop();
+
+        if (playNextMusic)
+        {
+            musicAudioSource.volume = GameManager.Instance.gameOptions.masterVolume * GameManager.Instance.gameOptions.musicVolume;
+            musicAudioSource.clip = music;
+            musicAudioSource.loop = loop;
+            musicAudioSource.Play();
+            
+            for(float vol = 0; vol <= GameManager.Instance.gameOptions.masterVolume; vol += Time.deltaTime / 4)
+            {
+                musicAudioSource.volume = vol * GameManager.Instance.gameOptions.musicVolume;
+                if (vol >= 1) break;
+                yield return null;
+            }
+        }
     }
 
     public void PlaySoundScape(AudioClip soundScape)

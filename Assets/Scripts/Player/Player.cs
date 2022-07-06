@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public partial class Player : NetworkBehaviour
 {
     public static List<Player> allPlayers = new();
+    public static Player localPlayer;
     
     private GameOptionsScriptableObject gameOptions;
     [SerializeField] private SoundScriptableObject sounds;
@@ -101,6 +102,7 @@ public partial class Player : NetworkBehaviour
             //GiveItemServerRpc(this, "seed_potato", 3);
             //GiveItemServerRpc(this, "seed_carrot", 3);
             CurrentSlot = 1;
+            localPlayer = this;
             Invoke(nameof(LateLateStart), 0.5f);
         }
     }
@@ -240,13 +242,6 @@ public partial class Player : NetworkBehaviour
                 }
             }
             
-            if (car)
-            {
-                CarMovement();
-
-                return;
-            }
-
             if (takeInput)
             {
                 if (Input.GetKeyDown(KeyCode.Alpha1)) CurrentSlot = 0;

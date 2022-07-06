@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 4030761780268593799}
   - component: {fileID: 4030761780268593798}
   - component: {fileID: 8523139586659919813}
+  - component: {fileID: 8559542454916242742}
   m_Layer: 11
   m_Name: Florisha AI
   m_TagString: Animal
@@ -194,6 +195,12 @@ MonoBehaviour:
   stateText: {fileID: 4030761780295927178}
   damage: 15
   attackRate: 0
+  stepDuration: 1
+  deathSound: {fileID: 8300000, guid: 40fa160415f11fe42a0d487e7cce4494, type: 3}
+  idleSound: {fileID: 8300000, guid: 5fe32d3ee27eb604d89b51cf0ef996c9, type: 3}
+  attackSound: {fileID: 0}
+  sounds: {fileID: 11400000, guid: 3ecb9520a5ae09743b498d9919784cea, type: 2}
+  lightSteps: 0
   animator: {fileID: 8980159503413121557}
   model: {fileID: 8097057256291741566}
   modelRenderer: {fileID: 7655644508062699389}
@@ -205,6 +212,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 958bd2f511e739d44ae57011dd86f4eb, type: 2}
     amount: 1
   fleeSpeed: 5
+  runStepDuration: 0.4
   dead: 0
   maxHealth: 30
   currentHealth:
@@ -294,6 +302,102 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7655644508062699389}
   m_Enabled: 1
+--- !u!82 &8559542454916242742
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4030761780268593796}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4030761780295927177
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,22 +832,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5075728417041021297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5049392237365752053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &7860638019192274781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,22 +923,6 @@ CapsuleCollider:
   m_Height: 2.0288887
   m_Direction: 1
   m_Center: {x: 2.586518e-14, y: 0.5144423, z: 0.036751103}
---- !u!114 &79568408387349691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8588287550974861930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &8549063420206517876
 MonoBehaviour:
   m_ObjectHideFlags: 0

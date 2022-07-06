@@ -34,7 +34,7 @@ public partial class Animal
 
             currentState = value;
             stateText.text = currentState;
-
+            
             animalStates[currentState].onStart.Invoke();
         }
     }

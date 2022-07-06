@@ -116,6 +116,8 @@ public partial class Player
     
     public void CraftItem()
     {
+        AudioManager.Instance.PlaySound(sounds.crafting);
+        
         foreach(var ingredient in currentCraftingRecipe.requirements)
         {
             if (GetItemAmount(ingredient.item.itemName) < ingredient.amount) return;

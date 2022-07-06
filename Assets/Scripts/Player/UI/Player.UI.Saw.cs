@@ -124,6 +124,7 @@ public partial class Player
         lastCurrentSawOutcome = CurrentOutcome.itemName;
         Invoke("GiveSawOutcome", 5f);
         PrepareSaw();
+        AudioManager.Instance.PlaySound(sounds.saw);
     }
 
     private void SawUpdate()

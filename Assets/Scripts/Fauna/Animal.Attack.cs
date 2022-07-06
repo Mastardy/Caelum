@@ -77,8 +77,11 @@ public partial class Animal
             foreach(var col in results)
             {
                 if (!col) continue;
-                if(col.CompareTag("Player"))
+                if (col.CompareTag("Player"))
+                {
                     playerTarget.GetComponent<Player>().TakeDamageServerRpc(damage);
+                    audioSource.PlayOneShot(attackSound);
+                }
             }
         }
     }

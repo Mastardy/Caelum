@@ -51,14 +51,6 @@ private float xRotation;
         {
             var hitInfo = results[0].gameObject;
             
-            if (hitInfo.transform.TryGetComponent(out Car vehicle))
-            {
-                aimText.SetText(vehicle.name);
-                tipsText.SetText("[E] Enter vechicle");
-                lookingAt = hitInfo;
-                return;
-            }
-            
             if (hitInfo.transform.TryGetComponent(out Resource resource))
             {
                 aimText.SetText(resource.name);
@@ -315,22 +307,13 @@ private float xRotation;
         
         if (!lookingAt) return;
 
-        if (lookingAt.TryGetComponent(out Car vehicle))
-        {
-            if (InputHelper.GetKeyDown(gameOptions.useKey, 0.2f))
-            {
-                vehicle.CarEnterServerRpc(this);
-            }
-
-            return;
-        }
-        
         if (lookingAt.TryGetComponent(out Resource resource))
         {
             if(InputHelper.GetKeyDown(gameOptions.useKey, 0.8f)) {
                 if (resource.item.itemName == "wood")
                 {
                     GiveItemServerRpc(this, "stick");
+                    AudioManager.Instance.PlaySound(sounds.harvest);
                     AnimatorCollect();
                     return;
                 }
@@ -342,6 +325,7 @@ private float xRotation;
             if (InputHelper.GetKeyDown(gameOptions.useKey, 1f))
             {
                 pickable.GatherResourceServerRpc(this);
+                AudioManager.Instance.PlaySound(sounds.harvest);
                 AnimatorCollect();
                 return;
             }
@@ -382,6 +366,7 @@ private float xRotation;
             if (InputHelper.GetKeyDown(gameOptions.useKey, 0.3f))
             {
                 fishingNet.TryFishingServerRpc(this);
+                AudioManager.Instance.PlaySound(sounds.fishnet);
             }
 
             return;
@@ -414,6 +399,7 @@ private float xRotation;
                 if(cropfield.harvestable.Value)
                 {
                     cropfield.HarvestServerRpc(this);
+                    AudioManager.Instance.PlaySound(sounds.harvest);
                     AnimatorCollect();
                 }
             }
@@ -428,9 +414,9 @@ private float xRotation;
                 {
                     AnimatorCarve();
                     animalbone.animalOwner.CarveServerRpc(this);
+                    AudioManager.Instance.PlaySound(sounds.carve);
                 }
             }
-
             return;
         }
 

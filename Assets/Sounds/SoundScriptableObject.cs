@@ -44,6 +44,7 @@ public class SoundScriptableObject : ScriptableObject
     [Foldout("Sword", true)]
     public AudioClip swordSwing;
     public AudioClip swordHit;
+    public AudioClip carve;
 
     [Foldout("Spear", true)] 
     public AudioClip spearThrow;
@@ -52,4 +53,20 @@ public class SoundScriptableObject : ScriptableObject
     
     [Foldout("Hookshot", true)]
     public AudioClip grappleSwing;
+    
+    [Foldout("Cooking", true)]
+    public AudioClip cookingFail;
+    public AudioClip cookingSuccess;
+    public AudioClip cookingMinigame;
+
+    [Foldout("Entities", true)] 
+    public AudioClip crafting;
+    public AudioClip fishnet;
+    public AudioClip harvest;
+    public AudioClip saw;
+    public AudioClip smeltery;
+
+    [Foldout("Animal Steps", true)] 
+    public AudioClip[] animalLightSteps;
+    public AudioClip[] animalHeavySteps;
 }

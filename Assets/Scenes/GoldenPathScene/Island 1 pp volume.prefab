@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4072158282016790511}
   - component: {fileID: 2173196705782875016}
   - component: {fileID: 6262200161069730167}
+  - component: {fileID: -2241258947851311220}
   m_Layer: 0
   m_Name: Island 1 pp volume
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animals: []
+  hideAtStart: 0
+--- !u!114 &-2241258947851311220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637451720732565257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e204d15377d8614f9a991bf9ea266e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip: {fileID: 8300000, guid: 85a0e2abc69f82c4aa56a84539d0081a, type: 3}

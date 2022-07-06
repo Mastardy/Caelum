@@ -6,6 +6,7 @@ using System.Linq;
 public partial class Animal
 {
     [SerializeField] private float fleeSpeed = 9f;
+    [SerializeField] private float runStepDuration = 0.5f;
     
     private AnimalState FleeState()
     {
@@ -21,6 +22,8 @@ public partial class Animal
     private void FleeStart()
     {        
         agent.speed = fleeSpeed;
+
+        stepDuration = runStepDuration;
         
         var animalPosition = transform.position;
 
@@ -38,7 +41,7 @@ public partial class Animal
 
     private void FleeEnd()
     {
-        
+        stepDuration = 1.0f;
     }
 
     private Vector3 GetFleeDirection()

@@ -28,6 +28,7 @@ public partial class Animal
     {
         Debug.Log("take damage");
         currentHealth.Value -= damageTaken;
+        
         if (!dead){
             animator.SetTrigger(hitCache);
             StartCoroutine(FadeColor());
@@ -56,6 +57,8 @@ public partial class Animal
         {
             Invoke("DestroyAnimal", 3f);
         }
+
+        audioSource.PlayOneShot(deathSound);
     }
 
     [ServerRpc]

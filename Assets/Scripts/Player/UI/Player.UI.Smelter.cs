@@ -91,6 +91,8 @@ public partial class Player
 
     public void ChangeMineral(int mineral)
     {
+        if(mineralsDropdown.options.Count == 0) return;
+        
         switch (mineralsDropdown.options[mineral].text)
         {
             case "Pickaxe Mold":
@@ -131,6 +133,7 @@ public partial class Player
 
         RemoveItem(currentMineral, smelteryOutcomePrice);
         lastCurrentSmelterOutcome = currentMold + "_blade";
+        AudioManager.Instance.PlaySound(sounds.smeltery);
         Invoke("GiveSmelterOutcome", 3f);
 
         smelteryAmount.SetText(GetItemAmount(currentMineral) + "/" + smelteryOutcomePrice);

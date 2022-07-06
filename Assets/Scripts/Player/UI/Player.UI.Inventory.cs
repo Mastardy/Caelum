@@ -66,6 +66,8 @@ public partial class Player
         
         int amountAdded = 0;
 
+        AudioManager.Instance.PlaySound(sounds.itemPickUp);
+        
         if (inventoryItems[itemName].itemTag is ItemTag.Axe or ItemTag.Bow or ItemTag.Pickaxe or ItemTag.Spear or ItemTag.Sword or ItemTag.Grappling)
         {
             foreach (var hotbar in hotbars)
@@ -197,6 +199,8 @@ public partial class Player
     public void DropItemClientRpc(int slot, bool dropEverything)
     {
         inventorySlots[slot].Amount = dropEverything ? 0 : inventorySlots[slot].Amount - 1;
+
+        AudioManager.Instance.PlaySound(sounds.itemDrop);
 
         if (inventorySlots[slot].Amount > 0) return;
 

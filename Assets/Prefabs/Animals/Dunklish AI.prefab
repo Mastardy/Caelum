@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 7352434512135037948}
   - component: {fileID: 7352434512135037949}
   - component: {fileID: 8217978972786380548}
+  - component: {fileID: -5162788995342698286}
   m_Layer: 11
   m_Name: Dunklish AI
   m_TagString: Animal
@@ -194,6 +195,12 @@ MonoBehaviour:
   stateText: {fileID: 7352434512330118385}
   damage: 15
   attackRate: 0.5
+  stepDuration: 1
+  deathSound: {fileID: 8300000, guid: 6ed23e1f6304ffe4193191c17bce7123, type: 3}
+  idleSound: {fileID: 8300000, guid: ca1fc8ed0fd819c4cac31ac8b47b2727, type: 3}
+  attackSound: {fileID: 8300000, guid: 9a449629c5327304ca0a4ba66f2258a1, type: 3}
+  sounds: {fileID: 11400000, guid: 3ecb9520a5ae09743b498d9919784cea, type: 2}
+  lightSteps: 0
   animator: {fileID: 6216513810711910037}
   model: {fileID: 6522364059810409438}
   modelRenderer: {fileID: 2491906562674070289}
@@ -207,6 +214,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 79be4588e34635f46b0d38a85a1b0f08, type: 2}
     amount: 1
   fleeSpeed: 5
+  runStepDuration: 0.4
   dead: 0
   maxHealth: 150
   currentHealth:
@@ -297,6 +305,102 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2491906562674070289}
   m_Enabled: 1
+--- !u!82 &-5162788995342698286
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7352434512135037951}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7352434512330118386
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,22 +688,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalOwner: {fileID: 7352434512135037946}
---- !u!114 &6544735275254296010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815695672208535460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!137 &2491906562674070289 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 4ec97f9e301603c4a9ec45af9274d128,
@@ -639,22 +727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animalOwner: {fileID: 7352434512135037946}
---- !u!114 &4415934427293175903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2785296088972340663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!137 &4362404654252240980 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1526964690268444965, guid: 4ec97f9e301603c4a9ec45af9274d128,
@@ -739,22 +811,6 @@ CapsuleCollider:
   m_Height: 1.547053
   m_Direction: 1
   m_Center: {x: -1.3472827e-13, y: 0.2170205, z: -0.04423194}
---- !u!114 &6293256946614417860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866504714113835863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
 --- !u!114 &8157402816746796002
 MonoBehaviour:
   m_ObjectHideFlags: 0

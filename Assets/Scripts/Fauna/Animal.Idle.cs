@@ -13,12 +13,26 @@ public partial class Animal
         return tempIdleState;
     }
 
+    private float idleSoundTimer;
+    private float idleSoundDuration;
+    
     private void IdleStart()
     {
         agent.ResetPath();
+        audioSource.PlayOneShot(idleSound);
+        idleSoundTimer = Time.time;
+        idleSoundDuration = Random.Range(3.0f, 5.0f);
     }
     
-    private void IdleUpdate() { }
+    private void IdleUpdate() 
+    {
+        if (Time.time - idleSoundTimer > idleSoundDuration)
+        {
+            audioSource.PlayOneShot(idleSound);
+            idleSoundTimer = Time.time;
+            idleSoundDuration = Random.Range(1.0f, 3.0f);
+        }
+    }
     
     private void IdleEnd() { }
 }

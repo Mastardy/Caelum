@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2072750591649647839}
   - component: {fileID: 5125328451813746779}
   - component: {fileID: 2019958151003806879}
+  - component: {fileID: 6515429558938297158}
   m_Layer: 0
   m_Name: Island 3 pp volume
   m_TagString: Untagged
@@ -64,3 +65,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: 830f525f52fdeb94f96e2a81f598e27e, type: 3}
+--- !u!114 &6515429558938297158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8677193690689608953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e204d15377d8614f9a991bf9ea266e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip: {fileID: 8300000, guid: f275d326cf4956044916101e222605fa, type: 3}

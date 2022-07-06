@@ -170,6 +170,8 @@ public partial class Player
         cookingMinigameButton.onClick.AddListener(PrepareOvenMinigame);
     }
 
+    private int ovenAudioSource = -1;
+    
     private void PrepareOvenMinigame()
     {
         foreach (var ingredient in currentRecipe.ingredients)
@@ -179,6 +181,9 @@ public partial class Player
         
         inOvenMinigame = true;
         currentTimer = 0.0f;
+        
+        if(ovenAudioSource == -1) ovenAudioSource = AudioManager.Instance.CreateUnsafeAudioSource();
+        AudioManager.Instance.PlaySoundUnsafe(sounds.cookingMinigame, ovenAudioSource, true);
         
         int randomValue = Random.Range(5, 95);
         ovenMinigame.SetActive(true);
@@ -209,10 +214,12 @@ public partial class Player
             if (curValue > (tempCurrentTimer - curOffset * 2) && curValue < (tempCurrentTimer + curOffset * 2))
             {
                 GiveItemServerRpc(this, currentRecipe.cooked.itemName, 1);
+                AudioManager.Instance.PlaySound(sounds.cookingSuccess);
             }
             else
             {
                 GiveItemServerRpc(this, currentRecipe.burnt.itemName, 1);
+                AudioManager.Instance.PlaySound(sounds.cookingFail);
             }
             
             ovenMinigame.SetActive(false);
