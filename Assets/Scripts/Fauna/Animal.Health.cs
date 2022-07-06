@@ -26,6 +26,7 @@ public partial class Animal
     [ServerRpc]
     public void TakeDamageServerRpc(int damageTaken)
     {
+        Debug.Log("take damage");
         currentHealth.Value -= damageTaken;
         if (!dead){
             animator.SetTrigger(hitCache);
