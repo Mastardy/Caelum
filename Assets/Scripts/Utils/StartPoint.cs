@@ -9,6 +9,8 @@ using UnityEngine.Video;
 
 public class StartPoint : Singleton<StartPoint>
 {
+    [SerializeField] private GameOptionsScriptableObject gameOptions;
+    
     [SerializeField] private GameObject start1;
     [SerializeField] private GameObject start2;
     [SerializeField] private GameObject start3;
@@ -42,7 +44,7 @@ public class StartPoint : Singleton<StartPoint>
         start2.SetActive(true);
         
         videoPlayer.Play();
-        videoPlayer.SetDirectAudioVolume(0, GameManager.Instance.gameOptions.masterVolume);
+        videoPlayer.SetDirectAudioVolume(0, gameOptions.masterVolume);
         Invoke(nameof(StopCutscene), (float)videoPlayer.length + 0.5f);
     }
 
