@@ -72,35 +72,6 @@ public partial class Player : NetworkBehaviour
         if (IsLocalPlayer)
         {
             SpawnPlayer();
-            //GiveItemServerRpc(this, "fruit_pear", 1);
-            //GiveItemServerRpc(this, "wood", 2);
-            //GiveItemServerRpc(this, "axe_stone", 1, 1);
-            //GiveItemServerRpc(this, "axe_iron", 1, 1);
-            //GiveItemServerRpc(this, "pickaxe_stone", 1, 1);
-            //GiveItemServerRpc(this, "pickaxe_iron", 1, 1);
-            //GiveItemServerRpc(this, "pickaxe_wood", 1, 1);
-            //GiveItemServerRpc(this, "bow", 1, 1);
-            GiveItemServerRpc(this, "sword", 1, 1);
-            //GiveItemServerRpc(this, "spear_wood", 1, 1);
-            //GiveItemServerRpc(this, "spear_stone", 1, 1);
-            //GiveItemServerRpc(this, "spear_iron", 1, 1);
-            //GiveItemServerRpc(this, "arrow_wood", 10);
-            //GiveItemServerRpc(this, "arrow_stone", 10);
-            //GiveItemServerRpc(this, "arrow_iron", 10);
-            GiveItemServerRpc(this, "grappling_hook", 1, 1);
-            GiveItemServerRpc(this, "grappling_hook_plus", 1, 1);
-            //GiveItemServerRpc(this, "helmet", 1, 1);
-            //GiveItemServerRpc(this, "copper", 5);
-            //GiveItemServerRpc(this, "iron", 6);
-            //GiveItemServerRpc(this, "gold", 8);
-            //GiveItemServerRpc(this, "pickaxe_mold", 1);
-            //GiveItemServerRpc(this, "axe_mold", 1);
-            //GiveItemServerRpc(this, "sword_mold", 1);
-            //GiveItemServerRpc(this, "seed_wheat", 3);
-            //GiveItemServerRpc(this, "seed_tomato", 3);
-            //GiveItemServerRpc(this, "seed_corn", 3);
-            //GiveItemServerRpc(this, "seed_potato", 3);
-            //GiveItemServerRpc(this, "seed_carrot", 3);
             CurrentSlot = 1;
             localPlayer = this;
             Invoke(nameof(LateLateStart), 0.5f);

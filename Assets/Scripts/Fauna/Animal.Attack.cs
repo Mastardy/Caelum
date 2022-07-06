@@ -45,6 +45,7 @@ public partial class Animal
         
         if (Time.time - lastAttack > 1 / attackRate)
         {
+            transform.LookAt(playerTarget.transform, transform.up);
             animator.SetTrigger(attackCache);
             lastAttack = Time.time;
         }
@@ -73,7 +74,7 @@ public partial class Animal
     {
         var results = new Collider[10];
 
-        if (Physics.OverlapCapsuleNonAlloc(transform.position, transform.position + transform.forward * attackRange, 2, results) > 1)
+        if (Physics.OverlapCapsuleNonAlloc(transform.position, transform.position + transform.forward * attackRange, 2, results) > 0)
         {
             foreach(var col in results)
             {
