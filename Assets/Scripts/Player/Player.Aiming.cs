@@ -456,12 +456,9 @@ private float xRotation;
 
         if (lookingAt.TryGetComponent(out AnimalBone animalbone))
         {
-            Debug.Log("animal bone");
             Animal animal = animalbone.animalOwner;
 
             if (animal.dead) return;
-
-            Debug.Log("not dead");
 
             switch (hotbars[currentSlot].slot.inventoryItem.itemTag)
             {
@@ -472,7 +469,6 @@ private float xRotation;
                     AudioManager.Instance.PlaySound(sounds.spearSwing);
                     break;
                 case ItemTag.Sword:
-                    Debug.Log("sword use");
                     animal.TakeDamageServerRpc(20);
                     impactParticle.Play();
                     hotbars[currentSlot].slot.Durability -= 0.025f;

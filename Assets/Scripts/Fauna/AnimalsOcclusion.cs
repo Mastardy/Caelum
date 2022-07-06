@@ -5,19 +5,23 @@ public class AnimalsOcclusion : MonoBehaviour
 {
     public GameObject[] animals;
     public bool hideAtStart;
+    public StartPoint startPoint;
 
     private void Start()
     {
-        if (hideAtStart) Invoke("HideAtStart", 1f);
+        startPoint.OnStart.AddListener(DelayedHideAtStart);
+    }
+
+    public void DelayedHideAtStart()
+    {
+        Invoke("HideAtStart", 5f);
     }
 
     private void HideAtStart()
     {
-        Debug.Log("hiding");
         foreach (var animal in animals)
         {
             animal.SetActive(false);
-            Debug.Log("hidden");
         }
     }
 

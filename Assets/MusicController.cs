@@ -9,10 +9,8 @@ public class MusicController : MonoBehaviour
     
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Cringei");
         if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Cringei Logo");
             AudioManager.Instance.PlayMusic(musicClip);
         }
     }

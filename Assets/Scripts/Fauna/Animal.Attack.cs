@@ -9,6 +9,7 @@ public partial class Animal
     [SerializeField] private int damage = 15;
     [SerializeField] private float attackRate = 0.5f;
     private float lastAttack;
+    [SerializeField] private float attackRange = 3.0f;
     
     private AnimalState AttackState()
     {        
@@ -37,7 +38,7 @@ public partial class Animal
 
         agent.isStopped = false;
 
-        if (Vector3.Distance(transform.position, playerTarget.transform.position) > 3.0f) return;
+        if (Vector3.Distance(transform.position, playerTarget.transform.position) > attackRange) return;
         
         agent.velocity = Vector3.zero;
         agent.isStopped = true;
@@ -72,7 +73,7 @@ public partial class Animal
     {
         var results = new Collider[10];
 
-        if (Physics.OverlapCapsuleNonAlloc(transform.position, transform.position + transform.forward * 2, 2, results) > 1)
+        if (Physics.OverlapCapsuleNonAlloc(transform.position, transform.position + transform.forward * attackRange, 2, results) > 1)
         {
             foreach(var col in results)
             {
