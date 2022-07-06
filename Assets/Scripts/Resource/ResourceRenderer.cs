@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -57,12 +58,12 @@ public class ResourceRenderer : MonoBehaviour
 
         for (int i = 0; i < points.Count; i++)
         {
-            //int rand = Random.Range(0, resourcePrefab.Length);
-            //GameObject tree = PrefabUtility.InstantiatePrefab(resourcePrefab[rand], transform) as GameObject;
-            //tree.transform.position = points[i];
-            //tree.transform.Rotate(0, Random.Range(0, 359), 0);
-            //tree.transform.localScale = Vector3.one * Random.Range(size.x, size.y);
-            //tree.name = "Tree";
+            int rand = Random.Range(0, resourcePrefab.Length);
+            GameObject tree = PrefabUtility.InstantiatePrefab(resourcePrefab[rand], transform) as GameObject;
+            tree.transform.position = points[i];
+            tree.transform.Rotate(0, Random.Range(0, 359), 0);
+            tree.transform.localScale = Vector3.one * Random.Range(size.x, size.y);
+            tree.name = "Tree";
         }
     }
 
@@ -131,3 +132,4 @@ public class ResourceRenderer : MonoBehaviour
         if (trees.Count == 0) foreach (var tree in GetComponentsInChildren<Transform>()) if (tree.gameObject != gameObject && tree.CompareTag("Resource")) tree.transform.Rotate(0, Random.Range(0, 359), 0);
     }
 }
+#endif
