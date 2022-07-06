@@ -40,7 +40,7 @@ public partial class Player
 
     private void BeginGrapplePlus()
     {
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, grappleMaxLength))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hit, grappleMaxLength, grappleLayer))
         {
             isTetheredPlus = true;
             grapplePoint = hit.point;
@@ -146,7 +146,7 @@ public partial class Player
         
         Collider[] results = new Collider[10];
         var localScale = transform.localScale.x * 1.25f;
-        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results, Quaternion.identity, groundMask) > 1)
+        if (Physics.OverlapBoxNonAlloc(transform.position + (characterController.center * transform.localScale.x), new Vector3(localScale * characterController.radius, localScale * characterController.height / 2, localScale * characterController.radius), results, Quaternion.identity, groundMask) > 0)
         {
             EndGrapplePlus();
         }

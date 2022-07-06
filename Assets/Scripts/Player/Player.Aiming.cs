@@ -301,9 +301,12 @@ private float xRotation;
                 case ItemTag.Grappling:
                     if(InputHelper.GetKeyDown(gameOptions.secondaryAttackKey, 0.6f))
                     {
-                        if(!isTethered && !isTetheredPlus)
+                        switch (invItem.subTag)
                         {
-                            BeginGrapple();
+                            case SubTag.None:
+                                if (!isTethered) BeginGrapple(); break;
+                            case SubTag.Plus:
+                                if (!isTetheredPlus) BeginGrapplePlus(); break;
                         }
                     }
                     break;
